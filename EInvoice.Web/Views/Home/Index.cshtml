@@ -1,3 +1,9 @@
-@model List<EInvoice.Data.Data.Customer>
+﻿@model IList<EInvoice.Data.Data.Customer>
 
 @Html.Partial("GridViewPartialView", Model)
+
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_homePageLayout.cshtml";
+}                                   

@@ -14,15 +14,29 @@ namespace EInvoice.Data.Data
     
     public partial class User
     {
-        public int UserID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.UserClaims = new HashSet<UserClaim>();
+            this.UserLogins = new HashSet<UserLogin>();
+            this.Roles = new HashSet<Role>();
+        }
+    
+        public long Id { get; set; }
         public Nullable<int> EmployeeID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Token { get; set; }
-        public Nullable<System.DateTime> TokenCreateDate { get; set; }
-        public string PasswordToken { get; set; }
-        public Nullable<System.DateTime> PasswordTokenCreateDate { get; set; }
+        public string UserName { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
+        public Nullable<System.DateTime> BirthDay { get; set; }
+        public string PasswordHash { get; set; }
+        public string SecurityStamp { get; set; }
     
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserClaim> UserClaims { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserLogin> UserLogins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

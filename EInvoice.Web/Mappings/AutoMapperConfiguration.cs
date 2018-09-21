@@ -11,6 +11,7 @@ namespace EInvoice.Web.Mappings
 			Mapper.Initialize(cfg =>
 			{
 				cfg.CreateMap<Data.Data.Customer, CustomerViewModel>();
+				cfg.CreateMap<User, LoginModel>();
 			});
 		}
 	}

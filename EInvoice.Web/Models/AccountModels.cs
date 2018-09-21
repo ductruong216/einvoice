@@ -113,7 +113,13 @@ namespace EInvoice.Web.Models {
         public string Password { get; set; }
 
         bool? rememberMe;
-        [Display(Name = "Remember me?")]
+
+	    public LoginModel(string password)
+	    {
+		    Password = password;
+	    }
+
+	    [Display(Name = "Remember me?")]
         public bool? RememberMe {
             get { return rememberMe ?? false; }
             set { rememberMe = value; }

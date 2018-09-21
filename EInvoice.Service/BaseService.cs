@@ -15,6 +15,7 @@ namespace EInvoice.Service
 		void DeleteByID(int id);
 
 		IList<T> GetAll();
+		T GetSingleById(int id);
 
 		void Save();
 
@@ -47,6 +48,11 @@ namespace EInvoice.Service
 		public IList<T> GetAll()
 		{
 			 return _repository.GetAll();
+		}
+
+		public T GetSingleById(int id)
+		{
+			return _repository.GetSingleById(id);
 		}
 
 		public void Save()
