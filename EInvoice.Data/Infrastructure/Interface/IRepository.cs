@@ -13,14 +13,14 @@ namespace EInvoice.Data.Infrastructure.Interface
 
 		void Update(T entity);
 
-		void DeleteByID(int id);
+		void DeleteByID(object id);
 		IList<T> GetAll();
 
 		// Delete with multi conditions
 		void DeleteMulti(Expression<Func<T, bool>> where);
 
 		// Get an entity by int ID
-		T GetSingleById(int id);
+		T GetSingleById(object id);
 
 		// Get an entity by conditions
 		T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);

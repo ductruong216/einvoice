@@ -49,6 +49,8 @@ namespace EInvoice.Web
 			//	.AsImplementedInterfaces().InstancePerRequest();
 
 			builder.RegisterType<CustomerRepostitory>().As<ICustomerRepository>().InstancePerRequest();
+			builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerRequest();
+			builder.RegisterType<UnitRepository>().As<IUnitRepository>().InstancePerRequest();
 
 			// Service
 			//builder.RegisterAssemblyTypes(typeof(CustomerService).Assembly)
@@ -56,12 +58,15 @@ namespace EInvoice.Web
 			//  .AsImplementedInterfaces().InstancePerRequest();
 
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
+			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();
+			builder.RegisterType<UnitService>().As<IUnitService>().AsSelf();
 
 
 			Autofac.IContainer container = builder.Build();
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
 			GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
+
+			 //ObjectFactory.Container = container;
 		}
 	}
 }

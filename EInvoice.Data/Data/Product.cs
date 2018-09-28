@@ -20,17 +20,16 @@ namespace EInvoice.Data.Data
             this.Invoices = new HashSet<Invoice>();
         }
     
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public Nullable<int> UnitID { get; set; }
         public decimal Tax { get; set; }
+        public Nullable<int> UnitID { get; set; }
         public string Description { get; set; }
         public Nullable<int> CategoryID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
-        public virtual ProductCategory ProductCategory { get; set; }
         public virtual Unit Unit { get; set; }
         public virtual Unit Unit1 { get; set; }
     }

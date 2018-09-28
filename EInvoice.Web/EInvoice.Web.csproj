@@ -167,6 +167,9 @@
     <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Web.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Web.Mvc5.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="ThemeAssembly">
+      <HintPath>.\ThemeAssembly.dll</HintPath>
+    </Reference>
     <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
     </Reference>
@@ -175,18 +178,44 @@
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
-    <Content Include="Assets\css\bootstrap-responsive.min.css" />
-    <Content Include="Assets\css\bootstrap.min.css" />
-    <Content Include="Assets\css\font-awesome.css" />
-    <Content Include="Assets\css\pages\dashboard.css" />
-    <Content Include="Assets\css\style.css" />
-    <Content Include="Assets\font\fontawesome-webfont.svg" />
-    <Content Include="Assets\js\base.js" />
-    <Content Include="Assets\js\bootstrap.js" />
-    <Content Include="Assets\js\chart.min.js" />
-    <Content Include="Assets\js\excanvas.min.js" />
-    <Content Include="Assets\js\full-calendar\fullcalendar.min.js" />
-    <Content Include="Assets\js\jquery-1.7.2.min.js" />
+    <Content Include="Assets\css\font-face.css" />
+    <Content Include="Assets\css\theme.css" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="Assets\images\bg-title-01.jpg" />
+    <Content Include="Assets\images\bg-title-02.jpg" />
+    <Content Include="Assets\images\icon\e-invoice.ico" />
+    <Content Include="Assets\images\e-invoice.png" />
+    <Content Include="Assets\images\icon\avatar-01.jpg" />
+    <Content Include="Assets\images\icon\avatar-02.jpg" />
+    <Content Include="Assets\images\icon\avatar-03.jpg" />
+    <Content Include="Assets\images\icon\avatar-04.jpg" />
+    <Content Include="Assets\images\icon\avatar-05.jpg" />
+    <Content Include="Assets\images\icon\avatar-06.jpg" />
+    <Content Include="Assets\images\icon\avatar-big-01.jpg" />
+    <Content Include="Assets\images\icon\logo-blue.png" />
+    <Content Include="Assets\images\icon\logo-mini.png" />
+    <Content Include="Assets\images\icon\logo-white.png" />
+    <Content Include="Assets\images\icon\logo.png" />
+    <Content Include="Assets\images\icon\Untitled-1.jpg" />
+    <Content Include="Assets\images\invoice.jpg" />
+    <Content Include="Assets\images\Logo.jpg" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\Login\css\main.css" />
     <Content Include="Assets\Login\css\util.css" />
@@ -234,6 +263,84 @@
     <Content Include="Assets\Login\vendor\select2\select2.js" />
     <Content Include="Assets\Login\vendor\select2\select2.min.css" />
     <Content Include="Assets\Login\vendor\select2\select2.min.js" />
+    <Content Include="Assets\vendor\animsition\animsition.min.css" />
+    <Content Include="Assets\vendor\animsition\animsition.min.js" />
+    <Content Include="Assets\vendor\bootstrap-4.1\bootstrap.min.css" />
+    <Content Include="Assets\vendor\bootstrap-4.1\bootstrap.min.js" />
+    <Content Include="Assets\vendor\bootstrap-4.1\popper.min.js" />
+    <Content Include="Assets\vendor\bootstrap-progressbar\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="Assets\vendor\bootstrap-progressbar\bootstrap-progressbar.min.js" />
+    <Content Include="Assets\vendor\chartjs\Chart.bundle.min.js" />
+    <Content Include="Assets\vendor\circle-progress\circle-progress.js" />
+    <Content Include="Assets\vendor\circle-progress\circle-progress.min.js" />
+    <Content Include="Assets\vendor\countdown\countdowntime.js" />
+    <Content Include="Assets\vendor\countdown\jquery.countdown.min.js" />
+    <Content Include="Assets\vendor\countdown\moment-timezone-with-data.min.js" />
+    <Content Include="Assets\vendor\countdown\moment-timezone.min.js" />
+    <Content Include="Assets\vendor\countdown\moment.min.js" />
+    <Content Include="Assets\vendor\counter-up\jquery.counterup.min.js" />
+    <Content Include="Assets\vendor\counter-up\jquery.waypoints.min.js" />
+    <Content Include="Assets\vendor\counter-up\waypoints.min.js" />
+    <Content Include="Assets\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Assets\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Assets\vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Assets\vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Assets\vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\vendor\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Assets\vendor\font-awesome-5\css\fontawesome-all.min.css" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-brands-400.svg" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-regular-400.svg" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-solid-900.svg" />
+    <Content Include="Assets\vendor\jquery-3.2.1.min.js" />
+    <Content Include="Assets\vendor\jquery-ui.min.js" />
+    <Content Include="Assets\vendor\lightbox2\dist\css\lightbox.css" />
+    <Content Include="Assets\vendor\lightbox2\dist\images\close.png" />
+    <Content Include="Assets\vendor\lightbox2\dist\images\loading.gif" />
+    <Content Include="Assets\vendor\lightbox2\dist\images\next.png" />
+    <Content Include="Assets\vendor\lightbox2\dist\images\prev.png" />
+    <Content Include="Assets\vendor\lightbox2\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Assets\vendor\lightbox2\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Assets\vendor\lightbox2\dist\js\lightbox.js" />
+    <Content Include="Assets\vendor\lightbox2\dist\js\lightbox.min.js" />
+    <Content Include="Assets\vendor\lightbox2\src\css\lightbox.css" />
+    <Content Include="Assets\vendor\lightbox2\src\images\close.png" />
+    <Content Include="Assets\vendor\lightbox2\src\images\loading.gif" />
+    <Content Include="Assets\vendor\lightbox2\src\images\next.png" />
+    <Content Include="Assets\vendor\lightbox2\src\images\prev.png" />
+    <Content Include="Assets\vendor\lightbox2\src\js\lightbox.js" />
+    <Content Include="Assets\vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Assets\vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Assets\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Assets\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Assets\vendor\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Assets\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Assets\vendor\progressbar\progressbar.js" />
+    <Content Include="Assets\vendor\progressbar\progressbar.min.js" />
+    <Content Include="Assets\vendor\select2\select2.min.css" />
+    <Content Include="Assets\vendor\select2\select2.min.js" />
+    <Content Include="Assets\vendor\slick\ajax-loader.gif" />
+    <Content Include="Assets\vendor\slick\fonts\slick.svg" />
+    <Content Include="Assets\vendor\slick\slick-theme.css" />
+    <Content Include="Assets\vendor\slick\slick.css" />
+    <Content Include="Assets\vendor\slick\slick.js" />
+    <Content Include="Assets\vendor\slick\slick.min.js" />
+    <Content Include="Assets\vendor\smk-accordion\accordion.css" />
+    <Content Include="Assets\vendor\smk-accordion\accordion.js" />
+    <Content Include="Assets\vendor\smk-accordion\accordion.min.js" />
+    <Content Include="Assets\vendor\sweetalert\sweetalert.min.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.brazil.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.europe.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.france.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.germany.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.min.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.russia.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.sampledata.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.usa.js" />
+    <Content Include="Assets\vendor\vector-map\jquery.vmap.world.js" />
+    <Content Include="Assets\vendor\vector-map\jqvmap.min.css" />
+    <Content Include="Assets\vendor\wow\animate.css" />
+    <Content Include="Assets\vendor\wow\wow.min.js" />
     <Content Include="Content\Images\AquaHeader.jpg" />
     <Content Include="Content\Images\BlackGlassHeader.jpg" />
     <Content Include="Content\Images\GlassHeader.jpg" />
@@ -266,12 +373,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
-    <Content Include="Assets\font\fontawesome-webfont.eot" />
-    <Content Include="Assets\font\fontawesome-webfont.svgz" />
-    <Content Include="Assets\font\fontawesome-webfont.ttf" />
-    <Content Include="Assets\font\fontawesome-webfont.woff" />
-    <Content Include="Assets\font\fontawesome-webfontd41d.eot" />
-    <Content Include="Assets\font\FontAwesome.otf" />
     <Content Include="Assets\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="Assets\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="Assets\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
@@ -377,6 +478,110 @@
     <Content Include="Assets\Login\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Assets\Login\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Assets\Login\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-100italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-200italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-600italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-900italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="Assets\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="Assets\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-brands-400.eot" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-brands-400.ttf" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-brands-400.woff" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-brands-400.woff2" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-regular-400.eot" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-regular-400.ttf" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-regular-400.woff" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-regular-400.woff2" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-solid-900.eot" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-solid-900.ttf" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-solid-900.woff" />
+    <Content Include="Assets\vendor\font-awesome-5\webfonts\fa-solid-900.woff2" />
+    <Content Include="Assets\vendor\lightbox2\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Assets\vendor\lightbox2\dist\js\lightbox.min.map" />
+    <Content Include="Assets\vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Assets\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Assets\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Assets\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Assets\vendor\slick\config.rb" />
+    <Content Include="Assets\vendor\slick\fonts\slick.eot" />
+    <Content Include="Assets\vendor\slick\fonts\slick.ttf" />
+    <Content Include="Assets\vendor\slick\fonts\slick.woff" />
+    <Content Include="Assets\vendor\slick\slick-theme.less" />
+    <Content Include="Assets\vendor\slick\slick-theme.scss" />
+    <Content Include="Assets\vendor\slick\slick.less" />
+    <Content Include="Assets\vendor\slick\slick.scss" />
+    <Compile Include="Controllers\CategoryController\CategoryController.Customer.cs" />
     <None Include="packages.config" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -392,23 +597,19 @@
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_lightLayout.cshtml" />
-    <Content Include="Views\Shared\_mainLayout.cshtml" />
-    <Content Include="Views\Shared\_rootLayout.cshtml" />
-    <Content Include="Views\Shared\ContentLeftPartialView.cshtml" />
-    <Content Include="Views\Shared\FooterPartialView.cshtml" />
-    <Content Include="Views\Shared\HeaderPartialView.cshtml" />
-    <Content Include="Views\Shared\LogOnPartialView.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
@@ -416,7 +617,6 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
@@ -424,11 +624,14 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Home\GridViewPartialView.cshtml" />
     <Content Include="Scripts\jquery.min.map" />
-    <Content Include="Views\Shared\_homePageLayout.cshtml" />
+    <Content Include="Views\Shared\_mainLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\_ProductPartial.cshtml" />
+    <Content Include="Views\Category\_UnitPartial.cshtml" />
+    <Content Include="Views\Category\_CustomerPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -442,10 +645,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\Helpers\CategoryViewHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController\CategoryController.cs" />
+    <Compile Include="Controllers\CategoryController\CategoryController.Product.cs" />
+    <Compile Include="Controllers\CategoryController\CategoryController.Unit.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -456,6 +665,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NorthwindContext.cs" />
     <Compile Include="Models\NorthwindDataProvider.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -469,7 +679,9 @@
       <Name>EInvoice.Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

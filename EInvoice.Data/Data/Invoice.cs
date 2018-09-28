@@ -15,16 +15,16 @@ namespace EInvoice.Data.Data
     public partial class Invoice
     {
         public int InvoiceID { get; set; }
-        public int CompanyID { get; set; }
+        public int TaxCode { get; set; }
         public string Pattern { get; set; }
         public string Series { get; set; }
         public int No { get; set; }
         public string SecureCode { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public int CustomerID { get; set; }
+        public string CustomerId { get; set; }
         public int PaymentTypeID { get; set; }
         public string Note { get; set; }
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
         public decimal Tax { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -41,6 +41,7 @@ namespace EInvoice.Data.Data
         public string Status { get; set; }
     
         public virtual Company Company { get; set; }
+        public virtual Company Company1 { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual InvoiceType InvoiceType { get; set; }

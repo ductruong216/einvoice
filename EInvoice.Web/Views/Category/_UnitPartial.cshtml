@@ -1,0 +1,74 @@
+﻿@using EInvoice.Data.Data
+@using EInvoice.Web.Controllers
+@using EInvoice.Web.Controllers.CategoryController
+@using Unit = System.Web.UI.WebControls.Unit
+@(Html.DevExpress().GridView<EInvoice.Data.Data.Unit>(settings =>
+	{
+		settings.Name = "Units";
+		settings.CallbackRouteValues = new { Controller = "Category", Action = "UnitPartial" };
+		settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Category", Action = "UnitPartialAddNew" };
+		settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Category", Action = "UnitPartialUpdate" };
+		settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Category", Action = "UnitPartialDelete" };
+		settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+
+#region Toolbar Settings
+settings.Toolbars.Add(toolbarUnit =>
+		{
+			toolbarUnit.Enabled = true;
+			toolbarUnit.Position = GridToolbarPosition.Top;
+			toolbarUnit.ItemAlign = GridToolbarItemAlign.Right;
+			toolbarUnit.Items.Add(GridViewToolbarCommand.New);
+			toolbarUnit.Items.Add(GridViewToolbarCommand.Edit);
+			toolbarUnit.Items.Add(GridViewToolbarCommand.Delete);
+			toolbarUnit.Items.Add(GridViewToolbarCommand.Refresh, true);
+		});
+#endregion Toolbar Settings
+#region Add Comlumns
+
+settings.Columns.Add(c =>
+		{
+			c.FieldName = "Name";
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+
+#endregion
+#region Numbering
+
+settings.Init = (sender, e) =>
+		{
+			var c = new GridViewDataColumn() { FieldName = "Series" };
+			c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+			c.VisibleIndex = 0;
+			c.Width = 50;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+			((MVCxGridView)sender).Columns.Add(c);
+		};
+
+		settings.CustomColumnDisplayText = (sender, e) =>
+		{
+			if (e.Column.FieldName == "Series")
+			{
+				e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+			}
+		};
+#endregion
+settings.KeyFieldName = "UnitId";
+		settings.EditFormLayoutProperties.ColCount = 1;
+		settings.EditFormLayoutProperties.Items.Add(i => i.Name);
+		settings.EditFormLayoutProperties.Items.AddCommandItem(i =>
+		{
+			i.ColSpan = 1;
+			i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+		});
+
+		settings.SettingsSearchPanel.CustomEditorName = "search";
+		settings.SettingsBehavior.AllowFocusedRow = true;
+		settings.SettingsExport.EnableClientSideExportAPI = true;
+		settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+		settings.Width = Unit.Percentage(100);
+
+		settings.SettingsPager.PageSize = 5;
+
+	}).Bind(Model).SetEditErrorText(ViewBag.EditError).GetHtml())

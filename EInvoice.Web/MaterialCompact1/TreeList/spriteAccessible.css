@@ -1,0 +1,50 @@
+.dx-acc-r .dxm-checked .dxTreeList_CTShowCustomizationWindow_MaterialCompact1:before, .dx-acc-r .dxm-checked .dxTreeList_CTShowFilterRow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CellError_MaterialCompact1:before, .dx-acc-r .dxTreeList_CollapsedButton_MaterialCompact1:before, .dx-acc-r .dxTreeList_CollapsedButtonRtl_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTClearFilter_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTClearFilterDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTCollapseRow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTCollapseRowDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTDeleteRow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTDeleteRowDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTEditRow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTEditRowDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExpandRow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExpandRowDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportDocx_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportDocxDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportPdf_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportPdfDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportRtf_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportRtfDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportXls_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportXlsDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportXlsx_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTExportXlsxDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTFullCollapse_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTFullCollapseDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTFullExpand_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTFullExpandDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTNewRow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTNewRowDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTRefresh_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTRefreshDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTShowCustomizationWindow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTShowCustomizationWindowDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTShowFilterRow_MaterialCompact1:before, .dx-acc-r .dxTreeList_CTShowFilterRowDisabled_MaterialCompact1:before, .dx-acc-r .dxTreeList_DragAndDropArrowDown_MaterialCompact1:before, .dx-acc-r .dxTreeList_DragAndDropArrowUp_MaterialCompact1:before, .dx-acc-r .dxTreeList_DragAndDropHide_MaterialCompact1:before, .dx-acc-r .dxTreeList_DragAndDropNode_MaterialCompact1:before, .dx-acc-r .dxTreeList_ExpandedButton_MaterialCompact1:before, .dx-acc-r .dxTreeList_ExpandedButtonRtl_MaterialCompact1:before, .dx-acc-r .dxTreeList_FilterRowButton_MaterialCompact1:before, .dx-acc-r .dxTreeList_HeaderFilter_MaterialCompact1:before, .dx-acc-r .dxTreeList_HeaderFilterActive_MaterialCompact1:before, .dx-acc-r .dxTreeList_SortAsc_MaterialCompact1:before, .dx-acc-r .dxTreeList_SortDesc_MaterialCompact1:before { content: url('sprite.svg'); }
+.dx-acc-r .dxm-checked .dxTreeList_CTShowCustomizationWindow_MaterialCompact1:before { left: 0px; top: 0px; }
+.dx-acc-r .dxm-checked .dxTreeList_CTShowFilterRow_MaterialCompact1:before { left: 0px; top: -357px; }
+.dx-acc-r .dxTreeList_CellError_MaterialCompact1:before { left: 0px; top: -610px; }
+.dx-acc-r .dxTreeList_CollapsedButton_MaterialCompact1:before { left: -10px; top: -681px; }
+.dx-acc-r .dxTreeList_CollapsedButtonRtl_MaterialCompact1:before { left: -11px; top: -692px; }
+.dx-acc-r .dxTreeList_CTClearFilter_MaterialCompact1:before { left: 0px; top: -102px; }
+.dx-acc-r .dxTreeList_CTClearFilterDisabled_MaterialCompact1:before { left: 0px; top: -493px; }
+.dx-acc-r .dxTreeList_CTCollapseRow_MaterialCompact1:before { left: 0px; top: -459px; }
+.dx-acc-r .dxTreeList_CTCollapseRowDisabled_MaterialCompact1:before { left: 0px; top: -272px; }
+.dx-acc-r .dxTreeList_CTDeleteRow_MaterialCompact1:before { left: 0px; top: -17px; }
+.dx-acc-r .dxTreeList_CTDeleteRowDisabled_MaterialCompact1:before { left: 0px; top: -510px; }
+.dx-acc-r .dxTreeList_CTEditRow_MaterialCompact1:before { left: 0px; top: -85px; }
+.dx-acc-r .dxTreeList_CTEditRowDisabled_MaterialCompact1:before { left: 0px; top: -391px; }
+.dx-acc-r .dxTreeList_CTExpandRow_MaterialCompact1:before { left: 0px; top: -289px; }
+.dx-acc-r .dxTreeList_CTExpandRowDisabled_MaterialCompact1:before { left: 0px; top: -578px; }
+.dx-acc-r .dxTreeList_CTExportDocx_MaterialCompact1:before { left: 0px; top: -527px; }
+.dx-acc-r .dxTreeList_CTExportDocxDisabled_MaterialCompact1:before { left: 0px; top: -306px; }
+.dx-acc-r .dxTreeList_CTExportPdf_MaterialCompact1:before { left: 0px; top: -238px; }
+.dx-acc-r .dxTreeList_CTExportPdfDisabled_MaterialCompact1:before { left: 0px; top: -119px; }
+.dx-acc-r .dxTreeList_CTExportRtf_MaterialCompact1:before { left: 0px; top: -425px; }
+.dx-acc-r .dxTreeList_CTExportRtfDisabled_MaterialCompact1:before { left: 0px; top: -408px; }
+.dx-acc-r .dxTreeList_CTExportXls_MaterialCompact1:before { left: 0px; top: -153px; }
+.dx-acc-r .dxTreeList_CTExportXlsDisabled_MaterialCompact1:before { left: 0px; top: -221px; }
+.dx-acc-r .dxTreeList_CTExportXlsx_MaterialCompact1:before { left: 0px; top: -51px; }
+.dx-acc-r .dxTreeList_CTExportXlsxDisabled_MaterialCompact1:before { left: 0px; top: -187px; }
+.dx-acc-r .dxTreeList_CTFullCollapse_MaterialCompact1:before { left: 0px; top: -323px; }
+.dx-acc-r .dxTreeList_CTFullCollapseDisabled_MaterialCompact1:before { left: 0px; top: -340px; }
+.dx-acc-r .dxTreeList_CTFullExpand_MaterialCompact1:before { left: 0px; top: -204px; }
+.dx-acc-r .dxTreeList_CTFullExpandDisabled_MaterialCompact1:before { left: 0px; top: -442px; }
+.dx-acc-r .dxTreeList_CTNewRow_MaterialCompact1:before { left: 0px; top: -374px; }
+.dx-acc-r .dxTreeList_CTNewRowDisabled_MaterialCompact1:before { left: 0px; top: -561px; }
+.dx-acc-r .dxTreeList_CTRefresh_MaterialCompact1:before { left: 0px; top: -136px; }
+.dx-acc-r .dxTreeList_CTRefreshDisabled_MaterialCompact1:before { left: 0px; top: -544px; }
+.dx-acc-r .dxTreeList_CTShowCustomizationWindow_MaterialCompact1:before { left: 0px; top: -476px; }
+.dx-acc-r .dxTreeList_CTShowCustomizationWindowDisabled_MaterialCompact1:before { left: 0px; top: -68px; }
+.dx-acc-r .dxTreeList_CTShowFilterRow_MaterialCompact1:before { left: 0px; top: -255px; }
+.dx-acc-r .dxTreeList_CTShowFilterRowDisabled_MaterialCompact1:before { left: 0px; top: -170px; }
+.dx-acc-r .dxTreeList_DragAndDropArrowDown_MaterialCompact1:before { left: 0px; top: -702px; }
+.dx-acc-r .dxTreeList_DragAndDropArrowUp_MaterialCompact1:before { left: 0px; top: -692px; }
+.dx-acc-r .dxTreeList_DragAndDropHide_MaterialCompact1:before { left: 0px; top: -34px; }
+.dx-acc-r .dxTreeList_DragAndDropNode_MaterialCompact1:before { left: 0px; top: -681px; }
+.dx-acc-r .dxTreeList_ExpandedButton_MaterialCompact1:before { left: 0px; top: -712px; }
+.dx-acc-r .dxTreeList_ExpandedButtonRtl_MaterialCompact1:before { left: -8px; top: -712px; }
+.dx-acc-r .dxTreeList_FilterRowButton_MaterialCompact1:before { left: 0px; top: -595px; }
+.dx-acc-r .dxTreeList_HeaderFilter_MaterialCompact1:before { left: 0px; top: -625px; }
+.dx-acc-r .dxTreeList_HeaderFilterActive_MaterialCompact1:before { left: 0px; top: -640px; }
+.dx-acc-r .dxTreeList_SortAsc_MaterialCompact1:before { left: 0px; top: -655px; }
+.dx-acc-r .dxTreeList_SortDesc_MaterialCompact1:before { left: 0px; top: -668px; }
+

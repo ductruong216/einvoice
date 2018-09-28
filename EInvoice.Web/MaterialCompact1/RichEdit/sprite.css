@@ -1,0 +1,15 @@
+.dxRichEdit_CenterTabDragHandle_MaterialCompact1, .dxRichEdit_ColumnSeparatorDragHandle_MaterialCompact1, .dxRichEdit_DecimalTabDragHandle_MaterialCompact1, .dxRichEdit_FirstLineIdentDragHandle_MaterialCompact1, .dxRichEdit_LeftIdentDragHandle_MaterialCompact1, .dxRichEdit_LeftTabDragHandle_MaterialCompact1, .dxRichEdit_QuickSearchCloseButton_MaterialCompact1, .dxRichEdit_QuickSearchCollapseButton_MaterialCompact1, .dxRichEdit_QuickSearchNextButton_MaterialCompact1, .dxRichEdit_QuickSearchPrevButton_MaterialCompact1, .dxRichEdit_RightIdentDragHandle_MaterialCompact1, .dxRichEdit_RightTabDragHandle_MaterialCompact1 { background-image: url('sprite.svg'); background-repeat: no-repeat; background-color: transparent } 
+.dxIE .dx-acc-r .dxRichEdit_CenterTabDragHandle_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_ColumnSeparatorDragHandle_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_DecimalTabDragHandle_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_FirstLineIdentDragHandle_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_LeftIdentDragHandle_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_LeftTabDragHandle_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_QuickSearchCloseButton_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_QuickSearchCollapseButton_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_QuickSearchNextButton_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_QuickSearchPrevButton_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_RightIdentDragHandle_MaterialCompact1::before, .dxIE .dx-acc-r .dxRichEdit_RightTabDragHandle_MaterialCompact1::before { width: 42px } 
+.dxRichEdit_CenterTabDragHandle_MaterialCompact1 { background-position: -24px -14px; width: 8px; height: 6px } 
+.dxRichEdit_ColumnSeparatorDragHandle_MaterialCompact1 { background-position: -26px -21px; width: 11px; height: 12px } 
+.dxRichEdit_DecimalTabDragHandle_MaterialCompact1 { background-position: -33px -14px; width: 8px; height: 6px } 
+.dxRichEdit_FirstLineIdentDragHandle_MaterialCompact1 { background-position: 0px -34px; width: 9px; height: 8px } 
+.dxRichEdit_LeftIdentDragHandle_MaterialCompact1 { background-position: -10px -34px; width: 9px; height: 8px } 
+.dxRichEdit_LeftTabDragHandle_MaterialCompact1 { background-position: -34px -7px; width: 6px; height: 6px } 
+.dxRichEdit_QuickSearchCloseButton_MaterialCompact1 { background-position: 0px 0px; width: 20px; height: 20px } 
+.dxRichEdit_QuickSearchCollapseButton_MaterialCompact1 { background-position: -21px 0px; width: 12px; height: 12px } 
+.dxRichEdit_QuickSearchNextButton_MaterialCompact1 { background-position: 0px -21px; width: 12px; height: 12px } 
+.dxRichEdit_QuickSearchPrevButton_MaterialCompact1 { background-position: -13px -21px; width: 12px; height: 12px } 
+.dxRichEdit_RightIdentDragHandle_MaterialCompact1 { background-position: -20px -34px; width: 9px; height: 8px } 
+.dxRichEdit_RightTabDragHandle_MaterialCompact1 { background-position: -34px 0px; width: 6px; height: 6px } 
+

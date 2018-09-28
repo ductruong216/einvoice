@@ -46,12 +46,12 @@ namespace EInvoice.Data.Infrastructure.Implementation
 			DbContext.Entry(entity).State = EntityState.Modified;
 		}
 
-		public void DeleteByID(int id)
+		public void DeleteByID(object id)
 		{
 			_dbSet.Remove(_dbSet.Find(id));
 		}
 
-		public T GetSingleById(int id)
+		public T GetSingleById(object id)
 		{
 			return _dbSet.Find(id);
 		}
@@ -103,7 +103,5 @@ namespace EInvoice.Data.Infrastructure.Implementation
 		{
 			return _dbSet.ToList();
 		}
-
-		
 	}
 }

@@ -1,3 +1,4 @@
+using DevExpress.Web.Mvc;
 using EInvoice.Service;
 using System.Web.Mvc;
 
@@ -18,14 +19,5 @@ namespace EInvoice.Web.Controllers
 			var model = _customerService.GetAll();
 			return View(model);
 		}
-
-		public ActionResult GridViewPartialView()
-		{
-			// DXCOMMENT: Pass a data model for GridView in the PartialView method's second parameter
-			var model = _customerService.GetAll();
-			return PartialView("GridViewPartialView", model);
-		}
 	}
 }
-
-public enum HeaderViewRenderMode { Full, Title }

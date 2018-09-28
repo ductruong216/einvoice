@@ -21,7 +21,7 @@ namespace EInvoice.Data.Data
             this.Users = new HashSet<User>();
         }
     
-        public int EmployeeID { get; set; }
+        public int EmployeeId { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
         public string Phone { get; set; }

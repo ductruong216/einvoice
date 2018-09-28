@@ -12,10 +12,10 @@ namespace EInvoice.Service
 
 		void Update(T entity);
 
-		void DeleteByID(int id);
+		void DeleteByID(object id);
 
 		IList<T> GetAll();
-		T GetSingleById(int id);
+		T GetSingleById(object id);
 
 		void Save();
 
@@ -30,6 +30,8 @@ namespace EInvoice.Service
 			_repository = repository;
 			_unitOfWork = unitOfWork;
 		}
+
+		public IRepository<T> Repository => _repository;
 		public void Add(T entity)
 		{
 			_repository.Add(entity);
@@ -40,17 +42,17 @@ namespace EInvoice.Service
 			_repository.Delete(entity);
 		}
 
-		public void DeleteByID(int id)
+		public void DeleteByID(object id)
 		{
 			_repository.DeleteByID(id);
 		}
 
 		public IList<T> GetAll()
 		{
-			 return _repository.GetAll();
+			return _repository.GetAll();
 		}
 
-		public T GetSingleById(int id)
+		public T GetSingleById(object id)
 		{
 			return _repository.GetSingleById(id);
 		}

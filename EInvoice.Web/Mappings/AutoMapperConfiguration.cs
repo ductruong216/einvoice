@@ -12,6 +12,7 @@ namespace EInvoice.Web.Mappings
 			{
 				cfg.CreateMap<Data.Data.Customer, CustomerViewModel>();
 				cfg.CreateMap<User, LoginModel>();
+				cfg.CreateMap<Product, ProductViewModel>();
 			});
 		}
 	}

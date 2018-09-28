@@ -19,9 +19,9 @@ namespace EInvoice.Data.Data
         {
             this.Customers = new HashSet<Customer>();
             this.Invoices = new HashSet<Invoice>();
+            this.Invoices1 = new HashSet<Invoice>();
         }
     
-        public int CompanyID { get; set; }
         public int TaxCode { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -30,12 +30,16 @@ namespace EInvoice.Data.Data
         public int EmailID { get; set; }
         public Nullable<int> AccountID { get; set; }
         public string Note { get; set; }
+        public Nullable<int> SignatureID { get; set; }
     
         public virtual BankAccount BankAccount { get; set; }
+        public virtual DigitalSignature DigitalSignature { get; set; }
         public virtual Email Email { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Invoice> Invoices1 { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\NEW Learn\THESIS\EINVOICE\EInvoice\EInvoice.Data\Data\InvoiceModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\NEW Learn\THESIS\EINVOICE\EInvoice.Data\Data\InvoiceModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

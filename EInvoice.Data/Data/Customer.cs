@@ -20,11 +20,11 @@ namespace EInvoice.Data.Data
             this.Invoices = new HashSet<Invoice>();
         }
     
-        public int CustomerID { get; set; }
-        public string CustomerCode { get; set; }
-        public Nullable<int> CompanyID { get; set; }
+        public string CustomerId { get; set; }
+        public Nullable<int> TaxCode { get; set; }
         public string Purchaser { get; set; }
         public string Name { get; set; }
+        public string Address { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
         public Nullable<int> AccountID { get; set; }
