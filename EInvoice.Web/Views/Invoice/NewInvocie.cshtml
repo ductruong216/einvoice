@@ -16,17 +16,15 @@
 	{
 		d.Caption = "Invoice Information";
 		d.ColumnCount = 3;
-		d.RowSpan = 1;
-		
+		d.RowSpan = 2;
+
 		d.Items.AddGroupItem(c =>
 		{
 			c.Caption = "Customer Information";
 			c.ColCount = 2;
 			c.RowSpan = 2;
-
 			c.Items.Add(m => m.CustomerCode, i =>
 			{
-
 				i.NestedExtension().TextBox(tb =>
 				{
 					tb.Width = Unit.Percentage(100);
