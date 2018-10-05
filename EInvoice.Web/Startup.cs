@@ -51,6 +51,7 @@ namespace EInvoice.Web
 			builder.RegisterType<CustomerRepostitory>().As<ICustomerRepository>().InstancePerRequest();
 			builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerRequest();
 			builder.RegisterType<UnitRepository>().As<IUnitRepository>().InstancePerRequest();
+			builder.RegisterType<InvoiceRepository>().As<IInvoiceRepository>().InstancePerRequest();
 
 			// Service
 			//builder.RegisterAssemblyTypes(typeof(CustomerService).Assembly)
@@ -60,6 +61,7 @@ namespace EInvoice.Web
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
 			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();
 			builder.RegisterType<UnitService>().As<IUnitService>().AsSelf();
+			builder.RegisterType<InvoiceService>().As<IInvoiceService>().AsSelf();
 
 
 			Autofac.IContainer container = builder.Build();

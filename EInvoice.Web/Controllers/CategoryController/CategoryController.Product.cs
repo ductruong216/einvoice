@@ -1,18 +1,26 @@
 ﻿using EInvoice.Data.Data;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using EInvoice.Web.Models;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
 	public partial class CategoryController : Controller
 	{
 		// GET: Category
+		public ActionResult Products()
+		{
+			return View();
+		}
 
 		[ValidateInput(false)]
 		public ActionResult ProductPartial()
 		{
-			var model = _productService.GetAllDesProduct();
+			var model = Mapper.Map<List<ProductViewModel>>(_productService.GetAllDesProduct());
 			return PartialView("_ProductPartial", model);
 		}
 
@@ -23,12 +31,8 @@ namespace EInvoice.Web.Controllers.CategoryController
 			{
 				try
 				{
-					_productService.Add(product);
+					_productService.AddProduct(product);
 					_productService.Save();
-				}
-				catch (DbEntityValidationException e)
-				{
-					throw e;
 				}
 				catch (Exception e)
 				{
@@ -79,6 +83,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 			}
 
 			return ProductPartial();
+		}
+
+		[HttpPost]
+		public JsonResult IsProductCodeUniq(string code)
+		{
+			bool isUniq = _productService.IsUniq(code);
+			return Json(!isUniq);
 		}
 	}
 }

@@ -1,37 +1,35 @@
-﻿using System;
+﻿using AutoMapper;
+using EInvoice.Web.Models;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using EInvoice.Data.Data;
-using EInvoice.Service;
+using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
 	public partial class CategoryController
 	{
-		
+		public ActionResult Customers()
+		{
+			return View();
+		}
+
 		[ValidateInput(false)]
 		public ActionResult CustomerPartial()
 		{
-			var model = _customerService.GetAll();
+			var model = Mapper.Map<List<CustomerViewModel>>(_customerService.GetAll());
 			return PartialView("_CustomerPartial", model);
 		}
 
-		[HttpPost, ValidateInput(false)]
+		[HttpPost, ValidateInput(true)]
 		public ActionResult CustomerPartialAddNew(Customer customer)
 		{
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					_customerService.Add(customer);
+					_customerService.AddCustomer(customer);
 					_customerService.Save();
-				}
-				catch (DbEntityValidationException e)
-				{
-					throw e;
 				}
 				catch (Exception e)
 				{
@@ -44,13 +42,15 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return CustomerPartial();
 		}
 
-		[HttpPost, ValidateInput(false)]
+		[HttpPost, ValidateInput(true)]
 		public ActionResult CustomerPartialUpdate(Customer customer)
 		{
 			if (ModelState.IsValid)
 			{
 				try
 				{
+					
+
 					_customerService.Update(customer);
 					_customerService.Save();
 				}
@@ -66,7 +66,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(false)]
-		public ActionResult CustomerPartialDelete(string customerID)
+		public ActionResult  CustomerPartialDelete(string customerID)
 		{
 			if (customerID != null)
 			{
@@ -82,6 +82,20 @@ namespace EInvoice.Web.Controllers.CategoryController
 			}
 
 			return CustomerPartial();
+		}
+
+		[HttpPost]
+		public JsonResult IsCustomerCodeUniq(string code)
+		{
+			bool isUniq = _customerService.IsUniq(code);
+			return Json(!isUniq);
+		}
+
+		[HttpPost]
+		public JsonResult IsCustomerTaxCodeUniq(long taxCode)
+		{
+			bool isUniq = _customerService.IsTaxExist(taxCode);
+			return Json(!isUniq);
 		}
 	}
 }

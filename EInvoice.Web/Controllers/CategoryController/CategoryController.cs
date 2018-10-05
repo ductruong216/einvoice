@@ -19,7 +19,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		// GET: Category
 		public ActionResult Index()
 		{
-			return PartialView();
+			return View();
 		}
 		public void SafeExecute(Action method)
 		{

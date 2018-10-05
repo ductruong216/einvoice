@@ -20,7 +20,7 @@ namespace EInvoice.Data.Data
             this.Invoices = new HashSet<Invoice>();
         }
     
-        public int PaymentId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

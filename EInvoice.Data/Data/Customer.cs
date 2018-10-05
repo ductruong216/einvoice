@@ -20,18 +20,22 @@ namespace EInvoice.Data.Data
             this.Invoices = new HashSet<Invoice>();
         }
     
-        public string CustomerId { get; set; }
-        public Nullable<int> TaxCode { get; set; }
-        public string Purchaser { get; set; }
+        public long ID { get; set; }
+        public string Code { get; set; }
+        public Nullable<long> TaxCode { get; set; }
         public string Name { get; set; }
+        public string Purchaser { get; set; }
         public string Address { get; set; }
+        public string Email { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
-        public Nullable<int> AccountID { get; set; }
-        public Nullable<int> EmailID { get; set; }
+        public string LegalPresenter { get; set; }
+        public string AccountHolder { get; set; }
+        public Nullable<long> BankAccountID { get; set; }
+        public string BankName { get; set; }
+        public string Agency { get; set; }
         public string Note { get; set; }
     
-        public virtual Company Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
     }

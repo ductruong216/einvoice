@@ -11,13 +11,14 @@ namespace EInvoice.Data.Repositories
 	{
 		IList<Product> GetAllDes();
 
+		
 	}
 
 	public class ProductRepository : BaseRepository<Product>, IProductRepository
 	{
 		private IDbFactory _dbFactory;
 		private readonly IDbSet<Product> _dbSet;
-		
+
 		public ProductRepository(IDbFactory dbFactory) : base(dbFactory)
 		{
 			_dbFactory = dbFactory;
@@ -28,7 +29,9 @@ namespace EInvoice.Data.Repositories
 
 		public IList<Product> GetAllDes()
 		{
-			return _dbSet.OrderByDescending(c=>c.ProductID).ToList();
+			return _dbSet.OrderByDescending(c => c.ID).ToList();
 		}
+
+		
 	}
 }

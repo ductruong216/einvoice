@@ -1,9 +1,12 @@
-﻿@using DevExpress.Web.ASPxSpreadsheet.Internal
+﻿@model List<CustomerViewModel>
+@using DevExpress.DataProcessing
+@using DevExpress.Web.ASPxSpreadsheet.Internal
 @using EInvoice.Data.Data
 @using EInvoice.Web.Controllers
 @using EInvoice.Web.Controllers.CategoryController
+@using EInvoice.Web.Models
 @using Unit = System.Web.UI.WebControls.Unit
-@(Html.DevExpress().GridView<Customer>(settings =>
+@(Html.DevExpress().GridView<CustomerViewModel>(settings =>
 	{
 		settings.Name = "Customers";
 		settings.CallbackRouteValues = new { Controller = "Category", Action = "CustomerPartial" };
@@ -11,8 +14,9 @@
 		settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Category", Action = "CustomerPartialUpdate" };
 		settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Category", Action = "CustomerPartialDelete" };
 		settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
-		settings.SettingsText.CommandBatchEditUpdate = "Update";
+		settings.SettingsText.CommandBatchEditUpdate = "Add";
 		settings.SettingsText.CommandBatchEditCancel = "Cancel";
+
 #region Toolbar Settings
 settings.Toolbars.Add(toolbarCustomer =>
 		{
@@ -42,32 +46,35 @@ settings.Toolbars.Add(toolbarCustomer =>
 						s.Name = "Search";
 						s.Properties.NullText = "Search...";
 						s.Properties.Buttons
-							.Add()
-							.Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+				.Add()
+				.Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
 					}).Render();
 				});
 			});
 		});
 #endregion Toolbar Settings
 #region Add Comlumns
-
 settings.Columns.Add(c =>
 		{
-			c.FieldName = "CustomerId";
+			c.FieldName = "Code";
 			c.Caption = "Customer Code";
 			c.Width = 150;
+
 			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
 		});
 
 		settings.Columns.Add(c =>
 		{
 			c.FieldName = "Name";
 			c.Width = 200;
-			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+//var pop = (TextEditProperties)c.PropertiesEdit;
+////pop.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+//pop.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		});
-
 		settings.Columns.Add(c =>
 		{
 			c.FieldName = "Address";
@@ -78,22 +85,16 @@ settings.Columns.Add(c =>
 
 		settings.Columns.Add(c =>
 		{
-			c.FieldName = "EmailID";
-			c.Caption = "Email";
+			var pop = (TextEditProperties)c.PropertiesEdit;
+			pop.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Right;
+			pop.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+			c.FieldName = "Email";
 			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-
-			c.EditorProperties().ComboBox(p =>
-			{
-				p.TextField = "UserName";
-				p.ValueField = "EmailID";
-			});
-
 		});
 		settings.Columns.Add(c =>
 		{
 			c.FieldName = "Phone";
-
 			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		});
@@ -105,9 +106,71 @@ settings.Columns.Add(c =>
 			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		});
 
-#endregion
-#region Numbering
 
+		settings.Columns.Add(c =>
+		{
+			c.FieldName = "Purchaser";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+		settings.Columns.Add(c =>
+		{
+			c.FieldName = "Fax";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+		settings.Columns.Add(c =>
+		{
+			c.FieldName = "LegalPresenter";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+		settings.Columns.Add(c =>
+		{
+			c.FieldName = "BankAccountID";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+		settings.Columns.Add(c =>
+		{
+			c.FieldName = "AccountHolder";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+		settings.Columns.Add(c =>
+		{
+			c.FieldName = "BankName";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+		settings.Columns.Add(c =>
+{
+			c.FieldName = "Agency";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		});
+		settings.Columns.Add(c =>
+{
+			c.FieldName = "Note";
+			c.Visible = false;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+			c.EditorProperties().TextBox(p =>
+			{
+				
+			});
+		});
+
+#endregion
+
+#region Numbering
 settings.Init = (sender, e) =>
 		{
 			var c = new GridViewDataColumn() { FieldName = "Series" };
@@ -127,13 +190,24 @@ settings.Init = (sender, e) =>
 			}
 		};
 #endregion
-settings.KeyFieldName = "CustomerId";
-		settings.EditFormLayoutProperties.ColCount = 2;
-		settings.EditFormLayoutProperties.Items.Add(i => i.CustomerId);
+
+settings.KeyFieldName = "ID";
+
+		settings.EditFormLayoutProperties.ColCount = 3;
+		settings.EditFormLayoutProperties.Items.Add(i => i.Code);
 		settings.EditFormLayoutProperties.Items.Add(i => i.Name);
+		settings.EditFormLayoutProperties.Items.Add(i => i.TaxCode);
+		settings.EditFormLayoutProperties.Items.Add(i => i.Purchaser);
 		settings.EditFormLayoutProperties.Items.Add(i => i.Address);
 		settings.EditFormLayoutProperties.Items.Add(i => i.Phone);
-		settings.EditFormLayoutProperties.Items.Add(i => i.EmailID);
+		settings.EditFormLayoutProperties.Items.Add(i => i.Email);
+		settings.EditFormLayoutProperties.Items.Add(i => i.Fax);
+		settings.EditFormLayoutProperties.Items.Add(i => i.LegalPresenter);
+		settings.EditFormLayoutProperties.Items.Add(i => i.BankAccountID);
+		settings.EditFormLayoutProperties.Items.Add(i => i.AccountHolder);
+		settings.EditFormLayoutProperties.Items.Add(i => i.BankName);
+		settings.EditFormLayoutProperties.Items.Add(i => i.Agency);
+		settings.EditFormLayoutProperties.Items.Add(i => i.Note); 
 		settings.EditFormLayoutProperties.Items.AddCommandItem(i =>
 		{
 			i.ColSpan = 2;
@@ -145,6 +219,5 @@ settings.KeyFieldName = "CustomerId";
 		settings.SettingsExport.EnableClientSideExportAPI = true;
 		settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
 		settings.Width = Unit.Percentage(100);
-
-		settings.SettingsPager.PageSize = 6;
+		settings.SettingsPager.PageSize = 13;
 	}).Bind(Model).SetEditErrorText(ViewBag.EditError).GetHtml())

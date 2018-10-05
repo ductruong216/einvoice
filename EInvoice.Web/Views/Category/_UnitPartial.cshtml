@@ -1,8 +1,9 @@
 ﻿@using EInvoice.Data.Data
 @using EInvoice.Web.Controllers
 @using EInvoice.Web.Controllers.CategoryController
+@using EInvoice.Web.Models
 @using Unit = System.Web.UI.WebControls.Unit
-@(Html.DevExpress().GridView<EInvoice.Data.Data.Unit>(settings =>
+@(Html.DevExpress().GridView<UnitViewModel>(settings =>
 	{
 		settings.Name = "Units";
 		settings.CallbackRouteValues = new { Controller = "Category", Action = "UnitPartial" };
@@ -54,7 +55,7 @@ settings.Init = (sender, e) =>
 			}
 		};
 #endregion
-settings.KeyFieldName = "UnitId";
+settings.KeyFieldName = "ID";
 		settings.EditFormLayoutProperties.ColCount = 1;
 		settings.EditFormLayoutProperties.Items.Add(i => i.Name);
 		settings.EditFormLayoutProperties.Items.AddCommandItem(i =>

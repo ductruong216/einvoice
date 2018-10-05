@@ -12,8 +12,11 @@ namespace EInvoice.Web.Controllers.CategoryController
 	public partial class CategoryController
 	{
 		// GET: Category
-		
 
+		public ActionResult Others()
+		{
+			return View();
+		}
 		public IEnumerable<Unit> GetAllUnit()
 		{
 			return _unitService.GetAll();

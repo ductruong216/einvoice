@@ -17,26 +17,23 @@ namespace EInvoice.Data.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Company()
         {
-            this.Customers = new HashSet<Customer>();
             this.Invoices = new HashSet<Invoice>();
             this.Invoices1 = new HashSet<Invoice>();
         }
     
-        public int TaxCode { get; set; }
+        public long TaxCode { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
         public int EmailID { get; set; }
-        public Nullable<int> AccountID { get; set; }
+        public Nullable<long> AccountID { get; set; }
         public string Note { get; set; }
         public Nullable<int> SignatureID { get; set; }
     
         public virtual BankAccount BankAccount { get; set; }
         public virtual DigitalSignature DigitalSignature { get; set; }
         public virtual Email Email { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

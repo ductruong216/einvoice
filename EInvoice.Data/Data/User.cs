@@ -22,8 +22,8 @@ namespace EInvoice.Data.Data
             this.Roles = new HashSet<Role>();
         }
     
-        public long UserId { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public long ID { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
         public string UserName { get; set; }
         public string FullName { get; set; }
         public string Address { get; set; }

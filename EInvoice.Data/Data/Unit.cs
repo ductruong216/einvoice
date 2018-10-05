@@ -21,7 +21,7 @@ namespace EInvoice.Data.Data
             this.Products1 = new HashSet<Product>();
         }
     
-        public int UnitId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

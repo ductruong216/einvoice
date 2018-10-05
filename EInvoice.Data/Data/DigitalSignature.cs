@@ -20,7 +20,7 @@ namespace EInvoice.Data.Data
             this.Companies = new HashSet<Company>();
         }
     
-        public int SignatureID { get; set; }
+        public int ID { get; set; }
         public string No { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }

@@ -14,6 +14,7 @@ namespace EInvoice.Data.Infrastructure.Interface
 		void Update(T entity);
 
 		void DeleteByID(object id);
+
 		IList<T> GetAll();
 
 		// Delete with multi conditions

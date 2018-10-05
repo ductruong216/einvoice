@@ -77,7 +77,6 @@ namespace EInvoice.Data.Infrastructure.Implementation
 		public IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
 		{
 			//HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
-			//HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
 			if (includes != null && includes.Count() > 0)
 			{
 				var query = _dbContext.Set<T>().Include(includes.First());

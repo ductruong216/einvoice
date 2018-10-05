@@ -20,10 +20,11 @@ namespace EInvoice.Data.Data
             this.Companies = new HashSet<Company>();
         }
     
-        public int BankAccoutnId { get; set; }
-        public int AccountHolder { get; set; }
+        public long ID { get; set; }
+        public string AccountHolder { get; set; }
         public string NameOfBank { get; set; }
         public string Address { get; set; }
+        public string Agency { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Company> Companies { get; set; }

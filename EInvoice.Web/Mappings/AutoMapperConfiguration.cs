@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EInvoice.Data.Data;
 using EInvoice.Web.Models;
+using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Mappings
 {
@@ -10,9 +11,15 @@ namespace EInvoice.Web.Mappings
 		{
 			Mapper.Initialize(cfg =>
 			{
-				cfg.CreateMap<Data.Data.Customer, CustomerViewModel>();
-				cfg.CreateMap<User, LoginModel>();
+				cfg.CreateMap<Customer, CustomerViewModel>();
 				cfg.CreateMap<Product, ProductViewModel>();
+				cfg.CreateMap<User, LoginModel>();
+				cfg.CreateMap<BankAccount, BankAccountViewModel>();
+				cfg.CreateMap<Company, CompanyViewModel>();
+				cfg.CreateMap<DigitalSignature, DigitalSignatureViewModel>();
+				cfg.CreateMap<Email, EmailViewModel>();
+				cfg.CreateMap<Unit, UnitViewModel>();
+				cfg.CreateMap<Invoice, InvoiceViewModel>();
 			});
 		}
 	}

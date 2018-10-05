@@ -1,0 +1,19 @@
+﻿@model EInvoice.Data.Data.Invoice
+
+
+@Html.DevExpress().GetStyleSheets(
+	new StyleSheet { ExtensionType = ExtensionType.FormLayout},
+	new StyleSheet { ExtensionSuite = ExtensionSuite.Editors })
+@Html.DevExpress().GetScripts(
+	new Script { ExtensionType = ExtensionType.FormLayout })
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+<style type="text/css">
+</style>
+<div class="col-md-12">
+	<div class="col-md-12">
+		@Html.Action("NewInvocie", "Invoice")
+	</div>
+</div>

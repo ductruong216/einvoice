@@ -20,7 +20,7 @@ namespace EInvoice.Data.Data
             this.Companies = new HashSet<Company>();
         }
     
-        public int EmailId { get; set; }
+        public int ID { get; set; }
         public string UserName { get; set; }
         public string EmailCC { get; set; }
     
