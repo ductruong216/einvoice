@@ -1,4 +1,6 @@
-﻿using EInvoice.Data.Data;
+﻿using System.Collections;
+using System.Collections.Generic;
+using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
 using EInvoice.Data.Repositories;
 
@@ -18,5 +20,7 @@ namespace EInvoice.Service
 			_invoiceRepository = invoiceRepository;
 			_unitOfWork = unitOfWork;
 		}
+
+	
 	}
 }

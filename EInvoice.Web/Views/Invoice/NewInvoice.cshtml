@@ -1,5 +1,4 @@
 ﻿@using System.Drawing
-@using DevExpress.Data.Svg
 @model EInvoice.Web.Models.InvoiceViewModel
 @Html.DevExpress().FormLayout(settings => {
 	settings.ControlStyle.BackColor = Color.White;
@@ -14,7 +13,7 @@
 	settings.Items.AddGroupItem(d =>
 
 	{
-		d.Caption = "Invoice Information";
+		d.Caption = "";
 		d.ColumnCount = 3;
 		d.RowSpan = 2;
 
@@ -27,6 +26,7 @@
 			{
 				i.NestedExtension().TextBox(tb =>
 				{
+
 					tb.Width = Unit.Percentage(100);
 					tb.ShowModelErrors = true;
 					tb.Properties.ValidationSettings.Display = Display.Dynamic;
@@ -189,7 +189,6 @@
 				});
 			});
 		});
-
 		d.Items.AddGroupItem(p =>
 		{
 			p.Caption = "Payment";
@@ -200,5 +199,6 @@
 				i.Caption = "Payment Type";
 			});
 		});
+		//Grid view in here
 	});
 }).GetHtml()

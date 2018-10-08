@@ -5,13 +5,14 @@ using EInvoice.Data.Data;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
-	public class InvoiceController : Controller
+	public partial class InvoiceController : Controller
 	{
 		private IInvoiceService _invoiceService { get; set; }
-
-		public InvoiceController(IInvoiceService invoiceService)
+		private IProductService _productService { get; set; }
+		public InvoiceController(IInvoiceService invoiceService, IProductService productService)
 		{
 			_invoiceService = invoiceService;
+			_productService = productService;
 		}
 
 		public ActionResult Index()
@@ -19,10 +20,12 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return View();
 		}
 
-		public ActionResult NewInvocie()
+		public ActionResult NewInvoice()
 		{
 			return View();
 		}
+
+		
 		public void AddNewInvoice(Invoice invoice)
 		{
 

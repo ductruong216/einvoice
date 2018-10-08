@@ -179,6 +179,7 @@
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
     <Content Include="Assets\css\font-face.css" />
+    <Content Include="Assets\css\style.css" />
     <Content Include="Assets\css\theme.css" />
     <Content Include="Assets\fonts\poppins\poppins-v5-latin-100.svg" />
     <Content Include="Assets\fonts\poppins\poppins-v5-latin-100italic.svg" />
@@ -644,7 +645,8 @@
     <Content Include="Views\Category\Customers.cshtml" />
     <Content Include="Views\Category\Others.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
-    <Content Include="Views\Invoice\NewInvocie.cshtml" />
+    <Content Include="Views\Invoice\NewInvoice.cshtml" />
+    <Content Include="Views\Invoice\ProductTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -666,6 +668,7 @@
     <Compile Include="Controllers\CategoryController\CategoryController.Unit.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController\InvoiceController.cs" />
+    <Compile Include="Controllers\InvoiceController\InvoiceController.Products.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -703,6 +706,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\InvoiceControllerProducts\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <PropertyGroup>

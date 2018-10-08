@@ -36,11 +36,5 @@ namespace EInvoice.Data.Data
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual Unit Unit { get; set; }
         public virtual Unit Unit1 { get; set; }
-
     }
-
-	public partial class Product
-	{
-		public string UnitName => Unit.Name;
-	}
 }

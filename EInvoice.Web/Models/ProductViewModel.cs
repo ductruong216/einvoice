@@ -32,5 +32,8 @@ namespace EInvoice.Web.Models
 		public decimal? Discount { get; set; }
 
 		public virtual UnitViewModel Unit { get; set; }
+
+		public virtual ICollection<InvoiceViewModel> Invoices { get; set; }
+
 	}
 }

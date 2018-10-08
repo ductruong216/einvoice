@@ -12,12 +12,18 @@ namespace EInvoice.Data.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class BankAccount
+    public partial class Serial
     {
-        public long ID { get; set; }
-        public string AccountHolder { get; set; }
-        public string NameOfBank { get; set; }
-        public string Address { get; set; }
-        public string Agency { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Serial()
+        {
+            this.Forms = new HashSet<Form>();
+        }
+    
+        public int ID { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Form> Forms { get; set; }
     }
 }

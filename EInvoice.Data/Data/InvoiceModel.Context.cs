@@ -28,20 +28,22 @@ namespace EInvoice.Data.Data
         public virtual DbSet<About> Abouts { get; set; }
         public virtual DbSet<BankAccount> BankAccounts { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DigitalSignature> DigitalSignatures { get; set; }
         public virtual DbSet<Email> Emails { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
+        public virtual DbSet<Form> Forms { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceType> InvoiceTypes { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Serial> Serials { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
     }
 }

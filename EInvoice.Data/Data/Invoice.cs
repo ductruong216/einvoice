@@ -16,7 +16,7 @@ namespace EInvoice.Data.Data
     {
         public long ID { get; set; }
         public long CompanyId { get; set; }
-        public string Pattern { get; set; }
+        public int FormId { get; set; }
         public string Series { get; set; }
         public int No { get; set; }
         public string SecureCode { get; set; }
@@ -44,10 +44,11 @@ namespace EInvoice.Data.Data
     
         public virtual Company Company { get; set; }
         public virtual Company Company1 { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual Form Form { get; set; }
         public virtual InvoiceType InvoiceType { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual Product Product { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }

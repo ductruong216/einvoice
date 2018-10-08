@@ -104,6 +104,9 @@
     <Compile Include="Data\FeedBack.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Form.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Invoice.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
@@ -132,6 +135,9 @@
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Role.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Serial.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Unit.cs">

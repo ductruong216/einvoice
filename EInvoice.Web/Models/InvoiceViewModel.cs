@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace EInvoice.Web.Models
 {
@@ -50,12 +47,10 @@ namespace EInvoice.Web.Models
 
 		public string CustomerCode => Customer.Code;
 		public string Purchaser => Customer.Purchaser;
-	
+
 		public long? CustomerTaxCode => Customer.TaxCode;
-	
 
 		public string CustomerAddress => Customer.Address;
-
 
 		public string CustomerPhone => Customer.Phone;
 
@@ -68,6 +63,16 @@ namespace EInvoice.Web.Models
 		public string CustomerBankName => Customer.BankName;
 		public string CustomerAgency => Customer.Agency;
 		public string CustomerNote => Customer.Note;
+	}
 
+	public partial class InvoiceViewModel
+	{
+		public string ProductCode => Product.Code;
+		public string ProductName => Product.Name;
+		public decimal ProductPrice => Product.Price;
+
+		public decimal ProductTax => Product.Tax;
+		public int? UnitProductID => Product.UnitID;
+		public decimal? ProductDiscount => Product.Discount;
 	}
 }
