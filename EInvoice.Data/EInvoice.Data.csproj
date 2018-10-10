@@ -128,7 +128,10 @@
     <Compile Include="Data\InvoiceType.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Payment.cs">
+    <Compile Include="Data\Item.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PaymentMethod.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Product.cs">

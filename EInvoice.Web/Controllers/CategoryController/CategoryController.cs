@@ -17,10 +17,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 			_customerService = customerService;
 		}
 		// GET: Category
-		public ActionResult Index()
-		{
-			return View();
-		}
+		
 		public void SafeExecute(Action method)
 		{
 			try

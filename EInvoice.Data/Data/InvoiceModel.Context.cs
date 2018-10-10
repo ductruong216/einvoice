@@ -37,7 +37,8 @@ namespace EInvoice.Data.Data
         public virtual DbSet<Form> Forms { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceType> InvoiceTypes { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Serial> Serials { get; set; }

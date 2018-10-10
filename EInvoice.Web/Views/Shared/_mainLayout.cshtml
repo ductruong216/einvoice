@@ -13,7 +13,7 @@
 	<link href="~/Assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
 	<link href="~/Assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
 	<link href="~/Assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- Bootstrap CSS-->
 	<link href="~/Assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
@@ -25,7 +25,7 @@
 	<link href="~/Assets/vendor/slick/slick.css" rel="stylesheet" media="all">
 	<link href="~/Assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
 	<link href="~/Assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-	<link href="~/Assets/css/style.css" rel="stylesheet" />
+	<link href="~/Assets/Owner/css/style.css" rel="stylesheet" />
 	<!-- Main CSS-->
 	<link href="~/Assets/css/theme.css" rel="stylesheet" media="all">
 
@@ -518,6 +518,10 @@
 
 	<!-- Jquery JS-->
 	<script src="~/Assets/vendor/jquery-3.2.1.min.js"></script>
+@*<script src="~/Assets/Owner/js/jquery.js"></script>*@
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Bootstrap JS-->
 	<script src="~/Assets/vendor/bootstrap-4.1/popper.min.js"></script>
 	<script src="~/Assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
@@ -536,6 +540,7 @@
 	<!-- Main JS-->
 	<script src="~/Assets/js/main.js"></script>
 
+	<script src="~/Assets/Owner/js/myscript.js"></script>
 	<script type="text/javascript">
 		$(function () {
 			$('.list-unstyled a').filter(function () { return this.href == location.href }).parent().addClass('active')
@@ -545,6 +550,33 @@
 		$('.list-unstyled a').click(function () {
 			$(this).parent().addClass('active').siblings().removeClass('active');
 		});
+	</script>
+	<script type="text/javascript">
+		$(function () {
+		$("#CusCode").autocomplete({
+			source: function (request, response) {
+				debugger;	
+				$.ajax({
+					url: '@Url.Action("GetCustomerJsonResult", "Category")',
+					type: "POST",  
+					dataType: "json",
+					data: { searchKey: $("#CusCode").val() },
+					success: function(data) {
+						response($.map(data,
+							function(item) {
+								return { label: item.Code, value: item.Code };
+							}));
+					},
+					error: function(status) {
+						alert(status);
+					}
+				});
+			},
+			messages: {
+				noResults: "", results: ""
+			}
+		});
+	});
 	</script>
 </body>
 </html>

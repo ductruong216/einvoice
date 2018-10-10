@@ -1,0 +1,46 @@
+﻿body {
+}
+.mainCaption {
+	position: relative !important;
+	text-align: center !important;
+	top: 31px !important;
+}
+
+.icon-case {
+	width: 40px;
+	float: left;
+	border-radius: 5px 0px 0px 5px;
+	background:#eeeeee;
+	height:42px;
+	position: relative;
+	text-align: center;
+	line-height:40px;
+}
+
+.leftInfo {
+	width:49.5%; 
+	float:left;
+	border-right: 1px dotted #CCC;
+	box-sizing: border-box;
+	padding: 0px 15px 0px 0px;
+}
+
+#fix-button {
+	margin-top: 2px;
+}
+
+label span {
+	color: red;
+}
+
+.button-area {
+	margin: 1% 77.4%;
+}
+#pull-down {
+	margin-top: 1.5%;
+}
+
+.border-button {
+	border: 2px solid grey; 
+
+}

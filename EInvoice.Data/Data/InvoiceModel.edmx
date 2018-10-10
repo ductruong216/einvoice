@@ -133,15 +133,9 @@
           <Property Name="CustomerId" Type="bigint" />
           <Property Name="PaymentTypeID" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar(max)" />
-          <Property Name="ProductID" Type="bigint" Nullable="false" />
           <Property Name="Tax" Type="decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="UnitID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="VAT" Type="decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="VATCost" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Discount" Type="decimal" Precision="5" Scale="2" />
           <Property Name="TotalServiceCost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalPaymentCost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="InWord" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -159,7 +153,17 @@
           <Property Name="ID" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Payments">
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="InvoiceId" Type="bigint" />
+          <Property Name="ProductId" Type="bigint" />
+          <Property Name="Quanlity" Type="int" />
+          <Property Name="Discount" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -352,10 +356,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Invoices_Payments">
-          <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
           <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Payments">
+            <Principal Role="PaymentMethods">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Invoices">
@@ -363,31 +367,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Invoices_Products1">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+        <Association Name="FK_Items_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Invoices">
-              <PropertyRef Name="ProductID" />
+            <Dependent Role="Items">
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Products_Units">
-          <End Role="Units" Type="Self.Units" Multiplicity="0..1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Units">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="UnitID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_Units1">
+        <Association Name="FK_Products_Units2">
           <End Role="Units" Type="Self.Units" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -480,7 +484,8 @@
           <EntitySet Name="Forms" EntityType="Self.Forms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceTypes" EntityType="Self.InvoiceTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Serial" EntityType="Self.Serial" Schema="dbo" store:Type="Tables" />
@@ -526,18 +531,18 @@
             <End Role="Invoices" EntitySet="Invoices" />
           </AssociationSet>
           <AssociationSet Name="FK_Invoices_Payments" Association="Self.FK_Invoices_Payments">
-            <End Role="Payments" EntitySet="Payments" />
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
             <End Role="Invoices" EntitySet="Invoices" />
           </AssociationSet>
-          <AssociationSet Name="FK_Invoices_Products1" Association="Self.FK_Invoices_Products1">
-            <End Role="Products" EntitySet="Products" />
+          <AssociationSet Name="FK_Items_Invoices" Association="Self.FK_Items_Invoices">
             <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="Items" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_Products_Units" Association="Self.FK_Products_Units">
-            <End Role="Units" EntitySet="Units" />
+          <AssociationSet Name="FK_Items_Products" Association="Self.FK_Items_Products">
             <End Role="Products" EntitySet="Products" />
+            <End Role="Items" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_Products_Units1" Association="Self.FK_Products_Units1">
+          <AssociationSet Name="FK_Products_Units2" Association="Self.FK_Products_Units2">
             <End Role="Units" EntitySet="Units" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
@@ -579,7 +584,8 @@
           <EntitySet Name="Forms" EntityType="InvoiceModel.Form" />
           <EntitySet Name="Invoices" EntityType="InvoiceModel.Invoice" />
           <EntitySet Name="InvoiceTypes" EntityType="InvoiceModel.InvoiceType" />
-          <EntitySet Name="Payments" EntityType="InvoiceModel.Payment" />
+          <EntitySet Name="Items" EntityType="InvoiceModel.Item" />
+          <EntitySet Name="PaymentMethods" EntityType="InvoiceModel.PaymentMethod" />
           <EntitySet Name="Products" EntityType="InvoiceModel.Product" />
           <EntitySet Name="Roles" EntityType="InvoiceModel.Role" />
           <EntitySet Name="Serials" EntityType="InvoiceModel.Serial" />
@@ -628,18 +634,18 @@
             <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
           <AssociationSet Name="FK_Invoices_Payments" Association="InvoiceModel.FK_Invoices_Payments">
-            <End Role="Payment" EntitySet="Payments" />
+            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
             <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
-          <AssociationSet Name="FK_Invoices_Products1" Association="InvoiceModel.FK_Invoices_Products1">
-            <End Role="Product" EntitySet="Products" />
+          <AssociationSet Name="FK_Items_Invoices" Association="InvoiceModel.FK_Items_Invoices">
             <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_Products_Units" Association="InvoiceModel.FK_Products_Units">
-            <End Role="Unit" EntitySet="Units" />
+          <AssociationSet Name="FK_Items_Products" Association="InvoiceModel.FK_Items_Products">
             <End Role="Product" EntitySet="Products" />
+            <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_Products_Units1" Association="InvoiceModel.FK_Products_Units1">
+          <AssociationSet Name="FK_Products_Units2" Association="InvoiceModel.FK_Products_Units2">
             <End Role="Unit" EntitySet="Units" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
@@ -795,15 +801,9 @@
           <Property Name="CustomerId" Type="Int64" />
           <Property Name="PaymentTypeID" Type="Int32" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductID" Type="Int64" Nullable="false" />
           <Property Name="Tax" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="UnitID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="VAT" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="VATCost" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="TotalServiceCost" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="TotalPaymentCost" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="InWord" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -819,8 +819,8 @@
           <NavigationProperty Name="Employee" Relationship="InvoiceModel.FK_Invoices_Employees" FromRole="Invoice" ToRole="Employee" />
           <NavigationProperty Name="Form" Relationship="InvoiceModel.FK_Invoices_Forms" FromRole="Invoice" ToRole="Form" />
           <NavigationProperty Name="InvoiceType" Relationship="InvoiceModel.FK_Invoices_InvoiceTypes" FromRole="Invoice" ToRole="InvoiceType" />
-          <NavigationProperty Name="Payment" Relationship="InvoiceModel.FK_Invoices_Payments" FromRole="Invoice" ToRole="Payment" />
-          <NavigationProperty Name="Product" Relationship="InvoiceModel.FK_Invoices_Products1" FromRole="Invoice" ToRole="Product" />
+          <NavigationProperty Name="PaymentMethod" Relationship="InvoiceModel.FK_Invoices_Payments" FromRole="Invoice" ToRole="PaymentMethod" />
+          <NavigationProperty Name="Items" Relationship="InvoiceModel.FK_Items_Invoices" FromRole="Invoice" ToRole="Item" />
         </EntityType>
         <EntityType Name="InvoiceType">
           <Key>
@@ -830,13 +830,25 @@
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Invoices" Relationship="InvoiceModel.FK_Invoices_InvoiceTypes" FromRole="InvoiceType" ToRole="Invoice" />
         </EntityType>
-        <EntityType Name="Payment">
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceId" Type="Int64" />
+          <Property Name="ProductId" Type="Int64" />
+          <Property Name="Quanlity" Type="Int32" />
+          <Property Name="Discount" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Invoice" Relationship="InvoiceModel.FK_Items_Invoices" FromRole="Item" ToRole="Invoice" />
+          <NavigationProperty Name="Product" Relationship="InvoiceModel.FK_Items_Products" FromRole="Item" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Invoices" Relationship="InvoiceModel.FK_Invoices_Payments" FromRole="Payment" ToRole="Invoice" />
+          <NavigationProperty Name="Invoices" Relationship="InvoiceModel.FK_Invoices_Payments" FromRole="PaymentMethod" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -853,9 +865,8 @@
           <Property Name="CategoryID" Type="Int32" />
           <Property Name="Warranty" Type="Int32" />
           <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" />
-          <NavigationProperty Name="Invoices" Relationship="InvoiceModel.FK_Invoices_Products1" FromRole="Product" ToRole="Invoice" />
-          <NavigationProperty Name="Unit" Relationship="InvoiceModel.FK_Products_Units" FromRole="Product" ToRole="Unit" />
-          <NavigationProperty Name="Unit1" Relationship="InvoiceModel.FK_Products_Units1" FromRole="Product" ToRole="Unit" />
+          <NavigationProperty Name="Items" Relationship="InvoiceModel.FK_Items_Products" FromRole="Product" ToRole="Item" />
+          <NavigationProperty Name="Unit" Relationship="InvoiceModel.FK_Products_Units2" FromRole="Product" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -879,8 +890,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="InvoiceModel.FK_Products_Units" FromRole="Unit" ToRole="Product" />
-          <NavigationProperty Name="Products1" Relationship="InvoiceModel.FK_Products_Units1" FromRole="Unit" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="InvoiceModel.FK_Products_Units2" FromRole="Unit" ToRole="Product" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -1041,10 +1051,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Invoices_Payments">
-          <End Type="InvoiceModel.Payment" Role="Payment" Multiplicity="1" />
+          <End Type="InvoiceModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
           <End Type="InvoiceModel.Invoice" Role="Invoice" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Payment">
+            <Principal Role="PaymentMethod">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Invoice">
@@ -1052,31 +1062,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Invoices_Products1">
-          <End Type="InvoiceModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="InvoiceModel.Invoice" Role="Invoice" Multiplicity="*" />
+        <Association Name="FK_Items_Invoices">
+          <End Type="InvoiceModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <End Type="InvoiceModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Products">
+          <End Type="InvoiceModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="InvoiceModel.Item" Role="Item" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Invoice">
-              <PropertyRef Name="ProductID" />
+            <Dependent Role="Item">
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Products_Units">
-          <End Type="InvoiceModel.Unit" Role="Unit" Multiplicity="0..1" />
-          <End Type="InvoiceModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Unit">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="UnitID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_Units1">
+        <Association Name="FK_Products_Units2">
           <End Type="InvoiceModel.Unit" Role="Unit" Multiplicity="0..1" />
           <End Type="InvoiceModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1263,15 +1273,9 @@
                 <ScalarProperty Name="InWord" ColumnName="InWord" />
                 <ScalarProperty Name="TotalPaymentCost" ColumnName="TotalPaymentCost" />
                 <ScalarProperty Name="TotalServiceCost" ColumnName="TotalServiceCost" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="VATCost" ColumnName="VATCost" />
-                <ScalarProperty Name="VAT" ColumnName="VAT" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Tax" ColumnName="Tax" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -1292,9 +1296,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="InvoiceModel.Payment">
-              <MappingFragment StoreEntitySet="Payments">
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="InvoiceModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Quanlity" ColumnName="Quanlity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="InvoiceModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethods">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

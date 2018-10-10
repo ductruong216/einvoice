@@ -12,18 +12,15 @@ namespace EInvoice.Data.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class Item
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Payment()
-        {
-            this.Invoices = new HashSet<Invoice>();
-        }
-    
         public int ID { get; set; }
-        public string Name { get; set; }
+        public Nullable<long> InvoiceId { get; set; }
+        public Nullable<long> ProductId { get; set; }
+        public Nullable<int> Quanlity { get; set; }
+        public string Discount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual Invoice Invoice { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -14,6 +14,12 @@ namespace EInvoice.Data.Data
     
     public partial class Invoice
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Invoice()
+        {
+            this.Items = new HashSet<Item>();
+        }
+    
         public long ID { get; set; }
         public long CompanyId { get; set; }
         public int FormId { get; set; }
@@ -23,15 +29,9 @@ namespace EInvoice.Data.Data
         public Nullable<long> CustomerId { get; set; }
         public int PaymentTypeID { get; set; }
         public string Note { get; set; }
-        public long ProductID { get; set; }
         public decimal Tax { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int UnitID { get; set; }
-        public int Quantity { get; set; }
-        public decimal VAT { get; set; }
         public Nullable<decimal> VATCost { get; set; }
-        public Nullable<decimal> Discount { get; set; }
         public Nullable<decimal> TotalServiceCost { get; set; }
         public Nullable<decimal> TotalPaymentCost { get; set; }
         public string InWord { get; set; }
@@ -48,7 +48,8 @@ namespace EInvoice.Data.Data
         public virtual Employee Employee { get; set; }
         public virtual Form Form { get; set; }
         public virtual InvoiceType InvoiceType { get; set; }
-        public virtual Payment Payment { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

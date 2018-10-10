@@ -21,7 +21,7 @@
 	settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.FocusedCellClick;
 	settings.SettingsEditing.BatchEditSettings.HighlightDeletedRows = true;
 
-	settings.CommandColumn.Visible = true;
+	settings.CommandColumn.Visible = false;
 	settings.CommandColumn.ShowDeleteButton = true;
 	settings.CommandColumn.ShowNewButtonInHeader = true;
 	settings.CommandColumn.Width = Unit.Point(50);
@@ -34,51 +34,58 @@
 
 	settings.Columns.Add(c => {
 		c.FieldName = "Name";
-		c.Caption = "Name Of Product, Service";
+		c.Caption = "Goods - Services - Description";
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 	});
 
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "UnitID";
-		c.Caption = "Unit";
-		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
-		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-		c.EditorProperties().ComboBox(p =>
-		{
-			p.TextField = "Name";
-			p.ValueField = "ID";
-			p.ValueType = typeof(int);
-			p.BindList(controller.GetAllUnit());
-		});
-	});
+	//settings.Columns.Add(c =>
+	//{
+	//	c.FieldName = "UnitID";
+	//	c.Caption = "Unit";
+	//	c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+	//	c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+	//	c.EditorProperties().ComboBox(p =>
+	//	{
+	//		p.TextField = "Name";
+	//		p.ValueField = "ID";
+	//		p.ValueType = typeof(int);
+	//		p.BindList(controller.GetAllUnit());
+	//	});
+	//});
+	//settings.Init = (sender, e) =>
+	//{
+	//	var c = new GridViewDataColumn() { FieldName = "Quantity" };
+	//	c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+	//	c.Width = 50;
+	//	c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+	//	c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+	//	((MVCxGridView)sender)Add(c);
+	//};
 
+	#region Numbering
 	settings.Init = (sender, e) =>
 	{
-		var c = new GridViewDataColumn() { FieldName = "Quantity" };
+		var c = new GridViewDataColumn() { FieldName = "Series" };
 		c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-		c.VisibleIndex = 4;
-		c.Width = 50;	
-		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
-		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-		((MVCxGridView)sender).Columns.Add(c);
-	};
-
-	settings.Columns.Add(c => {
-		c.FieldName = "Unit Price";
-	});
-
-	settings.Init = (sender, e) =>
-	{
-		var c = new GridViewDataColumn() { FieldName = "Amount" };
-		c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-		c.VisibleIndex = 5;
+		c.VisibleIndex = 0;
 		c.Width = 50;
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		((MVCxGridView)sender).Columns.Add(c);
 	};
 
+	settings.CustomColumnDisplayText = (sender, e) =>
+	{
+		if (e.Column.FieldName == "Series")
+		{
+			e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+		}
+	};
+	#endregion
+
+	settings.Columns.Add(c => {
+		c.FieldName = "Unit Price";
+	});
 	settings.ClientSideEvents.BeginCallback = "OnBeginGridCallback";
-}).Bind(Model).GetHtml()
+}).Bind(Model).GetHtml();

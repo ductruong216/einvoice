@@ -2,7 +2,9 @@
 using EInvoice.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using EInvoice.Data.Data;
 using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
@@ -49,7 +51,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 			{
 				try
 				{
-					
+
 
 					_customerService.Update(customer);
 					_customerService.Save();
@@ -66,7 +68,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(false)]
-		public ActionResult  CustomerPartialDelete(string customerID)
+		public ActionResult CustomerPartialDelete(string customerID)
 		{
 			if (customerID != null)
 			{
@@ -97,5 +99,32 @@ namespace EInvoice.Web.Controllers.CategoryController
 			bool isUniq = _customerService.IsTaxExist(taxCode);
 			return Json(!isUniq);
 		}
+
+		[HttpPost]
+		public JsonResult GetCustomerJsonResult(string searchKey)
+		{
+			var dn = new InvoiceEntities();
+			var searchCustomer = dn.Customers.Where(x => x.Code.Contains(searchKey)).Select(x => new Customer
+			{
+				ID = x.ID,
+				Code = x.Code,
+				TaxCode = x.TaxCode,
+				Name = x.Name,
+				Purchaser = x.Purchaser,
+				Address = x.Address,
+				Email = x.Email,
+				Phone = x.Phone,
+				Fax = x.Fax,
+				LegalPresenter = x.LegalPresenter,
+				AccountHolder = x.AccountHolder,
+				BankAccountID = x.BankAccountID,
+				BankName = x.BankName,
+				Agency = x.Agency,
+				Note = x.Note
+			}).ToList();
+			return new JsonResult { Data = searchCustomer, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+		}
+		//var customers = _customerService.GetAll();
+		//var searchCustomer = customers
 	}
 }

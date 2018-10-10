@@ -17,7 +17,7 @@ namespace EInvoice.Data.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Invoices = new HashSet<Invoice>();
+            this.Items = new HashSet<Item>();
         }
     
         public long ID { get; set; }
@@ -33,8 +33,7 @@ namespace EInvoice.Data.Data
         public Nullable<decimal> Discount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
         public virtual Unit Unit { get; set; }
-        public virtual Unit Unit1 { get; set; }
     }
 }

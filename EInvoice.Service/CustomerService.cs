@@ -52,7 +52,7 @@ namespace EInvoice.Service
 			{
 				throw new NameDuplicatedException("Tax code is exist");
 			}
-
+		
 			_customerRepository.Add(customer);
 		}
 	}
