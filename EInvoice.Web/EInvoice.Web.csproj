@@ -264,6 +264,7 @@
     <Content Include="Assets\Login\vendor\select2\select2.js" />
     <Content Include="Assets\Login\vendor\select2\select2.min.css" />
     <Content Include="Assets\Login\vendor\select2\select2.min.js" />
+    <Content Include="Assets\Owner\js\Hepler.js" />
     <Content Include="Assets\Owner\js\jquery.js" />
     <Content Include="Assets\Owner\js\myscript.js" />
     <Content Include="Assets\vendor\animsition\animsition.min.css" />

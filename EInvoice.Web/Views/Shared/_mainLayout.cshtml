@@ -541,42 +541,6 @@
 	<script src="~/Assets/js/main.js"></script>
 
 	<script src="~/Assets/Owner/js/myscript.js"></script>
-	<script type="text/javascript">
-		$(function () {
-			$('.list-unstyled a').filter(function () { return this.href == location.href }).parent().addClass('active')
-				.siblings().removeClass('active');
-		});
-
-		$('.list-unstyled a').click(function () {
-			$(this).parent().addClass('active').siblings().removeClass('active');
-		});
-	</script>
-	<script type="text/javascript">
-		$(function () {
-		$("#CusCode").autocomplete({
-			source: function (request, response) {
-				debugger;	
-				$.ajax({
-					url: '@Url.Action("GetCustomerJsonResult", "Category")',
-					type: "POST",  
-					dataType: "json",
-					data: { searchKey: $("#CusCode").val() },
-					success: function(data) {
-						response($.map(data,
-							function(item) {
-								return { label: item.Code, value: item.Code };
-							}));
-					},
-					error: function(status) {
-						alert(status);
-					}
-				});
-			},
-			messages: {
-				noResults: "", results: ""
-			}
-		});
-	});
-	</script>
+	
 </body>
 </html>

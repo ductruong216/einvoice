@@ -3,6 +3,7 @@ using EInvoice.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using EInvoice.Data.Data;
 using Customer = EInvoice.Data.Data.Customer;
@@ -103,8 +104,8 @@ namespace EInvoice.Web.Controllers.CategoryController
 		[HttpPost]
 		public JsonResult GetCustomerJsonResult(string searchKey)
 		{
-			var dn = new InvoiceEntities();
-			var searchCustomer = dn.Customers.Where(x => x.Code.Contains(searchKey)).Select(x => new Customer
+			var customers = _customerService.GetAll();
+			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey)).Select(x => new Customer
 			{
 				ID = x.ID,
 				Code = x.Code,
@@ -122,9 +123,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 				Agency = x.Agency,
 				Note = x.Note
 			}).ToList();
-			return new JsonResult { Data = searchCustomer, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+			return Json (searchCustomer, JsonRequestBehavior.AllowGet);
 		}
-		//var customers = _customerService.GetAll();
-		//var searchCustomer = customers
 	}
 }
