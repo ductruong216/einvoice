@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EInvoice.Web.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Helpers;
@@ -102,7 +103,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost]
-		public JsonResult GetCustomerJsonResult(string searchKey)
+		public JsonResult GetCodeCustomerJsonResult(string searchKey)
 		{
 			var customers = _customerService.GetAll();
 			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey)).Select(x => new Customer
@@ -123,7 +124,56 @@ namespace EInvoice.Web.Controllers.CategoryController
 				Agency = x.Agency,
 				Note = x.Note
 			}).ToList();
-			return Json (searchCustomer, JsonRequestBehavior.AllowGet);
+			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
+		}
+		[HttpPost]
+		public JsonResult GetNameCustomerJsonResult(string searchKey)
+		{
+			var customers = _customerService.GetAll();
+			var searchCustomer = customers.Where(x => x.Name.Contains(searchKey)).Select(x => new Customer
+			{
+				ID = x.ID,
+				Code = x.Code,
+				TaxCode = x.TaxCode,
+				Name = x.Name,
+				Purchaser = x.Purchaser,
+				Address = x.Address,
+				Email = x.Email,
+				Phone = x.Phone,
+				Fax = x.Fax,
+				LegalPresenter = x.LegalPresenter,
+				AccountHolder = x.AccountHolder,
+				BankAccountID = x.BankAccountID,
+				BankName = x.BankName,
+				Agency = x.Agency,
+				Note = x.Note
+			}).ToList();
+			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
+		}
+		[HttpPost]
+		public JsonResult GetTaxCodeCustomerJsonResult(string searchKey)
+		{
+			var customers = _customerService.GetAll();
+
+			var searchCustomer = customers.Where(x => x.TaxCode.ToString().Contains(searchKey)).Select(x => new Customer
+			{
+				ID = x.ID,
+				Code = x.Code,
+				TaxCode = x.TaxCode,
+				Name = x.Name,
+				Purchaser = x.Purchaser,
+				Address = x.Address,
+				Email = x.Email,
+				Phone = x.Phone,
+				Fax = x.Fax,
+				LegalPresenter = x.LegalPresenter,
+				AccountHolder = x.AccountHolder,
+				BankAccountID = x.BankAccountID,
+				BankName = x.BankName,
+				Agency = x.Agency,
+				Note = x.Note
+			}).ToList();
+			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

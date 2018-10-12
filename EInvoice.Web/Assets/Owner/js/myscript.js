@@ -12,9 +12,17 @@ $(document).ready(function () {
 	var i = 1;
 	$("#add_row").click(function () {
 		b = i - 1;
-		$('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
+		$('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);	
+	
 		$('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+
+		//$('#tab_logic tbody tr').each(function (i, element) {
+		//	var html = $(this).html();
+		//	if (html != '') {
+		//		find(".name").autocomplete(autocomplete_opt);
+		//	};
 		i++;
+		return false;
 	});
 	$("#delete_row").click(function () {
 		if (i > 1) {
@@ -31,6 +39,72 @@ $(document).ready(function () {
 		calc_total();
 	});
 });
+var autocomplete_opt = {
+	source: function (request, response) {
+		$.ajax({
+			url: '/Category/GetProducts',
+			type: "POST",
+			dataType: "json",
+			data: { searchKey: request.term },
+			success: function (data) {
+				response($.map(data,
+					function (item) {
+						return {
+							value: item.Name,
+							code: item.Code,
+							price: item.Price,
+							tax: item.Tax,
+							unit: item.Unit
+						};
+					}));
+			},
+			error: function (status) {
+				alert(status);
+			}
+		});
+	},
+	select: function (even, ui) {
+		$(".name").val(ui.item.name);
+		$(".price").val(ui.item.price);
+		$(".code").val(ui.item.code);
+		$(".unit").val(ui.item.unit);
+	}
+};
+
+$(document).ready(function() {
+	$(".name").autocomplete({
+		source: function(request, response) {
+			$.ajax({
+				url: '/Category/GetProducts',
+				type: "POST",
+				dataType: "json",
+				data: { searchKey: request.term },
+				success: function(data) {
+					response($.map(data,
+						function(item) {
+							return {
+								value: item.Name,
+								code: item.Code,
+								price: item.Price,
+								tax: item.Tax,
+								unit: item.Unit
+							};
+						}));
+				},
+				error: function(status) {
+					alert(status);
+				}
+			});
+		},
+		select: function(even, ui) {
+			$(".name").val(ui.item.name);
+			$(".price").val(ui.item.price);
+			$(".code").val(ui.item.code);
+			$(".unit").val(ui.item.unit);
+		}
+	});
+});
+
 function calc() {
 	$('#tab_logic tbody tr').each(function (i, element) {
 		var html = $(this).html();
@@ -55,14 +129,12 @@ function calc_total() {
 	$('#total_amount').val((tax_sum + total).toFixed(2));
 }
 
-// Autocomplete Customers
-// 1. DAT THAM SO CHO INPUT ID
-// 2. DAT THAM SO CHO CUSTOMER SEARCH
-$(document).ready(function () {
-	$("#CusCode").autocomplete({
+//Autocomplete Customers
+function CustomerAutoComplete(field, fieldValue, URL) {
+	$("#" + field).autocomplete({
 		source: function (request, response) {
 			$.ajax({
-				url: '/Category/GetCustomerJsonResult',
+				url: URL,
 				type: "POST",
 				dataType: "json",
 				data: { searchKey: request.term },
@@ -70,8 +142,9 @@ $(document).ready(function () {
 					response($.map(data,
 						function (item) {
 							return {
-								value: item.Code,
+								value: item[fieldValue],
 								name: item.Name,
+								code: item.Code,
 								purchaser: item.Purchaser,
 								taxCode: item.TaxCode,
 								address: item.Address,
@@ -89,9 +162,10 @@ $(document).ready(function () {
 			});
 		},
 		select: function (even, ui) {
-			$("#purchaser").val(ui.item.purchaser);
-			$("#taxCode").val(ui.item.taxCode);
 			$("#companyName").val(ui.item.name);
+			$("#purchaser").val(ui.item.purchaser);
+			$("#CusCode").val(ui.item.code);
+			$("#taxCode").val(ui.item.taxCode);
 			$("#address").val(ui.item.address);
 			$("#email").val(ui.item.email);
 			$("#bankId").val(ui.item.bankId);
@@ -100,48 +174,9 @@ $(document).ready(function () {
 			$("#phone").val(ui.item.phone);
 		}
 	});
-});
+};
 
-// Customer Name
-//$(document).ready(function () {
-//	$("#CusCode").autocomplete({
-//		source: function (request, response) {
-//			$.ajax({
-//				url: '/Category/GetCustomerJsonResult',
-//				type: "POST",
-//				dataType: "json",
-//				data: { searchKey: request.term },
-//				success: function (data) {
-//					response($.map(data,
-//						function (item) {
-//							return {
-//								value: item.Code,
-//								name: item.Name,
-//								purchaser: item.Purchaser,
-//								taxCode: item.TaxCode,
-//								address: item.Address,
-//								email: item.Email,
-//								bankId: item.BankAccountID,
-//								accountHolder: item.AccountHolder,
-//								bankName: item.BankName,
-//								phone: item.Phone
-//							};
-//						}));
-//				},
-//				error: function (status) {
-//					alert(status);
-//				}
-//			});
-//		},
-//		select: function (even, ui) {
-//			$("#purchaser").val(ui.item.purchaser);
-//			$("#taxCode").val(ui.item.taxCode);
-//			$("#companyName").val(ui.item.name);
-//			$("#address").val(ui.item.address);
-//			$("#email").val(ui.item.email);
-//			$("#bankId").val(ui.item.bankId);
-//			$("#accountHolder").val(ui.item.accountHolder);
-//			$("#bankName").val(ui.item.bankName);
-//			$("#phone").val(ui.item.phone);
-//		}
-//	});
+CustomerAutoComplete("CusCode", "Code", '/Category/GetCodeCustomerJsonResult');
+CustomerAutoComplete("companyName", "Name", '/Category/GetNameCustomerJsonResult');
+CustomerAutoComplete("taxCode", "TaxCode", '/Category/GetTaxCodeCustomerJsonResult');
+

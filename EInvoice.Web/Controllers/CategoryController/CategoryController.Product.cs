@@ -91,5 +91,19 @@ namespace EInvoice.Web.Controllers.CategoryController
 			bool isUniq = _productService.IsUniq(code);
 			return Json(!isUniq);
 		}
+		[HttpPost]
+		public JsonResult GetProducts(string searchKey)
+		{
+			var products = _productService.GetAll();
+			var searchProducts = products.Where(x => x.Name.Contains(searchKey)).Select(x => new Product
+			{
+				ID = x.ID,
+				Code = x.Code,
+				Name = x.Name,
+				Price = x.Price,
+				Tax = x.Tax,
+			}).ToList();
+			return Json(searchProducts, JsonRequestBehavior.AllowGet);
+		}
 	}
 }

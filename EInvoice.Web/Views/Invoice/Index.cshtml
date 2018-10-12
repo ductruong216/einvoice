@@ -28,279 +28,275 @@
 }
 
 <div class="card">
-<h2 style="text-align: center">VAT INVOICE</h2>
-<div class="ml-3 mr-3">
-	<h5>INVOICE INFORMATION</h5>
-	<hr>
-	<div class="row mt-3">
-		<div class="col-md-9">
-			<div class="card">
-				<div class="card-header">
-					<strong>Customer Info</strong>
+	<h2 style="text-align: center">VAT INVOICE</h2>
+	<div class="ml-3 mr-3">
+		<h5>INVOICE INFORMATION</h5>
+		<hr>
+		<div class="row mt-3">
+			<div class="col-md-9">
+				<div class="card">
+					<div class="card-header">
+						<strong>Customer Info</strong>
+					</div>
+					<div class="card-body">
+						<form>
+							<div class="row col-md-12">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-md-4 pt-2 p-0 ">Customer Code:</label>
+										<div class="input-group col-md-8">
+											<span class="icon-case"><i class="fas fa-barcode"></i></span>
+											<input class="form-control" id="CusCode" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4 pt-2 p-0 ">Purchaser: </label>
+										<div class="input-group col-sm-8">
+											<span class="icon-case"><i class="fas fa-user"></i></span>
+											<input class="form-control" id="purchaser" type="text">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row col-md-12">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-md-4 pt-2 p-0 ">Tax Code: </label>
+										<div class="input-group col-md-8">
+											<span class="icon-case"><i class="fas fa-qrcode"></i></span>
+											<input class="form-control" id="taxCode" type="text">
+										</div>
+									</div>
+								</div>
+								<div>
+									<div class="row">
+										<button type="button" class="btn btn-info ml-3" id="fix-button">Get Info</button>
+									</div>
+								</div>
+							</div>
+							<div class="row col-md-12">
+								<div class="col-md-12">
+									<div class="form-group row">
+										<label class="col-form-label col-md-2 pt-2 p-0 ">Organization Name: </label>
+										<div class="input-group col-md-10">
+											<span class="icon-case"><i class="fas fa-briefcase"></i></span>
+											<input class="form-control" id="companyName" type="text">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row col-md-12">
+								<div class="col-md-12">
+									<div class="form-group row">
+										<label class="col-form-label col-md-2 pt-2 p-0 ">Address: </label>
+										<div class="input-group col-md-10">
+											<span class="icon-case"><i class="fas fa-address-card"></i></span>
+											<input class="form-control" id="address" type="text">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row col-md-12">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-md-4 pt-2 p-0 ">Email:</label>
+										<div class="input-group col-md-8">
+											<span class="icon-case"><i class="fas fa-envelope"></i></span>
+											<input class="form-control" id="email" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4 pt-2 p-0 ">Phone number: </label>
+										<div class="input-group col-sm-8">
+											<span class="icon-case"><i class="fas fa-phone"></i></span>
+											<input class="form-control" id="phone" type="text">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row col-md-12">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-md-4 pt-2 p-0 ">Bank ID:</label>
+										<div class="input-group col-md-8">
+											<span class="icon-case"><i class="fas fa-credit-card"></i></span>
+											<input class="form-control" id="bankId" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4 pt-2 p-0 ">Account Holder: </label>
+										<div class="input-group col-sm-8">
+											<span class="icon-case"><i class="fas fa-male"></i></span>
+											<input class="form-control" id="accountHolder" type="text">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row col-md-12">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-md-4 pt-2 p-0 ">Bank Name:</label>
+										<div class="input-group col-md-8">
+											<span class="icon-case"><i class="fas fa-bank"></i></span>
+											<input class="form-control" id="bankName" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4 pt-2 p-0 ">Payment Type: <span>*</span> </label>
+										<div class="input-group col-sm-8">
+											<span class="icon-case"><i class="fas fa-usd"></i></span>
+											<select class="form-control" type="text">
+												<option selected>Choose...</option>
+												<option>Cash payment(CP)</option>
+												<option>Bank transfer(BT)</option>
+												<option>CP/BT</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row col-md-12">
+								<div class="col-md-12">
+									<div class="form-group row">
+										<label class="col-form-label col-md-2 pt-2 p-0 ">Note: </label>
+										<div class="input-group col-md-10">
+											<span class="icon-case"><i class="fas fa-sticky-note"></i></span>
+											<textarea class="form-control" type="text"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
-				<div class="card-body">
-					<form>
-						<div class="row col-md-12">
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-md-4 pt-2 p-0 ">Customer Code:</label>
-									<div class="input-group col-md-8">
-										<span class="icon-case"><i class="fas fa-barcode"></i></span>
-										<input class="form-control" id="CusCode" type="text">
-									</div>
-								</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-header">
+						<strong>Invoice Option</strong>
+					</div>
+					<div class="card-body mr-2 ml-2">
+						<form>
+							<div class="form-group row">
+								<label class="col-form-label col-md-3 pt-2 p-0 ">Pattern: <span>*</span></label>
+								<select class="form-control  col-md-9">
+									<option selected>Choose...</option>
+									<option>...</option>
+								</select>
 							</div>
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-sm-4 pt-2 p-0 ">Purchaser: </label>
-									<div class="input-group col-sm-8">
-										<span class="icon-case"><i class="fas fa-user"></i></span>
-										<input class="form-control" id="purchaser" type="text">
-									</div>
-								</div>
+							<div class="form-group row">
+								<label class="col-form-label col-md-3 pt-2 p-0 ">Series: <span>*</span></label>
+								<select class="form-control  col-md-9">
+									<option selected>Choose...</option>
+									<option>...</option>
+								</select>
 							</div>
-						</div>
-						<div class="row col-md-12">
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-md-4 pt-2 p-0 ">Tax Code: </label>
-									<div class="input-group col-md-8">
-										<span class="icon-case"><i class="fas fa-qrcode"></i></span>
-										<input class="form-control" id="taxCode" type="text">
-									</div>
-
-								</div>
+							<div class="form-group row">
+								<label class="col-form-label col-md-3 pt-2 p-0 ">No: <span>*</span></label>
+								<input class="form-control col-md-9" type="text">
 							</div>
-							<div>
-								<div class="row">
-									<button type="button" class="btn btn-info ml-3" id="fix-button">Get Info</button>
-								</div>
+							<div class="form-group row date" data-provide="datepicker">
+								<label class="col-form-label col-md-3 pt-2 p-0 ">Date:</label>
+								<input class="form-control col-md-9" type="text">
 							</div>
-
-						</div>
-						<div class="row col-md-12">
-							<div class="col-md-12">
-								<div class="form-group row">
-									<label class="col-form-label col-md-2 pt-2 p-0 ">Organization Name: </label>
-									<div class="input-group col-md-10">
-										<span class="icon-case"><i class="fas fa-briefcase"></i></span>
-										<input class="form-control" id="companyName" type="text">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row col-md-12">
-							<div class="col-md-12">
-								<div class="form-group row">
-									<label class="col-form-label col-md-2 pt-2 p-0 ">Address: </label>
-									<div class="input-group col-md-10">
-										<span class="icon-case"><i class="fas fa-address-card"></i></span>
-										<input class="form-control" id="address"type="text">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row col-md-12">
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-md-4 pt-2 p-0 ">Email:</label>
-									<div class="input-group col-md-8">
-										<span class="icon-case"><i class="fas fa-envelope"></i></span>
-										<input class="form-control" id="email" type="text">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-sm-4 pt-2 p-0 ">Phone number: </label>
-									<div class="input-group col-sm-8">
-										<span class="icon-case"><i class="fas fa-phone"></i></span>
-										<input class="form-control" id="phone" type="text">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row col-md-12">
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-md-4 pt-2 p-0 ">Bank ID:</label>
-									<div class="input-group col-md-8">
-										<span class="icon-case"><i class="fas fa-credit-card"></i></span>
-										<input class="form-control" id="bankId" type="text">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-sm-4 pt-2 p-0 ">Account Holder: </label>
-									<div class="input-group col-sm-8">
-										<span class="icon-case"><i class="fas fa-male"></i></span>
-										<input class="form-control" id="accountHolder" type="text">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row col-md-12">
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-md-4 pt-2 p-0 ">Bank Name:</label>
-									<div class="input-group col-md-8">
-										<span class="icon-case"><i class="fas fa-bank"></i></span>
-										<input class="form-control" id="bankName" type="text">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-form-label col-sm-4 pt-2 p-0 ">Payment Type: <span>*</span> </label>
-									<div class="input-group col-sm-8">
-										<span class="icon-case"><i class="fas fa-usd"></i></span>
-										<select class="form-control" type="text">
-											<option selected>Choose...</option>
-											<option>Cash payment(CP)</option>
-											<option>Bank transfer(BT)</option>
-											<option>CP/BT</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row col-md-12">
-							<div class="col-md-12">
-								<div class="form-group row">
-									<label class="col-form-label col-md-2 pt-2 p-0 ">Note: </label>
-									<div class="input-group col-md-10">
-										<span class="icon-case"><i class="fas fa-sticky-note"></i></span>
-										<textarea class="form-control" type="text"></textarea>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3">
-			<div class="card">
-				<div class="card-header">
-					<strong>Invoice Option</strong>
+	</div>
+	<div class="ml-3 mr-3">
+		<h5>INVOICE DETAILS</h5>
+		<hr>
+		<div class="row clearfix">
+			<div class="col-md-12">
+				<table class="table table-bordered table-hover" id="tab_logic">
+					<thead>
+						<tr>
+							<th class="text-center"> Series </th>
+							<th class="text-center" style="width: 40%"> Products - Services </th>
+							<th class="text-center"> Unit Price </th>
+							<th class="text-center"> Unit </th>
+							<th class="text-center"> Quantity </th>
+							<th class="text-center"> Amount </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr id='addr0'>
+							<td>1</td>
+							<td><input type="text" name='name[]' placeholder='Enter Name' class="form-control name" id="description" autocomplete="off"step="0" min="0" /></td>
+							<td><input type="number" name='price[]' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" /></td>
+							<td><input type="number" name='unit[]' placeholder='Enter Unit' class="form-control unit" step="0.00" min="0" /></td>
+							<td><input type="number" name='qty[]' placeholder='Enter Qty' class="form-control qty" step="0" min="0" /></td>
+							<td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly /></td>
+						</tr>
+						<tr id='addr1'></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12" id="pull-down">
+				<button id="add_row" class="btn btn-light pull-left border-button">Add Row</button>
+				<button id='delete_row' class="pull-right btn btn-light border-button">Delete Row</button>
+			</div>
+		</div>
+		<div class="row clearfix" style="margin-top: 20px;">
+			<div class="pull-left col-md-8">
+				<div class="row" style="margin-top: 21%">
+					<div class="text-nowrap col-md-3 pt-1" style="width: 8rem;">
+						<label>Amount in words: </label>
+					</div>
+					<div class="col-md-9">
+						<input class="form-control" tyle="text">
+					</div>
 				</div>
-				<div class="card-body mr-2 ml-2">
-					<form>
-						<div class="form-group row">
-							<label class="col-form-label col-md-3 pt-2 p-0 ">Pattern: <span>*</span></label>
-							<select class="form-control  col-md-9">
-								<option selected>Choose...</option>
-								<option>...</option>
-							</select>
-						</div>
-						<div class="form-group row">
-							<label class="col-form-label col-md-3 pt-2 p-0 ">Series: <span>*</span></label>
-							<select class="form-control  col-md-9">
-								<option selected>Choose...</option>
-								<option>...</option>
-							</select>
-						</div>
-						<div class="form-group row">
-							<label class="col-form-label col-md-3 pt-2 p-0 ">No: <span>*</span></label>
-							<input class="form-control col-md-9" type="text">
-						</div>
-						<div class="form-group row date" data-provide="datepicker">
-							<label class="col-form-label col-md-3 pt-2 p-0 ">Date:</label>
-							<input class="form-control col-md-9" type="text">
-						</div>
-					</form>
-				</div>
+			</div>
+			<div class="pull-right col-md-4">
+				<table class="table table-bordered table-hover" id="tab_logic_total">
+					<tbody>
+						<tr>
+							<th class="text-center">Sub Total</th>
+							<td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+						</tr>
+						<tr>
+							<th class="text-center">Tax</th>
+							<td class="text-center">
+								<div class="input-group mb-2 mb-sm-0">
+									<select type="number" class="form-control" id="tax" placeholder="0">
+										<option selected>0</option>
+										<option>5</option>
+										<option>10</option>
+									</select>
+									<div class="input-group-addon">%</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="text-center">Tax Amount</th>
+							<td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly /></td>
+						</tr>
+						<tr>
+							<th class="text-center">Grand Total</th>
+							<td class="text-center"><input type="number" name='total_amount' id="total_amount" placeholder='0.00' class="form-control" readonly /></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="ml-3 mr-3">
-	<h5>INVOICE DETAILS</h5>
-	<hr>
-	<div class="row clearfix">
-		<div class="col-md-12">
-			<table class="table table-bordered table-hover" id="tab_logic">
-				<thead>
-				<tr>
-					<th class="text-center"> Series </th>
-					<th class="text-center"> Product Code </th>
-					<th class="text-center" style="width: 40%"> Products - Services </th>
-					<th class="text-center"> Unit Price </th>
-					<th class="text-center"> Unit </th>
-					<th class="text-center"> Quantity </th>
-					<th class="text-center"> Amount </th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr id='addr0'>
-					<td>1</td>
-					<td><input type="text" name='product[]' placeholder='Enter Code' class="form-control" /></td>
-					<td><input type="text" name='name[]' placeholder='Enter Name' class="form-control name" step="0" min="0" /></td>
-					<td><input type="number" name='price[]' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" /></td>
-					<td><input type="number" name='unit[]' placeholder='Enter Unit' class="form-control unit" step="0.00" min="0" /></td>
-					<td><input type="number" name='qty[]' placeholder='Enter Qty' class="form-control qty" step="0" min="0" /></td>
-					<td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly /></td>
-				</tr>
-				<tr id='addr1'></tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="button-area col-md-12">
+		<button type="submit" class="btn btn-primary">Save</button>
+		<button type="submit" class="btn btn-primary">Save & Release</button>
+		<button type="submit" class="btn btn-outline-secondary">Back</button>
 	</div>
-	<div class="row clearfix">
-		<div class="col-md-12" id="pull-down">
-			<button id="add_row" class="btn btn-light pull-left border-button">Add Row</button>
-			<button id='delete_row' class="pull-right btn btn-light border-button">Delete Row</button>
-		</div>
-	</div>
-	<div class="row clearfix" style="margin-top: 20px;">
-		<div class="pull-left col-md-8">
-			<div class="row" style="margin-top: 21%">
-				<div class="text-nowrap col-md-3 pt-1" style="width: 8rem;">
-					<label>Amount in words: </label>
-				</div>
-				<div class="col-md-9">
-					<input class="form-control" tyle="text">
-				</div>
-			</div>
-		</div>
-		<div class="pull-right col-md-4">
-			<table class="table table-bordered table-hover" id="tab_logic_total">
-				<tbody>
-				<tr>
-					<th class="text-center">Sub Total</th>
-					<td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
-				</tr>
-				<tr>
-					<th class="text-center">Tax</th>
-					<td class="text-center">
-						<div class="input-group mb-2 mb-sm-0">
-							<select type="number" class="form-control" id="tax" placeholder="0">
-								<option selected>0</option>
-								<option>5</option>
-								<option>10</option>
-							</select>
-							<div class="input-group-addon">%</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-center">Tax Amount</th>
-					<td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly /></td>
-				</tr>
-				<tr>
-					<th class="text-center">Grand Total</th>
-					<td class="text-center"><input type="number" name='total_amount' id="total_amount" placeholder='0.00' class="form-control" readonly /></td>
-				</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-<div class="button-area col-md-12">
-	<button type="submit" class="btn btn-primary">Save</button>
-	<button type="submit" class="btn btn-primary">Save & Release</button>
-	<button type="submit" class="btn btn-outline-secondary">Back</button>
-</div>
 </div>
