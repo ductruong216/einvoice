@@ -6,7 +6,7 @@
 @(Html.DevExpress().GridView<UnitViewModel>(settings =>
 		{
 			settings.Name = "Units";
-			settings.CallbackRouteValues = new { Controller = "Category", Action = "UnitPartial" };
+			settings.CallbackRouteValues = new { Controller = "Unit", Action = "UnitPartial" };
 			settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Unit", Action = "UnitPartialAddNew" };
 			settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Unit", Action = "UnitPartialUpdate" };
 			settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Unit", Action = "UnitPartialDelete" };

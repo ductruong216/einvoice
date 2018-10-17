@@ -1,6 +1,5 @@
 ﻿using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
-using System;
 
 namespace EInvoice.Data.Infrastructure.Implementation
 {
@@ -8,6 +7,7 @@ namespace EInvoice.Data.Infrastructure.Implementation
 	{
 		private readonly IDbFactory _dbFactory;
 		private InvoiceEntities _dbContext;
+
 		public InvoiceEntities DbContext
 		{
 			get
@@ -20,6 +20,7 @@ namespace EInvoice.Data.Infrastructure.Implementation
 		{
 			_dbFactory = dbFactory;
 		}
+
 		public void Commit()
 		{
 			DbContext.SaveChanges();

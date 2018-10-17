@@ -1,20 +1,37 @@
-﻿using EInvoice.Data.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using DevExpress.XtraPrinting.Native;
+using EInvoice.Data.Data;
+using EInvoice.Data.Services;
+using EInvoice.Service;
 using EInvoice.Web.Models;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public partial class CategoryController : Controller
+	public class ProductController : Controller
 	{
-		// GET: Category
-		public ActionResult Products()
+		private readonly IProductService _productService;
+		private readonly IUnitService _unitService;
+
+		public ProductController(IProductService productService, IUnitService unitService)
+		{
+			_productService = productService;
+			_unitService = unitService;
+		}
+
+		// GET: Product
+
+		public ActionResult Index()
 		{
 			return View();
+		}
+		public IEnumerable<Unit> GetAllUnit()
+		{
+			return _unitService.GetAll();
 		}
 
 		[ValidateInput(false)]
@@ -32,7 +49,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 				try
 				{
 					_productService.AddProduct(product);
-					_productService.Save();
 				}
 				catch (Exception e)
 				{
@@ -53,7 +69,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 				try
 				{
 					_productService.Update(product);
-					_productService.Save();
 				}
 				catch (Exception e)
 				{
@@ -67,14 +82,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(false)]
-		public ActionResult ProductPartialDelete(string ProductID)
+		public ActionResult ProductPartialDelete(int ID)
 		{
-			if (ProductID != null)
+			if (ID >= 0)
 			{
 				try
 				{
-					_productService.DeleteByID(ProductID);
-					_productService.Save();
+					_productService.DeleteByID(ID);
 				}
 				catch (Exception e)
 				{
@@ -86,23 +100,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost]
-		public JsonResult IsProductCodeUniq(string code)
-		{
-			bool isUniq = _productService.IsUniq(code);
-			return Json(!isUniq);
-		}
-		[HttpPost]
 		public JsonResult GetProducts(string searchKey)
 		{
-			var products = _productService.GetAll();
-			var searchProducts = products.Where(x => x.Name.Contains(searchKey)).Select(x => new Product
-			{
-				ID = x.ID,
-				Code = x.Code,
-				Name = x.Name,
-				Price = x.Price,
-				Tax = x.Tax,
-			}).ToList();
+			
+			var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
+			var searchProducts = products.Where(x => x.Name.Contains(searchKey)).ToList();
+			searchProducts.ForEach(_ => _.Unit.Products = null);
+
 			return Json(searchProducts, JsonRequestBehavior.AllowGet);
 		}
 	}

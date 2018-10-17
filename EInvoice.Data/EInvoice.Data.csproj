@@ -156,7 +156,6 @@
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Implementation\Disposable.cs" />
-    <Compile Include="Infrastructure\Implementation\BaseRepository.cs" />
     <Compile Include="Infrastructure\Implementation\DbFactory.cs" />
     <Compile Include="Infrastructure\Implementation\ObjectFactory.cs" />
     <Compile Include="Infrastructure\Implementation\UnitOfWork.cs" />
@@ -164,13 +163,16 @@
     <Compile Include="Infrastructure\Interface\IRepository.cs" />
     <Compile Include="Infrastructure\Interface\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CustomerRepostitory.cs" />
-    <Compile Include="Repositories\InvoiceRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
-    <Compile Include="Repositories\UnitRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\IBaseService.cs" />
+    <Compile Include="Services\ICustomerService.cs" />
+    <Compile Include="Services\IInvoiceService.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\IUnitService.cs" />
+    <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Data\InvoiceModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

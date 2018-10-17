@@ -1,28 +1,4 @@
-﻿@*@model EInvoice.Data.Data.Invoice
-
-	@Html.DevExpress().GetStyleSheets(
-		new StyleSheet { ExtensionType = ExtensionType.FormLayout},
-		new StyleSheet { ExtensionSuite = ExtensionSuite.Editors })
-	@Html.DevExpress().GetScripts(
-		new Script { ExtensionType = ExtensionType.FormLayout })
-
-	@Html.DevExpress().GetStyleSheets(
-		new StyleSheet { ExtensionSuite = ExtensionSuite.GridView})
-	@Html.DevExpress().GetScripts(
-		new Script { ExtensionSuite = ExtensionSuite.GridView})
-	}
-	<style type="text/css">
-		#formLayout_1_0 {
-			width: 66.33333% !important;
-		}
-	</style>
-	<div class="col-md-12">
-		<div class="mainCaption"><h3>VAT INVOICE</h3></div>
-		@Html.Action("NewInvoice", "Invoice")
-		@Html.Action("ProductTable", "Invoice")
-	</div>*@
-
-@{
+﻿@{
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_mainLayout.cshtml";
 }
@@ -118,36 +94,27 @@
 									</div>
 								</div>
 							</div>
+							@*<div class="row col-md-12">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-form-label col-md-4 pt-2 p-0 ">Bank ID:</label>
+											<div class="input-group col-md-8">
+												<span class="icon-case"><i class="fas fa-credit-card"></i></span>
+												<input class="form-control" id="bankId" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-form-label col-sm-4 pt-2 p-0 ">Account Holder: </label>
+											<div class="input-group col-sm-8">
+												<span class="icon-case"><i class="fas fa-male"></i></span>
+												<input class="form-control" id="accountHolder" type="text">
+											</div>
+										</div>
+									</div>
+								</div>*@
 							<div class="row col-md-12">
-								<div class="col-md-6">
-									<div class="form-group row">
-										<label class="col-form-label col-md-4 pt-2 p-0 ">Bank ID:</label>
-										<div class="input-group col-md-8">
-											<span class="icon-case"><i class="fas fa-credit-card"></i></span>
-											<input class="form-control" id="bankId" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group row">
-										<label class="col-form-label col-sm-4 pt-2 p-0 ">Account Holder: </label>
-										<div class="input-group col-sm-8">
-											<span class="icon-case"><i class="fas fa-male"></i></span>
-											<input class="form-control" id="accountHolder" type="text">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row col-md-12">
-								<div class="col-md-6">
-									<div class="form-group row">
-										<label class="col-form-label col-md-4 pt-2 p-0 ">Bank Name:</label>
-										<div class="input-group col-md-8">
-											<span class="icon-case"><i class="fas fa-bank"></i></span>
-											<input class="form-control" id="bankName" type="text">
-										</div>
-									</div>
-								</div>
 								<div class="col-md-6">
 									<div class="form-group row">
 										<label class="col-form-label col-sm-4 pt-2 p-0 ">Payment Type: <span>*</span> </label>
@@ -162,19 +129,35 @@
 										</div>
 									</div>
 								</div>
-							</div>
+								<div class="col-md-6">
 
-							<div class="row col-md-12">
-								<div class="col-md-12">
+									@*<div class="form-group row">
+											<label class="col-form-label col-md-4 pt-2 p-0 ">Bank Name:</label>
+											<div class="input-group col-md-8">
+												<span class="icon-case"><i class="fas fa-bank"></i></span>
+												<input class="form-control" id="bankName" type="text">
+											</div>
+										</div>*@
 									<div class="form-group row">
-										<label class="col-form-label col-md-2 pt-2 p-0 ">Note: </label>
-										<div class="input-group col-md-10">
+										<label class="col-form-label col-md-4 pt-2 p-0 ">Note:</label>
+										<div class="input-group col-md-8">
 											<span class="icon-case"><i class="fas fa-sticky-note"></i></span>
 											<textarea class="form-control" type="text"></textarea>
 										</div>
 									</div>
 								</div>
 							</div>
+							@*<div class="row col-md-12">
+									<div class="col-md-12">
+										<div class="form-group row">
+											<label class="col-form-label col-md-2 pt-2 p-0 ">Note: </label>
+											<div class="input-group col-md-10">
+												<span class="icon-case"><i class="fas fa-sticky-note"></i></span>
+												<textarea class="form-control" type="text"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>*@
 						</form>
 					</div>
 				</div>
@@ -233,11 +216,11 @@
 					<tbody>
 						<tr id='addr0'>
 							<td>1</td>
-							<td><input type="text" name='name[]' placeholder='Enter Name' class="form-control name" id="description" autocomplete="off"step="0" min="0" /></td>
-							<td><input type="number" name='price[]' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" /></td>
-							<td><input type="number" name='unit[]' placeholder='Enter Unit' class="form-control unit" step="0.00" min="0" /></td>
-							<td><input type="number" name='qty[]' placeholder='Enter Qty' class="form-control qty" step="0" min="0" /></td>
-							<td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly /></td>
+							<td><input type="text" id="name1" name='name0' class="form-control name" id="description" step="0" min="0" /></td>
+							<td><input type="number" id="price1" name='price0' class="form-control price" step="0.00" min="0" /></td>
+							<td><input type="text" id="unit1" name='unit0' class="form-control unit" step="0.00" min="0" /></td>
+							<td><input type="number" name='qty0' class="form-control qty" step="0" min="0" /></td>
+							<td><input type="number" name='total0' class="form-control total" readonly /></td>
 						</tr>
 						<tr id='addr1'></tr>
 					</tbody>
@@ -252,12 +235,12 @@
 		</div>
 		<div class="row clearfix" style="margin-top: 20px;">
 			<div class="pull-left col-md-8">
-				<div class="row" style="margin-top: 21%">
+				<div class="row" style="margin-top: 25.4%">
 					<div class="text-nowrap col-md-3 pt-1" style="width: 8rem;">
 						<label>Amount in words: </label>
 					</div>
 					<div class="col-md-9">
-						<input class="form-control" tyle="text">
+						<input class="form-control" tyle="text" style="border: none; background-color: whitesmoke">
 					</div>
 				</div>
 			</div>

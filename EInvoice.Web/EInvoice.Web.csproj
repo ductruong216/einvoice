@@ -588,7 +588,6 @@
     <Content Include="Assets\vendor\slick\slick-theme.scss" />
     <Content Include="Assets\vendor\slick\slick.less" />
     <Content Include="Assets\vendor\slick\slick.scss" />
-    <Compile Include="Controllers\CategoryController\CategoryController.Customer.cs" />
     <None Include="packages.config" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -641,15 +640,17 @@
     <Content Include="Views\Shared\_mainLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Category\Products.cshtml" />
-    <Content Include="Views\Category\_ProductPartial.cshtml" />
-    <Content Include="Views\Category\_UnitPartial.cshtml" />
-    <Content Include="Views\Category\_CustomerPartial.cshtml" />
-    <Content Include="Views\Category\Customers.cshtml" />
     <Content Include="Views\Category\Others.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Invoice\NewInvoice.cshtml" />
     <Content Include="Views\Invoice\ProductTable.cshtml" />
+    <Content Include="Views\Customer\_CustomerPartial.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\_ProductPartial.cshtml" />
+    <Content Include="Views\Unit\_UnitPartial.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Unit\Index.cshtml" />
+    <Content Include="Views\Category\_UnitPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -667,14 +668,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController\CategoryController.cs" />
-    <Compile Include="Controllers\CategoryController\CategoryController.Product.cs" />
-    <Compile Include="Controllers\CategoryController\CategoryController.Unit.cs" />
+    <Compile Include="Controllers\CategoryController\CustomerController.cs" />
+    <Compile Include="Controllers\CategoryController\ProductController.cs" />
+    <Compile Include="Controllers\CategoryController\UnitController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController\InvoiceController.cs" />
     <Compile Include="Controllers\InvoiceController\InvoiceController.Products.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -703,14 +704,16 @@
       <Project>{fe38d05d-c4db-43a7-a91e-fd6562e7d985}</Project>
       <Name>EInvoice.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EInvoice.Repository\EInvoice.Repository.csproj">
+      <Project>{A08C37C5-2C76-484E-A0FA-922C2549FBB0}</Project>
+      <Name>EInvoice.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EInvoice.Service\EInvoice.Service.csproj">
       <Project>{c10ff58b-edc2-4245-be7e-f9c289091b09}</Project>
       <Name>EInvoice.Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Product\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

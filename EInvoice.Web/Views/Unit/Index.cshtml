@@ -13,11 +13,11 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="table-responsive table--no-card m-b-40">
-			@using (Html.BeginForm("Category"))
-			{
-				@Html.Hidden("customExportCommand")
-				@Html.Action("UnitPartial", "Unit")
-			}
+				@using (Html.BeginForm("Unit"))
+				{
+					@Html.Hidden("customExportCommand")
+					@Html.Action("UnitPartial", "Category")
+				}
 			</div>
 		</div>
 	</div>

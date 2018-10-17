@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using EInvoice.Data.Data;
+﻿using EInvoice.Data.Data;
 using EInvoice.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using EInvoice.Data.Services;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public partial class CategoryController
+	public class UnitController : Controller
 	{
-		// GET: Category
+		private readonly IUnitService _unitService;
 
-		public ActionResult Others()
+		public UnitController(IUnitService unitService)
+		{
+			_unitService = unitService;
+		}
+
+		public ActionResult Index()
 		{
 			return View();
 		}
+
 		public IEnumerable<Unit> GetAllUnit()
 		{
 			return _unitService.GetAll();
@@ -37,11 +42,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 				try
 				{
 					_unitService.Add(unit);
-					_unitService.Save();
-				}
-				catch (DbEntityValidationException e)
-				{
-					throw e;
 				}
 				catch (Exception e)
 				{
@@ -62,7 +62,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 				try
 				{
 					_unitService.Update(unit);
-					_unitService.Save();
 				}
 				catch (Exception e)
 				{
@@ -83,15 +82,26 @@ namespace EInvoice.Web.Controllers.CategoryController
 				try
 				{
 					_unitService.DeleteByID(UnitID);
-					_unitService.Save();
 				}
 				catch (Exception e)
 				{
 					ViewData["EditError"] = e.Message;
 				}
 			}
-		
+
 			return UnitPartial();
+		}
+
+		[HttpPost]
+		public JsonResult GetUnits(string searchKey)
+		{
+			var products = _unitService.GetAll();
+			var searchProducts = products.Where(x => x.Name.Contains(searchKey)).Select(x => new Unit
+			{
+				ID = x.ID,
+				Name = x.Name
+			}).ToList();
+			return Json(searchProducts, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

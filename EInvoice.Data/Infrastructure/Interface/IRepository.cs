@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using EInvoice.Data.Data;
 
 namespace EInvoice.Data.Infrastructure.Interface
 {
 	public interface IRepository<T> where T : class
 	{
+		IDbSet<T> DbSet { get; }
+
 		void Add(T entity);
 
 		void Delete(T entity);
 
 		void Update(T entity);
 
-		void DeleteByID(object id);
+		void DeleteByID(int id);
 
 		IList<T> GetAll();
 

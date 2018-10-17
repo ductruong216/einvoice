@@ -1,26 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using EInvoice.Data.Data;
+﻿using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
-using EInvoice.Data.Repositories;
+using EInvoice.Data.Services;
+using EInvoice.Repository;
 
 namespace EInvoice.Service
 {
-	public interface IInvoiceService : IBaseService<Invoice>
-	{
-	}
-
 	public class InvoiceService : BaseService<Invoice>, IInvoiceService
 	{
-		private IInvoiceRepository _invoiceRepository { get; set; }
-		private IUnitOfWork _unitOfWork { get; set; }
-
-		public InvoiceService(IInvoiceRepository invoiceRepository, IUnitOfWork unitOfWork) : base(invoiceRepository, unitOfWork)
+		public InvoiceService(IRepository<Invoice> repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
 		{
-			_invoiceRepository = invoiceRepository;
-			_unitOfWork = unitOfWork;
+			repository.DeleteDraftInvoice("test");
 		}
-
-	
 	}
 }

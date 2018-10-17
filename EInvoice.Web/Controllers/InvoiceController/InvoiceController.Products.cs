@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using EInvoice.Data.Data;
 using EInvoice.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
 	public partial class InvoiceController : Controller
 	{
-
 		public ActionResult ProductTable()
 		{
 			return View();
@@ -41,7 +38,6 @@ namespace EInvoice.Web.Controllers.InvoiceController
 				}
 			}
 			else
-
 
 				ViewData["EditError"] = "Please, correct all errors.";
 

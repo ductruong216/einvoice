@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 
 namespace EInvoice.Web.Models
 {
@@ -10,7 +9,7 @@ namespace EInvoice.Web.Models
 		[Required(ErrorMessage = "Customer Code is required")]
 		[StringLength(20, ErrorMessage = "Must be under 20 characters")]
 		//[Remote("IsCustomerCodeUniq", "Category", HttpMethod = "POST", ErrorMessage = "Customer Code is Exist")]
-	
+
 		public string Code { get; set; }
 
 		//[Remote("IsCustomerTaxCodeUniq", "Category", HttpMethod = "POST", ErrorMessage = "Tax Code is Exist")]
@@ -31,6 +30,7 @@ namespace EInvoice.Web.Models
 
 		[RegularExpression("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*", ErrorMessage = "Email is invalid")]
 		public string Email { get; set; }
+
 		public string LegalPresenter { get; set; }
 		public long? BankAccountID { get; set; }
 

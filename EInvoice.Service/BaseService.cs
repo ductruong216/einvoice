@@ -1,50 +1,59 @@
 ﻿using EInvoice.Data.Infrastructure.Interface;
+using EInvoice.Data.Services;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace EInvoice.Service
 {
-	public interface IBaseService<T> where T : class
-	{
-		void Add(T entity);
-
-		void Delete(T entity);
-
-		void Update(T entity);
-
-		void DeleteByID(object id);
-
-		IList<T> GetAll();
-		T GetSingleById(object id);
-
-		void Save();
-
-	}
-
 	public class BaseService<T> : IBaseService<T> where T : class
 	{
-		IRepository<T> _repository;
-		IUnitOfWork _unitOfWork;
+		protected IRepository<T> _repository;
+		protected IUnitOfWork _unitOfWork;
+
 		public BaseService(IRepository<T> repository, IUnitOfWork unitOfWork)
 		{
-			_repository = repository;
+			_repository = repository;			
 			_unitOfWork = unitOfWork;
 		}
 
-		public IRepository<T> Repository => _repository;
+
 		public void Add(T entity)
 		{
-			_repository.Add(entity);
+			try
+			{
+				_repository.Add(entity);
+				_unitOfWork.Commit();
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
 		}
 
 		public void Delete(T entity)
 		{
-			_repository.Delete(entity);
+			try
+			{
+				_repository.Delete(entity);
+				_unitOfWork.Commit();
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
 		}
 
-		public void DeleteByID(object id)
+		public void DeleteByID(int id)
 		{
-			_repository.DeleteByID(id);
+			try
+			{
+				_repository.DeleteByID(id);
+				_unitOfWork.Commit();
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
 		}
 
 		public IList<T> GetAll()
@@ -64,7 +73,15 @@ namespace EInvoice.Service
 
 		public void Update(T entity)
 		{
-			_repository.Update(entity);
+			try
+			{
+				_repository.Update(entity);
+				_unitOfWork.Commit();
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
 		}
 	}
 }

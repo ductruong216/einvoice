@@ -1,28 +1,18 @@
-﻿using EInvoice.Common;
+﻿using System.Data.Entity;
+using EInvoice.Common;
 using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
-using EInvoice.Data.Repositories;
+using EInvoice.Data.Services;
 
 namespace EInvoice.Service
 {
-	public interface ICustomerService : IBaseService<Customer>
-	{
-		bool IsUniq(string code);
-
-		bool IsTaxExist(long taxCode);
-
-		void AddCustomer(Customer customer);
-	}
-
 	public class CustomerService : BaseService<Customer>, ICustomerService
 	{
-		private ICustomerRepository _customerRepository;
-		private IUnitOfWork _unitOfWork;
+		private readonly IRepository<Customer> _customerRepository;
 
-		public CustomerService(ICustomerRepository customerRepository, IUnitOfWork unitOfWork) : base(customerRepository, unitOfWork)
+		public CustomerService(IRepository<Customer> customerRepository, IUnitOfWork unitOfWork) : base(customerRepository, unitOfWork)
 		{
 			_customerRepository = customerRepository;
-			_unitOfWork = unitOfWork;
 		}
 
 		public bool IsUniq(string code)
@@ -52,8 +42,13 @@ namespace EInvoice.Service
 			{
 				throw new NameDuplicatedException("Tax code is exist");
 			}
-		
-			_customerRepository.Add(customer);
+
+			Add(customer);
+		}
+
+		public IDbSet<Customer> CustomerDbSet()
+		{
+			return _customerRepository.DbSet;
 		}
 	}
 }

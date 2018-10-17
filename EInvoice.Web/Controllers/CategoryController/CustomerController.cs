@@ -1,19 +1,25 @@
 ﻿using AutoMapper;
 using EInvoice.Web.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using EInvoice.Data.Data;
+using EInvoice.Data.Services;
 using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public partial class CategoryController
+	public class CustomerController : Controller
 	{
-		public ActionResult Customers()
+		private readonly ICustomerService _customerService;
+
+		public CustomerController(ICustomerService customerService)
+		{
+			_customerService = customerService;
+		}
+
+		public ActionResult Index()
 		{
 			return View();
 		}
@@ -33,7 +39,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 				try
 				{
 					_customerService.AddCustomer(customer);
-					_customerService.Save();
 				}
 				catch (Exception e)
 				{
@@ -53,10 +58,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 			{
 				try
 				{
-
-
 					_customerService.Update(customer);
-					_customerService.Save();
 				}
 				catch (Exception e)
 				{
@@ -70,14 +72,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(false)]
-		public ActionResult CustomerPartialDelete(string customerID)
+		public ActionResult CustomerPartialDelete(int ID)
 		{
-			if (customerID != null)
+			if (ID >= 0)
 			{
 				try
 				{
-					_customerService.DeleteByID(customerID);
-					_customerService.Save();
+					_customerService.DeleteByID(ID);
 				}
 				catch (Exception e)
 				{
@@ -89,72 +90,26 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost]
-		public JsonResult IsCustomerCodeUniq(string code)
-		{
-			bool isUniq = _customerService.IsUniq(code);
-			return Json(!isUniq);
-		}
-
-		[HttpPost]
-		public JsonResult IsCustomerTaxCodeUniq(long taxCode)
-		{
-			bool isUniq = _customerService.IsTaxExist(taxCode);
-			return Json(!isUniq);
-		}
-
-		[HttpPost]
 		public JsonResult GetCodeCustomerJsonResult(string searchKey)
 		{
-			var customers = _customerService.GetAll();
-			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey)).Select(x => new Customer
-			{
-				ID = x.ID,
-				Code = x.Code,
-				TaxCode = x.TaxCode,
-				Name = x.Name,
-				Purchaser = x.Purchaser,
-				Address = x.Address,
-				Email = x.Email,
-				Phone = x.Phone,
-				Fax = x.Fax,
-				LegalPresenter = x.LegalPresenter,
-				AccountHolder = x.AccountHolder,
-				BankAccountID = x.BankAccountID,
-				BankName = x.BankName,
-				Agency = x.Agency,
-				Note = x.Note
-			}).ToList();
+			//var db = new InvoiceEntities();
+			var customers = _customerService.CustomerDbSet();
+			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey)).ToList();
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
+
 		[HttpPost]
 		public JsonResult GetNameCustomerJsonResult(string searchKey)
 		{
-			var customers = _customerService.GetAll();
-			var searchCustomer = customers.Where(x => x.Name.Contains(searchKey)).Select(x => new Customer
-			{
-				ID = x.ID,
-				Code = x.Code,
-				TaxCode = x.TaxCode,
-				Name = x.Name,
-				Purchaser = x.Purchaser,
-				Address = x.Address,
-				Email = x.Email,
-				Phone = x.Phone,
-				Fax = x.Fax,
-				LegalPresenter = x.LegalPresenter,
-				AccountHolder = x.AccountHolder,
-				BankAccountID = x.BankAccountID,
-				BankName = x.BankName,
-				Agency = x.Agency,
-				Note = x.Note
-			}).ToList();
+			var customers = _customerService.CustomerDbSet();
+			var searchCustomer = customers.Where(x => x.Name.Contains(searchKey)).ToList();
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
+
 		[HttpPost]
 		public JsonResult GetTaxCodeCustomerJsonResult(string searchKey)
 		{
-			var customers = _customerService.GetAll();
-
+			var customers = _customerService.CustomerDbSet();
 			var searchCustomer = customers.Where(x => x.TaxCode.ToString().Contains(searchKey)).Select(x => new Customer
 			{
 				ID = x.ID,

@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace EInvoice.Data.Infrastructure.Implementation
+namespace EInvoice.Repository
 {
 	public class BaseRepository<T> : IRepository<T> where T : class
 	{
@@ -15,13 +15,14 @@ namespace EInvoice.Data.Infrastructure.Implementation
 		private InvoiceEntities _dbContext;
 		private readonly IDbSet<T> _dbSet;
 
-		protected IDbFactory DbFactory { get; private set; }
+		public IDbSet<T> DbSet => _dbSet;
+
+		protected IDbFactory DbFactory { get; set; }
 
 		protected InvoiceEntities DbContext
 		{
 			get { return _dbContext ?? (_dbContext = DbFactory.Init()); }
 		}
-
 		public BaseRepository(IDbFactory dbFactory)
 		{
 			DbFactory = dbFactory;
@@ -46,19 +47,19 @@ namespace EInvoice.Data.Infrastructure.Implementation
 			DbContext.Entry(entity).State = EntityState.Modified;
 		}
 
-		public void DeleteByID(object id)
+		public void DeleteByID(int id)
 		{
 			_dbSet.Remove(_dbSet.Find(id));
 		}
 
 		public T GetSingleById(object id)
 		{
-			return _dbSet.Find(id);
+			return DbSet.Find(id);
 		}
 
 		public void DeleteMulti(Expression<Func<T, bool>> where)
 		{
-			IEnumerable<T> objects = _dbSet.Where<T>(where).AsEnumerable();
+			IEnumerable<T> objects = DbSet.Where<T>(where).AsEnumerable();
 			foreach (var item in objects)
 			{
 				_dbSet.Remove(item);

@@ -1,7 +1,7 @@
-﻿using System;
-using EInvoice.Service;
+﻿using EInvoice.Data.Data;
+using EInvoice.Data.Services;
+using System;
 using System.Web.Mvc;
-using EInvoice.Data.Data;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
@@ -9,6 +9,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
 	{
 		private IInvoiceService _invoiceService { get; set; }
 		private IProductService _productService { get; set; }
+
 		public InvoiceController(IInvoiceService invoiceService, IProductService productService)
 		{
 			_invoiceService = invoiceService;
@@ -25,10 +26,8 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return View();
 		}
 
-		
 		public void AddNewInvoice(Invoice invoice)
 		{
-
 			try
 			{
 				_invoiceService.Add(invoice);

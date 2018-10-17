@@ -1,6 +1,6 @@
-﻿using System;
+﻿using EInvoice.Data.Services;
+using System;
 using System.Web.Mvc;
-using EInvoice.Service;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
@@ -9,15 +9,16 @@ namespace EInvoice.Web.Controllers.CategoryController
 		private readonly IUnitService _unitService;
 		private readonly IProductService _productService;
 		private readonly ICustomerService _customerService;
-	
+
 		public CategoryController(IUnitService unitService, IProductService productService, ICustomerService customerService)
 		{
 			_unitService = unitService;
 			_productService = productService;
 			_customerService = customerService;
 		}
+
 		// GET: Category
-		
+
 		public void SafeExecute(Action method)
 		{
 			try
@@ -28,6 +29,18 @@ namespace EInvoice.Web.Controllers.CategoryController
 			{
 				ViewData["EditError"] = e.Message;
 			}
+		}
+
+		public ActionResult Others()
+		{
+			return View();
+		}
+
+		[ValidateInput(false)]
+		public ActionResult UnitPartial()
+		{
+			var model = _unitService.GetAll();
+			return PartialView("_UnitPartial", model);
 		}
 	}
 }

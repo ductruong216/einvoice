@@ -14,6 +14,7 @@
 	<link href="~/Assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
 	<link href="~/Assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
 	<!-- Bootstrap CSS-->
 	<link href="~/Assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
@@ -49,13 +50,12 @@
 									<i class="fas fa-list-alt"></i>
 									<span class="bot-line"></span>Categories
 								</a>
-
 								<ul class="header3-sub-list list-unstyled">
 									<li>
-										<a href="@Url.Action("Products", "Category")">Products</a>
+										<a href="@Url.Action("Index", "Product")">Products</a>
 									</li>
 									<li>
-										<a href="@Url.Action("Customers", "Category")">Customers</a>
+										<a href="@Url.Action("Index", "Customer")">Customers</a>
 									</li>
 									<li>
 										<a href="@Url.Action("Others", "Category")">Others</a>
@@ -500,7 +500,7 @@
 				</div>
 			</section>
 			<!-- END BREADCRUMB-->
-			@*<!-- COPYRIGHT-->
+			<!-- COPYRIGHT-->
 				<section class="p-t-60 p-b-20">
 					<div class="container">
 						<div class="row">
@@ -512,16 +512,15 @@
 						</div>
 					</div>
 				</section>
-				<!-- END COPYRIGHT-->*@
+				<!-- END COPYRIGHT-->
 		</div>
 	</div>
 
 	<!-- Jquery JS-->
 	<script src="~/Assets/vendor/jquery-3.2.1.min.js"></script>
 @*<script src="~/Assets/Owner/js/jquery.js"></script>*@
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Bootstrap JS-->
 	<script src="~/Assets/vendor/bootstrap-4.1/popper.min.js"></script>
 	<script src="~/Assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
@@ -539,8 +538,6 @@
 
 	<!-- Main JS-->
 	<script src="~/Assets/js/main.js"></script>
-
 	<script src="~/Assets/Owner/js/myscript.js"></script>
-	
 </body>
 </html>
