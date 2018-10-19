@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using EInvoice.Data.Data;
 
 namespace EInvoice.Web.Models
 {
@@ -18,6 +16,7 @@ namespace EInvoice.Web.Models
 		[Required(ErrorMessage = "Customer Code is required")]
 		[StringLength(100, ErrorMessage = "Must be under 100 characters")]
 		public string Name { get; set; }
+
 		public string Description { get; set; }
 
 		[Required(ErrorMessage = "Price is required")]
@@ -26,6 +25,7 @@ namespace EInvoice.Web.Models
 
 		[Required(ErrorMessage = "Tax is required")]
 		public decimal Tax { get; set; }
+
 		public int? DisplayOrder { get; set; }
 		public int? UnitID { get; set; }
 		public int? CategoryID { get; set; }
@@ -35,14 +35,10 @@ namespace EInvoice.Web.Models
 		public virtual UnitViewModel Unit { get; set; }
 
 		public virtual ICollection<InvoiceViewModel> Invoices { get; set; }
-
 	}
 
 	public partial class ProductViewModel
 	{
-		public string UnitName
-		{
-			get => Unit.Name;
-		}
+		public string UnitName => Unit.Name;
 	}
 }

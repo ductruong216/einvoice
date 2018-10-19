@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using EInvoice.Data.Services;
 using EInvoice.Web.Models;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using EInvoice.Data.Data;
-using EInvoice.Data.Services;
 using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
@@ -129,6 +129,14 @@ namespace EInvoice.Web.Controllers.CategoryController
 				Note = x.Note
 			}).ToList();
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public JsonResult GetCustomerAPI(string mst)
+		{
+			string customerAPI = "https://thongtindoanhnghiep.co/api/company/" + mst;
+			var client = new RestClient(customerAPI);
+			return Json(client, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

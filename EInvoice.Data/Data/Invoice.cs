@@ -42,8 +42,6 @@ namespace EInvoice.Data.Data
         public string ModifyBy { get; set; }
         public string Status { get; set; }
     
-        public virtual Company Company { get; set; }
-        public virtual Company Company1 { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Form Form { get; set; }
@@ -51,5 +49,7 @@ namespace EInvoice.Data.Data
         public virtual PaymentMethod PaymentMethod { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual Company Company1 { get; set; }
     }
 }

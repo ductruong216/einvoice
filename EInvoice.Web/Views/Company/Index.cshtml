@@ -1,0 +1,160 @@
+﻿@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+@model EInvoice.Web.Models.CompanyViewModel
+
+<div class="card">
+	<div class="card-header">
+		<h2 style="text-align: center">Company Information</h2>
+	</div>
+	<div class="card-body">
+		@using (Html.BeginForm("UpdateCompany", "Company", FormMethod.Post))
+		{
+			@Html.ValidationSummary();
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Company Name: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type="text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Tax Code: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.TaxCode, new { @class = "form-control", @type = "text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Address: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.Address, new { @class = "form-control", @type = "text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Email: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0">Phone: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @type = "text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Fax: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.Fax, new { @class = "form-control", @type = "text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Website: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.Website, new { @class = "form-control", @type = "text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Legal Presenter: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.LegalPresenter, new { @class = "form-control", @type = "text" })*
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Bank ID: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.BankAccountID, new { @class = "form-control", @type = "text" })*
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Account Holder: </label>
+						<div class="input-group col-md-10">
+							@Html.TextBoxFor(x => x.AccountHolder, new { @class = "form-control", @type = "text" })
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="form-group row">
+						<label class="col-form-label col-md-2 pt-2 p-0 ">Bank Name: </label>
+						<div class="input-group col-md-10">
+							<input class="form-control" type="text">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row col-md-12">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 col-xs-12">
+					<div class="form-group" style="text-align: center; margin-left: 15%">
+						<button type="submit" class="btn btn-success">Save</button>
+					</div>
+					<div class="col-md-3"></div>
+				</div>
+			</div>
+		}
+
+	</div>
+</div>
+

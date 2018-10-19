@@ -7,7 +7,6 @@
       <Diagram DiagramId="95493aa4d49244c197b5f488b00ca021" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="InvoiceModel.About" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="InvoiceModel.BankAccount" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="InvoiceModel.Company" Width="1.5" PointX="3.75" PointY="28.25" />
         <EntityTypeShape EntityType="InvoiceModel.Contact" Width="1.5" PointX="8.75" PointY="9.75" />
         <EntityTypeShape EntityType="InvoiceModel.Customer" Width="1.5" PointX="3.75" PointY="15.25" />
         <EntityTypeShape EntityType="InvoiceModel.DigitalSignature" Width="1.5" PointX="1.5" PointY="27.625" />
@@ -26,10 +25,6 @@
         <EntityTypeShape EntityType="InvoiceModel.UserClaim" Width="1.5" PointX="5.25" PointY="11.625" />
         <EntityTypeShape EntityType="InvoiceModel.UserLogin" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="InvoiceModel.User" Width="1.5" PointX="3" PointY="5.625" />
-        <AssociationConnector Association="InvoiceModel.FK_Companies_DigitalSignature" />
-        <AssociationConnector Association="InvoiceModel.FK_Companies_Emails" />
-        <AssociationConnector Association="InvoiceModel.FK_Invoices_Companies" />
-        <AssociationConnector Association="InvoiceModel.FK_Invoices_Companies1" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Customers" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Employees" />
         <AssociationConnector Association="InvoiceModel.FK_Users_Employees" />
@@ -43,6 +38,11 @@
         <AssociationConnector Association="InvoiceModel.FK_UserClaim_User" />
         <AssociationConnector Association="InvoiceModel.FK_UserLogin_User" />
         <AssociationConnector Association="InvoiceModel.UserRole" />
+        <EntityTypeShape EntityType="InvoiceModel.Company" Width="1.5" PointX="3.75" PointY="27.625" />
+        <AssociationConnector Association="InvoiceModel.FK_Companies_DigitalSignature" />
+        <AssociationConnector Association="InvoiceModel.FK_Companies_Emails" />
+        <AssociationConnector Association="InvoiceModel.FK_Invoices_Companies" />
+        <AssociationConnector Association="InvoiceModel.FK_Invoices_Companies1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

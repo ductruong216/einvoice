@@ -1,51 +1,4 @@
-﻿.mainCaption {
-	position: relative !important;
-	text-align: center !important;
-	top: 31px !important;
-}
-
-.icon-case {
-	width: 40px;
-	float: left;
-	border-radius: 5px 0px 0px 5px;
-	background:#eeeeee;
-	height:42px;
-	position: relative;
-	text-align: center;
-	line-height:40px;
-}
-
-.leftInfo {
-	width:49.5%; 
-	float:left;
-	border-right: 1px dotted #CCC;
-	box-sizing: border-box;
-	padding: 0px 15px 0px 0px;
-}
-
-#fix-button {
-	margin-top: 2px;
-}
-
-label span {
-	color: red;
-}
-
-.button-area {
-	margin: 1% 77.4%;
-}
-#pull-down {
-	margin-top: 1.5%;
-}
-
-.border-button {
-	border: 2px solid grey; 
-
-}
-
-/*Gentelella template*/
-
-.x_panel {
+﻿.x_panel {
 	width: 100%;
 	padding: 10px 17px;
 	display: inline-block;
@@ -60,8 +13,8 @@ label span {
 	padding: 1px 5px 6px;
 }
 .x_panel, .x_title {
-	margin-bottom: 10px;
-}
+	 margin-bottom: 10px;
+ }
 
 .x_content {
 	padding: 0 5px 6px;
@@ -70,8 +23,8 @@ label span {
 	margin-top: 5px;
 }
 .x_content, table.tile td ul li a, table.tile_info {
-	width: 100%;
-}
+	 width: 100%;
+ }
 
 .degrees:after, .x_content, .x_panel {
 	position: relative;

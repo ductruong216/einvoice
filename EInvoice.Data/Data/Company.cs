@@ -26,7 +26,13 @@ namespace EInvoice.Data.Data
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
+        public string Website { get; set; }
+        public string LegalPresenter { get; set; }
         public int EmailID { get; set; }
+        public Nullable<long> BankAccountID { get; set; }
+        public string AccountHolder { get; set; }
+        public string BankName { get; set; }
+        public string Agency { get; set; }
         public Nullable<long> AccountID { get; set; }
         public string Note { get; set; }
         public Nullable<int> SignatureID { get; set; }

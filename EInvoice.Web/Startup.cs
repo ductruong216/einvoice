@@ -1,10 +1,3 @@
-
-
-// Files related to ASP.NET Identity duplicate the Microsoft ASP.NET Identity file structure and contain initial Microsoft comments.
-
-using System.Reflection;
-using System.Web.Http;
-using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
@@ -15,7 +8,11 @@ using EInvoice.Data.Services;
 using EInvoice.Repository;
 using EInvoice.Service;
 using Owin;
+using System.Reflection;
+using System.Web.Http;
+using System.Web.Mvc;
 
+// Files related to ASP.NET Identity duplicate the Microsoft ASP.NET Identity file structure and contain initial Microsoft comments.
 namespace EInvoice.Web
 {
 	public partial class Startup
@@ -45,11 +42,13 @@ namespace EInvoice.Web
 			builder.RegisterType<BaseRepository<Product>>().As<IRepository<Product>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<User>>().As<IRepository<User>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Unit>>().As<IRepository<Unit>>().InstancePerRequest();
+			builder.RegisterType<BaseRepository<Company>>().As<IRepository<Company>>().InstancePerRequest();
 
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
 			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();
 			builder.RegisterType<UnitService>().As<IUnitService>().AsSelf();
 			builder.RegisterType<InvoiceService>().As<IInvoiceService>().AsSelf();
+			builder.RegisterType<CompanyService>().As<ICompanyService>().AsSelf();
 
 			Autofac.IContainer container = builder.Build();
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

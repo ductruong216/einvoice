@@ -164,6 +164,7 @@
     <Compile Include="Infrastructure\Interface\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IBaseService.cs" />
+    <Compile Include="Services\ICompanyService.cs" />
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IInvoiceService.cs" />
     <Compile Include="Services\IProductService.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DTO\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>

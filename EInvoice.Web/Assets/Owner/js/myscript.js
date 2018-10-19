@@ -123,7 +123,7 @@ $(document).ready(function () {
 	});
 });
 
-//Autocomplete Customers
+// Autocomplete Customers
 function CustomerAutoComplete(field, fieldValue, URL) {
 	$("#" + field).autocomplete({
 		source: function (request, response) {
@@ -172,4 +172,101 @@ function CustomerAutoComplete(field, fieldValue, URL) {
 };
 CustomerAutoComplete("CusCode", "Code", '/Customer/GetCodeCustomerJsonResult');
 CustomerAutoComplete("companyName", "Name", '/Customer/GetNameCustomerJsonResult');
-CustomerAutoComplete("taxCode", "TaxCode", '/Customer/GetTaxCodeCustomerJsonResult');
+//CustomerAutoComplete("taxCode", "TaxCode", '/Customer/GetTaxCodeCustomerJsonResult');
+
+// Get Company Information
+//$(document).ready(function () {
+//	$('#find_company').on('click',
+//		function () {
+//			//	ev.stopPropagation();
+//			var customerCode = $('#taxCode').val();
+//			//	debugger;
+//			var companyAPI = "https://thongtindoanhnghiep.co/api/company/" + customerCode;
+//			if (customerCode !== '') {
+//				//$.ajax({
+//				//	data: {
+//				//	},
+//				//	success: function(data) {
+//				//		if (data.success) {
+//				//			$(this).find("#companyName").val(data.data.TitleEn);
+//				//			$(this).find("#address").val(data.data.DiaChiCongTy);
+//				//		} else {
+//				//			alert("Thông báo", "Không tìm được dữ liệu", "info");
+//				//		}
+//				//	},
+//				//	type: "GET",
+//				//	url: "https://thongtindoanhnghiep.co/api/company/" + customerCode
+//				//});
+//			}
+//			//	} else {
+//			//		alert("Thông báo", "Cần nhập Mã Số Thuế công ty trước khi lấy thông tin", "error");
+//			//	}
+//			//});
+//			//	$.getJSON(companyAPI, {
+//			//		format: "json"
+//			//	})
+//			//		.done(function (data) {
+//			//			$.each(data.items, function (i, item) {
+//			//				$('#companyName').val(item.Title);
+//			//			});
+//			//		});
+//			//	return false;
+//			//});
+//		});
+//});
+
+//$(document).ready(function () {
+//	$('#find_company').on('click',
+//		function () {
+//			var customerCode = $('#taxCode').val();
+//			var companyAPI = "https://thongtindoanhnghiep.co/api/company/" + customerCode;
+//			if (customerCode !== '') {
+
+//				$.getJSON(companyAPI, 
+//					success: function(data)
+//				)
+//			}
+//			//	} else {
+//			//		alert("Thông báo", "Cần nhập Mã Số Thuế công ty trước khi lấy thông tin", "error");
+//			//	}
+//			//});
+//			//	$.getJSON(companyAPI, {
+//			//		format: "json"
+//			//	})
+//			//		.done(function (data) {
+//			//			$.each(data.items, function (i, item) {
+//			//				$('#companyName').val(item.Title);
+//			//			});
+//			//		});
+//			//	return false;
+//			//});
+//		});
+//});
+
+$(document).ready(function() {
+	$('#find_company').on('click',
+		function() {
+			$.ajax({
+				url: '/Customer/GetCustomerAPI',
+				type: "GET",
+				dataType: "json",
+				data: { mst: $('#taxCode').val() },
+				success: function(data) {
+					debugger;
+					response($.map(data,
+						function(item) {
+							return {
+								name: item.TitleEn,
+								address: item.DiaChiCongTy
+							};
+						}));
+				},
+
+				select: function(even, ui) {
+					$("#companyName").val(ui.item.name);
+					$("#address").val(ui.item.address);
+				}
+			});
+		});
+});
+	

@@ -102,7 +102,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 		[HttpPost]
 		public JsonResult GetProducts(string searchKey)
 		{
-			
 			var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
 			var searchProducts = products.Where(x => x.Name.Contains(searchKey)).ToList();
 			searchProducts.ForEach(_ => _.Unit.Products = null);
