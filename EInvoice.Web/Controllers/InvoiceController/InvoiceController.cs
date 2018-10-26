@@ -1,19 +1,20 @@
 ﻿using EInvoice.Data.Data;
 using EInvoice.Data.Services;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
-	public partial class InvoiceController : Controller
+	public  class InvoiceController : Controller
 	{
-		private IInvoiceService _invoiceService { get; set; }
-		private IProductService _productService { get; set; }
+		private readonly IInvoiceService _invoiceService;
+		private readonly IPaymentMethodService _paymentMethodService;
 
-		public InvoiceController(IInvoiceService invoiceService, IProductService productService)
+		public InvoiceController(IInvoiceService invoiceService, IPaymentMethodService paymentMethodService)
 		{
 			_invoiceService = invoiceService;
-			_productService = productService;
+			_paymentMethodService = paymentMethodService;
 		}
 
 		public ActionResult Index()
@@ -21,17 +22,23 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return View();
 		}
 
+		public IList<PaymentMethod> GetPayments()
+		{
+			return _paymentMethodService.GetAll();
+		}
+
 		public ActionResult NewInvoice()
 		{
+
 			return View();
 		}
 
+		[HttpPost]
 		public void AddNewInvoice(Invoice invoice)
 		{
 			try
 			{
 				_invoiceService.Add(invoice);
-				_invoiceService.Save();
 			}
 			catch (Exception e)
 			{

@@ -17,7 +17,6 @@ namespace EInvoice.Web.Mappings
 				cfg.CreateMap<BankAccount, BankAccountViewModel>();
 				cfg.CreateMap<Company, CompanyViewModel>();
 				cfg.CreateMap<DigitalSignature, DigitalSignatureViewModel>();
-				cfg.CreateMap<Email, EmailViewModel>();
 				cfg.CreateMap<Unit, UnitViewModel>();
 				cfg.CreateMap<Invoice, InvoiceViewModel>();
 			});

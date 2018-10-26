@@ -1,204 +1,358 @@
-﻿@using System.Drawing
+﻿@using EInvoice.Web.Controllers.InvoiceController
+
 @model EInvoice.Web.Models.InvoiceViewModel
-@Html.DevExpress().FormLayout(settings => {
-	settings.ControlStyle.BackColor = Color.White;
-	settings.Name = "formLayout";
-	settings.ControlStyle.CssClass = "formDB";
 
-	settings.UseDefaultPaddings = false;
-	settings.AlignItemCaptionsInAllGroups = true;
-	settings.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
-	settings.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
-	settings.Items.AddEmptyItem();
-	settings.Items.AddGroupItem(d =>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
 
-	{
-		d.Caption = "";
-		d.ColumnCount = 3;
-		d.RowSpan = 2;
+@{
+	var controller = ViewContext.Controller as InvoiceController;
+}
 
-		d.Items.AddGroupItem(c =>
-		{
-			c.Caption = "Customer Information";
-			c.ColCount = 2;
-			c.RowSpan = 2;
-			c.Items.Add(m => m.CustomerCode, i =>
-			{
-				i.NestedExtension().TextBox(tb =>
-				{
+<div class="row">
+	<div class="panel-body">
+		<div class="panel">
+			<h2 style="text-align: center">VAT INVOICE</h2>
+			<div class="ml-3 mr-3">
+				<h5><b>INVOICE INFORMATION</b></h5>
+				<hr>
+				<div class="row mt-3">
+					<div class="col-md-9">
+						<form id="customerForm" class="form-horizontal newInvoice" action="/Invoice/AddNewInvoice" method="post">
+							<section class="panel">
+								<header class="panel-heading">
+									<h2 class="panel-title">Customer Information</h2>
+								</header>
+								<div class="panel-body">
+									<div class="row col-md-12 form-group">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class=" control-label col-md-4">Customer Code:</label>
+												<div class="col-md-8">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-barcode"></i></span>
+														</span>
+														<input class="form-control" id="CusCode" type="text">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class=" control-label col-md-4">Purchaser:</label>
+												<div class="col-md-8">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-user"></i></span>
+														</span>
+														<input class="form-control" id="purchaser" type="text">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row col-md-12 form-group">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class=" control-label col-md-4">Tax Code:</label>
+												<div class="col-md-8">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-qrcode"></i></span>
+														</span>
+														<input class="form-control" id="taxCode" type="text">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="row">
+												<button type="button" id="find_company" class="btn btn-info ml-3" id="fix-button">Get Info</button>
+											</div>
+										</div>
+									</div>
+									<div class="row col-md-12 form-group">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class=" control-label col-md-2">Organization Name:</label>
+												<div class="col-md-10">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-briefcase"></i></span>
+														</span>
+														<input class="form-control" id="companyName" type="text">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row col-md-12 form-group">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class=" control-label col-md-2">Address:</label>
+												<div class="col-md-10">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-address-card"></i></span>
+														</span>
+														<input class="form-control" id="address" type="text">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row col-md-12 form-group">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class=" control-label col-md-4">Email:</label>
+												<div class="col-md-8">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-envelope"></i></span>
+														</span>
+														<input class="form-control" id="email" type="text">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class=" control-label col-md-4">Phone number:</label>
+												<div class="col-md-8">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-phone"></i></span>
+														</span>
+														<input class="form-control" id="phone" type="text">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row col-md-12 form-group">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class=" control-label col-md-4">Payment Type:</label>
+												<div class="col-sm-8">
+													<div class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-usd"></i></span>
+														</span>
+														<select class="form-control" type="text">
+															<option selected>Choose...</option>
+															@foreach (var item in controller.GetPayments())
+															{
+																<option selected>@item.Name</option>
+															}
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
 
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.Purchaser, i =>
-			{
-				i.RowSpan = 2;
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerTaxCode, i =>
-			{
-				i.Caption = "Tax Code";
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerEmail, i =>
-			{
-				i.Caption = "Email";
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerName, i =>
-			{
-				i.Caption = "Name";
-				i.Width = Unit.Percentage(100);
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerAddress, i =>
-			{
-				i.Width = Unit.Percentage(100);
-				i.Caption = "Address";
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerPhone, i =>
-			{
-				i.Caption = "Phone";
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerBankAccountID, i =>
-			{
-				i.Caption = "Bank Account No.";
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerAccountHolder, i =>
-			{
-				i.Caption = "Account Holder";
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerBankName, i =>
-			{
-				i.Caption = "Bank Name";
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			c.Items.Add(m => m.CustomerNote, i =>
-			{
-				i.Caption = "Note";
-				i.Width = Unit.Percentage(100);
-				i.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
-				i.NestedExtensionSettings.Width = Unit.Percentage(100);
-				i.NestedExtensionSettings.Height = Unit.Pixel(71);
-			});
+											<div class="row">
+												<label class=" control-label col-md-4">Note:</label>
+												<div class="col-md-8">
+													<iv class="input-group input-group-icon">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-sticky-note"></i></span>
+														</span>
+														<textarea class="form-control" type="text"></textarea>
+													</iv>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</form>
+					</div>
+					<div class="col-md-3">
+						<form id="invoiceOptionForm" class="form-horizontal newInvoice" action="/Invoice/AddNewInvoice" method="post">
+							<section class="panel">
+								<header class="panel-heading">
+									<h2 class="panel-title">Invoice Option</h2>
+								</header>
+								<div class="panel-body">
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Pattern: <span class="required">*</span></label>
+										<div class="col-md-9">
+											<select class="form-control  col-md-9" required>
+												<option selected>01GTKT0/003</option>
+												<option>01GTKT0/002</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Series: <span class="required">*</span></label>
+										<div class="col-md-9">
+											<select class="form-control  col-md-9" required>
+												<option selected>Choose...</option>
+												<option>GP/17E</option>
+												<option>MP/18E</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">No: <span class="required">*</span></label>
+										<div class="col-md-9">
+											<input type="text" name="fullname" class="form-control" placeholder="000000" required value="000000" readonly />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Date: <span class="required">*</span></label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="fa fa-calendar"></i>
+												</span>
+												<input type="text" data-plugin-datepicker class="form-control" id="DateInvoice" }>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ml-3 mr-3 panel-body">
+		<h5><b>INVOICE DETAILS</b></h5>
+		<hr>
+		<div class="details">
+			<div class="row clearfix">
+				<div class="col-md-12">
+					<table class="table table-bordered table-hover" id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center"> Series </th>
+								<th class="text-center" style="width: 40%"> Products - Services </th>
+								<th class="text-center"> Unit Price </th>
+								<th class="text-center"> Unit </th>
+								<th class="text-center"> Quantity </th>
+								<th class="text-center"> Amount </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr id='addr0'>
+								<td>1</td>
+								<td><input type="text" id="name1" name='name0' class="form-control name" id="description" step="0" min="0" /></td>
+								<td><input type="number" id="price1" name='price0' class="form-control price" step="0.00" min="0" /></td>
+								<td><input type="text" id="unit1" name='unit0' class="form-control unit" step="0.00" min="0" /></td>
+								<td><input type="number" name='qty0' class="form-control qty" step="0" min="0" /></td>
+								<td><input type="number" name='total0' class="form-control total" readonly /></td>
+							</tr>
+							<tr id='addr1'></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12" id="pull-down">
+					<button id="add_row" class="btn btn-light pull-left border-button">Add Row</button>
+					<button id='delete_row' class="pull-right btn btn-light border-button">Delete Row</button>
+				</div>
+			</div>
+			<div class="row clearfix" style="margin-top: 20px;">
+				<div class="pull-left col-md-8">
+					<div class="row" style="margin-top: 16.4%">
+						<div class="text-nowrap col-md-3 pt-1">
+							<label>Amount in words: </label>
+						</div>
+						<div class="col-md-9">
+							<input class="form-control" tyle="text" style="border: none; background-color: whitesmoke">
+						</div>
+					</div>
+				</div>
+				<div class="pull-right col-md-4">
+					<table class="table table-bordered table-hover" id="tab_logic_total">
+						<tbody>
+							<tr>
+								<th class="text-center">Sub Total</th>
+								<td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+							</tr>
+							<tr>
+								<th class="text-center">Tax</th>
+								<td class="text-center">
+									<div class="input-group mb-2 mb-sm-0">
+										<select type="number" class="form-control" id="tax" placeholder="0">
+											<option selected>0</option>
+											<option>5</option>
+											<option>10</option>
+										</select>
+										<div class="input-group-addon">%</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="text-center">Tax Amount</th>
+								<td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly /></td>
+							</tr>
+							<tr>
+								<th class="text-center">Grand Total</th>
+								<td class="text-center"><input type="number" name='total_amount' id="total_amount" placeholder='0.00' class="form-control" readonly /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="panel-footer">
+		<div class="row">
+			<div class="col-sm-3 button-position">
+				<button id="submitInvoice" type="submit" class="btn btn-primary">Save</button>
+				<button type="submit" class="btn btn-primary">Save & Release</button>
+				<button type="submit" class="btn btn-outline-secondary">Back</button>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<script type="text/javascript" language="javascript">
+	var now = new Date();
+	var day = ("0" + now.getDate()).slice(-2);
+	var month = ("0" + (now.getMonth() + 1)).slice(-2);
+	var today = (month) + "/" + (day) + "/" + now.getFullYear();
+	document.getElementById('DateInvoice').value = today;
+</script>
+
+<script>
+	$('#customerForm').submit(function () {
+		var action = $(this).attr('action');
+		if (!EntryCheck()) return false;
+		$.ajax({
+			url: action,
+			type: 'POST',
+			data: $('#customerForm, #invoiceOptionForm').serialize(),
+			success: function () {
+				window.location.replace(action);
+			}
 		});
-		d.Items.AddGroupItem(g =>
-		{
-			g.ColCount = 1;
-			g.RowSpan =1;
-			g.Caption = "Type Invoice";
-			g.Items.Add(m => m.Pattern, i =>
-			{
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			g.Items.Add(m => m.Series, i =>
-			{
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			g.Items.Add(m => m.No, i =>
-			{
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-			g.Items.Add(m => m.CreatedDate, i =>
-			{
-				i.NestedExtension().TextBox(tb =>
-				{
-					tb.Width = Unit.Percentage(100);
-					tb.ShowModelErrors = true;
-					tb.Properties.ValidationSettings.Display = Display.Dynamic;
-					tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.None;
-				});
-			});
-		});
-		d.Items.AddGroupItem(p =>
-		{
-			p.Caption = "Payment";
-			p.ColCount = 1;
-			p.ColCount = 1;
-			p.Items.Add(m => m.Payment, i =>
-			{
-				i.Caption = "Payment Type";
-			});
-		});
-		//Grid view in here
+		return false;
 	});
-}).GetHtml()
+</script>
+
+<script>
+	
+	$(document).ready(function() {
+		$("#submitInvoice").click(function () {
+			debugger;
+			$('.newInvoice').each(function(){
+				valuesToSend = $(this).serialize();
+				$.ajax($(this).attr('action'),
+					{
+						method: $(this).attr('method'),
+						data: valuesToSend
+					}
+				);
+			});
+		});
+	});
+</script>

@@ -30,11 +30,9 @@ namespace EInvoice.Data.Data
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DigitalSignature> DigitalSignatures { get; set; }
-        public virtual DbSet<Email> Emails { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
         public virtual DbSet<Form> Forms { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceType> InvoiceTypes { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
@@ -46,5 +44,7 @@ namespace EInvoice.Data.Data
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

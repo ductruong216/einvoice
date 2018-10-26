@@ -89,11 +89,15 @@ body {
 	font-weight: 400;
 	line-height: 1.471;
 }
-.form-control {
-	border-radius: 0;
-	width: 100%
-}
 
 .form-horizontal .control-label {
 	padding-top: 8px
+}
+
+.vat-background {
+
+}
+
+.button-position {
+	margin-left: 83%;
 }

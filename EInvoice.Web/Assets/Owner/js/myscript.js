@@ -18,7 +18,7 @@ function calc() {
 	});
 }
 function calc_total() {
-	total = 0;
+	var total = 0;
 	$('.total').each(function () {
 		total += parseInt($(this).val());
 	});

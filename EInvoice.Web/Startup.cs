@@ -43,12 +43,14 @@ namespace EInvoice.Web
 			builder.RegisterType<BaseRepository<User>>().As<IRepository<User>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Unit>>().As<IRepository<Unit>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Company>>().As<IRepository<Company>>().InstancePerRequest();
+			builder.RegisterType<BaseRepository<PaymentMethod>>().As<IRepository<PaymentMethod>>().InstancePerRequest();
 
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
 			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();
 			builder.RegisterType<UnitService>().As<IUnitService>().AsSelf();
 			builder.RegisterType<InvoiceService>().As<IInvoiceService>().AsSelf();
 			builder.RegisterType<CompanyService>().As<ICompanyService>().AsSelf();
+			builder.RegisterType<PaymentMethodService>().As<IPaymentMethodService>().AsSelf();
 
 			Autofac.IContainer container = builder.Build();
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

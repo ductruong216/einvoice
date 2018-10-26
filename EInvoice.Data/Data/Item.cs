@@ -20,7 +20,7 @@ namespace EInvoice.Data.Data
         public Nullable<int> Quanlity { get; set; }
         public string Discount { get; set; }
     
-        public virtual Invoice Invoice { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }

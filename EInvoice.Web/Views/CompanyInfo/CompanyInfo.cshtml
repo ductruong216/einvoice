@@ -1,0 +1,85 @@
+﻿@model EInvoice.Web.Models.CompanyViewModel
+
+@Html.DevExpress().FormLayout(settings => {
+	settings.Name = "formCompany";
+	settings.UseDefaultPaddings = false;
+	settings.AlignItemCaptionsInAllGroups = true;
+	settings.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+	settings.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+	settings.Items.AddEmptyItem();
+
+	settings.Items.AddGroupItem(g =>
+	{
+		g.GroupBoxDecoration = GroupBoxDecoration.Box;
+		g.Caption = "";
+		g.ColCount = 2;
+		g.Items.Add(m => m.Name, i =>
+		{
+			i.Caption = "Company Name";
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+			i.Width = Unit.Percentage(100);
+		});
+
+		g.Items.Add(m => m.TaxCode, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m => m.Email, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+
+		});
+		g.Items.Add(m => m.Address, i => {
+			i.Width = Unit.Percentage(100);
+			i.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+			i.NestedExtensionSettings.Height = Unit.Pixel(50);
+		});
+		g.Items.Add(m => m.Phone, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m => m.Fax, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m => m.Website, i =>
+		{
+			i.Width = Unit.Percentage(100);
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m => m.LegalPresenter, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m => m.BankAccountID, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m => m.AccountHolder, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m => m.BankName, i =>
+		{
+			i.NestedExtensionSettings.Width = Unit.Percentage(100);
+		});
+		g.Items.Add(m =>
+		{
+			m.FieldName = "ID";
+			m.ClientVisible = false;
+		});
+	});
+	settings.Items.Add(i => {
+		i.ShowCaption = DefaultBoolean.False;
+		i.CssClass = "buttonAlign";
+		i.Width = Unit.Percentage(100);
+		i.NestedExtension().Button(s => {
+			s.Name = "applyButton";
+			s.Text = "Update";
+			s.UseSubmitBehavior = true;
+			s.Width = Unit.Pixel(90);
+		});
+	});
+}).GetHtml()

@@ -54,7 +54,7 @@ namespace EInvoice.Repository
 
 		public T GetSingleById(object id)
 		{
-			return DbSet.Find(id);
+			return _dbSet.Find(id);
 		}
 
 		public void DeleteMulti(Expression<Func<T, bool>> where)
