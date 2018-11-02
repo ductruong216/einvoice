@@ -12,21 +12,18 @@ namespace EInvoice.Repository
 	{
 		#region Properties
 
-		private InvoiceEntities _dbContext;
-		private readonly IDbSet<T> _dbSet;
+		private readonly InvoiceEntities _dbContext;
+
+		protected readonly IDbSet<T> _dbSet;
 
 		public IDbSet<T> DbSet => _dbSet;
 
-		protected IDbFactory DbFactory { get; set; }
+		protected IDbFactory DbFactory => _dbContext;
 
-		protected InvoiceEntities DbContext
-		{
-			get { return _dbContext ?? (_dbContext = DbFactory.Init()); }
-		}
 		public BaseRepository(IDbFactory dbFactory)
 		{
-			DbFactory = dbFactory;
-			_dbSet = DbContext.Set<T>();
+			_dbContext = dbFactory as InvoiceEntities;
+			_dbSet = _dbContext.Set<T>();
 		}
 
 		#endregion Properties
@@ -44,7 +41,7 @@ namespace EInvoice.Repository
 		public void Update(T entity)
 		{
 			_dbSet.Attach(entity);
-			DbContext.Entry(entity).State = EntityState.Modified;
+			_dbContext.Entry(entity).State = EntityState.Modified;
 		}
 
 		public void DeleteByID(int id)
@@ -68,13 +65,14 @@ namespace EInvoice.Repository
 
 		public bool CheckContains(Expression<Func<T, bool>> predicate)
 		{
-			return DbContext.Set<T>().Count<T>(predicate) > 0;
+			return _dbContext.Set<T>().Count<T>(predicate) > 0;
 		}
 
 		public int Count(Expression<Func<T, bool>> where)
 		{
 			return _dbSet.Count(where);
 		}
+
 		public IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
 		{
 			//HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
@@ -99,6 +97,7 @@ namespace EInvoice.Repository
 		{
 			throw new NotImplementedException();
 		}
+
 		public IList<T> GetAll()
 		{
 			return _dbSet.ToList();

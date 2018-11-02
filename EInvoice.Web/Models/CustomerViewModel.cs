@@ -38,7 +38,8 @@ namespace EInvoice.Web.Models
 		public string BankName { get; set; }
 		public string Agency { get; set; }
 		public string Note { get; set; }
-
+		public bool isDel { get; set; }
+		
 		public virtual BankAccountViewModel BankAccount { get; set; }
 		public virtual CompanyViewModel Company { get; set; }
 	}

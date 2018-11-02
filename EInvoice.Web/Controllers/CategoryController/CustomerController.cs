@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using EInvoice.Data.Services;
 using EInvoice.Web.Models;
-using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +26,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		[ValidateInput(false)]
 		public ActionResult CustomerPartial()
 		{
-			var model = Mapper.Map<List<CustomerViewModel>>(_customerService.GetAll());
+			var model = Mapper.Map<List<CustomerViewModel>>(_customerService.GetCustomers());
 			return PartialView("_CustomerPartial", model);
 		}
 
@@ -72,13 +71,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(false)]
-		public ActionResult CustomerPartialDelete(int ID)
+		public ActionResult CustomerPartialDelete(int id)
 		{
-			if (ID >= 0)
+			if (id >= 0)
 			{
 				try
 				{
-					_customerService.DeleteByID(ID);
+					_customerService.DeleteCustomer(id);
 				}
 				catch (Exception e)
 				{
@@ -94,7 +93,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		{
 			//var db = new InvoiceEntities();
 			var customers = _customerService.CustomerDbSet();
-			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey)).ToList();
+			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey) && x.isDel == false).ToList();
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 
@@ -102,7 +101,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		public JsonResult GetNameCustomerJsonResult(string searchKey)
 		{
 			var customers = _customerService.CustomerDbSet();
-			var searchCustomer = customers.Where(x => x.Name.Contains(searchKey)).ToList();
+			var searchCustomer = customers.Where(x => x.Name.Contains(searchKey) && x.isDel == false).ToList();
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 
@@ -110,7 +109,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		public JsonResult GetTaxCodeCustomerJsonResult(string searchKey)
 		{
 			var customers = _customerService.CustomerDbSet();
-			var searchCustomer = customers.Where(x => x.TaxCode.ToString().Contains(searchKey)).Select(x => new Customer
+			var searchCustomer = customers.Where(x => x.TaxCode.ToString().Contains(searchKey) && x.isDel == false).Select(x => new Customer
 			{
 				ID = x.ID,
 				Code = x.Code,
@@ -131,12 +130,12 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 
-		[HttpGet]
-		public JsonResult GetCustomerAPI(string mst)
-		{
-			string customerAPI = "https://thongtindoanhnghiep.co/api/company/" + mst;
-			var client = new RestClient(customerAPI);
-			return Json(client, JsonRequestBehavior.AllowGet);
-		}
+		//[HttpGet]
+		//public JsonResult GetCustomerAPI(string mst)
+		//{
+		//	string customerAPI = "https://thongtindoanhnghiep.co/api/company/" + mst;
+		//	var client = new RestClient(customerAPI);
+		//	return Json(client, JsonRequestBehavior.AllowGet);
+		//}
 	}
 }

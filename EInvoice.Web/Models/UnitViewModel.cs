@@ -9,6 +9,8 @@ namespace EInvoice.Web.Models
 	{
 		public int ID { get; set; }
 		public string Name { get; set; }
+		public bool isDel { get; set; }
+
 		public virtual ICollection<ProductViewModel> Products { get; set; }
 	}
 }

@@ -17,10 +17,11 @@ namespace EInvoice.Data.Data
         public int ID { get; set; }
         public Nullable<long> InvoiceId { get; set; }
         public Nullable<long> ProductId { get; set; }
-        public Nullable<int> Quanlity { get; set; }
-        public string Discount { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<decimal> Discount { get; set; }
+        public Nullable<decimal> TotalAmount { get; set; }
     
-        public virtual Product Product { get; set; }
         public virtual Invoice Invoice { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace EInvoice.Web.Mappings
 				cfg.CreateMap<DigitalSignature, DigitalSignatureViewModel>();
 				cfg.CreateMap<Unit, UnitViewModel>();
 				cfg.CreateMap<Invoice, InvoiceViewModel>();
+				cfg.CreateMap<Pattern, PatternViewModel>();
 			});
 		}
 	}

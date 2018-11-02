@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
-using EInvoice.Common;
+﻿using EInvoice.Common;
 using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
 using EInvoice.Data.Services;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace EInvoice.Service
 {
@@ -46,9 +48,21 @@ namespace EInvoice.Service
 			Add(customer);
 		}
 
+		public IList<Customer> GetCustomers()
+		{
+			return _customerRepository.GetAll().Where(x => x.isDel == false).ToList();
+		}
+
 		public IDbSet<Customer> CustomerDbSet()
 		{
 			return _customerRepository.DbSet;
+		}
+
+		public void DeleteCustomer(int id)
+		{
+			var customer = GetSingleById(id);
+			customer.isDel = true;
+			Update(customer);
 		}
 	}
 }

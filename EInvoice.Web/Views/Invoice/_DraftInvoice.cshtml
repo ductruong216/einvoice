@@ -1,0 +1,91 @@
+﻿@using EInvoice.Web.Controllers.InvoiceController
+@model System.Collections.Generic.List<EInvoice.Web.Models.InvoiceViewModel>
+@{
+	var controller = ViewContext.Controller as InvoiceController;
+}
+
+@(Html.DevExpress().GridView(settings =>
+{
+	settings.Name = "DraftInvoice";
+	settings.KeyFieldName = "ID";
+	settings.CallbackRouteValues = new { Controller = "Invoice", Action = "DraftInvoice" };
+	settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Invoice", Action = "EditDraft" };
+	settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Invoice", Action = "DeleteDraft" };
+	settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+	settings.SettingsBehavior.ConfirmDelete = true;
+	settings.Width = Unit.Percentage(100);
+
+	settings.CommandColumn.Visible = true;
+	settings.CommandColumn.ShowDeleteButton = true;
+	settings.CommandColumn.ShowEditButton = true;
+
+	#region Numbering
+
+	settings.Init = (sender, e) =>
+	{
+		var c = new GridViewDataColumn() { FieldName = "STT" };
+		c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+		c.VisibleIndex = 0;
+		c.Width = 50;
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+		((MVCxGridView)sender).Columns.Add(c);
+	};
+
+	settings.CustomColumnDisplayText = (sender, e) =>
+	{
+		if (e.Column.FieldName == "STT")
+		{
+			e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+		}
+	};
+
+	#endregion
+
+	settings.Columns.Add(c =>
+	{
+		c.FieldName = "PaternId";
+		c.Caption = "Pattern";
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.EditorProperties().ComboBox(p =>
+		{
+			p.TextField = "Name";
+			p.ValueField = "ID";
+			p.ValueType = typeof(int);
+			//	p.BindList(controller.GetPattern());
+		});
+	});
+
+	settings.Columns.Add("Series");
+	settings.Columns.Add(c =>
+	{
+		c.FieldName = "No";
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.SetDataItemTemplateContent(r =>
+		{
+			ViewContext.Writer.Write("Waiting");
+
+		});
+
+	});
+	settings.Columns.Add("CustomerCode");
+	settings.Columns.Add(c =>
+	{
+		c.FieldName = "CreatedDate";
+		c.Caption = "Temp Date";
+	});
+	settings.Columns.Add(c =>
+	{
+		c.FieldName = "Tax";
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+	});
+	settings.Columns.Add(c =>
+	{
+		c.FieldName = "GrandTotalAmount";
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+	});
+}).Bind(Model).GetHtml())

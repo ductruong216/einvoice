@@ -30,7 +30,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		[ValidateInput(false)]
 		public ActionResult UnitPartial()
 		{
-			var model = _unitService.GetAll();
+			var model = _unitService.GetUnits();
 			return PartialView("_UnitPartial", model);
 		}
 
@@ -75,13 +75,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(false)]
-		public ActionResult UnitPartialDelete(int UnitID)
+		public ActionResult UnitPartialDelete(int id)
 		{
-			if (UnitID >= 0)
+			if (id >= 0)
 			{
 				try
 				{
-					_unitService.DeleteByID(UnitID);
+					_unitService.DeleteUnit(id);
 				}
 				catch (Exception e)
 				{

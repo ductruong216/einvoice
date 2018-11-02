@@ -1,21 +1,29 @@
-﻿using EInvoice.Data.Data;
+﻿using System.Data.Entity;
+using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
-using System;
 
 namespace EInvoice.Data.Infrastructure.Implementation
 {
-	public class DbFactory : IDbFactory
+	public class DbFactory : DbContext, IDbFactory
 	{
-		private InvoiceEntities dbContext;
-		public InvoiceEntities Init()
+		public DbFactory(string connectionName)
+			: base(connectionName)
 		{
-			return dbContext ?? (dbContext = new InvoiceEntities());
 		}
+
+		//public InvoiceEntities Init()
+		//{
+		//	return _dbContext ?? (_dbContext = new InvoiceEntities());
+		//}
 
 		public void Dispose()
 		{
-			if (dbContext != null)
-				dbContext.Dispose();
+			base.Dispose();
+		}
+
+		public void SaveChanges()
+		{
+			base.SaveChanges();
 		}
 	}
 }

@@ -22,3 +22,54 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" language="javascript">
+	//$(document).ready(function () {
+
+	//	$("#submitInvoice").click(function () {
+
+	//		$.ajax({
+	//			type: "POST",
+	//			dataType: "json",
+	//			url: '/Invoice/AddNewInvoice',
+	//			data: $("#customerForm").serialize() + "&" + $("#companyForm").serialize(),
+	//			success: function (data) {
+
+	//				alert(data);
+	//			}
+	//		});
+	//	});
+	//});
+	function customerInfo() {
+		$('#CusCode').val();
+		$('#purchaser').val();
+		$('#taxCode').val();
+		$('#address').val();
+		$('#email').val();
+		$('#phone').val();
+		$('#paymentType').val();
+		$('#note').val();
+	}
+	function invoiceInfo() {
+		$('#pattern').val();
+		$('#series').val();
+		$('#no').val();
+		$('#date').val();
+	}
+	function itemInfo() {
+		for (var i = 1; i < substr.length; ++i) {
+			$('#name' + i).val();
+			$('#price' + i).val();
+			$('#unit' + i).val();
+			$('#qty' + i).val();
+			$('#total' + i).val();		}
+	
+	}
+	function totalInfo() {
+		$('#sub_total').val();
+		$('#tax').val();
+		$('#tax_amount').val();
+		$('#total_amount').val();
+	}
+
+</script>

@@ -6,35 +6,37 @@ namespace EInvoice.Web.Models
 	public partial class InvoiceViewModel
 	{
 		public long ID { get; set; }
-		public long CompanyId { get; set; }
-		public int FormId { get; set; }
+		public int? CompanyId { get; set; }
+		public int? PaternId { get; set; }
 		public string Series { get; set; }
-		public int No { get; set; }
+		public int? No { get; set; }
 		public string SecureCode { get; set; }
 		public long? CustomerId { get; set; }
-		public int PaymentTypeID { get; set; }
+		public int? PaymentTypeID { get; set; }
 		public string Note { get; set; }
-		public decimal Tax { get; set; }
+		public decimal? Tax { get; set; }
 		public string Name { get; set; }
 		public decimal? TaxAmount { get; set; }
 		public decimal? SubTotalAmount { get; set; }
 		public decimal? GrandTotalAmount { get; set; }
 		public string InWord { get; set; }
 		public long? TypeID { get; set; }
-		public int CreatorID { get; set; }
-		public System.DateTime CreatedDate { get; set; }
+		public int? CreatorID { get; set; }
+		public DateTime? CreatedDate { get; set; }
 		public DateTime? ModifyDate { get; set; }
 		public string ModifyBy { get; set; }
 		public string Status { get; set; }
-		public virtual CompanyViewModel Company { get; set; }
 
-		public virtual CustomerViewModel Customer { get; set; }
+		public virtual CompanyViewModel Company { get; set; }
 		public virtual EmployeeViewModel Employee { get; set; }
-	//	public virtual FormViewModel Form { get; set; }
+		public virtual PatternViewModel Pattern { get; set; }
 		public virtual InvoiceTypeViewModel InvoiceType { get; set; }
 		public virtual PaymentMethodViewModel PaymentMethod { get; set; }
 		public virtual ICollection<ItemViewModel> Items { get; set; }
+		public virtual CustomerViewModel Customer { get; set; }
 	}
+
+	
 
 	public partial class InvoiceViewModel
 	{
@@ -84,9 +86,5 @@ namespace EInvoice.Web.Models
 
 		public string CustomerNote => Customer.Note;
 	}
-
-	public partial class InvoiceViewModel
-	{
-		
-	}
+	
 }

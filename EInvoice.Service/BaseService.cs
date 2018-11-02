@@ -22,7 +22,7 @@ namespace EInvoice.Service
 			try
 			{
 				_repository.Add(entity);
-				_unitOfWork.Commit();
+				_unitOfWork.SaveChanges();
 			}
 			catch (Exception e)
 			{
@@ -35,7 +35,7 @@ namespace EInvoice.Service
 			try
 			{
 				_repository.Delete(entity);
-				_unitOfWork.Commit();
+				_unitOfWork.SaveChanges();
 			}
 			catch (Exception e)
 			{
@@ -48,7 +48,7 @@ namespace EInvoice.Service
 			try
 			{
 				_repository.DeleteByID(id);
-				_unitOfWork.Commit();
+				_unitOfWork.SaveChanges();
 			}
 			catch (Exception e)
 			{
@@ -68,7 +68,7 @@ namespace EInvoice.Service
 
 		public void Save()
 		{
-			_unitOfWork.Commit();
+			_unitOfWork.SaveChanges();
 		}
 
 		public void Update(T entity)
@@ -76,7 +76,7 @@ namespace EInvoice.Service
 			try
 			{
 				_repository.Update(entity);
-				_unitOfWork.Commit();
+				_unitOfWork.SaveChanges();
 			}
 			catch (Exception e)
 			{

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
-using DevExpress.XtraPrinting.Native;
+﻿using AutoMapper;
 using EInvoice.Data.Data;
 using EInvoice.Data.Services;
-using EInvoice.Service;
 using EInvoice.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
@@ -29,6 +26,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		{
 			return View();
 		}
+
 		public IEnumerable<Unit> GetAllUnit()
 		{
 			return _unitService.GetAll();
@@ -82,13 +80,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(false)]
-		public ActionResult ProductPartialDelete(int ID)
+		public ActionResult ProductPartialDelete(int id)
 		{
-			if (ID >= 0)
+			if (id >= 0)
 			{
 				try
 				{
-					_productService.DeleteByID(ID);
+					_productService.DeleteProduct(id);
 				}
 				catch (Exception e)
 				{
@@ -103,7 +101,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		public JsonResult GetProducts(string searchKey)
 		{
 			var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
-			var searchProducts = products.Where(x => x.Name.Contains(searchKey)).ToList();
+			var searchProducts = products.Where(x => x.Name.Contains(searchKey) && x.isDel == false).ToList();
 			searchProducts.ForEach(_ => _.Unit.Products = null);
 
 			return Json(searchProducts, JsonRequestBehavior.AllowGet);

@@ -57,9 +57,9 @@
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EInvoice.Data\EInvoice.Data.csproj">
+    <ProjectReference Include="..\EInvoice.Data\EInvoice.Domain.csproj">
       <Project>{FE38D05D-C4DB-43A7-A91E-FD6562E7D985}</Project>
-      <Name>EInvoice.Data</Name>
+      <Name>EInvoice.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

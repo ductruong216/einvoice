@@ -31,6 +31,7 @@ namespace EInvoice.Web.Models
 		public int? CategoryID { get; set; }
 		public int? Warranty { get; set; }
 		public decimal? Discount { get; set; }
+		public bool isDel { get; set; }
 
 		public virtual UnitViewModel Unit { get; set; }
 

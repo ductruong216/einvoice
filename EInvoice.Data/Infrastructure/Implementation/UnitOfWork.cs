@@ -8,22 +8,17 @@ namespace EInvoice.Data.Infrastructure.Implementation
 		private readonly IDbFactory _dbFactory;
 		private InvoiceEntities _dbContext;
 
-		public InvoiceEntities DbContext
-		{
-			get
-			{
-				return _dbContext ?? (_dbContext = _dbFactory.Init());
-			}
-		}
+	
 
 		public UnitOfWork(IDbFactory dbFactory)
 		{
 			_dbFactory = dbFactory;
 		}
 
-		public void Commit()
+
+		public void SaveChanges()
 		{
-			DbContext.SaveChanges();
+			_dbFactory.SaveChanges();
 		}
 	}
 }

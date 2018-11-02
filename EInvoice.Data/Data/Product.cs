@@ -31,6 +31,7 @@ namespace EInvoice.Data.Data
         public Nullable<int> CategoryID { get; set; }
         public Nullable<int> Warranty { get; set; }
         public Nullable<decimal> Discount { get; set; }
+        public bool isDel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }

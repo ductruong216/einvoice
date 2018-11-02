@@ -32,7 +32,7 @@ namespace EInvoice.Web
 
 			// Register interface
 			builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
-			builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
+			builder.RegisterType<InvoiceEntities>().As<IDbFactory>().InstancePerRequest();
 
 			builder.RegisterType<InvoiceEntities>().AsSelf().InstancePerRequest();
 
@@ -44,6 +44,7 @@ namespace EInvoice.Web
 			builder.RegisterType<BaseRepository<Unit>>().As<IRepository<Unit>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Company>>().As<IRepository<Company>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<PaymentMethod>>().As<IRepository<PaymentMethod>>().InstancePerRequest();
+			builder.RegisterType<BaseRepository<Pattern>>().As<IRepository<Pattern>>().InstancePerRequest();
 
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
 			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();
@@ -51,6 +52,7 @@ namespace EInvoice.Web
 			builder.RegisterType<InvoiceService>().As<IInvoiceService>().AsSelf();
 			builder.RegisterType<CompanyService>().As<ICompanyService>().AsSelf();
 			builder.RegisterType<PaymentMethodService>().As<IPaymentMethodService>().AsSelf();
+			builder.RegisterType<PatternService>().As<IPatternService>().AsSelf();
 
 			Autofac.IContainer container = builder.Build();
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

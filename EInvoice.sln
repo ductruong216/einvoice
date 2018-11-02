@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EInvoice.Web", "EInvoice.Web\EInvoice.Web.csproj", "{C15710C3-85F6-425B-A052-3D03698013B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EInvoice.Data", "EInvoice.Data\EInvoice.Data.csproj", "{FE38D05D-C4DB-43A7-A91E-FD6562E7D985}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EInvoice.Domain", "EInvoice.Data\EInvoice.Domain.csproj", "{FE38D05D-C4DB-43A7-A91E-FD6562E7D985}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EInvoice.Service", "EInvoice.Service\EInvoice.Service.csproj", "{C10FF58B-EDC2-4245-BE7E-F9C289091B09}"
 EndProject

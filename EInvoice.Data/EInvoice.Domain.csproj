@@ -37,6 +37,7 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -101,9 +102,6 @@
     <Compile Include="Data\FeedBack.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Form.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Invoice.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
@@ -128,6 +126,9 @@
     <Compile Include="Data\Item.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Pattern.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\PaymentMethod.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
@@ -138,9 +139,6 @@
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Serial.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\sysdiagram.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Unit.cs">
@@ -167,42 +165,40 @@
     <Compile Include="Services\ICompanyService.cs" />
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IInvoiceService.cs" />
+    <Compile Include="Services\IPatternService.cs" />
     <Compile Include="Services\IPaymentMethodService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\IUnitService.cs" />
     <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Data\InvoiceModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>InvoiceModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Data\InvoiceModel.edmx.diagram">
       <DependentUpon>InvoiceModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Data\InvoiceModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>InvoiceModel.Context.cs</LastGenOutput>
       <DependentUpon>InvoiceModel.edmx</DependentUpon>
+      <LastGenOutput>InvoiceModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Data\InvoiceModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InvoiceModel.edmx</DependentUpon>
       <LastGenOutput>InvoiceModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

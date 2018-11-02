@@ -21,34 +21,34 @@ namespace EInvoice.Data.Data
         }
     
         public long ID { get; set; }
-        public int CompanyId { get; set; }
-        public int FormId { get; set; }
+        public Nullable<int> CompanyId { get; set; }
+        public Nullable<int> PaternId { get; set; }
         public string Series { get; set; }
-        public int No { get; set; }
+        public Nullable<int> No { get; set; }
         public string SecureCode { get; set; }
         public Nullable<long> CustomerId { get; set; }
-        public int PaymentTypeID { get; set; }
+        public Nullable<int> PaymentTypeID { get; set; }
         public string Note { get; set; }
-        public decimal Tax { get; set; }
+        public Nullable<decimal> Tax { get; set; }
         public string Name { get; set; }
         public Nullable<decimal> TaxAmount { get; set; }
         public Nullable<decimal> SubTotalAmount { get; set; }
         public Nullable<decimal> GrandTotalAmount { get; set; }
         public string InWord { get; set; }
         public Nullable<long> TypeID { get; set; }
-        public int CreatorID { get; set; }
-        public System.DateTime CreatedDate { get; set; }
+        public Nullable<int> CreatorID { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
         public string ModifyBy { get; set; }
         public string Status { get; set; }
     
         public virtual Company Company { get; set; }
-        public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
-        public virtual Form Form { get; set; }
+        public virtual Pattern Pattern { get; set; }
         public virtual InvoiceType InvoiceType { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

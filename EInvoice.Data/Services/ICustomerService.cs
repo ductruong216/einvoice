@@ -8,8 +8,12 @@ namespace EInvoice.Data.Services
 	{
 		void AddCustomer(Customer customer);
 
-		IList<Customer> GetAll();
+		IList<Customer> GetCustomers();
 
 		IDbSet<Customer> CustomerDbSet();
+
+		void DeleteCustomer(int id);
+
+
 	}
 }

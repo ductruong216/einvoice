@@ -5,9 +5,9 @@
 		public int ID { get; set; }
 		public long? InvoiceId { get; set; }
 		public long? ProductId { get; set; }
-		public long? Quanlity { get; set; }
-		public string Discount { get; set; }
-
+		public long? Quantity { get; set; }
+		public decimal? Discount { get; set; }
+		public decimal? TotalAmount { get; set; }
 		public virtual ProductViewModel Product { get; set; }
 		public virtual InvoiceViewModel Invoice { get; set; }
 	}

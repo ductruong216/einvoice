@@ -12,21 +12,21 @@ namespace EInvoice.Data.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Form
+    public partial class Pattern
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Form()
+        public Pattern()
         {
             this.Invoices = new HashSet<Invoice>();
         }
-    
+		
         public int ID { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
         public Nullable<int> SerialId { get; set; }
     
-        public virtual Serial Serial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual Serial Serial { get; set; }
     }
 }

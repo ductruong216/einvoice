@@ -1,5 +1,4 @@
 ﻿@using EInvoice.Web.Controllers.InvoiceController
-
 @model EInvoice.Web.Models.InvoiceViewModel
 
 @{
@@ -20,7 +19,7 @@
 				<hr>
 				<div class="row mt-3">
 					<div class="col-md-9">
-						<form id="customerForm" class="form-horizontal newInvoice" action="/Invoice/AddNewInvoice" method="post">
+						<form id="customerForm" class="form-horizontal" action="/Invoice/AddNewInvoice" method="post">
 							<section class="panel">
 								<header class="panel-heading">
 									<h2 class="panel-title">Customer Information</h2>
@@ -35,7 +34,7 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-barcode"></i></span>
 														</span>
-														<input class="form-control" id="CusCode" type="text">
+														<input class="form-control" name="Code" id="CusCode" type="text">
 													</div>
 												</div>
 											</div>
@@ -48,7 +47,7 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-user"></i></span>
 														</span>
-														<input class="form-control" id="purchaser" type="text">
+														<input class="form-control" name="Purchaser" id="purchaser" type="text">
 													</div>
 												</div>
 											</div>
@@ -63,7 +62,7 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-qrcode"></i></span>
 														</span>
-														<input class="form-control" id="taxCode" type="text">
+														<input class="form-control" name="TaxCode" id="taxCode" type="text">
 													</div>
 												</div>
 											</div>
@@ -83,7 +82,7 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-briefcase"></i></span>
 														</span>
-														<input class="form-control" id="companyName" type="text">
+														<input class="form-control" name="Name" id="companyName" type="text">
 													</div>
 												</div>
 											</div>
@@ -98,7 +97,7 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-address-card"></i></span>
 														</span>
-														<input class="form-control" id="address" type="text">
+														<input class="form-control" name="Address" id="address" type="text">
 													</div>
 												</div>
 											</div>
@@ -113,7 +112,7 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-envelope"></i></span>
 														</span>
-														<input class="form-control" id="email" type="text">
+														<input class="form-control" name="Email" id="email" type="text">
 													</div>
 												</div>
 											</div>
@@ -126,7 +125,7 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-phone"></i></span>
 														</span>
-														<input class="form-control" id="phone" type="text">
+														<input class="form-control" name="Phone" id="phone" type="text">
 													</div>
 												</div>
 											</div>
@@ -141,11 +140,11 @@
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-usd"></i></span>
 														</span>
-														<select class="form-control" type="text">
+														<select style="padding-left:9%" id="paymentType" class="form-control" name="PaymentType" type="text">
 															<option selected>Choose...</option>
 															@foreach (var item in controller.GetPayments())
 															{
-																<option selected>@item.Name</option>
+																<option>@item.Name</option>
 															}
 														</select>
 													</div>
@@ -153,16 +152,15 @@
 											</div>
 										</div>
 										<div class="col-md-6">
-
 											<div class="row">
 												<label class=" control-label col-md-4">Note:</label>
 												<div class="col-md-8">
-													<iv class="input-group input-group-icon">
+													<div class="input-group input-group-icon">
 														<span class="input-group-addon">
 															<span class="icon"><i class="fa fa-sticky-note"></i></span>
 														</span>
-														<textarea class="form-control" type="text"></textarea>
-													</iv>
+														<textarea style="padding-left:9%" class="form-control" id="note" name="Note" type="text"></textarea>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -181,28 +179,31 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Pattern: <span class="required">*</span></label>
 										<div class="col-md-9">
-											<select class="form-control  col-md-9" required>
+											<select name="Pattern" id="pattern" class="form-control  col-md-9" required>
 												<option selected>01GTKT0/003</option>
 												<option>01GTKT0/002</option>
 											</select>
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Series: <span class="required">*</span></label>
 										<div class="col-md-9">
-											<select class="form-control  col-md-9" required>
+											<select name="Series" id="series" class="form-control  col-md-9" required>
 												<option selected>Choose...</option>
 												<option>GP/17E</option>
 												<option>MP/18E</option>
 											</select>
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label class="col-sm-3 control-label">No: <span class="required">*</span></label>
 										<div class="col-md-9">
-											<input type="text" name="fullname" class="form-control" placeholder="000000" required value="000000" readonly />
+											<input type="text" id="no" name="No" class="form-control" placeholder="000000" required value="000000" readonly />
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Date: <span class="required">*</span></label>
 										<div class="col-md-9">
@@ -210,7 +211,7 @@
 												<span class="input-group-addon">
 													<i class="fa fa-calendar"></i>
 												</span>
-												<input type="text" data-plugin-datepicker class="form-control" id="DateInvoice" }>
+												<input name="Date" type="text" data-plugin-datepicker class="form-control" id="date" }>
 											</div>
 										</div>
 									</div>
@@ -232,6 +233,7 @@
 						<thead>
 							<tr>
 								<th class="text-center"> Series </th>
+								<th class="text-center" style="display: none"> Code </th>
 								<th class="text-center" style="width: 40%"> Products - Services </th>
 								<th class="text-center"> Unit Price </th>
 								<th class="text-center"> Unit </th>
@@ -239,14 +241,15 @@
 								<th class="text-center"> Amount </th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="goodsTable">
 							<tr id='addr0'>
 								<td>1</td>
+								<td style="display: none"><input id="productCode1" name='productCode0' class="form-control name" id="description" step="0" min="0" /></td>
 								<td><input type="text" id="name1" name='name0' class="form-control name" id="description" step="0" min="0" /></td>
 								<td><input type="number" id="price1" name='price0' class="form-control price" step="0.00" min="0" /></td>
 								<td><input type="text" id="unit1" name='unit0' class="form-control unit" step="0.00" min="0" /></td>
-								<td><input type="number" name='qty0' class="form-control qty" step="0" min="0" /></td>
-								<td><input type="number" name='total0' class="form-control total" readonly /></td>
+								<td><input type="number" id="qty1" name='qty0' class="form-control qty" step="0" min="0" /></td>
+								<td><input type="number" id="total1" name='total0' class="form-control total" readonly /></td>
 							</tr>
 							<tr id='addr1'></tr>
 						</tbody>
@@ -275,13 +278,13 @@
 						<tbody>
 							<tr>
 								<th class="text-center">Sub Total</th>
-								<td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+								<td class="text-center"><input type="number" id="sub_total" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
 							</tr>
 							<tr>
 								<th class="text-center">Tax</th>
 								<td class="text-center">
 									<div class="input-group mb-2 mb-sm-0">
-										<select type="number" class="form-control" id="tax" placeholder="0">
+										<select id="tax" type="number" class="form-control" placeholder="0">
 											<option selected>0</option>
 											<option>5</option>
 											<option>10</option>
@@ -320,39 +323,7 @@
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = (month) + "/" + (day) + "/" + now.getFullYear();
-	document.getElementById('DateInvoice').value = today;
+	document.getElementById('date').value = today;
 </script>
 
-<script>
-	$('#customerForm').submit(function () {
-		var action = $(this).attr('action');
-		if (!EntryCheck()) return false;
-		$.ajax({
-			url: action,
-			type: 'POST',
-			data: $('#customerForm, #invoiceOptionForm').serialize(),
-			success: function () {
-				window.location.replace(action);
-			}
-		});
-		return false;
-	});
-</script>
-
-<script>
-	
-	$(document).ready(function() {
-		$("#submitInvoice").click(function () {
-			debugger;
-			$('.newInvoice').each(function(){
-				valuesToSend = $(this).serialize();
-				$.ajax($(this).attr('action'),
-					{
-						method: $(this).attr('method'),
-						data: valuesToSend
-					}
-				);
-			});
-		});
-	});
-</script>
+<script src="~/Assets/vendor/jquery-3.2.1.min.js"></script>

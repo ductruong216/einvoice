@@ -8,7 +8,7 @@
 	settings.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
 
 	settings.Items.AddEmptyItem();
-
+	
 	settings.Items.AddGroupItem(g =>
 	{
 		g.GroupBoxDecoration = GroupBoxDecoration.Box;
@@ -25,25 +25,30 @@
 		{
 			i.NestedExtensionSettings.Width = Unit.Percentage(100);
 		});
+
 		g.Items.Add(m => m.Email, i =>
 		{
 			i.NestedExtensionSettings.Width = Unit.Percentage(100);
 
 		});
+
 		g.Items.Add(m => m.Address, i => {
 			i.Width = Unit.Percentage(100);
 			i.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
 			i.NestedExtensionSettings.Width = Unit.Percentage(100);
 			i.NestedExtensionSettings.Height = Unit.Pixel(50);
 		});
+
 		g.Items.Add(m => m.Phone, i =>
 		{
 			i.NestedExtensionSettings.Width = Unit.Percentage(100);
 		});
+
 		g.Items.Add(m => m.Fax, i =>
 		{
 			i.NestedExtensionSettings.Width = Unit.Percentage(100);
 		});
+
 		g.Items.Add(m => m.Website, i =>
 		{
 			i.Width = Unit.Percentage(100);
@@ -71,7 +76,8 @@
 			m.ClientVisible = false;
 		});
 	});
-	settings.Items.Add(i => {
+
+		settings.Items.Add(i => {
 		i.ShowCaption = DefaultBoolean.False;
 		i.CssClass = "buttonAlign";
 		i.Width = Unit.Percentage(100);

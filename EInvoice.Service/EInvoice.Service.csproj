@@ -58,6 +58,7 @@
     <Compile Include="CompanyService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="InvoiceService.cs" />
+    <Compile Include="PatternService.cs" />
     <Compile Include="PaymentMethodService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,9 +70,9 @@
       <Project>{59473E48-F4D5-4740-9395-C8D1F0530223}</Project>
       <Name>EInvoice.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EInvoice.Data\EInvoice.Data.csproj">
+    <ProjectReference Include="..\EInvoice.Data\EInvoice.Domain.csproj">
       <Project>{fe38d05d-c4db-43a7-a91e-fd6562e7d985}</Project>
-      <Name>EInvoice.Data</Name>
+      <Name>EInvoice.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\EInvoice.Repository\EInvoice.Repository.csproj">
       <Project>{A08C37C5-2C76-484E-A0FA-922C2549FBB0}</Project>

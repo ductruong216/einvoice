@@ -10,6 +10,8 @@ namespace EInvoice.Data.Services
 
 		bool IsUniq(string code);
 
+		void DeleteProduct(int id);
+
 		void AddProduct(Product product);
 
 		IEnumerable<Product> GetByInvoiceID(long invoiceID);

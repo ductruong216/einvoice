@@ -38,7 +38,14 @@
 <script>
 	$(document).ready(function() {
 		$("#applyButton").click(function() {
-			swal("Done!", "Saved successfully", "success");
+			
+			swal({
+				title: "Done",
+				text: "Saved successfully",
+				icon: "success",
+				buttons: false,
+				timer: 1500
+			});
 		});
 		//window.setTimeout(function(){
 		//	window.location.href='/Index/Company';
@@ -52,7 +59,7 @@
 		<h2 style="text-align: center">General Information</h2>
 	</div>
 	<div class="panel-body">
-		@using (Html.BeginForm("Update", "CompanyInfo"))
+		@using (Html.BeginForm("Update", "CompanyInfo", FormMethod.Post, new{ id = "companyForm"}))
 		{
 			@Html.ValidationSummary()
 			<div style="margin: 1% 15% 1% 15%;">

@@ -5,6 +5,8 @@ using EInvoice.Data.Services;
 using EInvoice.Repository;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using System.Net.Sockets;
 
 namespace EInvoice.Service
 {
@@ -19,13 +21,20 @@ namespace EInvoice.Service
 
 		public IList<Product> GetAllDesProduct()
 		{
-			var products = _productRepository.GetAllDes();
+			var products = _productRepository.GetAllDes().Where(x => x.isDel == false).ToList();
 			return products;
 		}
 
 		public bool IsUniq(string code)
 		{
 			return _productRepository.CheckContains(x => x.Code == code);
+		}
+
+		public void DeleteProduct(int id)
+		{
+			var product = GetSingleById(id);
+			product.isDel = true;
+			Update(product);
 		}
 
 		public void AddProduct(Product product)

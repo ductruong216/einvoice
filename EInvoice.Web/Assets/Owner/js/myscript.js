@@ -34,11 +34,12 @@ $(document).ready(function () {
 		b = i - 1;
 		//var newRow = $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
 		var newRow = $('#addr' + i).html('<td> ' + (i + 1) + '  </td >' +
+			'<td style="display: none"><input id="productCode' + (i + 1) + '" name="productCode' + i + '"' + ' class="form-control name" id="description" step="0" min="0" /></td>' +
 			'<td><input type="text" id="name' + (i + 1) + '" name="name' + i + '" ' + 'class="form-control name" id="description" step="0" min="0" /></td>' +
 			'<td><input type="number" id="price' + (i + 1) + '" name="price' + i + '' + '"class="form-control price" step="0.00" min="0" /></td >' +
 			'<td><input type="text" id="unit' + (i + 1) + '" name="unit' + i + ' ' + '" class="form-control unit" step="0.00" min="0" /></td >' +
-			'<td><input type="number" name="qty +' + i + '"  class="form-control qty" step="0" min="0" /></td >' +
-			'<td><input type="number" name="total ' + i + '" placeholder="0.00" class="form-control total" readonly /></td >');
+			'<td><input type="number" id="qty' + (i + 1) + '"name="qty' + + i + '"  class="form-control qty" step="0" min="0" /></td >' +
+			'<td><input type="number"  id="total' + (i + 1) + '"name="total' + i + '" placeholder="0.00" class="form-control total" readonly /></td >');
 		var index = i + 1;
 		newRow.find("#name" + index).autocomplete({
 			source: function (request, response) {
@@ -58,13 +59,11 @@ $(document).ready(function () {
 									unit: item.UnitName
 								};
 							}));
-					},
-					error: function (status) {
-						alert(status);
 					}
 				});
 			},
 			select: function (even, ui) {
+				$("#productCode" + index).val(ui.item.code);
 				$("#name" + index).val(ui.item.name);
 				$("#price" + index).val(ui.item.price);
 				$("#unit" + index).val(ui.item.unit);
@@ -104,18 +103,18 @@ $(document).ready(function () {
 						function (item) {
 							return {
 								label: item.Name,
+								code: item.Code,
 								value: item.Name,
 								price: item.Price,
 								unit: item.UnitName
 							};
 						}));
-				},
-				error: function (status) {
-					alert(status);
 				}
+				
 			});
 		},
 		select: function (even, ui) {
+			$("#productCode1").val(ui.item.code);
 			$("#name1").val(ui.item.name);
 			$("#price1").val(ui.item.price);
 			$("#unit1").val(ui.item.unit);
@@ -221,8 +220,7 @@ CustomerAutoComplete("companyName", "Name", '/Customer/GetNameCustomerJsonResult
 //			var customerCode = $('#taxCode').val();
 //			var companyAPI = "https://thongtindoanhnghiep.co/api/company/" + customerCode;
 //			if (customerCode !== '') {
-
-//				$.getJSON(companyAPI, 
+//				$.getJSON(companyAPI,
 //					success: function(data)
 //				)
 //			}
@@ -243,18 +241,18 @@ CustomerAutoComplete("companyName", "Name", '/Customer/GetNameCustomerJsonResult
 //		});
 //});
 
-$(document).ready(function() {
+$(document).ready(function () {
 	$('#find_company').on('click',
-		function() {
+		function () {
 			$.ajax({
 				url: '/Customer/GetCustomerAPI',
 				type: "GET",
 				dataType: "json",
 				data: { mst: $('#taxCode').val() },
-				success: function(data) {
+				success: function (data) {
 					debugger;
 					response($.map(data,
-						function(item) {
+						function (item) {
 							return {
 								name: item.TitleEn,
 								address: item.DiaChiCongTy
@@ -262,11 +260,71 @@ $(document).ready(function() {
 						}));
 				},
 
-				select: function(even, ui) {
+				select: function (even, ui) {
 					$("#companyName").val(ui.item.name);
 					$("#address").val(ui.item.address);
 				}
 			});
 		});
 });
-	
+
+$(document).ready(function () {
+	$("#submitInvoice").click(function () {
+		var items = [];
+		var count = $('#goodsTable tr').length;
+		for (var i = 1; i < count; ++i) {
+			var item = {
+				Product: {
+					Code: $('#productCode' + i).val(),
+					Name: $('#name' + i).val(),
+					Price: $('#price' + i).val(),
+					Unit: {
+						Name: $('#unit' + i).val()
+					}
+				},
+				Quantity: $('#qty' + i).val(),
+				TotalAmount: $('#total' + i).val()
+			}
+
+			items.push(item);
+		}
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: '/Invoice/AddDraft',
+			data: {
+				Tax: $('#tax').val(),
+				TaxAmount: $('#tax_amount').val(),
+				SubTotalAmount: $('#sub_total').val(),
+				GrandTotalAmount: $('#total_amount').val(),
+				Pattern: $('#pattern').val(),
+				Series: $('#series').val(),
+				No: $('#no').val(),
+				CreatedDate: $('#date').val(),
+
+				Customer: {
+					Code: $('#CusCode').val(),
+					Purchaser: $('#purchaser').val(),
+					TaxCode: $('#taxCode').val(),
+					Address: $('#address').val(),
+					Email: $('#email').val(),
+					Phone: $('#phone').val(),
+				},
+
+				Items: items,
+
+				PaymentMethod: {
+					Name: $('#paymentType').val()
+				},
+
+				Note: $('#note').val(),
+			},
+			success: function (data) {
+				alert(data);
+			},
+			error: function (status) {
+				alert(status);
+			}
+		});
+	});
+});

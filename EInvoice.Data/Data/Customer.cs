@@ -35,6 +35,7 @@ namespace EInvoice.Data.Data
         public string BankName { get; set; }
         public string Agency { get; set; }
         public string Note { get; set; }
+        public bool isDel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
