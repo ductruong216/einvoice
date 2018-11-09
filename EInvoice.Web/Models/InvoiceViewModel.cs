@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EInvoice.Web.Models
 {
@@ -7,21 +8,27 @@ namespace EInvoice.Web.Models
 	{
 		public long ID { get; set; }
 		public int? CompanyId { get; set; }
-		public int? PaternId { get; set; }
+		public int? PatternId { get; set; }
 		public string Series { get; set; }
 		public int? No { get; set; }
 		public string SecureCode { get; set; }
 		public long? CustomerId { get; set; }
 		public int? PaymentTypeID { get; set; }
 		public string Note { get; set; }
-		public decimal? Tax { get; set; }
+		public int? Tax { get; set; }
 		public string Name { get; set; }
+		[DataType(DataType.Currency)]
 		public decimal? TaxAmount { get; set; }
+		[DataType(DataType.Currency)]
 		public decimal? SubTotalAmount { get; set; }
+		[DataType(DataType.Currency)]
 		public decimal? GrandTotalAmount { get; set; }
 		public string InWord { get; set; }
 		public long? TypeID { get; set; }
 		public int? CreatorID { get; set; }
+
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
 		public DateTime? CreatedDate { get; set; }
 		public DateTime? ModifyDate { get; set; }
 		public string ModifyBy { get; set; }
@@ -56,7 +63,6 @@ namespace EInvoice.Web.Models
 		public string CompanyNote => Company.Note;
 		
 		// Signature
-	 
 	}
 	public partial class InvoiceViewModel
 	{

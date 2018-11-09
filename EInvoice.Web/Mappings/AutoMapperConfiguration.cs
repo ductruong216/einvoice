@@ -20,6 +20,7 @@ namespace EInvoice.Web.Mappings
 				cfg.CreateMap<Unit, UnitViewModel>();
 				cfg.CreateMap<Invoice, InvoiceViewModel>();
 				cfg.CreateMap<Pattern, PatternViewModel>();
+				cfg.CreateMap<PurchaserCustomer, PurchaserCustomerViewModel>();
 			});
 		}
 	}

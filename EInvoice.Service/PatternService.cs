@@ -6,8 +6,8 @@ namespace EInvoice.Service
 {
 	public class PatternService : BaseService<Pattern>, IPatternService
 	{
-		public PatternService(IRepository<Pattern> patternRepository, IUnitOfWork unitOfWork) : base(patternRepository,
-			unitOfWork)
+		public PatternService(IRepository<Pattern> patternRepository, IUnitOfWork unitOfWork) : 
+			base(patternRepository,	unitOfWork)
 		{
 
 		}

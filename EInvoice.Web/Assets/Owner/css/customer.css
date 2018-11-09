@@ -1,0 +1,36 @@
+﻿.modal-header {
+	background-color: #34495e;
+}
+
+.modal-title {
+	text-align: center;
+	color: #fff;
+	font-size: x-large;
+}
+
+.vertical-alignment-helper {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+.vertical-align-center {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.modal-content {
+	width: inherit;
+	height: inherit;
+	margin: 0 auto;
+}
+
+#errorMessage, #message {
+	text-align: center;
+	color: Red;
+	width: 200px;
+}
+
+.required {
+	color: red
+}

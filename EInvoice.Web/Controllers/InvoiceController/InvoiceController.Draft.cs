@@ -1,19 +1,17 @@
 ﻿using AutoMapper;
 using EInvoice.Web.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using EInvoice.Data.Data;
+using EInvoice.Data.Infrastructure.Implementation;
 using EInvoice.Data.Services;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
 	public partial class InvoiceController : Controller
 	{
-		private readonly IPatternService _patternService;
-		public InvoiceController(IPatternService patternService)
-		{
-			_patternService = patternService;
-		}
+
 		public ActionResult DraftInvoice()
 		{
 			return View();
@@ -30,19 +28,8 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return _patternService.GetAll();
 		}
 
+
 	
-		//[HttpPost, ValidateInput(false)]
-		//public ActionResult EditDraft(Invoice invoice)
-		//{
-		//	if (ModelState.IsValid)
-		//		SafeExecute(() => NorthwindDataProvider.UpdateProduct(product));
-		//	else
-		//	{
-		//		ViewData["EditError"] = "Please, correct all errors.";
-		//		ViewData["EditableProduct"] = product;
-		//	}
-		//	return EditFormTemplatePartial();
-		//}
 		//[HttpPost, ValidateInput(false)]
 		//public ActionResult DeleteDraft(int invoiceId)
 		//{
@@ -50,6 +37,5 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		//		SafeExecute(() => NorthwindDataProvider.DeleteProduct(productID));
 		//	return EditFormTemplatePartial();
 		//}
-
 	}
 }

@@ -19,7 +19,11 @@ namespace EInvoice.Data.Data
         public Nullable<long> ProductId { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<decimal> Discount { get; set; }
+        public Nullable<decimal> DiscountAmount { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
+        public string ItemName { get; set; }
+        public Nullable<decimal> ItemPrice { get; set; }
+        public string UnitName { get; set; }
     
         public virtual Invoice Invoice { get; set; }
         public virtual Product Product { get; set; }

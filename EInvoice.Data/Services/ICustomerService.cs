@@ -15,5 +15,6 @@ namespace EInvoice.Data.Services
 		void DeleteCustomer(int id);
 
 
+		long GetId(Customer customer);
 	}
 }

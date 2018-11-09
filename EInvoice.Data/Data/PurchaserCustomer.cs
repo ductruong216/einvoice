@@ -12,21 +12,26 @@ namespace EInvoice.Data.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Pattern
+    public partial class PurchaserCustomer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pattern()
+        public PurchaserCustomer()
         {
             this.Invoices = new HashSet<Invoice>();
         }
     
-        public int ID { get; set; }
+        public long ID { get; set; }
+        public string Code { get; set; }
+        public Nullable<long> TaxCode { get; set; }
         public string Name { get; set; }
-        public string Content { get; set; }
-        public Nullable<int> SerialId { get; set; }
+        public string Purchaser { get; set; }
+        public string Address { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Fax { get; set; }
+        public string LegalPresenter { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
-        public virtual Serial Serial { get; set; }
     }
 }

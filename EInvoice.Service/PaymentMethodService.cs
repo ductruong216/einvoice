@@ -9,6 +9,7 @@ namespace EInvoice.Service
 		public PaymentMethodService(IRepository<PaymentMethod> paymentMethodRepository, IUnitOfWork unitOfWork) : base(
 			paymentMethodRepository, unitOfWork)
 		{
+
 		}
 	}
 }

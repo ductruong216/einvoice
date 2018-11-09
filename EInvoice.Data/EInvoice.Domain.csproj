@@ -135,6 +135,9 @@
     <Compile Include="Data\Product.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\PurchaserCustomer.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Role.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
@@ -165,6 +168,7 @@
     <Compile Include="Services\ICompanyService.cs" />
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IInvoiceService.cs" />
+    <Compile Include="Services\IItemService.cs" />
     <Compile Include="Services\IPatternService.cs" />
     <Compile Include="Services\IPaymentMethodService.cs" />
     <Compile Include="Services\IProductService.cs" />

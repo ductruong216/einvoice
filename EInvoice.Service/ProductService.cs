@@ -56,5 +56,10 @@ namespace EInvoice.Service
 		{
 			return _productRepository.ProductSource();
 		}
+
+		public long GetId(Product modelProduct)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

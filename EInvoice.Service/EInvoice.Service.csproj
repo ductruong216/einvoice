@@ -58,6 +58,7 @@
     <Compile Include="CompanyService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="InvoiceService.cs" />
+    <Compile Include="ItemService.cs" />
     <Compile Include="PatternService.cs" />
     <Compile Include="PaymentMethodService.cs" />
     <Compile Include="ProductService.cs" />

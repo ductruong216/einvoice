@@ -1,24 +1,20 @@
 ﻿@using EInvoice.Web.Controllers.InvoiceController
+@using DevExpress.Utils;
+@using EInvoice.Data.Data
+@using EInvoice.Web.Models
+@using Unit = System.Web.UI.WebControls.Unit
+
 @model System.Collections.Generic.List<EInvoice.Web.Models.InvoiceViewModel>
 @{
 	var controller = ViewContext.Controller as InvoiceController;
 }
 
-@(Html.DevExpress().GridView(settings =>
+@(Html.DevExpress().GridView<InvoiceViewModel>(settings =>
 {
 	settings.Name = "DraftInvoice";
 	settings.KeyFieldName = "ID";
-	settings.CallbackRouteValues = new { Controller = "Invoice", Action = "DraftInvoice" };
-	settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Invoice", Action = "EditDraft" };
-	settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Invoice", Action = "DeleteDraft" };
-	settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
-	settings.SettingsBehavior.ConfirmDelete = true;
+	settings.CallbackRouteValues = new { Controller = "Invoice", Action = "_DraftInvoice" };
 	settings.Width = Unit.Percentage(100);
-
-	settings.CommandColumn.Visible = true;
-	settings.CommandColumn.ShowDeleteButton = true;
-	settings.CommandColumn.ShowEditButton = true;
-
 	#region Numbering
 
 	settings.Init = (sender, e) =>
@@ -27,8 +23,8 @@
 		c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
 		c.VisibleIndex = 0;
 		c.Width = 50;
-		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
-		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		((MVCxGridView)sender).Columns.Add(c);
 	};
 
@@ -39,12 +35,11 @@
 			e.DisplayText = (e.VisibleRowIndex + 1).ToString();
 		}
 	};
-
 	#endregion
 
 	settings.Columns.Add(c =>
 	{
-		c.FieldName = "PaternId";
+		c.FieldName = "PatternId";
 		c.Caption = "Pattern";
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
@@ -53,7 +48,7 @@
 			p.TextField = "Name";
 			p.ValueField = "ID";
 			p.ValueType = typeof(int);
-			//	p.BindList(controller.GetPattern());
+			p.BindList(controller.GetPattern());
 		});
 	});
 
@@ -66,26 +61,46 @@
 		c.SetDataItemTemplateContent(r =>
 		{
 			ViewContext.Writer.Write("Waiting");
-
 		});
-
 	});
 	settings.Columns.Add("CustomerCode");
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "CreatedDate";
-		c.Caption = "Temp Date";
 	});
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "Tax";
+
+		c.EditorProperties().TextBox(p =>
+		{
+			p.DisplayFormatString = "{0}%";
+		});
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+	});
+	settings.Columns.Add(c =>
+	{	
+		c.FieldName = "GrandTotalAmount";
+		c.PropertiesEdit.DisplayFormatString = "c2";
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
 	});
 	settings.Columns.Add(c =>
 	{
-		c.FieldName = "GrandTotalAmount";
+		c.Caption = "Action";
+		c.EditorProperties().TextBox(p =>
+		{
+			p.CssPostfix = "actions";
+		});
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
-		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		c.SetDataItemTemplateContent(r =>
+		{
+			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
+			
+			ViewContext.Writer.Write("<a href=\"/Invoice/NewInvoice\" class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>"+
+									 "<a href=\"/Invoice/DeleteDraft\" class=\"on-default remove-row\"><i class=\"fa fa-trash-alt\"></i></a>");
+			});
 	});
 }).Bind(Model).GetHtml())

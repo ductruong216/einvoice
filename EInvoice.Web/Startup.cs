@@ -45,6 +45,7 @@ namespace EInvoice.Web
 			builder.RegisterType<BaseRepository<Company>>().As<IRepository<Company>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<PaymentMethod>>().As<IRepository<PaymentMethod>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Pattern>>().As<IRepository<Pattern>>().InstancePerRequest();
+			builder.RegisterType<BaseRepository<Item>>().As<IRepository<Item>>().InstancePerRequest();
 
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
 			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();
@@ -52,13 +53,15 @@ namespace EInvoice.Web
 			builder.RegisterType<InvoiceService>().As<IInvoiceService>().AsSelf();
 			builder.RegisterType<CompanyService>().As<ICompanyService>().AsSelf();
 			builder.RegisterType<PaymentMethodService>().As<IPaymentMethodService>().AsSelf();
-			builder.RegisterType<PatternService>().As<IPatternService>().AsSelf();
+			builder.RegisterType<PatternService>().As<IPatternService>().InstancePerRequest();
+			builder.RegisterType<ItemService>().As<IItemService>().InstancePerRequest();
 
-			Autofac.IContainer container = builder.Build();
+			var container = builder.Build();
+			ObjectFactory.Container = container;
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 			GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
 
-			//ObjectFactory.Container = container;
+			
 		}
 	}
 }

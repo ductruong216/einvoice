@@ -17,5 +17,6 @@ namespace EInvoice.Data.Services
 		IEnumerable<Product> GetByInvoiceID(long invoiceID);
 
 		IDbSet<Product> GetProductsSource();
+		long GetId(Product modelProduct);
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace EInvoice.Web.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EInvoice.Web.Models
 {
 	public partial class ItemViewModel
 	{
@@ -6,12 +8,12 @@
 		public long? InvoiceId { get; set; }
 		public long? ProductId { get; set; }
 		public long? Quantity { get; set; }
-		public decimal? Discount { get; set; }
-		public decimal? TotalAmount { get; set; }
+		[DataType(DataType.Currency)] public decimal? Discount { get; set; }
+		[DataType(DataType.Currency)] public decimal? TotalAmount { get; set; }
 		public virtual ProductViewModel Product { get; set; }
 		public virtual InvoiceViewModel Invoice { get; set; }
-	}
 
+	}
 	public partial class ItemViewModel
 	{
 		public string ProductName => Product.Name;

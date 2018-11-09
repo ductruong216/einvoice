@@ -64,5 +64,18 @@ namespace EInvoice.Service
 			customer.isDel = true;
 			Update(customer);
 		}
+
+		public long GetId(Customer customer)
+		{
+			var findCustomer = _customerRepository.GetAll().FirstOrDefault(x => x.Code == customer.Code);
+
+			if (findCustomer != null)
+			{
+				return findCustomer.ID;
+			}
+			_customerRepository.Add(customer);
+
+			return _customerRepository.GetAll().Last().ID;
+		}
 	}
 }

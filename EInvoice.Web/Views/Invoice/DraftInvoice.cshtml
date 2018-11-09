@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "DraftInvoice";
+	ViewBag.Title = "Draft";
 	Layout = "~/Views/Shared/_mainLayout.cshtml";
 }
 
@@ -12,8 +12,26 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="table-responsive table--no-card  m-b-40">
-				@Html.Action("_DraftInvoice", "Invoice")
+			
 			</div>
 		</div>
 	</div>
 </div>
+
+
+<section class="panel">
+	<header class="panel-heading">
+		<div class="panel-actions">
+			<a href="#" class="fa fa-caret-down"></a>
+		</div>
+
+		<h2 class="panel-title">Draft Invoice</h2>
+	</header>
+	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped table-condensed mb-none">
+				@Html.Action("_DraftInvoice", "Invoice")
+			</table>
+		</div>
+	</div>
+</section>

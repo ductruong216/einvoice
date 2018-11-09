@@ -98,7 +98,17 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost]
-		public JsonResult GetProducts(string searchKey)
+		public JsonResult GetProductsCode(string searchKey)
+		{
+			var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
+			var searchProducts = products.Where(x => x.Code.Contains(searchKey) && x.isDel == false).ToList();
+			searchProducts.ForEach(_ => _.Unit.Products = null);
+
+			return Json(searchProducts, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public JsonResult GetProductsName(string searchKey)
 		{
 			var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
 			var searchProducts = products.Where(x => x.Name.Contains(searchKey) && x.isDel == false).ToList();

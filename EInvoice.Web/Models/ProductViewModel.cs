@@ -24,7 +24,7 @@ namespace EInvoice.Web.Models
 		public decimal Price { get; set; }
 
 		[Required(ErrorMessage = "Tax is required")]
-		public decimal Tax { get; set; }
+		public int Tax { get; set; }
 
 		public int? DisplayOrder { get; set; }
 		public int? UnitID { get; set; }
