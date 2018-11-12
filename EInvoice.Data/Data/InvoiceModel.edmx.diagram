@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="InvoiceModel.BankAccount" Width="1.5" PointX="9.75" PointY="2.625" />
         <EntityTypeShape EntityType="InvoiceModel.Company" Width="1.5" PointX="0.75" PointY="19" />
         <EntityTypeShape EntityType="InvoiceModel.Contact" Width="1.5" PointX="10.75" PointY="5.625" />
-        <EntityTypeShape EntityType="InvoiceModel.Customer" Width="1.5" PointX="0.75" PointY="14.125" />
         <EntityTypeShape EntityType="InvoiceModel.DigitalSignature" Width="1.5" PointX="1.5" PointY="25.125" />
         <EntityTypeShape EntityType="InvoiceModel.Employee" Width="1.5" PointX="0.75" PointY="8.125" />
         <EntityTypeShape EntityType="InvoiceModel.FeedBack" Width="1.5" PointX="5.75" PointY="12.625" />
@@ -28,7 +27,6 @@
         <EntityTypeShape EntityType="InvoiceModel.User" Width="1.5" PointX="6" PointY="7.625" />
         <AssociationConnector Association="InvoiceModel.FK_Companies_DigitalSignature" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Companies" />
-        <AssociationConnector Association="InvoiceModel.FK_Invoices_Customers" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Employees" />
         <AssociationConnector Association="InvoiceModel.FK_Users_Employees" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Forms" />
@@ -42,6 +40,8 @@
         <AssociationConnector Association="InvoiceModel.FK_UserClaim_User" />
         <AssociationConnector Association="InvoiceModel.FK_UserLogin_User" />
         <AssociationConnector Association="InvoiceModel.UserRole" />
+        <EntityTypeShape EntityType="InvoiceModel.Customer" Width="1.5" PointX="10.375" PointY="9" />
+        <AssociationConnector Association="InvoiceModel.FK_Invoices_Customers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -22,13 +22,14 @@ namespace EInvoice.Data.Data
     
         public long ID { get; set; }
         public string Code { get; set; }
-        public Nullable<long> TaxCode { get; set; }
+        public string TaxCode { get; set; }
         public string Name { get; set; }
+        public string EnterpriseName { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
-        public string LegalPresenter { get; set; }
+        public string LegalRepresentative { get; set; }
         public string AccountHolder { get; set; }
         public Nullable<long> BankAccountID { get; set; }
         public string BankName { get; set; }

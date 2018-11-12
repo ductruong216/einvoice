@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EInvoice.Data.Data;
 using EInvoice.Data.Services;
 using EInvoice.Web.Models;
 using System;
@@ -31,13 +32,14 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost, ValidateInput(true)]
-		public ActionResult CustomerPartialAddNew(Customer customer)
+		public ActionResult Create(CustomerViewModel customer)
 		{
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					_customerService.AddCustomer(customer);
+					var newCustomer = Mapper.Map<Customer>(customer);
+					_customerService.AddCustomer(newCustomer);
 				}
 				catch (Exception e)
 				{
@@ -47,17 +49,24 @@ namespace EInvoice.Web.Controllers.CategoryController
 			else
 				ViewData["EditError"] = "Please, correct all errors.";
 
-			return CustomerPartial();
+			return RedirectToAction("Index");
 		}
 
-		[HttpPost, ValidateInput(true)]
-		public ActionResult CustomerPartialUpdate(Customer customer)
+		[HttpGet]
+		public ActionResult Edit(int id)
+		{
+			var customer = Mapper.Map<CustomerViewModel>(_customerService.GetSingleById(id));
+			return View(customer);
+		}
+		[HttpPost, ValidateInput(false)]
+		public ActionResult Edit(Employee customer)
 		{
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					_customerService.Update(customer);
+					var newCustomer = Mapper.Map<Customer>(customer);
+					_customerService.Update(newCustomer);
 				}
 				catch (Exception e)
 				{
@@ -67,7 +76,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 			else
 				ViewData["EditError"] = "Please, correct all errors.";
 
-			return CustomerPartial();
+			return RedirectToAction("Index");
 		}
 
 		[HttpPost, ValidateInput(false)]
@@ -98,6 +107,37 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost]
+		public JsonResult CheckCode(string searchKey)
+		{
+			var db = new InvoiceEntities();
+			//var customers = _customerService.GetAll();
+			var isAny = db.Customers.Any(x => x.Code == searchKey && x.isDel == false);
+			if (!isAny)
+			{
+				return Json(false, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				return Json(true, JsonRequestBehavior.AllowGet);
+			}
+		}
+
+		[HttpPost]
+		public JsonResult CheckTaxCode(string searchKey)
+		{
+			var customers = _customerService.GetAll();
+			var isAny = customers.Any(x => x.TaxCode == searchKey && x.isDel == false);
+			if (!isAny)
+			{
+				return Json(false, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				return Json(true, JsonRequestBehavior.AllowGet);
+			}
+		}
+
+		[HttpPost]
 		public JsonResult GetNameCustomerJsonResult(string searchKey)
 		{
 			var customers = _customerService.CustomerDbSet();
@@ -114,12 +154,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 				ID = x.ID,
 				Code = x.Code,
 				TaxCode = x.TaxCode,
-				Name = x.Name,		
+				Name = x.Name,
+				EnterpriseName = x.EnterpriseName,
 				Address = x.Address,
 				Email = x.Email,
 				Phone = x.Phone,
 				Fax = x.Fax,
-				LegalPresenter = x.LegalPresenter,
+				LegalRepresentative = x.LegalRepresentative,
 				AccountHolder = x.AccountHolder,
 				BankAccountID = x.BankAccountID,
 				BankName = x.BankName,

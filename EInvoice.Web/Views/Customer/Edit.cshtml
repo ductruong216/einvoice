@@ -1,36 +1,4 @@
 ﻿@model EInvoice.Web.Models.CustomerViewModel
-
-@{
-	ViewBag.Title = "Customers";
-	Layout = "~/Views/Shared/_mainLayout.cshtml";
-}
-<style>
-	.field-validation-error {
-		color: red;
-	}
-</style>
-@Html.DevExpress().GetStyleSheets(
-	new StyleSheet { ExtensionSuite = ExtensionSuite.GridView})
-@Html.DevExpress().GetScripts(
-	new Script { ExtensionSuite = ExtensionSuite.GridView})
-<link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
-<div class="container-fluid">
-	<h1 style="margin-bottom: 20px; text-align: center">Customers management</h1>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="table-responsive table--no-card  m-b-40">
-				@using (Html.BeginForm("Customer"))
-				{
-					@Html.Hidden("customExportCommand")
-					@Html.Action("CustomerPartial", "Customer")
-				}
-			</div>
-		</div>
-	</div>
-</div>
-<div class="modal fade" id="newCustomer" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="vertical-alignment-helper">
-		<div class="modal-dialog modal-lg vertical-align-center">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
@@ -39,7 +7,7 @@
 					<h4 class="modal-title" id="myModalLabel">New Customer</h4>
 				</div>
 				<div class="modal-body">
-					@using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+					@using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
 					{
 						<div class="form-group">
 							<div class="col-md-6">
@@ -262,51 +230,8 @@
 								<button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
 							</div>
 						</div>
+
 					}
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="editCustomer" tabindex="-1" role="dialog" aria-hidden="true">
-<div class="vertical-alignment-helper">
-	<div class="modal-dialog modal-lg vertical-align-center">
-		<div class="modal-content">
-					@Html.Partial("Edit");
-</div>
-</div>
-</div>
-</div>
-
-<script type="text/javascript">
-	$(".modal").on("hidden.bs.modal", function () {
-		$(".modal-body1").html("");
-	});
-</script>
-
-<script>
-	function CheckAvailable(field, URL, fieldStatus, statusContent) {
-		$("#" + field).keyup(function () {
-			$.ajax({
-				url: URL,
-				type: "POST",
-				dataType: "json",
-				data: { searchKey: $("#" + field).val() },
-				success: function (data) {
-					if (data === true) {
-						$("#" + fieldStatus).css("color", "red");
-						$("#" + fieldStatus).html(statusContent);
-
-					} else {
-						$("#" + fieldStatus).html("");
-					}
-				}
-			});
-		});
-	}
-
-	CheckAvailable("Code", "Customer/CheckCode", "code_status", "Customer code is exist");
-	CheckAvailable("TaxCode", "Customer/CheckTaxCode", "taxCode_status", "Tax code is exist");
-
-</script>
+	

@@ -66,11 +66,11 @@ namespace EInvoice.Web.Models
 	}
 	public partial class InvoiceViewModel
 	{
-		public string CustomerName => Customer.Name;
+		public string EnterpriseName => Customer.EnterpriseName;
 
 		public string CustomerCode => Customer.Code;
 
-		public string Purchaser => Customer.Purchaser;
+		public string Purchaser => Customer.Name;
 
 		public long? CustomerTaxCode => Customer.TaxCode;
 

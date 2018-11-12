@@ -10,7 +10,7 @@ namespace EInvoice.Repository
 	{
 		public static IList<Product> GetAllDes(this IRepository<Product> repository)
 		{
-			return repository.DbSet.OrderByDescending(c => c.ID).ToList();
+			return repository.GetAll().OrderByDescending(c => c.ID).ToList();
 			//return OrderByDescending(c => c.ID).ToList();
 		}
 

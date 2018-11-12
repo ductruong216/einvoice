@@ -22,10 +22,10 @@ namespace EInvoice.Service
 			return _customerRepository.CheckContains(x => x.Code == code);
 		}
 
-		public bool IsTaxExist(long taxCode)
-		{
-			return _customerRepository.CheckContains(x => x.TaxCode == taxCode);
-		}
+		//public bool IsTaxExist(long taxCode)
+		//{
+		//	return _customerRepository.CheckContains(x => x.TaxCode == taxCode);
+		//}
 
 		public void AddCustomer(Customer customer)
 		{
@@ -50,7 +50,7 @@ namespace EInvoice.Service
 
 		public IList<Customer> GetCustomers()
 		{
-			return _customerRepository.GetAll().Where(x => x.isDel == false).ToList();
+			return _customerRepository.GetAll().OrderByDescending(c => c.ID).Where(x => x.isDel == false).ToList();
 		}
 
 		public IDbSet<Customer> CustomerDbSet()

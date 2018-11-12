@@ -2175,6 +2175,7 @@
     <Content Include="Views\Invoice\_DraftInvoice.cshtml" />
     <Content Include="Views\Shared\_mainLayout.cshtml" />
     <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
