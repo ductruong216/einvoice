@@ -2,15 +2,14 @@
 @using EInvoice.Web.Models
 @using Unit = System.Web.UI.WebControls.Unit
 @using View = System.Web.UI.WebControls.View
-@{
-	long id;
-}
+
+
 @(Html.DevExpress().GridView<CustomerViewModel>(settings =>
 {
 	settings.Name = "Customers";
 	settings.CallbackRouteValues = new { Controller = "Customer", Action = "CustomerPartial" };
 	settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialAddNew" };
-	settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialUpdate" };
+	settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Customer", Action = "Edit" };
 	settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialDelete" };
 	settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
 	settings.SettingsText.CommandBatchEditUpdate = "Add";
@@ -19,6 +18,7 @@
 	#region Toolbar Settings
 	settings.Toolbars.Add(toolbarCustomer =>
 	{
+
 		toolbarCustomer.Enabled = true;
 		toolbarCustomer.Position = GridToolbarPosition.Top;
 		toolbarCustomer.ItemAlign = GridToolbarItemAlign.Right;
@@ -31,20 +31,22 @@
 			{
 				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"" +
 										 "data-toggle=\"modal\" data-target=\"#newCustomer\">New</button>");
+
 			});
 		});
 		toolbarCustomer.Items.Add(c =>
 		{
+
 			c.SetTemplateContent(r =>
 			{
-				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"" +
-										 "data-toggle=\"modal\" data-target=\"#editCustomer\" <a href=\"/Customer/Edit/10122\">Edit</button>");
-			});
+
+				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"data-toggle=\"modal\" data-target=\"#editCustomer\"  onclick=\"location.href='/Customer/Edit/'+document.getElementById('customerId').value\">Edit</button>" );
 		});
-		toolbarCustomer.Items.Add(GridViewToolbarCommand.Delete);
+		});
 		toolbarCustomer.Items.Add(GridViewToolbarCommand.Edit);
+		toolbarCustomer.Items.Add(GridViewToolbarCommand.Delete);
 		toolbarCustomer.Items.Add(GridViewToolbarCommand.Refresh, true);
-		toolbarCustomer.Items.Add(i =>
+		toolbarCustomer.Items.Add(i=>
 		{
 			i.Text = "Export to";
 			i.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDownload16x16office2013;
@@ -63,8 +65,8 @@
 					s.Name = "Search";
 					s.Properties.NullText = "Search...";
 					s.Properties.Buttons
-			.Add()
-			.Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+					.Add()
+					.Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
 				}).Render();
 			});
 		});
@@ -77,14 +79,8 @@
 		c.FieldName = "Code";
 		c.Caption = "Customer Code";
 		c.Width = 150;
-		c.SetDataItemTemplateContent(p =>
-		{
-			int customerId = (int)DataBinder.Eval(p.DataItem, "AssetID");
-			id = customerId;
 
-		});
 
-	
 		//c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 		//c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 
@@ -92,13 +88,18 @@
 
 	settings.Columns.Add(c =>
 	{
+		c.FieldName = "EnterpriseName";
+	});
+	settings.Columns.Add(c =>
+	{
 		c.FieldName = "Name";
+		c.Caption = "Purchaser";
 		c.Width = 200;
 		//var pop = (TextEditProperties)c.PropertiesEdit;
 		////pop.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
 		//pop.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
-
 	});
+
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "Address";
@@ -128,12 +129,7 @@
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
 	});
 
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Purchaser";
-		c.Visible = false;
 
-	});
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "Fax";
@@ -142,34 +138,33 @@
 	});
 	settings.Columns.Add(c =>
 	{
-		c.FieldName = "LegalPresenter";
+		c.FieldName = "LegalRepresentative";
 		c.Visible = false;
-
 	});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "BankAccountID";
-		c.Visible = false;
+	//settings.Columns.Add(c =>
+	//{
+	//	c.FieldName = "BankAccountID";
+	//	c.Visible = false;
 
-	});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "AccountHolder";
-		c.Visible = false;
+	//});
+	//settings.Columns.Add(c =>
+	//{
+	//	c.FieldName = "AccountHolder";
+	//	c.Visible = false;
 
-	});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "BankName";
-		c.Visible = false;
+	//});
+	//settings.Columns.Add(c =>
+	//{
+	//	c.FieldName = "BankName";
+	//	c.Visible = false;
 
-	});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Agency";
-		c.Visible = false;
+	//});
+	//settings.Columns.Add(c =>
+	//{
+	//	c.FieldName = "Agency";
+	//	c.Visible = false;
 
-	});
+	//});
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "Note";
@@ -204,6 +199,7 @@
 	#endregion
 
 	settings.KeyFieldName = "ID";
+
 	settings.EditFormLayoutProperties.ColCount = 3;
 	settings.EditFormLayoutProperties.Items.Add(i => i.Code);
 	settings.EditFormLayoutProperties.Items.Add(i => i.Name);
@@ -214,16 +210,19 @@
 	settings.EditFormLayoutProperties.Items.Add(i => i.Email);
 	settings.EditFormLayoutProperties.Items.Add(i => i.Fax);
 	settings.EditFormLayoutProperties.Items.Add(i => i.LegalRepresentative);
-	settings.EditFormLayoutProperties.Items.Add(i => i.BankAccountID);
-	settings.EditFormLayoutProperties.Items.Add(i => i.AccountHolder);
-	settings.EditFormLayoutProperties.Items.Add(i => i.BankName);
-	settings.EditFormLayoutProperties.Items.Add(i => i.Agency);
+	//	settings.EditFormLayoutProperties.Items.Add(i => i.BankAccountID);
+	//	settings.EditFormLayoutProperties.Items.Add(i => i.AccountHolder);
+	//	settings.EditFormLayoutProperties.Items.Add(i => i.BankName);
+	//	settings.EditFormLayoutProperties.Items.Add(i => i.Agency);
 	settings.EditFormLayoutProperties.Items.Add(i => i.Note);
 	settings.EditFormLayoutProperties.Items.AddCommandItem(i =>
 	{
 		i.ColSpan = 2;
 		i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
 	});
+	settings.SettingsBehavior.AllowFocusedRow = true;
+
+	settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
 
 	settings.SettingsSearchPanel.CustomEditorName = "Search";
 	settings.SettingsBehavior.AllowFocusedRow = true;
@@ -231,4 +230,5 @@
 	settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
 	settings.Width = Unit.Percentage(100);
 	settings.SettingsPager.PageSize = 13;
+
 }).Bind(Model).SetEditErrorText(ViewBag.EditError).GetHtml())

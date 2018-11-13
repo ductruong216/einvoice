@@ -15,7 +15,6 @@ namespace EInvoice.Web.Models
 		//[Remote("IsCustomerTaxCodeUniq", "Category", HttpMethod = "POST", ErrorMessage = "Tax Code is Exist")]
 		public long? TaxCode { get; set; }
 
-		[Required(ErrorMessage = "Purchaser is required")]
 		[StringLength(50, ErrorMessage = "Must be under 50 characters")]
 		public string Name { get; set; }
 

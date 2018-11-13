@@ -29,21 +29,22 @@ namespace EInvoice.Service
 
 		public void AddCustomer(Customer customer)
 		{
-			if (_customerRepository.CheckContains(x => x.TaxCode == customer.TaxCode) &&
-				_customerRepository.CheckContains(i => i.Code == customer.Code))
-			{
-				throw new NameDuplicatedException("Both Tax Code and Customer Code are exist");
-			}
-			if (_customerRepository.CheckContains(x => x.Code == customer.Code) &&
-				_customerRepository.CheckContains(i => i.TaxCode != customer.TaxCode))
-			{
-				throw new NameDuplicatedException("Customer code is exist");
-			}
-			if (_customerRepository.CheckContains(x => x.TaxCode == customer.TaxCode) &&
-				_customerRepository.CheckContains(i => i.Code != customer.Code))
-			{
-				throw new NameDuplicatedException("Tax code is exist");
-			}
+			//if (_customerRepository.CheckContains(x => x.TaxCode == customer.TaxCode) &&
+			//	_customerRepository.CheckContains(i => i.Code == customer.Code))
+			//{
+			//	throw new NameDuplicatedException("Both Tax Code and Customer Code are exist");
+			//}
+			//if (_customerRepository.CheckContains(x => x.Code == customer.Code) &&
+			//	_customerRepository.CheckContains(i => i.TaxCode != customer.TaxCode))
+			//{
+			//	throw new NameDuplicatedException("Customer code is exist");
+			//}
+			//if (_customerRepository.CheckContains(x => x.TaxCode == customer.TaxCode) &&
+			//	_customerRepository.CheckContains(i => i.Code != customer.Code) && customer.Code != null
+			//	)
+			//{
+			//	throw new NameDuplicatedException("Tax code is exist");
+			//}
 
 			Add(customer);
 		}

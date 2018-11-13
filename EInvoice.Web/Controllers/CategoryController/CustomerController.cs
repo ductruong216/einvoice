@@ -31,25 +31,31 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return PartialView("_CustomerPartial", model);
 		}
 
-		[HttpPost, ValidateInput(true)]
-		public ActionResult Create(CustomerViewModel customer)
+		public JsonResult Success()
 		{
-			if (ModelState.IsValid)
-			{
-				try
-				{
-					var newCustomer = Mapper.Map<Customer>(customer);
-					_customerService.AddCustomer(newCustomer);
-				}
-				catch (Exception e)
-				{
-					ViewData["EditError"] = e.Message;
-				}
-			}
-			else
-				ViewData["EditError"] = "Please, correct all errors.";
+			return Json(new { Success = true, Message = "" }, JsonRequestBehavior.AllowGet);
+		}
 
-			return RedirectToAction("Index");
+		public JsonResult Error(string message)
+		{
+			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost, ValidateInput(true)]
+		public JsonResult Create(CustomerViewModel customer)
+		{
+			try
+			{
+				var newCustomer = Mapper.Map<Customer>(customer);
+
+				_customerService.AddCustomer(newCustomer);
+
+				return Success();
+			}
+			catch (Exception e)
+			{
+				return Error("The server wasn't able to do something right now.");
+			}
 		}
 
 		[HttpGet]
@@ -58,25 +64,20 @@ namespace EInvoice.Web.Controllers.CategoryController
 			var customer = Mapper.Map<CustomerViewModel>(_customerService.GetSingleById(id));
 			return View(customer);
 		}
-		[HttpPost, ValidateInput(false)]
-		public ActionResult Edit(Employee customer)
-		{
-			if (ModelState.IsValid)
-			{
-				try
-				{
-					var newCustomer = Mapper.Map<Customer>(customer);
-					_customerService.Update(newCustomer);
-				}
-				catch (Exception e)
-				{
-					ViewData["EditError"] = e.Message;
-				}
-			}
-			else
-				ViewData["EditError"] = "Please, correct all errors.";
 
-			return RedirectToAction("Index");
+		[HttpPost]
+		public ActionResult Edit(Customer customer)
+		{
+			try
+			{
+				_customerService.Update(customer);
+				return Content("SUCCESS", "application/json");
+			}
+			catch (Exception e)
+			{
+				ViewData["EditError"] = e.Message;
+				return Content("FAIL", "application/json");
+			}
 		}
 
 		[HttpPost, ValidateInput(false)]

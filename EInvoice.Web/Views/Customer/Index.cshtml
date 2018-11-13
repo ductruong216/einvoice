@@ -9,12 +9,37 @@
 		color: red;
 	}
 </style>
-@Html.DevExpress().GetStyleSheets(
-	new StyleSheet { ExtensionSuite = ExtensionSuite.GridView})
-@Html.DevExpress().GetScripts(
-	new Script { ExtensionSuite = ExtensionSuite.GridView})
 <link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
+
+@Html.DevExpress().GetStyleSheets(
+	new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+	new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
+	new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+	new StyleSheet { ExtensionType = ExtensionType.CallbackPanel }
+	)
+
+@Html.DevExpress().GetScripts(
+	new Script { ExtensionSuite = ExtensionSuite.GridView },
+	new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+	new Script { ExtensionSuite = ExtensionSuite.Editors },
+	new Script { ExtensionType = ExtensionType.CallbackPanel },
+	new Script { ExtensionType = ExtensionType.PopupControl }
+	)
+<script type="text/javascript">
+	function OnGridFocusedRowChanged(s, e) {
+		s.GetRowValues(s.GetFocusedRowIndex(), 'ID', OnGetRowValues);
+	}
+	function OnGetRowValues(values) {
+		document.getElementById("customerId").value = values;
+
+	}
+</script>
+
 <div class="container-fluid">
+
+	<input class="form-control" id="customerId" type="hidden">
+	<button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnAttempt">Test</button>
+
 	<h1 style="margin-bottom: 20px; text-align: center">Customers management</h1>
 	<div class="row">
 		<div class="col-lg-12">
@@ -39,7 +64,10 @@
 					<h4 class="modal-title" id="myModalLabel">New Customer</h4>
 				</div>
 				<div class="modal-body">
-					@using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+					@using (Ajax.BeginForm("Create", "Customer",
+						null,
+						new AjaxOptions() { HttpMethod = "post", OnSuccess = "Message" },
+						new { @class = "form-horizontal" }))
 					{
 						<div class="form-group">
 							<div class="col-md-6">
@@ -65,7 +93,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class=" control-label col-md-4">Purchaser: <span class="required">*</span></label>
+									<label class=" control-label col-md-4">Purchaser:</label>
 									<div class="col-md-8">
 										<div class="input-group input-group-icon">
 											<span class="input-group-addon">
@@ -258,7 +286,7 @@
 						</div>
 						<div class="modal-footer">
 							<div class="col-md-8 col-sm-9 col-xs-12 col-md-offset-4">
-								<button type="submit" class="btn btn-round btn-primary" id="saveCustomer">Save</button>
+								<button type="submit" class="btn btn-round btn-primary" id="btnSave">Save</button>
 								<button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
 							</div>
 						</div>
@@ -268,15 +296,27 @@
 		</div>
 	</div>
 </div>
-
 <div class="modal fade" id="editCustomer" tabindex="-1" role="dialog" aria-hidden="true">
-<div class="vertical-alignment-helper">
-	<div class="modal-dialog modal-lg vertical-align-center">
-		<div class="modal-content">
-					@Html.Partial("Edit");
-</div>
-</div>
-</div>
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-lg vertical-align-center">
+			<div class="modal-content">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">New Customer</h4>
+					</div>
+					<div class="modal-body">
+						@using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+						{
+							@Html.Partial("Edit");
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -297,7 +337,6 @@
 					if (data === true) {
 						$("#" + fieldStatus).css("color", "red");
 						$("#" + fieldStatus).html(statusContent);
-
 					} else {
 						$("#" + fieldStatus).html("");
 					}
@@ -308,5 +347,53 @@
 
 	CheckAvailable("Code", "Customer/CheckCode", "code_status", "Customer code is exist");
 	CheckAvailable("TaxCode", "Customer/CheckTaxCode", "taxCode_status", "Tax code is exist");
+
+	$(document).ready('#btnAdd').click(function () {
+		this.href = "/Customer/Edit/" + document.getElementById('customerId').value;
+	});
+</script>
+
+<script>
+	$('#newCustomer').on('hidden', function () {
+		swal({
+			title: "Successfully",
+			text: "The request has been sent",
+			icon: "success",
+			buttons: false,
+			timer: 1300
+		});
+</script>
+
+<script>
+		$(document).ready('#btnSave').submit(function(e) {
+			e.preventDefault();
+			$('#newCustomer').modal('hide');
+			debugger;
+			$.ajax({
+				url: '@Url.Action("Create", "Customer")',
+				method: "POST",
+				dataType: 'json',
+			
+				success: function (json) {
+					if (json.Success) {
+						alert("Add Successfully");
+					}
+					else {
+						alert(json.Message);
+					}
+				},
+
+				// This will be trigered whenever your ajax call fails (broken ISP link, etc).
+				error: function () {
+					swal({
+						title: "FAILED",
+						text: "Add Customer Failed",
+						icon: "error",
+						buttons: false,
+						timer: 1300
+					});
+				}
+			});
+		});
 
 </script>
