@@ -7,13 +7,13 @@ namespace EInvoice.Web.Models
 	{
 		public long ID { get; set; }
 
-		[Required(ErrorMessage = "Customer Code is required")]
+		[Required(ErrorMessage = "Product Code is required")]
 		[StringLength(20, ErrorMessage = "Must be under 20 characters")]
 
 		//[Remote("IsProductCodeUniq", "Category", HttpMethod = "POST", ErrorMessage = "Product Code is Exist")]
 		public string Code { get; set; }
 
-		[Required(ErrorMessage = "Customer Code is required")]
+		[Required(ErrorMessage = "Product Name is required")]
 		[StringLength(100, ErrorMessage = "Must be under 100 characters")]
 		public string Name { get; set; }
 

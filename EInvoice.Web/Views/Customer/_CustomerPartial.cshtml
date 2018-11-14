@@ -25,12 +25,10 @@
 
 		toolbarCustomer.Items.Add(c =>
 		{
-			//<li title="New" class="dxm-item dxm-noSubMenu dxct-if" id="Products_DXCTMenu0_DXI0_" style="min-width: 77px;"><div class="dxm-content dxm-hasText" id="Products_DXCTMenu0_DXI0_T">
-			//</div></li>
 			c.SetTemplateContent(r =>
 			{
 				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"" +
-										 "data-toggle=\"modal\" data-target=\"#newCustomer\">New</button>");
+										 "data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
 
 			});
 		});

@@ -31,30 +31,18 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return PartialView("_CustomerPartial", model);
 		}
 
-		public JsonResult Success()
-		{
-			return Json(new { Success = true, Message = "" }, JsonRequestBehavior.AllowGet);
-		}
-
-		public JsonResult Error(string message)
-		{
-			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
-		}
-
+	
 		[HttpPost, ValidateInput(true)]
-		public JsonResult Create(CustomerViewModel customer)
+		public void Create(CustomerViewModel customer)
 		{
 			try
 			{
 				var newCustomer = Mapper.Map<Customer>(customer);
-
 				_customerService.AddCustomer(newCustomer);
-
-				return Success();
 			}
 			catch (Exception e)
 			{
-				return Error("The server wasn't able to do something right now.");
+				ViewData["EditError"] = e.Message;
 			}
 		}
 
@@ -171,12 +159,16 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 
-		//[HttpGet]
-		//public JsonResult GetCustomerAPI(string mst)
-		//{
-		//	string customerAPI = "https://thongtindoanhnghiep.co/api/company/" + mst;
-		//	var client = new RestClient(customerAPI);
-		//	return Json(client, JsonRequestBehavior.AllowGet);
-		//}
+		
+		public JsonResult Success()
+		{
+			return Json(new { Success = true, Message = "" }, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult Error(string message)
+		{
+			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
 	}
 }

@@ -72,7 +72,7 @@ namespace EInvoice.Web.Models
 
 		public string Purchaser => Customer.Name;
 
-		public long? CustomerTaxCode => Customer.TaxCode;
+		public string CustomerTaxCode => Customer.TaxCode;
 
 		public string CustomerAddress => Customer.Address;
 

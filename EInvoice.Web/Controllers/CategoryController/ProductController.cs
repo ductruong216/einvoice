@@ -39,6 +39,23 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return PartialView("_ProductPartial", model);
 		}
 
+		[HttpPost, ValidateInput(true)]
+		public void Create(ProductViewModel product)
+		{
+			try
+			{
+				var newProduct = Mapper.Map<Product>(product);
+
+				_productService.Add(newProduct);
+
+			
+			}
+			catch (Exception e)
+			{
+				ViewData["EditError"] = e.Message;
+			}
+		}
+
 		[HttpPost, ValidateInput(false)]
 		public ActionResult ProductPartialAddNew(Product product)
 		{
@@ -115,6 +132,21 @@ namespace EInvoice.Web.Controllers.CategoryController
 			searchProducts.ForEach(_ => _.Unit.Products = null);
 
 			return Json(searchProducts, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public JsonResult CheckCode(string searchKey)
+		{
+			var customers = _productService.GetAll();
+			var isAny = customers.Any(x => x.Code == searchKey && x.isDel == false);
+			if (!isAny)
+			{
+				return Json(false, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				return Json(true, JsonRequestBehavior.AllowGet);
+			}
 		}
 	}
 }

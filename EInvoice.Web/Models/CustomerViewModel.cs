@@ -6,32 +6,26 @@ namespace EInvoice.Web.Models
 	{
 		public long ID { get; set; }
 
-		[Required(ErrorMessage = "Customer Code is required")]
-		[StringLength(20, ErrorMessage = "Must be under 20 characters")]
-		//[Remote("IsCustomerCodeUniq", "Category", HttpMethod = "POST", ErrorMessage = "Customer Code is Exist")]
-
 		public string Code { get; set; }
-
-		//[Remote("IsCustomerTaxCodeUniq", "Category", HttpMethod = "POST", ErrorMessage = "Tax Code is Exist")]
-		public long? TaxCode { get; set; }
+		public string TaxCode { get; set; }
 
 		[StringLength(50, ErrorMessage = "Must be under 50 characters")]
 		public string Name { get; set; }
 
-		[StringLength(50, ErrorMessage = "Must be under 50 characters")]
+		[StringLength(250, ErrorMessage = "Must be under 250 characters")]
 		public string EnterpriseName { get; set; }
 
 		[Required(ErrorMessage = "Address is required")]
 		public string Address { get; set; }
+
+		[RegularExpression("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*", ErrorMessage = "Email is invalid")]
+		public string Email { get; set; }
 
 		[Range(0, long.MaxValue, ErrorMessage = "Phone is invalid"),]
 		public string Phone { get; set; }
 
 		[Range(0, long.MaxValue, ErrorMessage = "Fax is invalid"),]
 		public string Fax { get; set; }
-
-		[RegularExpression("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*", ErrorMessage = "Email is invalid")]
-		public string Email { get; set; }
 
 		public string LegalRepresentative { get; set; }
 		public long? BankAccountID { get; set; }

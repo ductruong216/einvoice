@@ -19,6 +19,17 @@
 		{
 			toolbarProduct.Enabled = true;
 			toolbarProduct.ItemAlign = GridToolbarItemAlign.Right;
+			toolbarProduct.Items.Add(c =>
+			{
+			
+				c.SetTemplateContent(r =>
+				{
+					ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"" +
+					                         "data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newProduct\">New</button>");
+
+				});
+			});
+
 			toolbarProduct.Items.Add(GridViewToolbarCommand.New);
 			toolbarProduct.Items.Add(GridViewToolbarCommand.Edit);
 			toolbarProduct.Items.Add(GridViewToolbarCommand.Delete);

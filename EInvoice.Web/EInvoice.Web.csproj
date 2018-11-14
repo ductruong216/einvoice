@@ -1803,6 +1803,9 @@
     <Content Include="Assets\Owner\css\customer.css" />
     <Content Include="Assets\Owner\css\style.css" />
     <Content Include="Assets\Owner\css\sweetAlert.css" />
+    <Content Include="Assets\Owner\js\ajax-begin-form.js" />
+    <Content Include="Assets\Owner\js\bootstrap-modal.js" />
+    <Content Include="Assets\Owner\js\check-available.js" />
     <Content Include="Assets\Owner\js\customer.js" />
     <Content Include="Assets\Owner\js\Hepler.js" />
     <Content Include="Assets\Owner\js\invoice.js" />
