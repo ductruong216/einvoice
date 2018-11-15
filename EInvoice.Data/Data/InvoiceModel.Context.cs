@@ -40,7 +40,6 @@ namespace EInvoice.Data.Data
         public virtual DbSet<Pattern> Patterns { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<PurchaserCustomer> PurchaserCustomers { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Serial> Serials { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
@@ -48,5 +47,6 @@ namespace EInvoice.Data.Data
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<PurchaserCustomer> PurchaserCustomers { get; set; }
     }
 }

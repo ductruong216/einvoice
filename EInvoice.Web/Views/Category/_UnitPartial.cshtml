@@ -11,6 +11,8 @@
 			settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Unit", Action = "UnitPartialUpdate" };
 			settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Unit", Action = "UnitPartialDelete" };
 			settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+			settings.Styles.FocusedRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#989898");
+
 
 #region Toolbar Settings
 settings.Toolbars.Add(toolbarUnit =>

@@ -6,6 +6,8 @@ namespace EInvoice.Web.Models
 	{
 		public long ID { get; set; }
 
+		[Required(ErrorMessage = "Code is required")]
+		[StringLength(20, ErrorMessage = "Must be under 20 characters")]
 		public string Code { get; set; }
 		public string TaxCode { get; set; }
 

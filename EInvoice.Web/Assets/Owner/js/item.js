@@ -3,7 +3,7 @@ function calc() {
 	$('#tab_logic tbody tr').each(function (i, element) {
 		var html = $(this).html();
 		if (html !== '') {
-			var price = $(this).find('.price').val();
+			var price = $(this).find('.itemPrice').val();
 			var qty = $(this).find('.qty').val();
 			$(this).find('.total').val(qty * price);
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
 			'<td style="display: none"><input id="productId' + (i + 1) + '" name="productId' + i + '"' + 'class="form-control id" /></td>' +
 			'<td><input id="productCode' + (i + 1) + '" name="productCode' + i + '"' + ' class="form-control name" id="description" step="0" min="0" /></td>' +
 			'<td><input type="text" id="name' + (i + 1) + '" name="name' + i + '" ' + 'class="form-control name" id="description" step="0" min="0" /></td>' +
-			'<td><input type="number" id="price' + (i + 1) + '" name="price' + i + '' + '"class="form-control price" step="0.00" min="0" /></td >' +
+			'<td><input type="number" id="price' + (i + 1) + '" name="price' + i + '' + '"class="form-control itemPrice" step="0.00" min="0" /></td >' +
 			'<td><input type="text" id="unit' + (i + 1) + '" name="unit' + i + '' + '" class="form-control unit" step="0.00" min="0" /></td >' +
 			'<td><input type="number" id="qty' + (i + 1) + '"name="qty' + + i + '"  class="form-control qty" step="0" min="0" /></td >' +
 			'<td><input type="number"  id="total' + (i + 1) + '"name="total' + i + '" placeholder="0.00" class="form-control total" readonly /></td >');

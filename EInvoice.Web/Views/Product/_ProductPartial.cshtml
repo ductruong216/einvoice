@@ -1,4 +1,5 @@
-﻿@using EInvoice.Web.Controllers.CategoryController
+﻿@using System.Drawing
+@using EInvoice.Web.Controllers.CategoryController
 @using EInvoice.Web.Models
 @using Unit = System.Web.UI.WebControls.Unit
 @{
@@ -11,6 +12,9 @@
 		settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Product", Action = "ProductPartialAddNew" };
 		settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Product", Action = "ProductPartialUpdate" };
 		settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Product", Action = "ProductPartialDelete" };
+		settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#2A3F54");
+		settings.Styles.Header.ForeColor = Color.White;
+		settings.Styles.FocusedRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#989898");
 		settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
 		settings.SettingsText.CommandBatchEditUpdate = "Update";
 		settings.SettingsText.CommandBatchEditCancel = "Cancel";

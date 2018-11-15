@@ -1,4 +1,5 @@
-﻿@using EInvoice.Web.Controllers.InvoiceController
+﻿@using System.Drawing
+@using EInvoice.Web.Controllers.InvoiceController
 @using DevExpress.Utils;
 @using EInvoice.Data.Data
 @using EInvoice.Web.Models
@@ -11,10 +12,16 @@
 
 @(Html.DevExpress().GridView<InvoiceViewModel>(settings =>
 {
+
 	settings.Name = "DraftInvoice";
 	settings.KeyFieldName = "ID";
 	settings.CallbackRouteValues = new { Controller = "Invoice", Action = "_DraftInvoice" };
 	settings.Width = Unit.Percentage(100);
+	settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#2A3F54");
+	settings.Styles.Header.ForeColor = Color.White;
+	//settings.Appearance.HeaderPanel.Options.UseBackColor = true;
+	//settings.Appearance.HeaderPanel.BackColor = System.Drawing.Color.White;
+
 	#region Numbering
 
 	settings.Init = (sender, e) =>
@@ -80,7 +87,7 @@
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
 	});
 	settings.Columns.Add(c =>
-	{	
+	{
 		c.FieldName = "GrandTotalAmount";
 		c.PropertiesEdit.DisplayFormatString = "c2";
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
@@ -98,9 +105,9 @@
 		c.SetDataItemTemplateContent(r =>
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-			
+
 			ViewContext.Writer.Write("<a href=\"/Invoice/NewInvoice\" class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>"+
-									 "<a href=\"/Invoice/DeleteDraft\" class=\"on-default remove-row\"><i class=\"fa fa-trash-alt\"></i></a>");
-			});
+									 "<a href=\"/Invoice/DeleteDraft\" class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>");
+		});
 	});
 }).Bind(Model).GetHtml())

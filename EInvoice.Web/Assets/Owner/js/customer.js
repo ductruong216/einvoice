@@ -14,9 +14,9 @@ function CustomerAutoComplete(field, fieldValue, URL) {
 								label: item[fieldValue],
 								value: item[fieldValue],
 								id: item.ID,
-								name: item.Name,
+								name: item.EnterpriseName,
 								code: item.Code,
-								purchaser: item.Purchaser,
+								purchaser: item.Name,
 								taxCode: item.TaxCode,
 								address: item.Address,
 								email: item.Email,
@@ -32,6 +32,7 @@ function CustomerAutoComplete(field, fieldValue, URL) {
 				}
 			});
 		},
+
 		select: function (even, ui) {
 			$("#customerId").val(ui.item.id);
 			$("#companyName").val(ui.item.name);
@@ -48,5 +49,5 @@ function CustomerAutoComplete(field, fieldValue, URL) {
 	});
 };
 CustomerAutoComplete("CusCode", "Code", '/Customer/GetCodeCustomerJsonResult');
-CustomerAutoComplete("companyName", "Name", '/Customer/GetNameCustomerJsonResult');
+CustomerAutoComplete("companyName", "EnterpriseName", '/Customer/GetNameCustomerJsonResult');
 //CustomerAutoComplete("taxCode", "TaxCode", '/Customer/GetTaxCodeCustomerJsonResult');

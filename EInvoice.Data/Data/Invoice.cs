@@ -48,9 +48,9 @@ namespace EInvoice.Data.Data
         public virtual Pattern Pattern { get; set; }
         public virtual InvoiceType InvoiceType { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
-        public virtual PurchaserCustomer PurchaserCustomer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual PurchaserCustomer PurchaserCustomer { get; set; }
     }
 }

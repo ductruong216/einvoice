@@ -10,22 +10,26 @@
 @Html.DevExpress().GetScripts(
 	new Script { ExtensionSuite = ExtensionSuite.GridView})
 <link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
-<div class="container-fluid">
-	<h1 style="margin-bottom: 20px; text-align: center">Products management</h1>
+
+<div class="">
+	<div class="clearfix" align="center">
+		<h3>PRODUCT MANAGEMENT</h3>
+	</div>
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="table-responsive table--no-card  m-b-40">
-				@using (Html.BeginForm("Product"))
-				{
-					@Html.Hidden("customExportCommand")
-					@Html.Action("ProductPartial", "Product")
-				}
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="x_panel">
+			
+				<div class="x_content">
+					@using (Html.BeginForm("Product"))
+					{
+						@Html.Hidden("customExportCommand")
+						@Html.Action("ProductPartial", "Product")
+					}
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
 @*Create product*@
 <div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="vertical-alignment-helper">

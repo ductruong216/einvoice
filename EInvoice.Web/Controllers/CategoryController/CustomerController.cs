@@ -89,8 +89,8 @@ namespace EInvoice.Web.Controllers.CategoryController
 		[HttpPost]
 		public JsonResult GetCodeCustomerJsonResult(string searchKey)
 		{
-			//var db = new InvoiceEntities();
-			var customers = _customerService.GetAll();
+			var customers = _customerService.CustomerDbSet();
+		
 			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey) && x.isDel == false).ToList();
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
@@ -130,7 +130,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 		public JsonResult GetNameCustomerJsonResult(string searchKey)
 		{
 			var customers = _customerService.CustomerDbSet();
-			var searchCustomer = customers.Where(x => x.Name.Contains(searchKey) && x.isDel == false).ToList();
+			var searchCustomer = customers.Where(x => x.EnterpriseName.Contains(searchKey) && x.isDel == false).ToList();
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 

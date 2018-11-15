@@ -30,15 +30,16 @@
 		color: red;
 		margin-left: 15%;
 	}
-	.validation-summary-errors li {
-		list-style-type: none;
-	}
+
+		.validation-summary-errors li {
+			list-style-type: none;
+		}
 </style>
 
 <script>
 	$(document).ready(function() {
 		$("#applyButton").click(function() {
-			
+
 			swal({
 				title: "Done",
 				text: "Saved successfully",
@@ -51,33 +52,28 @@
 		//	window.location.href='/Index/Company';
 		//}, 4000);
 	});
-	
 </script>
-<div class="panel">
-	<div class="col-md-2"></div>
-	<div class="panel-heading">
-		<h2 style="text-align: center">General Information</h2>
+
+<div class="">
+	<div class="clearfix" align="center">
+		<h3>COMPANY INFORMATION</h3>
 	</div>
-	<div class="panel-body">
-		@using (Html.BeginForm("Update", "CompanyInfo", FormMethod.Post, new{ id = "companyForm"}))
-		{
-			@Html.ValidationSummary()
-			<div style="margin: 1% 15% 1% 15%;">
-				@Html.Partial("CompanyInfo", Model)
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_content">
+					@using (Html.BeginForm("Update", "CompanyInfo", FormMethod.Post, new { id = "companyForm" }))
+					{
+						@Html.ValidationSummary()
+						<div style="margin: 1% 15% 1% 15%;">
+							@Html.Partial("CompanyInfo", Model)
+						</div>
+					}
+				</div>
 			</div>
-		}
+		</div>
 	</div>
-	<div class="col-md-2"></div>
 </div>
-
-
-
-
-
-
-
-
-
 
 @*<div class="card">
 		<div class="card-header">

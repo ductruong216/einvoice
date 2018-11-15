@@ -1,4 +1,5 @@
 ﻿@model List<CustomerViewModel>
+@using System.Drawing
 @using EInvoice.Web.Models
 @using Unit = System.Web.UI.WebControls.Unit
 @using View = System.Web.UI.WebControls.View
@@ -11,6 +12,10 @@
 	settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialAddNew" };
 	settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Customer", Action = "Edit" };
 	settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialDelete" };
+	settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#2A3F54");
+	settings.Styles.Header.ForeColor = Color.White;
+	settings.Styles.FocusedRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#989898");
+
 	settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
 	settings.SettingsText.CommandBatchEditUpdate = "Add";
 	settings.SettingsText.CommandBatchEditCancel = "Cancel";
