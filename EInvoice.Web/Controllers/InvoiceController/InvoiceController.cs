@@ -5,7 +5,8 @@ using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
-	public partial class InvoiceController : Controller
+    [PermissionLogin]
+    public partial class InvoiceController : Controller
 	{
 		private IInvoiceService _invoiceService { get; set; }
 		private IProductService _productService { get; set; }

@@ -10,6 +10,7 @@ using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
+    [PermissionLogin]
 	public class CustomerController : Controller
 	{
 		private readonly ICustomerService _customerService;

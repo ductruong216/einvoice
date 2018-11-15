@@ -10,6 +10,7 @@ using EInvoice.Web.Models;
 
 namespace EInvoice.Web.Controllers
 {
+    [PermissionLogin]
     [Authorize]
     public class ManageController : Controller
     {

@@ -7,7 +7,8 @@ using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
-	public partial class InvoiceController : Controller
+    [PermissionLogin]
+    public partial class InvoiceController : Controller
 	{
 		public ActionResult ProductTable()
 		{

@@ -1,544 +1,148 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<!-- Required meta tags-->
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Title Page-->
-	<title>E-INVOICE</title>
-	<link rel="icon" href="~/Assets/images/icon/e-invoice.ico" type="image/ico" />
-	<!-- Fontfaces CSS-->
-	<link href="~/Assets/css/font-face.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
-	<!-- Bootstrap CSS-->
-	<link href="~/Assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Vendor CSS-->
-	<link href="~/Assets/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-	@*<link href="~/Assets/gentelella/css/custom.min.css" rel="stylesheet" media="all">*@
-	<link href="~/assets/gentelella/css/mystyle.css" rel="stylesheet" media="all">
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
 
-	<link href="~/Assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/wow/animate.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/slick/slick.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-	<link href="~/Assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-	<link href="~/Assets/Owner/css/style.css" rel="stylesheet" />
-	<!-- Main CSS-->
-	<link href="~/Assets/css/theme.css" rel="stylesheet" media="all">
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+
 </head>
-<body>
-	<div class="page-wrapper">
-		<!-- HEADER DESKTOP-->
-		<header class="header-desktop3 d-none d-lg-block">
-			<div class="section__content section__content--p35">
-				<div class="header3-wrap">
-					<div class="header__logo">
-						<a href="#">
-							<img src="~/Assets/images/icon/logo-mini.png" alt="CoolAdmin" />
-						</a>
-					</div>
-					<div class="header__navbar">
-						<ul class="list-unstyled">
-							<li class="has-sub">
-								<a href="">
-									<i class="fas fa-list-alt"></i>
-									<span class="bot-line"></span>Categories
-								</a>
-								<ul class="header3-sub-list list-unstyled">
-									<li>
-										<a href="@Url.Action("Index", "Product")">Products</a>
-									</li>
-									<li>
-										<a href="@Url.Action("Index", "Customer")">Customers</a>
-									</li>
-									<li>
-										<a href="@Url.Action("Others", "Category")">Others</a>
-									</li>
-								</ul>
-							</li>
-							<li class="has-sub">
-								<a href="">
-									<i class="fas fa-tachometer-alt"></i>Invoices
-									<span class="bot-line"></span>
-								</a>
-								<ul class="header3-sub-list list-unstyled">
-									<li>
-										<a href="@Url.Action("Index","Invoice")">New Invoice</a>
-									</li>
-									<li>
-										<a href="#">List Invoice</a>
-									</li>
-									<li>
-										<a href="#">Modify Invoice</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fas fa-file-alt"></i>
-									<span class="bot-line"></span>Report
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fas fa-users"></i>
-									<span class="bot-line"></span>User
-								</a>
-							</li>
-							<li>
-								<a  href="@Url.Action("Index","Company")">
-									<i class="fas fa-info-circle"></i>
-									<span class="bot-line"></span>Company Info
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="header__tool">
-						<div class="header-button-item has-noti js-item-menu">
-							<i class="zmdi zmdi-notifications"></i>
-							<div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown">
-								<div class="notifi__title">
-									<p>You have 3 Notifications</p>
-								</div>
-								<div class="notifi__item">
-									<div class="bg-c1 img-cir img-40">
-										<i class="zmdi zmdi-email-open"></i>
-									</div>
-									<div class="content">
-										<p>You got a email notification</p>
-										<span class="date">April 12, 2018 06:50</span>
-									</div>
-								</div>
-								<div class="notifi__item">
-									<div class="bg-c2 img-cir img-40">
-										<i class="zmdi zmdi-account-box"></i>
-									</div>
-									<div class="content">
-										<p>Your account has been blocked</p>
-										<span class="date">April 12, 2018 06:50</span>
-									</div>
-								</div>
-								<div class="notifi__item">
-									<div class="bg-c3 img-cir img-40">
-										<i class="zmdi zmdi-file-text"></i>
-									</div>
-									<div class="content">
-										<p>You got a new file</p>
-										<span class="date">April 12, 2018 06:50</span>
-									</div>
-								</div>
-								<div class="notifi__footer">
-									<a href="#">All notifications</a>
-								</div>
-							</div>
-						</div>
-						<div class="header-button-item js-item-menu">
-							<i class="zmdi zmdi-settings"></i>
-							<div class="setting-dropdown js-dropdown">
-								<div class="account-dropdown__body">
-									<div class="account-dropdown__item">
-										<a href="#">
-											<i class="zmdi zmdi-account"></i>Account
-										</a>
-									</div>
-									<div class="account-dropdown__item">
-										<a href="#">
-											<i class="zmdi zmdi-settings"></i>Setting
-										</a>
-									</div>
-									<div class="account-dropdown__item">
-										<a href="#">
-											<i class="zmdi zmdi-money-box"></i>Billing
-										</a>
-									</div>
-								</div>
-								<div class="account-dropdown__body">
-									<div class="account-dropdown__item">
-										<a href="#">
-											<i class="zmdi zmdi-globe"></i>Language
-										</a>
-									</div>
-									<div class="account-dropdown__item">
-										<a href="#">
-											<i class="zmdi zmdi-pin"></i>Location
-										</a>
-									</div>
-									<div class="account-dropdown__item">
-										<a href="#">
-											<i class="zmdi zmdi-email"></i>Email
-										</a>
-									</div>
-									<div class="account-dropdown__item">
-										<a href="#">
-											<i class="zmdi zmdi-notifications"></i>Notifications
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="account-wrap">
-							<div class="account-item account-item--style2 clearfix js-item-menu">
-								<div class="image">
-									<img src="~/Assets/images/invoice.jpg" alt="E-DEMO" />
-								</div>
-								<div class="content">
-									<a class="js-acc-btn" href="#">E-DEMO</a>
-								</div>
-								<div class="account-dropdown js-dropdown">
-									<div class="info clearfix">
-										<div class="image">
-											<a href="#">
-												<img src="~/Assets/images/invoice.jpg" alt="E-DEMO" />
-											</a>
-										</div>
-										<div class="content">
-											<h5 class="name">
-												<a href="#">E-invoice</a>
-											</h5>
-											<span class="email">e-invoice@gmail.com</span>
-										</div>
-									</div>
-									<div class="account-dropdown__body">
-										<div class="account-dropdown__item">
-											<a href="#">
-												<i class="zmdi zmdi-account"></i>Account
-											</a>
-										</div>
-										<div class="account-dropdown__item">
-											<a href="#">
-												<i class="zmdi zmdi-settings"></i>Setting
-											</a>
-										</div>
-										<div class="account-dropdown__item">
-											<a href="#">
-												<i class="zmdi zmdi-money-box"></i>Billing
-											</a>
-										</div>
-									</div>
-									<div class="account-dropdown__footer">
-										<a href="#">
-											<i class="zmdi zmdi-power"></i>Logout
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-		<!-- END HEADER DESKTOP-->
-		<!-- HEADER MOBILE-->
-		<header class="header-mobile header-mobile-2 d-block d-lg-none">
-			<div class="header-mobile__bar">
-				<div class="container-fluid">
-					<div class="header-mobile-inner">
-						<a class="logo" href="index.html">
-							<img src="~/Assets/images/icon/logo-white.png" alt="CoolAdmin" />
-						</a>
-						<button class="hamburger hamburger--slider" type="button">
-							<span class="hamburger-box">
-								<span class="hamburger-inner"></span>
-							</span>
-						</button>
-					</div>
-				</div>
-			</div>
-			<nav class="navbar-mobile">
-				<div class="container-fluid">
-					<ul class="navbar-mobile__list list-unstyled">
-						<li class="has-sub">
-							<a class="js-arrow" href="#">
-								<i class="fas fa-tachometer-alt"></i>Dashboard
-							</a>
-							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li>
-									<a href="index.html">Dashboard 1</a>
-								</li>
-								<li>
-									<a href="index2.html">Dashboard 2</a>
-								</li>
-								<li>
-									<a href="index3.html">Dashboard 3</a>
-								</li>
-								<li>
-									<a href="index4.html">Dashboard 4</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="chart.html">
-								<i class="fas fa-chart-bar"></i>Charts
-							</a>
-						</li>
-						<li>
-							<a href="table.html">
-								<i class="fas fa-table"></i>Tables
-							</a>
-						</li>
-						<li>
-							<a href="form.html">
-								<i class="far fa-check-square"></i>Forms
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fas fa-calendar-alt"></i>Calendar
-							</a>
-						</li>
-						<li>
-							<a href="map.html">
-								<i class="fas fa-map-marker-alt"></i>Maps
-							</a>
-						</li>
-						<li class="has-sub">
-							<a class="js-arrow" href="#">
-								<i class="fas fa-copy"></i>Pages
-							</a>
-							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li>
-									<a href="login.html">Login</a>
-								</li>
-								<li>
-									<a href="register.html">Register</a>
-								</li>
-								<li>
-									<a href="forget-pass.html">Forget Password</a>
-								</li>
-							</ul>
-						</li>
-						<li class="has-sub">
-							<a class="js-arrow" href="#">
-								<i class="fas fa-desktop"></i>UI Elements
-							</a>
-							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li>
-									<a href="button.html">Button</a>
-								</li>
-								<li>
-									<a href="badge.html">Badges</a>
-								</li>
-								<li>
-									<a href="tab.html">Tabs</a>
-								</li>
-								<li>
-									<a href="card.html">Cards</a>
-								</li>
-								<li>
-									<a href="alert.html">Alerts</a>
-								</li>
-								<li>
-									<a href="progress-bar.html">Progress Bars</a>
-								</li>
-								<li>
-									<a href="modal.html">Modals</a>
-								</li>
-								<li>
-									<a href="switch.html">Switchs</a>
-								</li>
-								<li>
-									<a href="grid.html">Grids</a>
-								</li>
-								<li>
-									<a href="fontawesome.html">Fontawesome Icon</a>
-								</li>
-								<li>
-									<a href="typo.html">Typography</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</header>
-		<div class="sub-header-mobile-2 d-block d-lg-none">
-			<div class="header__tool">
-				<div class="header-button-item has-noti js-item-menu">
-					<i class="zmdi zmdi-notifications"></i>
-					<div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown">
-						<div class="notifi__title">
-							<p>You have 3 Notifications</p>
-						</div>
-						<div class="notifi__item">
-							<div class="bg-c1 img-cir img-40">
-								<i class="zmdi zmdi-email-open"></i>
-							</div>
-							<div class="content">
-								<p>You got a email notification</p>
-								<span class="date">April 12, 2018 06:50</span>
-							</div>
-						</div>
-						<div class="notifi__item">
-							<div class="bg-c2 img-cir img-40">
-								<i class="zmdi zmdi-account-box"></i>
-							</div>
-							<div class="content">
-								<p>Your account has been blocked</p>
-								<span class="date">April 12, 2018 06:50</span>
-							</div>
-						</div>
-						<div class="notifi__item">
-							<div class="bg-c3 img-cir img-40">
-								<i class="zmdi zmdi-file-text"></i>
-							</div>
-							<div class="content">
-								<p>You got a new file</p>
-								<span class="date">April 12, 2018 06:50</span>
-							</div>
-						</div>
-						<div class="notifi__footer">
-							<a href="#">All notifications</a>
-						</div>
-					</div>
-				</div>
-				<div class="header-button-item js-item-menu">
-					<i class="zmdi zmdi-settings"></i>
-					<div class="setting-dropdown js-dropdown">
-						<div class="account-dropdown__body">
-							<div class="account-dropdown__item">
-								<a href="#">
-									<i class="zmdi zmdi-account"></i>Account
-								</a>
-							</div>
-							<div class="account-dropdown__item">
-								<a href="#">
-									<i class="zmdi zmdi-settings"></i>Setting
-								</a>
-							</div>
-							<div class="account-dropdown__item">
-								<a href="#">
-									<i class="zmdi zmdi-money-box"></i>Billing
-								</a>
-							</div>
-						</div>
-						<div class="account-dropdown__body">
-							<div class="account-dropdown__item">
-								<a href="#">
-									<i class="zmdi zmdi-globe"></i>Language
-								</a>
-							</div>
-							<div class="account-dropdown__item">
-								<a href="#">
-									<i class="zmdi zmdi-pin"></i>Location
-								</a>
-							</div>
-							<div class="account-dropdown__item">
-								<a href="#">
-									<i class="zmdi zmdi-email"></i>Email
-								</a>
-							</div>
-							<div class="account-dropdown__item">
-								<a href="#">
-									<i class="zmdi zmdi-notifications"></i>Notifications
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="account-wrap">
-					<div class="account-item account-item--style2 clearfix js-item-menu">
-						<div class="image">
-							<img src="~/Assets/images/icon/avatar-01.jpg" alt="John Doe" />
-						</div>
-						<div class="content">
-							<a class="js-acc-btn" href="#">john doe</a>
-						</div>
-						<div class="account-dropdown js-dropdown">
-							<div class="info clearfix">
-								<div class="image">
-									<a href="#">
-										<img src="~/Assets/images/icon/avatar-01.jpg" alt="John Doe" />
-									</a>
-								</div>
-								<div class="content">
-									<h5 class="name">
-										<a href="#">john doe</a>
-									</h5>
-									<span class="email">johndoe@example.com</span>
-								</div>
-							</div>
-							<div class="account-dropdown__body">
-								<div class="account-dropdown__item">
-									<a href="#">
-										<i class="zmdi zmdi-account"></i>Account
-									</a>
-								</div>
-								<div class="account-dropdown__item">
-									<a href="#">
-										<i class="zmdi zmdi-settings"></i>Setting
-									</a>
-								</div>
-								<div class="account-dropdown__item">
-									<a href="#">
-										<i class="zmdi zmdi-money-box"></i>Billing
-									</a>
-								</div>
-							</div>
-							<div class="account-dropdown__footer">
-								<a href="#">
-									<i class="zmdi zmdi-power"></i>Logout
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- END HEADER MOBILE -->
-		<!-- PAGE CONTENT-->
-		<div class="page-content--bgf7">
-			<!-- BREADCRUMB-->
-			<section class="au-breadcrumb2">
-				<div class="container">
-					@RenderBody()
-				</div>
-			</section>
-			<!-- END BREADCRUMB-->
-			<!-- COPYRIGHT-->
-				<section class="p-t-60 p-b-20">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="copyright">
-									<p>Copyright © 2018 Duc Truong. All rights reserved.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				<!-- END COPYRIGHT-->
-		</div>
-	</div>
 
-	<!-- Jquery JS-->
-	<script src="~/Assets/vendor/jquery-3.2.1.min.js"></script>
-@*<script src="~/Assets/Owner/js/jquery.js"></script>*@
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<!-- Bootstrap JS-->
-	<script src="~/Assets/vendor/bootstrap-4.1/popper.min.js"></script>
-	<script src="~/Assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-	<!-- Vendor JS       -->
-	<script src="~/Assets/vendor/slick/slick.min.js">
-	</script>
-	<script src="~/Assets/vendor/wow/wow.min.js"></script>
-	<script src="~/Assets/vendor/animsition/animsition.min.js"></script>
-	<script src="~/Assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-	</script>
-	<script src="~/Assets/vendor/circle-progress/circle-progress.min.js"></script>
-	<script src="~/Assets/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-	<script src="~/Assets/vendor/select2/select2.min.js">
-	</script>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a class="site_title"> <span>Assets Management</span></a>
+                    </div>
 
-	<!-- Main JS-->
-	<script src="~/Assets/js/main.js"></script>
-	<script src="~/Assets/Owner/js/myscript.js"></script>
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="/Image/" class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>PHU DA</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li class="test"><a href="">My Assets</a></li>
+                                        <li class="test"><a href="">Make Request</a></li>
+                                        <li class="test"><a href="">Tracking Requests</a></li>
+                                    </ul>
+                                </li>
+
+                              
+                                    <li>
+                                        <a><i class="fa fa-edit"></i> Manage Requests <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="">Handle Requests</a></li>
+                                        </ul>
+                                    </li>
+                                
+                                    <li>
+                                        <a><i class="fa fa-edit"></i> Manage Requests <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="">Handle Requests</a></li>
+                                            <li><a href="">Select Quote</a></li>
+                                        </ul>
+                                    </li>
+                                
+                                    <li>
+                                        <a><i class="fa fa-desktop"></i> Manage Assets <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="">Assets In Stock</a></li>
+                                            <li><a href="">Assets In Use</a></li>
+                                        </ul>
+                                    </li>
+                                }
+
+                                    <li>
+                                        <a><i class="fa fa-bar-chart"></i> Reports <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="">Manage Orders</a></li>
+                                        </ul>
+                                    </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right" style="width: 260px">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="/Image/" alt="">PHU DA
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="/Login/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                                s
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Phu Da City
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="/build/js/custom.min.js"></script>
 </body>
 </html>
+
+
+

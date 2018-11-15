@@ -12,7 +12,8 @@ using EInvoice.Web.Models;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public class ProductController : Controller
+    [PermissionLogin]
+    public class ProductController : Controller
 	{
 		private readonly IProductService _productService;
 		private readonly IUnitService _unitService;

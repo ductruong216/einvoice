@@ -4,7 +4,8 @@ using EInvoice.Data.Services;
 
 namespace EInvoice.Web.Controllers
 {
-	public class BaseController : Controller
+    [PermissionLogin]
+    public class BaseController : Controller
 	{
 		private IUnitService _unitSerivce;
 

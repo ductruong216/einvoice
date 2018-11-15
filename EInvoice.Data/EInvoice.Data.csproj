@@ -155,6 +155,8 @@
     <Compile Include="Data\UserLogin.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Constant.cs" />
+    <Compile Include="Utilities\Enumerations\Enumeraions.cs" />
     <Compile Include="Infrastructure\Implementation\Disposable.cs" />
     <Compile Include="Infrastructure\Implementation\DbFactory.cs" />
     <Compile Include="Infrastructure\Implementation\ObjectFactory.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\IUnitService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Utilities\Permission.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\" />

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
+    [PermissionLogin]
 	public partial class CategoryController : Controller
 	{
 		private readonly IUnitService _unitService;

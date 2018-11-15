@@ -8,7 +8,8 @@ using EInvoice.Data.Services;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public class UnitController : Controller
+    [PermissionLogin]
+    public class UnitController : Controller
 	{
 		private readonly IUnitService _unitService;
 

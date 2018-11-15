@@ -5,7 +5,8 @@ using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers
 {
-	public class CompanyController : Controller
+    [PermissionLogin]
+    public class CompanyController : Controller
 	{
 		private ICompanyService _companyService;
 

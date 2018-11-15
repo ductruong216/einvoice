@@ -13,7 +13,8 @@ using Microsoft.Owin.Security;
 
 namespace EInvoice.Web.Controllers
 {
-	public class AccountController : Controller
+    [PermissionLogin]
+    public class AccountController : Controller
 	{
 
 		ApplicationSignInManager _signInManager;
