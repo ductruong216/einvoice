@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using EInvoice.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,13 +30,25 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		}
 
 
-	
-		//[HttpPost, ValidateInput(false)]
-		//public ActionResult DeleteDraft(int invoiceId)
-		//{
-		//	if (productID > 0)
-		//		SafeExecute(() => NorthwindDataProvider.DeleteProduct(productID));
-		//	return EditFormTemplatePartial();
-		//}
+		[HttpGet]
+		public ActionResult Edit(int id)
+		{
+			var invoice = Mapper.Map<InvoiceViewModel>(_invoiceService.GetSingleById(id));
+			return View(invoice);
+		}
+
+		[HttpPost]
+		public void Edit(Invoice invoice)
+		{
+			try
+			{
+				_invoiceService.Update(invoice);
+			
+			}
+			catch (Exception e)
+			{
+				ViewData["EditError"] = e.Message;
+			}
+		}
 	}
 }

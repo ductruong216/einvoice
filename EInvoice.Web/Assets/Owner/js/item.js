@@ -23,7 +23,8 @@ function calc_total() {
 }
 // Add-Remove products
 $(document).ready(function () {
-	var i = 1;
+	var i = $('#goodsTable tr').length - 1;
+	//var i = 1;
 	$("#add_row").click(function () {
 		b = i - 1;
 		//var newRow = $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);

@@ -2966,6 +2966,7 @@
     <Content Include="vendors\moment\CHANGELOG.md" />
     <Content Include="vendors\moment\LICENSE" />
     <Content Include="vendors\moment\README.md" />
+    <Content Include="Views\Invoice\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

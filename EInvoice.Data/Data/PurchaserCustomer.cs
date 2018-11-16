@@ -23,7 +23,7 @@ namespace EInvoice.Data.Data
         public long ID { get; set; }
         public string Code { get; set; }
         public Nullable<long> TaxCode { get; set; }
-        public string Name { get; set; }
+        public string EnterpriseName { get; set; }
         public string Purchaser { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }

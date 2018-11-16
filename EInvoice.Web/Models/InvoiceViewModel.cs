@@ -10,6 +10,7 @@ namespace EInvoice.Web.Models
 		public int? CompanyId { get; set; }
 		public int? PatternId { get; set; }
 		public string Series { get; set; }
+	
 		public int? No { get; set; }
 		public string SecureCode { get; set; }
 		public long? CustomerId { get; set; }
@@ -41,6 +42,7 @@ namespace EInvoice.Web.Models
 		public virtual PaymentMethodViewModel PaymentMethod { get; set; }
 		public virtual ICollection<ItemViewModel> Items { get; set; }
 		public virtual CustomerViewModel Customer { get; set; }
+		public virtual PurchaserCustomerViewModel PurchaserCustomer { get; set; }
 	}
 
 	

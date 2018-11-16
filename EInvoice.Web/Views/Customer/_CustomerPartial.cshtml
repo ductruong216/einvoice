@@ -43,7 +43,7 @@
 			c.SetTemplateContent(r =>
 			{
 
-				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"data-toggle=\"modal\" data-target=\"#editCustomer\"  onclick=\"location.href='/Customer/Edit/'+document.getElementById('customerId').value\">Edit</button>" );
+				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"data-toggle=\"modal\" data-target=\"#editCustomer\"  onclick=\"location.href='/Customer/Edit/'+ document.getElementById('customerId').value \">Edit</button>" );
 		});
 		});
 		toolbarCustomer.Items.Add(GridViewToolbarCommand.Edit);

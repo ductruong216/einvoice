@@ -200,7 +200,7 @@
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="15" />
           <Property Name="TaxCode" Type="bigint" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="EnterpriseName" Type="nvarchar" MaxLength="250" />
           <Property Name="Purchaser" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
@@ -1121,7 +1121,7 @@
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="TaxCode" Type="Int64" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EnterpriseName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Purchaser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1425,7 +1425,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Purchaser" ColumnName="Purchaser" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EnterpriseName" ColumnName="EnterpriseName" />
                 <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

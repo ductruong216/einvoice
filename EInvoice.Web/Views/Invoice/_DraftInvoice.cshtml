@@ -35,6 +35,7 @@
 		((MVCxGridView)sender).Columns.Add(c);
 	};
 
+
 	settings.CustomColumnDisplayText = (sender, e) =>
 	{
 		if (e.Column.FieldName == "STT")
@@ -63,6 +64,7 @@
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "No";
+		c.Caption = "No";
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
 		c.SetDataItemTemplateContent(r =>
@@ -105,9 +107,8 @@
 		c.SetDataItemTemplateContent(r =>
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-
-			ViewContext.Writer.Write("<a href=\"/Invoice/NewInvoice\" class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>"+
-									 "<a href=\"/Invoice/DeleteDraft\" class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>");
+			ViewContext.Writer.Write("<a href=\"/Invoice/Edit/" +invoiceId+ "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
+									 "<a href=\"/Invoice/DeleteDraft/" + invoiceId + "\" class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>");
 		});
 	});
 }).Bind(Model).GetHtml())
