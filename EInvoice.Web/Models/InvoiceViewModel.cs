@@ -14,6 +14,7 @@ namespace EInvoice.Web.Models
 		public int? No { get; set; }
 		public string SecureCode { get; set; }
 		public long? CustomerId { get; set; }
+		public long? PurchaserCustomerID { get; set; }
 		public int? PaymentTypeID { get; set; }
 		public string Note { get; set; }
 		public int? Tax { get; set; }

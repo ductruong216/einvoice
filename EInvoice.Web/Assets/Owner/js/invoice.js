@@ -1,13 +1,12 @@
-﻿
+﻿// Create Invoice
 $(document).ready(function () {
-
 	$("#submitInvoice").click(function () {
 		var items = [];
 		var count = $('#goodsTable tr').length;
+
 		for (var i = 1; i < count; ++i) {
 			if ($('#productCode' + i).val().trim() !== "" && $('#productId' + i).val().trim() !== "") {
-				debugger;
-				var	 item = {
+				var item = {
 					ProductId: $('#productId' + i).val(),
 					ItemName: $('#name' + i).val(),
 					ItemPrice: $('#price' + i).val(),
@@ -15,10 +14,10 @@ $(document).ready(function () {
 					Quantity: $('#qty' + i).val(),
 					TotalAmount: $('#total' + i).val()
 				};
+				items.push(item);
 			}
-
-			items.push(item);
 		}
+
 		$.ajax({
 			type: "POST",
 			dataType: "json",
@@ -50,12 +49,152 @@ $(document).ready(function () {
 				,
 				Note: $('#note').val()
 			},
-			success: function (data) {
-				alert("Successfully");
-			},
-			error: function (status) {
-				alert("Failed");
+			success: function (response) {
+				if (response.Success) {
+					swal({
+						title: "Add Invoice",
+						text: response.Message,
+						icon: "success",
+						buttons: false,
+						timer: 1500
+					}).then(function () {
+						window.location.href = "/Invoice/Draft";
+					});
+				} else {
+					swal({
+						title: "Add Invoice",
+						text: response.Message,
+						icon: "error",
+						buttons: false,
+						timer: 2000
+					})
+				}
 			}
 		});
 	});
 });
+
+//Edit Invoice
+$(document).ready(function () {
+	$("#submitEditInvoice").click(function () {
+		var items = [];
+		var count = $('#goodsTable tr').length;
+		for (var i = 1; i < count; ++i) {
+			if ($('#productCode' + i).val() !== "" && $('#productId' + i).val() !== "") {
+				var item = {
+					ProductId: $('#productId' + i).val(),
+					ItemName: $('#name' + i).val(),
+					ItemPrice: $('#price' + i).val(),
+					UnitName: $('#unit' + i).val(),
+					Quantity: $('#qty' + i).val(),
+					TotalAmount: $('#total' + i).val()
+				};
+				items.push(item);
+			}
+		}
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: '/Invoice/Edit',
+			data: {
+				Tax: $('#tax').val(),
+				PurchaserCustomerID: $('#PurchaserCustomerID').val(),
+				CompanyID: $('#CompanyId').val(),
+				TaxAmount: $('#tax_amount').val(),
+				ProductId: $('#tax_amount').val(),
+				ID: $('#ID').val(),
+
+				SubTotalAmount: $('#sub_total').val(),
+				GrandTotalAmount: $('#total_amount').val(),
+				PatternId: parseInt($('#pattern').val(), 10),
+				Series: $('#series').val(),
+				No: $('#no').val(),
+				CreatedDate: $('#date').val(),
+				PurchaserCustomer: {
+					Code: $('#CusCode').val(),
+					Purchaser: $('#purchaser').val(),
+					EnterpriseName: $('#companyName').val(),
+					TaxCode: $('#taxCode').val(),
+					Address: $('#address').val(),
+					Email: $('#email').val(),
+					Phone: $('#phone').val()
+				},
+				Status: "Draft",
+				Customer: {
+					ID: $('#CustomerId').val()
+				},
+
+				CustomerId: $('#customerId').val(),
+
+				Items: items,
+
+				PaymentTypeID:
+					$('#paymentType').val()
+				,
+				Note: $('#note').val()
+			},
+			success: function (response) {
+				if (response.Success) {
+					swal({
+						title: "Edit Invoice",
+						text: response.Message,
+						icon: "success",
+						buttons: false,
+						timer: 1500
+					}).then(function () {
+						window.location.href = "/Invoice/Draft";
+					});
+				} else {
+					swal({
+						title: "Edit Invoice",
+						text: response.Message,
+						icon: "error",
+						buttons: false,
+						timer: 2000
+					});
+				}
+			}
+		});
+	});
+});
+
+// Confirm Delete Invoice
+function deleteInvoice(id) {
+	swal({
+		title: "Are you sure?",
+		
+		icon: "warning",
+		buttons: true,
+		dangerMode: true
+	}).then((isConfirm) => {
+		if (isConfirm) {
+			$.ajax({
+				type: "POST",
+				url: "/Invoice/Delete/" + id,
+				success: function(data) {
+				
+					if (data.Success === true) {
+						swal({
+							title: "Delete Invoice",
+							text: data.Message,
+							icon: "success",
+							buttons: false,
+							timer: 1500
+						}).then(function() {
+							DraftInvoice.Refresh();
+						});
+					} else {
+						swal({
+							title: "Delete Invoice",
+							text: data.Message,
+							icon: "error",
+							buttons: false,
+							timer: 1500
+						});
+					}
+				}
+			});
+		}
+	});
+}
+

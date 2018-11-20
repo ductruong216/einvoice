@@ -60,10 +60,3 @@
 	margin-top: 0;
 }
 
-swal({
-	title: "Your Request",
-	       text: "Has Been sent Successfully",
-	       icon: "success",
-	       buttons: false,
-	       timer: 1300
-});

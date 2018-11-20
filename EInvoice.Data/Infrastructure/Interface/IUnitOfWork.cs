@@ -1,7 +1,15 @@
-﻿namespace EInvoice.Data.Infrastructure.Interface
+﻿using System;
+using System.Data;
+
+namespace EInvoice.Data.Infrastructure.Interface
 {
-	public interface IUnitOfWork
+	public interface IUnitOfWork : IDisposable
 	{
-		void SaveChanges();
+		int SaveChanges();
+		void Dispose(bool disposing);
+		IRepository<TEntity> Repository<TEntity>() where TEntity : class;
+		void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.Unspecified);
+		bool Commit();
+		void Rollback();
 	}
 }

@@ -1,6 +1,11 @@
 ﻿using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
 using EInvoice.Data.Services;
+using EInvoice.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Schema;
 
 namespace EInvoice.Service
 {
@@ -10,25 +15,108 @@ namespace EInvoice.Service
 		private readonly IRepository<Product> _productRepository;
 		private readonly IRepository<Unit> _unitRepository;
 		private readonly IRepository<PaymentMethod> _paymentMethodRepository;
+		private readonly IRepository<PurchaserCustomer> _purchaserRepository;
+		private readonly IRepository<Item> _itemRepository;
 
 		public InvoiceService(IRepository<Customer> customerRepository,
 			IRepository<Invoice> repository,
 			IRepository<Product> productRepository,
 			IRepository<Unit> unitRepository,
 			IRepository<PaymentMethod> paymentMethodRepository,
-			IUnitOfWork unitOfWork) : base(repository, unitOfWork)
+			IRepository<PurchaserCustomer> purchaserRepository,
+			IRepository<Item> itemRepository,
+
+		IUnitOfWork unitOfWork) : base(repository, unitOfWork)
 		{
 			_customerRepository = customerRepository;
 			_productRepository = productRepository;
 			_unitRepository = unitRepository;
 			_paymentMethodRepository = paymentMethodRepository;
+			_purchaserRepository = purchaserRepository;
+			_itemRepository = itemRepository;
 		}
 
 		public void AddDraft(Invoice invoice)
 		{
+			invoice.Status = "Draft";
 			invoice.CompanyId = 3;
 
 			Add(invoice);
+		}
+
+		private void UpdateInvoiceCustomer(PurchaserCustomer customer, long? oldCustomerId, long? newCustomerId, long? purchaserInvoiceId)
+		{
+			// Update Customer
+			if (oldCustomerId == newCustomerId)
+			{
+				customer.ID = (long)purchaserInvoiceId;
+				_purchaserRepository.Update(customer);
+			}
+			else
+			{
+				_purchaserRepository.Add(customer);
+				// Commit
+
+				purchaserInvoiceId = _purchaserRepository.GetAll().Last().ID;
+			}
+		}
+
+		public void UpdateInvoice(Invoice invoice)
+		{ 
+			try
+			{
+				_unitOfWork.BeginTransaction();
+				if (invoice.Customer.ID == invoice.CustomerId)
+				{
+					invoice.PurchaserCustomer.ID = (long)invoice.PurchaserCustomerID;
+					_purchaserRepository.Update(invoice.PurchaserCustomer);
+				}
+				else
+				{
+					try
+					{
+						_purchaserRepository.Add(invoice.PurchaserCustomer);
+						_unitOfWork.SaveChanges();
+					}
+					catch(Exception e)
+					{
+						throw e;
+					}
+					// Commit
+
+					invoice.PurchaserCustomerID = _purchaserRepository.GetAll().Last().ID;
+				}
+
+			
+
+				invoice.Customer = null;
+
+				_itemRepository.RemoveAllItem(invoice.ID);
+				var items = new List<Item>(invoice.Items);
+				for (int i = 0; i < invoice.Items.Count(); i++)
+				{
+					items[i].InvoiceId = invoice.ID;
+					_itemRepository.Add(items[i]);
+				}
+				_unitOfWork.SaveChanges();
+				invoice.Items = items;
+				
+
+				Update(invoice);
+
+				_unitOfWork.Commit();
+			}
+			catch (Exception e)
+			{
+				_unitOfWork.Rollback();
+			}
+		}
+
+		public void DeleteInvoice(int id)
+		{
+			var invoice = GetSingleById(id);
+			invoice.isDel = true;
+			Update(invoice);
 		}
 	}
 }

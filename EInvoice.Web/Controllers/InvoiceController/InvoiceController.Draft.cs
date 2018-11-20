@@ -13,15 +13,16 @@ namespace EInvoice.Web.Controllers.InvoiceController
 	public partial class InvoiceController : Controller
 	{
 
-		public ActionResult DraftInvoice()
+		public ActionResult Draft()
 		{
 			return View();
 		}
 
-		public ActionResult _DraftInvoice()
+		public ActionResult _Draft()
 		{
-			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll());
-			return PartialView("_DraftInvoice", model);
+			var a = _invoiceService.GetAll().LastOrDefault(x => x.isDel == false);
+			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll().Where(x=>x.isDel ==false).OrderByDescending(x => x.ID));
+			return PartialView("_Draft", model);
 		}
 
 		public IEnumerable<Pattern> GetPattern()
@@ -38,16 +39,30 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		}
 
 		[HttpPost]
-		public void Edit(Invoice invoice)
+		public ActionResult Edit(Invoice invoice)
 		{
 			try
 			{
-				_invoiceService.Update(invoice);
-			
+				_invoiceService.UpdateInvoice(invoice);
+				return Success("Edit Successfully");
 			}
 			catch (Exception e)
 			{
-				ViewData["EditError"] = e.Message;
+				return Error("Edit Failed");
+			}
+		}
+
+		[HttpPost]
+		public ActionResult Delete(int id)
+		{
+			try
+			{
+				_invoiceService.DeleteInvoice(id);
+				return Success("Delete Successfully");
+			}
+			catch (Exception e)
+			{
+				return Error("Delete Failed");
 			}
 		}
 	}

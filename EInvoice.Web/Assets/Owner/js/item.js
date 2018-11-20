@@ -11,6 +11,7 @@ function calc() {
 		}
 	});
 }
+
 function calc_total() {
 	var total = 0;
 	$('.total').each(function () {
@@ -19,24 +20,47 @@ function calc_total() {
 	$('#sub_total').val(total.toFixed(2));
 	tax_sum = total / 100 * $('#tax').val();
 	$('#tax_amount').val(tax_sum.toFixed(2));
+
 	$('#total_amount').val((tax_sum + total).toFixed(2));
 }
+
+function checkValidation() {
+	var validate = true;
+	$cells = $('#tab_logic').find('tr input');
+	$cells.each(function () {
+		if ($(this).val().trim() === "") {
+			validate = false;
+			$(this).addClass("has-error");
+		}
+	});
+	return validate;
+}
+
 // Add-Remove products
 $(document).ready(function () {
 	var i = $('#goodsTable tr').length - 1;
-	//var i = 1;
+	b = i - 1;
 	$("#add_row").click(function () {
-		b = i - 1;
+		var validate = checkValidation();
+		if (validate === true) {
+			var newRow = $('#addr' + i).html('<td> ' + (i + 1) + '  </td >' +
+				'<td style="display: none"><input id="productId' + (i + 1) + '" name="productId' + i + '"' + 'class="form-control id" /></td>' +
+				'<td><input id="productCode' + (i + 1) + '" name="productCode' + i + '"' + ' class="form-control name" id="description" step="0" min="0" /></td>' +
+				'<td><input type="text" id="name' + (i + 1) + '" name="name' + i + '" ' + 'class="form-control name" id="description" step="0" min="0" /></td>' +
+				'<td><input type="number" id="price' + (i + 1) + '" name="price' + i + '' + '"class="form-control itemPrice" step="0.00" min="0" /></td >' +
+				'<td><input type="text" id="unit' + (i + 1) + '" name="unit' + i + '' + '" class="form-control unit" step="0.00" min="0" /></td >' +
+				'<td><input type="number" id="qty' + (i + 1) + '"name="qty' + + i + '"  class="form-control qty" step="0" min="0" /></td >' +
+				'<td><input type="number"  id="total' + (i + 1) + '"name="total' + i + '" value="0.00" class="form-control total" readonly /></td >');
+			var index = i + 1;
+		}
+		else {
+			$("#tab_logic").on("change", "input", function () {
+				$cells.removeClass("has-error");
+			});
+		}
+
 		//var newRow = $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
-		var newRow = $('#addr' + i).html('<td> ' + (i + 1) + '  </td >' +
-			'<td style="display: none"><input id="productId' + (i + 1) + '" name="productId' + i + '"' + 'class="form-control id" /></td>' +
-			'<td><input id="productCode' + (i + 1) + '" name="productCode' + i + '"' + ' class="form-control name" id="description" step="0" min="0" /></td>' +
-			'<td><input type="text" id="name' + (i + 1) + '" name="name' + i + '" ' + 'class="form-control name" id="description" step="0" min="0" /></td>' +
-			'<td><input type="number" id="price' + (i + 1) + '" name="price' + i + '' + '"class="form-control itemPrice" step="0.00" min="0" /></td >' +
-			'<td><input type="text" id="unit' + (i + 1) + '" name="unit' + i + '' + '" class="form-control unit" step="0.00" min="0" /></td >' +
-			'<td><input type="number" id="qty' + (i + 1) + '"name="qty' + + i + '"  class="form-control qty" step="0" min="0" /></td >' +
-			'<td><input type="number"  id="total' + (i + 1) + '"name="total' + i + '" placeholder="0.00" class="form-control total" readonly /></td >');
-		var index = i + 1;
+
 
 		newRow.find("#name" + index).autocomplete({
 			source: function (request, response) {

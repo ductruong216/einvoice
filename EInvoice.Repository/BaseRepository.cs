@@ -13,18 +13,17 @@ namespace EInvoice.Repository
 		#region Properties
 
 		private readonly InvoiceEntities _dbContext;
+		protected readonly DbSet<T> _dbSet;
+		public DbSet<T> DbSet => _dbSet;
 
-		protected readonly IDbSet<T> _dbSet;
-
-		public IDbSet<T> DbSet => _dbSet;
-
-		protected IDbFactory DbFactory => _dbContext;
+		public IDbFactory DbFactory => _dbContext;
 
 		public BaseRepository(IDbFactory dbFactory)
 		{
 			_dbContext = dbFactory as InvoiceEntities;
 			_dbSet = _dbContext.Set<T>();
 		}
+	
 
 		#endregion Properties
 
@@ -103,4 +102,5 @@ namespace EInvoice.Repository
 			return _dbSet.ToList();
 		}
 	}
+	
 }

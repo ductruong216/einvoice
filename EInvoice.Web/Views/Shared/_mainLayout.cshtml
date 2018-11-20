@@ -54,7 +54,7 @@
 											<a href="@Url.Action("Create","Invoice")">New Invoice</a>
 										</li>
 										<li>
-											<a href="@Url.Action("DraftInvoice", "Invoice")">List Invoice</a>
+											<a href="@Url.Action("Draft", "Invoice")">List Invoice</a>
 										</li>
 										<li>
 											<a href="#">Modify Invoice</a>
@@ -144,11 +144,13 @@
 	</div>
 
 	<!-- Jquery JS-->
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.18.0/jquery.validate.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="~/Scripts/jquery-3.3.1.js"></script>
+	<script src="~/Scripts/jquery-1.12.4.js"></script>
+	<script src="~/Scripts/jquery-ui.js"></script>
+	@*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+	<script src="~/Scripts/jquery.validate.js"></script>
+	@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.18.0/jquery.validate.js"></script>*@
+	<script src="~/Scripts/sweetalert.min.js"></script>
 	<script src="~/Assets/Owner/js/myscript.js"></script>
 	<script src="~/Assets/Owner/js/customer.js"></script>
 	<script src="~/Assets/Owner/js/invoice.js"></script>
@@ -166,7 +168,3 @@
 	<script src="/build/js/custom.min.js"></script>
 </body>
 </html>
-
-
-
-

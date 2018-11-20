@@ -9,7 +9,7 @@ namespace EInvoice.Data.Infrastructure.Interface
 {
 	public interface IRepository<T> where T : class
 	{
-		IDbSet<T> DbSet { get; }
+		DbSet<T> DbSet { get; }
 
 		void Add(T entity);
 

@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using EInvoice.Data.Data;
+
 using EInvoice.Data.Infrastructure.Interface;
 
 namespace EInvoice.Data.Infrastructure.Implementation
@@ -15,7 +15,6 @@ namespace EInvoice.Data.Infrastructure.Implementation
 		//{
 		//	return _dbContext ?? (_dbContext = new InvoiceEntities());
 		//}
-
 		public void Dispose()
 		{
 			base.Dispose();

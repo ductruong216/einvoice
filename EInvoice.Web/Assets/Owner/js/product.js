@@ -3,7 +3,9 @@
 // Autocomplete Product
 function ProductAutocomplete(field, fieldValue, URL) {
 	$("#" + field).autocomplete({
+	
 		source: function (request, response) {
+			debugger;
 			$.ajax({
 				url: URL,
 				type: "POST",

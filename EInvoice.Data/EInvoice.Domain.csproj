@@ -159,6 +159,9 @@
     <Compile Include="Data\Serial.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\sysdiagram.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Unit.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
@@ -174,7 +177,6 @@
     <Compile Include="Infrastructure\Implementation\Disposable.cs" />
     <Compile Include="Infrastructure\Implementation\DbFactory.cs" />
     <Compile Include="Infrastructure\Implementation\ObjectFactory.cs" />
-    <Compile Include="Infrastructure\Implementation\UnitOfWork.cs" />
     <Compile Include="Infrastructure\Interface\IDbFactory.cs" />
     <Compile Include="Infrastructure\Interface\IRepository.cs" />
     <Compile Include="Infrastructure\Interface\IUnitOfWork.cs" />

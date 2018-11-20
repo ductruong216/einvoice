@@ -46,6 +46,7 @@ namespace EInvoice.Web
 			builder.RegisterType<BaseRepository<PaymentMethod>>().As<IRepository<PaymentMethod>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Pattern>>().As<IRepository<Pattern>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Item>>().As<IRepository<Item>>().InstancePerRequest();
+			builder.RegisterType<BaseRepository<PurchaserCustomer>>().As<IRepository<PurchaserCustomer>>().InstancePerRequest();
 
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
 			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();
@@ -55,6 +56,7 @@ namespace EInvoice.Web
 			builder.RegisterType<PaymentMethodService>().As<IPaymentMethodService>().AsSelf();
 			builder.RegisterType<PatternService>().As<IPatternService>().InstancePerRequest();
 			builder.RegisterType<ItemService>().As<IItemService>().InstancePerRequest();
+			builder.RegisterType<PurchaserCustomer>().As<PurchaserCustomer>().InstancePerRequest();
 
 			var container = builder.Build();
 			ObjectFactory.Container = container;

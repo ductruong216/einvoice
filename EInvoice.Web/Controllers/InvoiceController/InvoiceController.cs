@@ -52,21 +52,35 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		}
 
 		[HttpPost]
-		public void Create(Invoice invoice)
+		
+		public JsonResult Create(Invoice invoice)
 		{
 			try
 			{
 				_invoiceService.AddDraft(invoice);
+				return Success("Successfully");
 			}
 			catch (Exception e)
 			{
-				ViewData["EditError"] = e.Message;
+				return Error(e.Message);
 			}
 		}
 
+		
 		public IList<PaymentMethod> GetPayments()
 		{
 			return _paymentMethodService.GetAll();
 		}
+
+		public JsonResult Success(string message)
+		{
+			return Json(new { Success = true, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult Error(string message)
+		{
+			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
 	}
 }

@@ -1,7 +1,5 @@
 ﻿@using System.Drawing
 @using EInvoice.Web.Controllers.InvoiceController
-@using DevExpress.Utils;
-@using EInvoice.Data.Data
 @using EInvoice.Web.Models
 @using Unit = System.Web.UI.WebControls.Unit
 
@@ -12,10 +10,9 @@
 
 @(Html.DevExpress().GridView<InvoiceViewModel>(settings =>
 {
-
 	settings.Name = "DraftInvoice";
 	settings.KeyFieldName = "ID";
-	settings.CallbackRouteValues = new { Controller = "Invoice", Action = "_DraftInvoice" };
+	settings.CallbackRouteValues = new { Controller = "Invoice", Action = "_Draft" };
 	settings.Width = Unit.Percentage(100);
 	settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#2A3F54");
 	settings.Styles.Header.ForeColor = Color.White;
@@ -108,7 +105,7 @@
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
 			ViewContext.Writer.Write("<a href=\"/Invoice/Edit/" +invoiceId+ "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
-									 "<a href=\"/Invoice/DeleteDraft/" + invoiceId + "\" class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>");
+									 "<a onclick=\"deleteInvoice("+invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>");
 		});
 	});
 }).Bind(Model).GetHtml())

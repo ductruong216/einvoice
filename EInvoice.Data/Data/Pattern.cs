@@ -25,8 +25,8 @@ namespace EInvoice.Data.Data
         public string Content { get; set; }
         public Nullable<int> SerialId { get; set; }
     
+        public virtual Serial Serial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
-        public virtual Serial Serial { get; set; }
     }
 }
