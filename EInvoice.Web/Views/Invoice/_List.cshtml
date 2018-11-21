@@ -1,0 +1,30 @@
+﻿@Html.DevExpress().PageControl(
+	settings => {
+		settings.Name = "ListInvoice";
+
+		settings.Width = Unit.Percentage(100);
+		settings.ControlStyle.CssClass = "dxtcFixed";
+
+		settings.TabPages.Add(tabpage =>
+		{
+			tabpage.Name = "Draft";
+			tabpage.Text = "draft";
+			tabpage.SetContent(() =>
+			{
+				ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
+				Html.RenderAction("Draft");
+				ViewContext.Writer.Write("</div>");
+			});
+		});
+		settings.TabPages.Add(tabpage =>
+		{
+			tabpage.Name = "Released";
+			tabpage.Text = "released";
+			tabpage.SetContent(() =>
+			{
+				ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
+				Html.RenderAction("Release");
+				ViewContext.Writer.Write("</div>");
+			});
+		});
+	}).GetHtml()

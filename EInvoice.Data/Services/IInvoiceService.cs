@@ -8,5 +8,6 @@ namespace EInvoice.Data.Services
 
 		void UpdateInvoice(Invoice invoice);
 		void DeleteInvoice(int id);
+		void ChangeStatus(int invoiceId);
 	}
 }

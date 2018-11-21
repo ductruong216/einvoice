@@ -51,6 +51,11 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return View();
 		}
 
+	
+		public ActionResult List()
+		{
+			return View();
+		}
 		[HttpPost]
 		
 		public JsonResult Create(Invoice invoice)

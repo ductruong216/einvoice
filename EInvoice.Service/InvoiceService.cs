@@ -118,6 +118,13 @@ namespace EInvoice.Service
 			invoice.isDel = true;
 			Update(invoice);
 		}
+
+		public void ChangeStatus(int invoiceId)
+		{
+			var invoice = GetSingleById(invoiceId);
+			invoice.Status = "Released";
+			Update(invoice);
+		}
 	}
 }
 

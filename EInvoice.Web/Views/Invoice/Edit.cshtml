@@ -85,29 +85,28 @@
 											 id = "CusCode"
 										 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Code)
-												@* If New Code !=  currently Code => link new customer*@
-												@* <input class="form-control" name="Code" id="CusCode" type="text"> *@
+
 												@Html.HiddenFor(model => model.CustomerId, new
 												{
 													id="customerId"
 												})
-												
+
 											</div>
 										</div>
 
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Purchaser: </label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
-													@Html.TextBoxFor(model => model.PurchaserCustomer.Purchaser,
-					 new
-					 {
-						 name = "Purchaser",
-						 @class = "form-control",
-						 type = "text",
-						 id="purchaser"
-					 })
-													@Html.ValidationMessageFor(model => model.PurchaserCustomer.Purchaser)
-													@* <input class="form-control" name="Purchaser" id="purchaser" type="text"> *@
+												@Html.TextBoxFor(model => model.PurchaserCustomer.Purchaser,
+												 new
+												 {
+													 name = "Purchaser",
+													 @class = "form-control",
+													 type = "text",
+													 id="purchaser"
+												 })
+												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Purchaser)
+												@* <input class="form-control" name="Purchaser" id="purchaser" type="text"> *@
 											</div>
 										</div>
 
@@ -115,13 +114,13 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Code: </label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												@Html.TextBoxFor(model => model.PurchaserCustomer.TaxCode,
-				 new
-				 {
-					 name = "TaxCode",
-					 @class = "form-control",
-					 type = "text",
-					 id= "taxCode"
-				 })
+													 new
+													 {
+														 name = "TaxCode",
+														 @class = "form-control",
+														 type = "text",
+														 id= "taxCode"
+													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.TaxCode)
 												@* <input class="form-control" name="TaxCode" id="taxCode" type="text"> *@
 											</div>
@@ -137,13 +136,13 @@
 											<label class="control-label col-md-2 col-sm-2 col-xs-3">Enterprise Name:</label>
 											<div class="col-md-10 col-sm-10 col-xs-9">
 												@Html.TextBoxFor(model => model.PurchaserCustomer.EnterpriseName,
-				 new
-				 {
-					 name = "Name",
-					 @class = "form-control",
-					 type = "text",
-					 id= "companyName"
-				 })
+													 new
+													 {
+														 name = "Name",
+														 @class = "form-control",
+														 type = "text",
+														 id= "companyName"
+													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.EnterpriseName)
 												@*<input class="form-control" name="Name" id="companyName" type="text">*@
 											</div>
@@ -153,12 +152,12 @@
 											<label class="control-label col-md-2 col-sm-2 col-xs-3">Address Name:</label>
 											<div class="col-md-10 col-sm-10 col-xs-9">
 												@Html.TextBoxFor(model => model.PurchaserCustomer.Address,
-				 new
-				 {
-					 @class = "form-control",
-					 type = "text",
-					 id="address"
-				 })
+													 new
+													 {
+														 @class = "form-control",
+														 type = "text",
+														 id="address"
+													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Address)
 												@*<input class="form-control" name="Address" id="address" type="text">*@
 											</div>
@@ -168,12 +167,12 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Email: </label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												@Html.TextBoxFor(model => model.PurchaserCustomer.Email,
-				 new
-				 {
-					 @class = "form-control",
-					 type = "text",
-					 id="email"
-				 })
+													 new
+													 {
+														 @class = "form-control",
+														 type = "text",
+														 id="email"
+													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Email)
 
 												@*<input class="form-control" name="Email" id="email" type="text">*@
@@ -184,12 +183,12 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Phone: </label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												@Html.TextBoxFor(model => model.PurchaserCustomer.Phone,
-				 new
-				 {
-					 @class = "form-control",
-					 type = "text",
-					 id="phone"
-				 })
+												 new
+												 {
+													 @class = "form-control",
+													 type = "text",
+													 id="phone"
+												 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Phone)
 
 												@*<input class="form-control" name="Phone" id="phone" type="text">*@
@@ -200,15 +199,15 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method: </label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												@Html.DropDownListFor(model => model.PaymentTypeID,
-				 paymentTypes,
-				 new
-				 {
-					 @class = "form-control",
-					 id = "paymentType",
-					 type = "text",
-					 name = "PaymentType",
-					 required = "required"
-				 })
+												 paymentTypes,
+												 new
+												 {
+													 @class = "form-control",
+													 id = "paymentType",
+													 type = "text",
+													 name = "PaymentType",
+													 required = "required"
+												 })
 											</div>
 										</div>
 
@@ -216,13 +215,13 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Note: </label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												@Html.TextAreaFor(model => model.Note,
-				 new
-				 {
-					 style = "padding-left:5%",
-					 @class = "form-control",
-					 type = "text",
-					 id="note"
-				 })
+													 new
+													 {
+														 style = "padding-left:5%",
+														 @class = "form-control",
+														 type = "text",
+														 id="note"
+													 })
 												@*<textarea class="form-control" id="note" name="Note" type="text"></textarea>*@
 											</div>
 										</div>
@@ -283,15 +282,15 @@
 												<label class="control-label col-md-2 col-sm-2 col-xs-12">No: </label>
 												<div class="col-md-10 col-sm-12 col-xs-12">
 													@Html.TextBoxFor(model => model.No,
-				 new
-				 {
-					 @class = "form-control",
-					 type = "text",
-					 required = "required",
-					 value = "000000",
-					 @readonly = "readonly",
-					 id = "no"
-				 })
+													 new
+													 {
+														 @class = "form-control",
+														 type = "text",
+														 required = "required",
+														 value = "000000",
+														 @readonly = "readonly",
+														 id = "no"
+													 })
 													@Html.ValidationMessageFor(model => model.No)
 
 													@*<input type="text" id="no" name="No" class="form-control" placeholder="000000" required value="000000" readonly />*@
@@ -306,13 +305,12 @@
 															<i class="fa fa-calendar"></i>
 														</span>
 														@Html.TextBoxFor(model => model.CreatedDate,
-				 new
-				 {
-					 @class = "form-control",
-					 type = "text",
-					 id="date"
-
-				 })
+															 new
+															 {
+																 @class = "form-control",
+																 type = "text",
+																 id="date"
+															 })
 														@Html.ValidationMessageFor(model => model.No)
 														@*<input name="Date" type="text" data-plugin-datepicker class="form-control" id="date">*@
 													</div>
@@ -353,80 +351,80 @@
 														<td>@(i + 1)</td>
 														<td style="display: none">
 															@Html.TextBoxFor(model => item.ProductId,
-							 new
-							 {
-								 name = "productId" + i,
-								 @class = "form-control id",
-								 type = "text",
-								 id = "productId" + (i + 1)
-							 })
+																 new
+																 {
+																	 name = "productId" + i,
+																	 @class = "form-control id",
+																	 type = "text",
+																	 id = "productId" + (i + 1)
+																 })
 															@Html.ValidationMessageFor(model => item.ProductId)
 														</td>
 														<td>
 															@Html.TextBoxFor(model => item.ProductCode,
-							 new
-							 {
-								 name = "productCode" + i,
-								 @class = "form-control",
-								 type = "text",
-								 id = "productCode" + (i + 1)
-							 })
+																 new
+																 {
+																	 name = "productCode" + i,
+																	 @class = "form-control",
+																	 type = "text",
+																	 id = "productCode" + (i + 1)
+																 })
 															@Html.ValidationMessageFor(model => item.ProductCode)
 														</td>
 														<td>
 															@Html.TextBoxFor(model => item.ProductName,
-							 new
-							 {
-								 name = "name" + i,
-								 @class = "form-control",
-								 type = "text",
-								 id = "name" + (i + 1)
-							 })
+																 new
+																 {
+																	 name = "name" + i,
+																	 @class = "form-control",
+																	 type = "text",
+																	 id = "name" + (i + 1)
+																 })
 															@Html.ValidationMessageFor(model => item.ProductName)
 														</td>
 														<td>
 															@Html.TextBoxFor(model => item.ProductPrice,
-							 new
-							 {
-								 name = "price" + i,
-								 @class = "form-control itemPrice",
-								 type = "text",
-								 id = "price" + (i + 1)
-							 })
+																 new
+																 {
+																	 name = "price" + i,
+																	 @class = "form-control itemPrice",
+																	 type = "text",
+																	 id = "price" + (i + 1)
+																 })
 															@Html.ValidationMessageFor(model => item.ProductPrice)
 														</td>
 														<td>
 															@Html.TextBoxFor(model => item.UnitName,
-							 new
-							 {
-								 name = "unit" + i,
-								 @class = "form-control unit",
-								 type = "text",
-								 id = "unit" + (i + 1)
-							 })
+																 new
+																 {
+																	 name = "unit" + i,
+																	 @class = "form-control unit",
+																	 type = "text",
+																	 id = "unit" + (i + 1)
+																 })
 															@Html.ValidationMessageFor(model => item.UnitName)
 														</td>
 														<td>
 															@Html.TextBoxFor(model => item.Quantity,
-							 new
-							 {
-								 name = "qty" + i,
-								 @class = "form-control qty",
-								 type = "text",
-								 id = "qty" + (i + 1)
-							 })
+																 new
+																 {
+																	 name = "qty" + i,
+																	 @class = "form-control qty",
+																	 type = "text",
+																	 id = "qty" + (i + 1)
+																 })
 															@Html.ValidationMessageFor(model => item.Quantity)
 														</td>
 
 														<td>
 															@Html.TextBoxFor(model => item.TotalAmount,
-							 new
-							 {
-								 name = "total" + i,
-								 @class = "form-control total",
-								 type = "text",
-								 id = "total" + (i + 1)
-							 })
+																 new
+																 {
+																	 name = "total" + i,
+																	 @class = "form-control total",
+																	 type = "text",
+																	 id = "total" + (i + 1)
+																 })
 															@Html.ValidationMessageFor(model => item.TotalAmount)
 														</td>
 													</tr>
@@ -472,13 +470,13 @@
 
 												<td class="text-center">
 													@Html.TextBoxFor(model => model.SubTotalAmount,
-						 new
-						 {
-							 @class = "form-control",
-							 type = "number",
-							 id = "sub_total",
-							 @readonly = "readonly"
-						 })
+															 new
+															 {
+																 @class = "form-control",
+																 type = "number",
+																 id = "sub_total",
+																 @readonly = "readonly"
+															 })
 													@Html.ValidationMessageFor(model => model.SubTotalAmount)
 												</td>
 											</tr>
@@ -487,13 +485,13 @@
 												<td class="text-center">
 													<div class="input-group mb-2 mb-sm-0">
 														@Html.DropDownListFor(model => model.Tax,
-						 tax,
-						 new
-						 {
-							 @class = "form-control",
-							 type = "number",
-							 id = "tax"
-						 })
+															 tax,
+															 new
+															 {
+																 @class = "form-control",
+																 type = "number",
+																 id = "tax"
+															 })
 														<div class="input-group-addon">%</div>
 													</div>
 												</td>
@@ -502,13 +500,13 @@
 												<th class="text-center">Tax Amount</th>
 												<td class="text-center">
 													@Html.TextBoxFor(model => model.TaxAmount,
-						 new
-						 {
-							 @class = "form-control",
-							 type = "number",
-							 id = "tax_amount",
-							 @readonly = "readonly"
-						 })
+														 new
+														 {
+															 @class = "form-control",
+															 type = "number",
+															 id = "tax_amount",
+															 @readonly = "readonly"
+														 })
 													@Html.ValidationMessageFor(model => model.TaxAmount)
 												</td>
 											</tr>
@@ -545,10 +543,10 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" language="javascript">
-	var now = new Date();
-	var day = ("0" + now.getDate()).slice(-2);
-	var month = ("0" + (now.getMonth() + 1)).slice(-2);
-	var today = (month) + "/" + (day) + "/" + now.getFullYear();
-	document.getElementById('date').value = today;
-</script>
+@*<script type="text/javascript" language="javascript">
+		var now = new Date();
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+		var today = (month) + "/" + (day) + "/" + now.getFullYear();
+		document.getElementById('date').value = today;
+	</script>*@

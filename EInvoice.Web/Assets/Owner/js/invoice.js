@@ -161,8 +161,8 @@ $(document).ready(function () {
 // Confirm Delete Invoice
 function deleteInvoice(id) {
 	swal({
-		title: "Are you sure?",
-		
+		title: "Do you want to delete this invoice?",
+
 		icon: "warning",
 		buttons: true,
 		dangerMode: true
@@ -171,8 +171,8 @@ function deleteInvoice(id) {
 			$.ajax({
 				type: "POST",
 				url: "/Invoice/Delete/" + id,
-				success: function(data) {
-				
+				success: function (data) {
+
 					if (data.Success === true) {
 						swal({
 							title: "Delete Invoice",
@@ -180,7 +180,7 @@ function deleteInvoice(id) {
 							icon: "success",
 							buttons: false,
 							timer: 1500
-						}).then(function() {
+						}).then(function () {
 							DraftInvoice.Refresh();
 						});
 					} else {
@@ -198,3 +198,46 @@ function deleteInvoice(id) {
 	});
 }
 
+function Release(id) {
+	swal({
+		title: "Do you want to release this invoice?",
+		icon: "info",
+		buttons: true,
+		dangerMode: true
+	}).then((isConfirm) => {
+		if (isConfirm) {
+			debugger;
+			$.ajax({
+				type: "POST",
+				url: "/Invoice/ReleaseInvoice/" + id,
+				success: function (data) {
+
+					if (data.Success === true) {
+						swal({
+							title: "Release Invoice",
+							text: data.Message,
+							icon: "success",
+							buttons: false,
+							timer: 1500
+
+						}).then(function () {
+							ReleaseGrid.Refresh();
+							DraftInvoice.Refresh();
+							ListInvoice.SetActiveTabIndex(1);
+						
+						})
+					} else {
+						swal({
+							title: "Release Invoice",
+							text: data.Message,
+							icon: "error",
+							buttons: false,
+							timer: 1500
+						});
+					}
+				}
+			});
+
+		}
+	});
+}

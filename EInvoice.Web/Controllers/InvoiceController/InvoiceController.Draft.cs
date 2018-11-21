@@ -15,14 +15,9 @@ namespace EInvoice.Web.Controllers.InvoiceController
 
 		public ActionResult Draft()
 		{
-			return View();
-		}
-
-		public ActionResult _Draft()
-		{
-			var a = _invoiceService.GetAll().LastOrDefault(x => x.isDel == false);
-			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll().Where(x=>x.isDel ==false).OrderByDescending(x => x.ID));
-			return PartialView("_Draft", model);
+			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll()
+				.Where(x => x.isDel == false && x.Status == "Draft").OrderByDescending(x => x.ID));
+			return View("_Draft", model);
 		}
 
 		public IEnumerable<Pattern> GetPattern()
@@ -58,11 +53,27 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			try
 			{
 				_invoiceService.DeleteInvoice(id);
+
 				return Success("Delete Successfully");
 			}
 			catch (Exception e)
 			{
 				return Error("Delete Failed");
+			}
+		}
+
+		[HttpPost]
+		public ActionResult ReleaseInvoice(int id)
+		{
+			try
+			{
+				_invoiceService.ChangeStatus(id);
+
+				return Success("Release successfully");
+			}
+			catch (Exception e)
+			{
+				return Error(e.Message);
 			}
 		}
 	}
