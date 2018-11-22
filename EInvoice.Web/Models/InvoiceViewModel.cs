@@ -29,9 +29,13 @@ namespace EInvoice.Web.Models
 		public long? TypeID { get; set; }
 		public int? CreatorID { get; set; }
 
-		[DataType(DataType.Date)]
-		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+		//[DataType(DataType.Date)]
+		//[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public DateTime? CreatedDate { get; set; }
+
+		
+		public DateTime? ReleaseDate { get; set; }
+
 		public DateTime? ModifyDate { get; set; }
 		public string ModifyBy { get; set; }
 		public string Status { get; set; }

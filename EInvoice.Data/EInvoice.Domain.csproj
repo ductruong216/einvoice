@@ -135,9 +135,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InvoiceModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\InvoiceType.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Item.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>

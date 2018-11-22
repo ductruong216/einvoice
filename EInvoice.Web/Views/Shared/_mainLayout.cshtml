@@ -16,7 +16,20 @@
 	<link href="~/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
 	<link href="~/Assets/Owner/css/sweetAlert.css" rel="stylesheet" />
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	@Html.DevExpress().GetStyleSheets(
+		new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+		new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
+		new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+		new StyleSheet { ExtensionType = ExtensionType.CallbackPanel }
+		)
 
+	@Html.DevExpress().GetScripts(
+		new Script { ExtensionSuite = ExtensionSuite.GridView },
+		new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+		new Script { ExtensionSuite = ExtensionSuite.Editors },
+		new Script { ExtensionType = ExtensionType.CallbackPanel },
+		new Script { ExtensionType = ExtensionType.PopupControl }
+		)
 </head>
 
 <body class="nav-md">

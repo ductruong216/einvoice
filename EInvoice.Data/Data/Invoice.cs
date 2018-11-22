@@ -37,6 +37,7 @@ namespace EInvoice.Data.Data
         public string InWord { get; set; }
         public Nullable<int> CreatorID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.DateTime> ReleaseDate { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
         public string ModifyBy { get; set; }
         public string Status { get; set; }

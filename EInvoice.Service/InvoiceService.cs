@@ -123,6 +123,9 @@ namespace EInvoice.Service
 		{
 			var invoice = GetSingleById(invoiceId);
 			invoice.Status = "Released";
+			invoice.ReleaseDate = DateTime.Now;
+			//invoice.ReleaseDate = Utility.GetNistTime();
+
 			Update(invoice);
 		}
 	}

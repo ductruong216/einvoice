@@ -11,20 +11,7 @@
 </style>
 <link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
 
-@Html.DevExpress().GetStyleSheets(
-	new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
-	new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
-	new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
-	new StyleSheet { ExtensionType = ExtensionType.CallbackPanel }
-	)
 
-@Html.DevExpress().GetScripts(
-	new Script { ExtensionSuite = ExtensionSuite.GridView },
-	new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
-	new Script { ExtensionSuite = ExtensionSuite.Editors },
-	new Script { ExtensionType = ExtensionType.CallbackPanel },
-	new Script { ExtensionType = ExtensionType.PopupControl }
-	)
 <script type="text/javascript">
 	function OnGridFocusedRowChanged(s, e) {
 		s.GetRowValues(s.GetFocusedRowIndex(), 'ID', OnGetRowValues);

@@ -14,6 +14,7 @@ $(document).ready(function () {
 					Quantity: $('#qty' + i).val(),
 					TotalAmount: $('#total' + i).val()
 				};
+
 				items.push(item);
 			}
 		}
@@ -58,7 +59,7 @@ $(document).ready(function () {
 						buttons: false,
 						timer: 1500
 					}).then(function () {
-						window.location.href = "/Invoice/Draft";
+						window.location.href = "/Invoice/List";
 					});
 				} else {
 					swal({
@@ -67,7 +68,7 @@ $(document).ready(function () {
 						icon: "error",
 						buttons: false,
 						timer: 2000
-					})
+					});
 				}
 			}
 		});
@@ -142,7 +143,7 @@ $(document).ready(function () {
 						buttons: false,
 						timer: 1500
 					}).then(function () {
-						window.location.href = "/Invoice/Draft";
+						window.location.href = "/Invoice/List";
 					});
 				} else {
 					swal({
@@ -182,6 +183,7 @@ function deleteInvoice(id) {
 							timer: 1500
 						}).then(function () {
 							DraftInvoice.Refresh();
+							ReleaseGrid.Refresh();
 						});
 					} else {
 						swal({
@@ -206,7 +208,7 @@ function Release(id) {
 		dangerMode: true
 	}).then((isConfirm) => {
 		if (isConfirm) {
-			debugger;
+		
 			$.ajax({
 				type: "POST",
 				url: "/Invoice/ReleaseInvoice/" + id,
@@ -220,12 +222,12 @@ function Release(id) {
 							buttons: false,
 							timer: 1500
 
-						}).then(function () {
+						}).then(function() {
 							ReleaseGrid.Refresh();
 							DraftInvoice.Refresh();
 							ListInvoice.SetActiveTabIndex(1);
-						
-						})
+
+						});
 					} else {
 						swal({
 							title: "Release Invoice",
@@ -241,3 +243,118 @@ function Release(id) {
 		}
 	});
 }
+
+function viewInvoice(id) {
+	swal({
+		title: "Do you want to release this invoice?",
+		icon: "info",
+		buttons: true,
+		dangerMode: true
+	}).then((isConfirm) => {
+		if (isConfirm) {	
+			$.ajax({
+				type: "POST",
+				url: "/Invoice/ReleaseInvoice/" + id,
+				success: function (data) {
+					if (data.Success === true) {
+						swal({
+							title: "Release Invoice",
+							text: data.Message,
+							icon: "success",
+							buttons: false,
+							timer: 1500
+
+						}).then(function() {
+							ReleaseGrid.Refresh();
+							DraftInvoice.Refresh();
+							ListInvoice.SetActiveTabIndex(1);
+
+						});
+					} else {
+						swal({
+							title: "Release Invoice",
+							text: data.Message,
+							icon: "error",
+							buttons: false,
+							timer: 1500
+						});
+					}
+				}
+			});
+
+		}
+	});
+}
+
+//Hey
+//Havana, ooh na - na(ay)
+//Half of my heart is in Havana, ooh - na - na(ay, ay)
+//She took me back to East Atlanta, na - na - na
+//Oh, but my heart is in Havana(ay)
+//There's somethin' 'bout her manners (uh huh)
+//Havana, ooh na - na(uh)
+//She didn't walk up with that "how you doin' ? " (uh)
+//	(When She came in the room)
+//She said there's a lot of girls I can do with (uh)
+//	(But I can't without you)
+//I knew her forever in a minute(hey)
+//		(That summer night in June)
+//And papa says she got malo in her(uh)
+//She got me feelin' like
+//Ooh - ooh - ooh, I knew it when I met her
+//I loved her when I left her
+//Got me feelin' like
+//Ooh - ooh - ooh, and then I had to tell her
+//I had to go, oh na - na - na - na - na
+//Havana, ooh na - na(ay, ay)
+//Half of my heart is in Havana, ooh - na - na(ay, ay)
+//She took me back to East Atlanta, na - na - na(uh huh)
+//Oh, but my heart is in Havana(ay)
+//My heart is in Havana(ay)
+//Havana, ooh na - na
+//Jeffery
+//Just graduated, fresh on campus, mm
+//Fresh out East Atlanta with no manners, damn
+//Fresh out East Atlanta
+//Bump on her bumper like a traffic jam
+//Hey, I was quick to pay that girl like Uncle Sam(here you go, ay)
+//Back it on me, shawty cravin' on me
+//Get to diggin' on me (on me)
+//She waited on me(then what ?)
+//Shawty cakin' on me, got the bacon on me (wait up)
+//This is history in the makin' on me (on me)
+//Point blank, close range, that be
+//If it cost a million, that's me (that's me)
+//I was gettin' mula, man they feel me
+//Havana, ooh na - na(ay, ay)
+//Half of my heart is in Havana, ooh - na - na(oh, ay, ay)
+//She took me back to East Atlanta, na - na - na(oh no)
+//Oh, but my heart is in Havana(ay)
+//My heart is in Havana(ay)
+//Havana, ooh na - na
+//Ooh na - na, oh na - na - na(oo - ooh)
+//Take me back, back, back like
+//Ooh na - na, oh na - na - na(yeah, babe)
+//Take me back, back, back like
+//Ooh na - na, oh na - na - na(yea, yeah)
+//Take me back, back, back like
+//Ooh na - na, oh na - na - na(yea, babe)
+//Take me back, back, back
+//	(Hey, hey)
+//Ooh - ooh - ooh
+//Ooh - ooh - ooh
+//Take me back to my Havana
+//Havana, ooh na - na
+//Half of my heart is in Havana, ooh - na - na(oh, yeah)
+//She took me back to East Atlanta, na - na - na(ay, ay)
+//Oh, but my heart is in Havana
+//My heart is in Havana(ay)
+//Havana, ooh na - na
+//Uh huh
+//Oh na - na - na(oh na, yeah)
+//Oh na - na - na
+//Oh na - na - na
+//No, no, no, take me back
+//Oh na - na - na
+//Havana, ooh na - na
+
