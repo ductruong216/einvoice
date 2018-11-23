@@ -22,7 +22,7 @@
 
 	settings.Init = (sender, e) =>
 	{
-		var c = new GridViewDataColumn() { FieldName = "STT" };
+		var c = new GridViewDataColumn() { FieldName = "Pos." };
 		c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
 		c.VisibleIndex = 0;
 		c.Width = 50;	
@@ -34,7 +34,7 @@
 
 	settings.CustomColumnDisplayText = (sender, e) =>
 	{
-		if (e.Column.FieldName == "STT")
+		if (e.Column.FieldName == "Pos.")
 		{
 			e.DisplayText = (e.VisibleRowIndex + 1).ToString();
 		}
