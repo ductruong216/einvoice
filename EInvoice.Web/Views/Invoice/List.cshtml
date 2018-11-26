@@ -25,7 +25,6 @@
 						<li style="float: right">
 							<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 						</li>
-
 					</ul>
 					<div class="clearfix"></div>
 				</div>
@@ -37,3 +36,20 @@
 	</div>
 </div>
 
+<script>
+	function ShowInvdddoiceID(id) {
+		debugger;
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: '/Invoice/ShowInvoice',
+			data: {
+				invoiceId: id},
+			success: function (data) {
+				if (data.Success === true) {
+					window.location.href = '/Invoice/ShowInvoice';
+				}
+			}
+		});
+	}
+</script>

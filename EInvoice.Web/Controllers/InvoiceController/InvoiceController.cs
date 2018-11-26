@@ -71,7 +71,6 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			}
 		}
 
-		
 		public IList<PaymentMethod> GetPayments()
 		{
 			return _paymentMethodService.GetAll();

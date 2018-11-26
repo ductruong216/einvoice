@@ -123,12 +123,13 @@
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
 			ViewContext.Writer.Write("<a  href=\"/Invoice/Edit/" + invoiceId+ "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
-									 "<a onclick=\"deleteInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>" + 
-									"<a onclick=\"viewInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></a>"
-				);
+									 "<a onclick=\"deleteInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>" +
+									"<input type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
+
+									 "<button onclick=\"ShowInvoiceID("+invoiceId+")\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>"
+					);
 		});
-	});
-	settings.Columns.Add(c =>
+	});settings.Columns.Add(c =>
 	{
 		c.Caption = "Release";
 		c.EditorProperties().TextBox(p =>

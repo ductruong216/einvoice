@@ -76,5 +76,33 @@ namespace EInvoice.Web.Controllers.InvoiceController
 				return Error(e.Message);
 			}
 		}
+		[HttpPost]
+		public ActionResult ShowDraft(int id)
+		{
+			try
+			{
+				_invoiceService.ChangeStatus(id);
+
+				return Success("Release successfully");
+			}
+			catch (Exception e)
+			{
+				return Error(e.Message);
+			}
+		}
+
+		public ActionResult ShowInvoice(int? invoiceId){
+			var report = new InvoiceReport();
+			report.Parameters["IDParameter"].Value = 26;
+			report.Parameters["IDParameter"].Visible = false;
+			return View(report);
+		}
+
+		
+		public ActionResult ExportDocumentViewer()
+		{
+			return DevExpress.Web.Mvc.DocumentViewerExtension.ExportTo(
+				new InvoiceReport());
+		}
 	}
 }

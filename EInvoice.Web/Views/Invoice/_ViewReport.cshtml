@@ -1,0 +1,5 @@
+﻿@model InvoiceReport
+@Html.DevExpress().WebDocumentViewer(settings =>{
+	// The following settings are required for a Document Viewer. 
+	settings.Name = "documentViewer1";
+}).Bind(Model).GetHtml()

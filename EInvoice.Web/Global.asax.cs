@@ -13,6 +13,7 @@ namespace EInvoice.Web
 	{
 		protected void Application_Start()
 		{
+			DevExpress.XtraReports.Web.WebDocumentViewer.Native.WebDocumentViewerBootstrapper.SessionState = System.Web.SessionState.SessionStateBehavior.Disabled;
 			AreaRegistration.RegisterAllAreas();
 
 			GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -23,6 +24,7 @@ namespace EInvoice.Web
 			AutoMapperConfiguration.Configure();
 
 			DevExpress.Web.ASPxWebControl.CallbackError += Application_Error;
+			DevExpress.Web.Mvc.MVCxWebDocumentViewer.StaticInitialize();
 		}
 
 		protected void Application_Error(object sender, EventArgs e)
