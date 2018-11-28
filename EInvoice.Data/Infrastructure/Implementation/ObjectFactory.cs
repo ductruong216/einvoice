@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Autofac.Core;
 
 namespace EInvoice.Data.Infrastructure.Implementation
 {

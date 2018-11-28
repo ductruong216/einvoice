@@ -35,21 +35,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-	function ShowInvdddoiceID(id) {
-		debugger;
-		$.ajax({
-			type: "POST",
-			dataType: "json",
-			url: '/Invoice/ShowInvoice',
-			data: {
-				invoiceId: id},
-			success: function (data) {
-				if (data.Success === true) {
-					window.location.href = '/Invoice/ShowInvoice';
-				}
-			}
-		});
-	}
-</script>

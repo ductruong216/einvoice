@@ -11,29 +11,11 @@
 }
 
 @{
-	var series = new List<SelectListItem>();
-	series.Add(new SelectListItem { Text = "GP/17E", Value = "GP/17E" });
-	series.Add(new SelectListItem { Text = "MP/18E", Value = "MP/18E" });
-}
-
-@{
 	var tax = new List<SelectListItem>();
 	tax.Add(new SelectListItem { Text = "0", Value = "0" });
 	tax.Add(new SelectListItem { Text = "5", Value = "5" });
 	tax.Add(new SelectListItem { Text = "10", Value = "10" });
 }
-@{
-	var patterns = new List<SelectListItem>();
-	patterns.Add(new SelectListItem { Text = "01GTKT0/002", Value = "1" });
-	patterns.Add(new SelectListItem { Text = "01GTKT0/003", Value = "2" });
-}
-@{
-	var paymentTypes = new List<SelectListItem>();
-	paymentTypes.Add(new SelectListItem { Text = "Cash", Value = "1" });
-	paymentTypes.Add(new SelectListItem { Text = "Bank Transfer", Value = "2" });
-	paymentTypes.Add(new SelectListItem { Text = "Cash/Bank Transfer", Value = "3" });
-}
-
 
 <style>
 	.has-error {
@@ -106,7 +88,6 @@
 													 id="purchaser"
 												 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Purchaser)
-												@* <input class="form-control" name="Purchaser" id="purchaser" type="text"> *@
 											</div>
 										</div>
 
@@ -122,7 +103,6 @@
 														 id= "taxCode"
 													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.TaxCode)
-												@* <input class="form-control" name="TaxCode" id="taxCode" type="text"> *@
 											</div>
 										</div>
 
@@ -144,7 +124,6 @@
 														 id= "companyName"
 													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.EnterpriseName)
-												@*<input class="form-control" name="Name" id="companyName" type="text">*@
 											</div>
 										</div>
 
@@ -159,7 +138,6 @@
 														 id="address"
 													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Address)
-												@*<input class="form-control" name="Address" id="address" type="text">*@
 											</div>
 										</div>
 
@@ -174,9 +152,7 @@
 														 id="email"
 													 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Email)
-
-												@*<input class="form-control" name="Email" id="email" type="text">*@
-											</div>
+												</div>
 										</div>
 
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
@@ -190,16 +166,14 @@
 													 id="phone"
 												 })
 												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Phone)
-
-												@*<input class="form-control" name="Phone" id="phone" type="text">*@
-											</div>
+												</div>
 										</div>
 
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method: </label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												@Html.DropDownListFor(model => model.PaymentTypeID,
-												 paymentTypes,
+													controller.GetPaymentType(),
 												 new
 												 {
 													 @class = "form-control",
@@ -222,7 +196,6 @@
 														 type = "text",
 														 id="note"
 													 })
-												@*<textarea class="form-control" id="note" name="Note" type="text"></textarea>*@
 											</div>
 										</div>
 
@@ -246,16 +219,22 @@
 											<div class="form-group">
 												<label class="control-label col-md-2 col-sm-2 col-xs-12">Pattern: </label>
 												<div class="col-md-10 col-sm-12 col-xs-12">
-													@Html.DropDownListFor(model => model.PatternId,
-				 patterns,
-				 new
-				 {
-					 @class = "form-control",
-					 id = "pattern",
-					 type = "text",
-					 name = "Pattern",
-					 required = "required"
-				 })
+													@Html.TextBoxFor(model => model.PatternId,
+														 new
+														 {
+															 @class = "form-control",
+															 id = "pattern",
+															 type = "hidden",
+															 name = "Pattern",
+															 required = "required"
+														 	 
+														 })
+													@Html.TextBoxFor(model => model.Pattern.Name,
+														 new
+														 {
+															 @class = "form-control",
+														  	@readonly="readonly"
+														 })
 												</div>
 											</div>
 
@@ -263,18 +242,13 @@
 												<label class="control-label col-md-2 col-sm-2 col-xs-12">Series: </label>
 												<div class="col-md-10 col-sm-12 col-xs-12">
 													@Html.DropDownListFor(model => model.Series,
-				 series,
-				 new
-				 {
-					 @class = "form-control",
-					 type = "text",
-					 id="series"
-				 })
-													@*<select name="Series" id="series" class="form-control  col-md-9" required>
-															<option selected>Choose...</option>
-															<option>GP/17E</option>
-															<option>MP/18E</option>
-														</select>*@
+														controller.GetSeries(Model.PatternId),
+														new
+														{
+															@class = "form-control",
+															type = "text",
+															id = "series"
+														})
 												</div>
 											</div>
 
@@ -292,8 +266,6 @@
 														 id = "no"
 													 })
 													@Html.ValidationMessageFor(model => model.No)
-
-													@*<input type="text" id="no" name="No" class="form-control" placeholder="000000" required value="000000" readonly />*@
 												</div>
 											</div>
 
@@ -312,7 +284,6 @@
 																 id="date"
 															 })
 														@Html.ValidationMessageFor(model => model.No)
-														@*<input name="Date" type="text" data-plugin-datepicker class="form-control" id="date">*@
 													</div>
 												</div>
 											</div>
@@ -433,13 +404,6 @@
 												}
 												<tr id="addr@(i)"></tr>
 											}
-											@*<td style="display: none"><input id="productId1" name='productId0' class="form-control id" /></td>
-												<td><input id="productCode1" name='productCode0' class="form-control name" id="description" step="0" min="0" /></td>
-												<td><input type="text" id="name1" name='name0' class="form-control name" id="description" step="0" min="0" /></td>
-												<td><input type="number" id="price1" name='price0' class="form-control itemPrice" step="0.00" min="0" /></td>
-												<td><input type="text" id="unit1" name='unit0' class="form-control unit" step="0.00" min="0" /></td>
-												<td><input type="number" id="qty1" name='qty0' class="form-control qty" step="0" min="0" /></td>
-												<td><input type="number" id="total1" name='total0' class="form-control total" readonly /></td>*@
 										</tbody>
 									</table>
 								</div>
@@ -543,10 +507,3 @@
 		</div>
 	</div>
 </div>
-@*<script type="text/javascript" language="javascript">
-		var now = new Date();
-		var day = ("0" + now.getDate()).slice(-2);
-		var month = ("0" + (now.getMonth() + 1)).slice(-2);
-		var today = (month) + "/" + (day) + "/" + now.getFullYear();
-		document.getElementById('date').value = today;
-	</script>*@

@@ -36,17 +36,18 @@ namespace EInvoice.Data.Data
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
         public virtual DbSet<Item> Items { get; set; }
-        public virtual DbSet<Pattern> Patterns { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<PurchaserCustomer> PurchaserCustomers { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Serial> Serials { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<InvoiceType> InvoiceTypes { get; set; }
+        public virtual DbSet<Pattern> Patterns { get; set; }
+        public virtual DbSet<Serial> Serials { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
     }
 }

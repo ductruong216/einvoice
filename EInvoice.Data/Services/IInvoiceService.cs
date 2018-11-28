@@ -1,4 +1,5 @@
-﻿using EInvoice.Data.Data;
+﻿using System.Collections.Generic;
+using EInvoice.Data.Data;
 
 namespace EInvoice.Data.Services
 {
@@ -8,6 +9,8 @@ namespace EInvoice.Data.Services
 
 		void UpdateInvoice(Invoice invoice);
 		void DeleteInvoice(int id);
-		void ChangeStatus(int invoiceId);
+		void Release(int invoiceId);
+		IList<Serial> GetSeries();
+		IEnumerable<Serial> GetSeriesByPattern(int id);
 	}
 }

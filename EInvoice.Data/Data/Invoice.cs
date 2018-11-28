@@ -24,7 +24,8 @@ namespace EInvoice.Data.Data
         public int CompanyId { get; set; }
         public int PatternId { get; set; }
         public string Series { get; set; }
-        public Nullable<int> No { get; set; }
+        public Nullable<int> SeriesId { get; set; }
+        public int No { get; set; }
         public string SecureCode { get; set; }
         public long PurchaserCustomerID { get; set; }
         public long CustomerId { get; set; }
@@ -32,7 +33,7 @@ namespace EInvoice.Data.Data
         public string Note { get; set; }
         public Nullable<int> Tax { get; set; }
         public Nullable<decimal> TaxAmount { get; set; }
-        public Nullable<decimal> SubTotalAmount { get; set; }
+        public decimal SubTotalAmount { get; set; }
         public decimal GrandTotalAmount { get; set; }
         public string InWord { get; set; }
         public Nullable<int> CreatorID { get; set; }
@@ -49,6 +50,7 @@ namespace EInvoice.Data.Data
         public virtual Pattern Pattern { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
         public virtual PurchaserCustomer PurchaserCustomer { get; set; }
+        public virtual Serial Serial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
     }

@@ -53,19 +53,31 @@
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.EditorProperties().ComboBox(p =>
 		{
+
 			p.TextField = "Name";
 			p.ValueField = "ID";
 			p.ValueType = typeof(int);
 			p.BindList(controller.GetPattern());
-		});
-		c.Width = 160;
-	});
 
+		});
+		c.Width = 160;});
 	settings.Columns.Add(c =>
 	{
-		c.FieldName = "Series";
+		c.FieldName = "SeriesId";
+		c.Caption = "Serial";
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-	});
+		c.EditorProperties().ComboBox(p =>
+		{
+
+			p.TextField = "Name";
+			p.ValueField = "ID";
+			p.ValueType = typeof(int);
+			p.BindList(controller.GetAllSerial());
+
+		});
+		c.Width = 160;});
+	
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "No";
@@ -122,11 +134,13 @@
 		c.SetDataItemTemplateContent(r =>
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
+
 			ViewContext.Writer.Write("<a  href=\"/Invoice/Edit/" + invoiceId+ "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
 									 "<a onclick=\"deleteInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>" +
-									"<input type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
-
-									 "<button onclick=\"ShowInvoiceID("+invoiceId+")\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>"
+									 "<form action=\"ShowInvoice\" method=\"post\">" +
+									 "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
+									 "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>"+
+									 "</form>"
 					);
 		});
 	});settings.Columns.Add(c =>
@@ -145,4 +159,3 @@
 		});
 	});
 }).Bind(Model).GetHtml())
-

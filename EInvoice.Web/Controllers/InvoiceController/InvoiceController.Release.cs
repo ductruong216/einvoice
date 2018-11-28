@@ -11,20 +11,12 @@ namespace EInvoice.Web.Controllers.InvoiceController
 	public partial class InvoiceController : Controller
 	{
 		public ActionResult Release()
-
 		{
 			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll()
 				.Where(x => x.isDel == false && x.Status == "Released").OrderByDescending(x => x.ReleaseDate));
 	
 			return View("_Release", model);
 		}
-
-		//[HttpGet]
-		//public ActionResult EditRelease(int id)
-		//{
-		//	var invoice = Mapper.Map<InvoiceViewModel>(_invoiceService.GetSingleById(id));
-		//	return View(invoice);
-		//}
 
 		[HttpPost]
 		public ActionResult EditRelease(Invoice invoice)

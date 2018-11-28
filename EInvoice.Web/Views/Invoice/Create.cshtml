@@ -10,17 +10,6 @@
 	var controller = ViewContext.Controller as InvoiceController;
 }
 
-@{
-	var patterns = new List<SelectListItem>();
-	patterns.Add(new SelectListItem { Text = "01GTKT0/002", Value = "1", Selected = true });
-	patterns.Add(new SelectListItem { Text = "01GTKT0/003", Value = "2" });
-}
-@{
-	var paymentTypes = new List<SelectListItem>();
-	paymentTypes.Add(new SelectListItem { Text = "Cash", Value = "1", Selected = true });
-	paymentTypes.Add(new SelectListItem { Text = "Bank Transfer", Value = "2" });
-	paymentTypes.Add(new SelectListItem { Text = "Cash/Bank Transfer", Value = "3" });
-}
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
 <style>
@@ -111,7 +100,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method: </label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													@Html.DropDownListFor(model => model.PaymentTypeID,
-														paymentTypes,
+														controller.GetPaymentType(),
 														new
 														{
 															@class = "form-control",
@@ -139,7 +128,6 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
 						<div class="col-md-3 col-sm-3 col-xs-3">
 							<div class="x_panel">
@@ -154,28 +142,19 @@
 											<div class="form-group">
 												<label class="control-label col-md-2 col-sm-2 col-xs-12">Pattern: </label>
 												<div class="col-md-10 col-sm-12 col-xs-12">
-													@Html.DropDownListFor(model => model.PatternId,
-														patterns,
-														new
-														{
-															@class = "form-control",
-															id = "pattern",
-															type = "text",
-															name = "Pattern",
-															required = "required"
-														})
+													<select id="pattern" class="form-control  col-md-9" required>
+														<option selected>Select</option>
+													</select>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="control-label col-md-2 col-sm-2 col-xs-12">Series: </label>
-												<div class="col-md-10 col-sm-12 col-xs-12">
+												<div class="col-md-10 col-sm-12 col-xs-12">												
 													<select name="Series" id="series" class="form-control  col-md-9" required>
-														<option selected>Choose...</option>
-														<option>GP/17E</option>
-														<option>MP/18E</option>
+														<option selected>Select</option>
 													</select>
-												</div>
+													</div>
 											</div>
 
 											<div class="form-group">

@@ -21,7 +21,7 @@ namespace EInvoice.Service
 
 		public IList<Product> GetAllDesProduct()
 		{
-			var products = _productRepository.GetAllDes().Where(x => x.isDel == false).ToList();
+			var products = _productRepository.GetMulti(x=>x.isDel ==false).OrderByDescending(x=>x.ID).ToList();
 			return products;
 		}
 

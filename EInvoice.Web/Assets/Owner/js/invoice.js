@@ -29,7 +29,7 @@ $(document).ready(function () {
 				SubTotalAmount: $('#sub_total').val(),
 				GrandTotalAmount: $('#total_amount').val(),
 				PatternId: parseInt($('#pattern').val(), 10),
-				Series: $('#series').val(),
+				SeriesId: $('#series').val(),
 				No: $('#no').val(),
 				CreatedDate: $('#date').val(),
 				PurchaserCustomer: {
@@ -108,7 +108,7 @@ $(document).ready(function () {
 				SubTotalAmount: $('#sub_total').val(),
 				GrandTotalAmount: $('#total_amount').val(),
 				PatternId: parseInt($('#pattern').val(), 10),
-				Series: $('#series').val(),
+				SeriesId: $('#series').val(),
 				No: $('#no').val(),
 				CreatedDate: $('#date').val(),
 				PurchaserCustomer: {
@@ -285,3 +285,54 @@ function viewInvoice(id) {
 		}
 	});
 }
+
+
+// Start Select Pattern and Serial
+function PopulateDropDown(url, data, type) {
+	return $.ajax({
+		url: url,
+		type: type ? type : 'GET',
+		data: data,
+		contentType: 'application/json'
+	});
+}
+
+PopulateDropDown('/Invoice/GetAllPattern', null).done(function (response) {
+	if (response.length > 0) {
+		$('#pattern').html('');
+		var options = '';
+		options += '<option value="Select">Select</option>';
+		for (var i = 0; i < response.length; i++) {
+			options += '<option value="' + response[i].Value + '">' + response[i].Text + '</option>';
+		}
+		$('#pattern').append(options);
+	}
+}).fail(function (error) {
+	alert(error.StatusText);
+});
+
+$(document).ready(function () {
+	$('#pattern').on("change", function () {
+		debugger;
+		var pattern = $('#pattern').val();
+		var obj = { patternId: pattern };
+
+		PopulateDropDown('/Invoice/GetSerial', JSON.stringify(obj), 'POST').done(function (response) {
+			if (response.length > 0) {
+				$('#series').html('');
+				var options = '';
+				options += '<option value="Select">Select</option>';
+				for (var i = 0; i < response.length; i++) {
+					options += '<option value="' + response[i].Value + '">' + response[i].Text + '</option>';
+				}
+				$('#series').append(options);
+
+			}
+
+		}).fail(function (error) {
+			$('#series').html('<option value="Select">Select</option>');
+		});
+	});
+});
+
+// End Select Pattern and Serial

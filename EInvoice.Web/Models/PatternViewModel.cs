@@ -10,6 +10,7 @@ namespace EInvoice.Web.Models
 		public int? SerialId { get; set; }
 
 		public virtual ICollection<InvoiceViewModel> Invoices { get; set; }
-		public virtual SerialViewModel Serial { get; set; }
+	
+		public virtual ICollection<SerialViewModel> Serials { get; set; }
 	}
 }

@@ -17,13 +17,15 @@ namespace EInvoice.Data.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Serial()
         {
-            this.Patterns = new HashSet<Pattern>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
+        public int PatternId { get; set; }
     
+        public virtual Pattern Pattern { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pattern> Patterns { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

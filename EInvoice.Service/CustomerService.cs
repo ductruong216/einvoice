@@ -51,7 +51,7 @@ namespace EInvoice.Service
 
 		public IList<Customer> GetCustomers()
 		{
-			return _customerRepository.GetAll().OrderByDescending(c => c.ID).Where(x => x.isDel == false).ToList();
+			return _customerRepository.GetMulti(x => x.isDel == false).OrderByDescending(c => c.ID).ToList();
 		}
 
 		public IDbSet<Customer> CustomerDbSet()

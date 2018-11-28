@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using DevExpress.Office.Utils;
 using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.InvoiceController
@@ -86,5 +87,67 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
 		}
 
+		public JsonResult GetAllPattern()
+		{
+			var patterns = _patternService.GetAll().ToList();
+			var listPattern = new List<SelectListItem>();
+			foreach (var item in patterns)
+			{
+				var pattern = new SelectListItem
+				{
+					Text = item.Name,
+					Value = item.ID.ToString()
+				};
+				listPattern.Add(pattern);
+			}
+			return Json(listPattern, JsonRequestBehavior.AllowGet);
+		}
+		public JsonResult GetSerial(int patternId)
+		{
+			return Json(GetSeries(patternId), JsonRequestBehavior.AllowGet);
+		}
+		public List<SelectListItem> GetSeries(int patternId)
+		{
+			var serials = _invoiceService.GetSeriesByPattern(patternId).ToList();
+			var listSerial = new List<SelectListItem>();
+			foreach (var item in serials)
+			{
+				var serial = new SelectListItem
+				{
+					Text = item.Name,
+					Value = item.ID.ToString()
+				};
+				listSerial.Add(serial);
+			}
+
+			return listSerial;
+		}
+
+		public IEnumerable<Pattern> GetPattern()
+		{
+			return _patternService.GetAll();
+		}
+
+		public IEnumerable<Serial> GetAllSerial()
+		{
+			return _invoiceService.GetSeries();
+		}
+
+		public List<SelectListItem> GetPaymentType()
+		{
+			var payments = _paymentMethodService.GetAll().ToList();
+			var listPayment = new List<SelectListItem>();
+			foreach (var item in payments)
+			{
+				var payment = new SelectListItem
+				{
+					Text = item.Name,
+					Value = item.ID.ToString()
+				};
+				listPayment.Add(payment);
+			}
+
+			return listPayment;
+		}
 	}
 }

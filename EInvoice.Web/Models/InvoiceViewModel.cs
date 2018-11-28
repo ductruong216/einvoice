@@ -7,24 +7,24 @@ namespace EInvoice.Web.Models
 	public partial class InvoiceViewModel
 	{
 		public long ID { get; set; }
-		public int? CompanyId { get; set; }
-		public int? PatternId { get; set; }
+		public int CompanyId { get; set; }
+		public int PatternId { get; set; }
 		public string Series { get; set; }
-	
-		public int? No { get; set; }
+		public int? SeriesId { get; set; }
+		public int No { get; set; }
 		public string SecureCode { get; set; }
-		public long? CustomerId { get; set; }
-		public long? PurchaserCustomerID { get; set; }
-		public int? PaymentTypeID { get; set; }
+		public long CustomerId { get; set; }
+		public long PurchaserCustomerID { get; set; }
+		public int PaymentTypeID { get; set; }
 		public string Note { get; set; }
 		public int? Tax { get; set; }
 		public string Name { get; set; }
 		[DataType(DataType.Currency)]
 		public decimal? TaxAmount { get; set; }
 		[DataType(DataType.Currency)]
-		public decimal? SubTotalAmount { get; set; }
+		public decimal SubTotalAmount { get; set; }
 		[DataType(DataType.Currency)]
-		public decimal? GrandTotalAmount { get; set; }
+		public decimal GrandTotalAmount { get; set; }
 		public string InWord { get; set; }
 		public long? TypeID { get; set; }
 		public int? CreatorID { get; set; }
@@ -39,7 +39,7 @@ namespace EInvoice.Web.Models
 		public DateTime? ModifyDate { get; set; }
 		public string ModifyBy { get; set; }
 		public string Status { get; set; }
-
+		public bool isDel { get; set; }
 		public virtual CompanyViewModel Company { get; set; }
 		public virtual EmployeeViewModel Employee { get; set; }
 		public virtual PatternViewModel Pattern { get; set; }

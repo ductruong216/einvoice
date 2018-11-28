@@ -24,7 +24,6 @@ namespace EInvoice.Repository
 			_dbSet = _dbContext.Set<T>();
 		}
 	
-
 		#endregion Properties
 
 		public void Add(T entity)

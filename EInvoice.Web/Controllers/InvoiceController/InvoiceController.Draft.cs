@@ -4,6 +4,7 @@ using EInvoice.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using DevExpress.XtraCharts;
 using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Implementation;
 using EInvoice.Data.Services;
@@ -12,19 +13,12 @@ namespace EInvoice.Web.Controllers.InvoiceController
 {
 	public partial class InvoiceController : Controller
 	{
-
 		public ActionResult Draft()
 		{
 			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll()
 				.Where(x => x.isDel == false && x.Status == "Draft").OrderByDescending(x => x.ID));
 			return View("_Draft", model);
 		}
-
-		public IEnumerable<Pattern> GetPattern()
-		{
-			return _patternService.GetAll();
-		}
-
 
 		[HttpGet]
 		public ActionResult Edit(int id)
@@ -67,7 +61,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		{
 			try
 			{
-				_invoiceService.ChangeStatus(id);
+				_invoiceService.Release(id);
 
 				return Success("Release successfully");
 			}
@@ -81,7 +75,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		{
 			try
 			{
-				_invoiceService.ChangeStatus(id);
+				_invoiceService.Release(id);
 
 				return Success("Release successfully");
 			}
@@ -93,12 +87,11 @@ namespace EInvoice.Web.Controllers.InvoiceController
 
 		public ActionResult ShowInvoice(int? invoiceId){
 			var report = new InvoiceReport();
-			report.Parameters["IDParameter"].Value = 26;
+			report.Parameters["IDParameter"].Value = invoiceId;
 			report.Parameters["IDParameter"].Visible = false;
 			return View(report);
 		}
 
-		
 		public ActionResult ExportDocumentViewer()
 		{
 			return DevExpress.Web.Mvc.DocumentViewerExtension.ExportTo(

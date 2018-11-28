@@ -3,7 +3,6 @@
 		$.ajax({
 			url: URL,
 			type: "POST",
-
 			dataType: "json",
 			data: { searchKey: $("#" + field).val() },
 			success: function (data) {
