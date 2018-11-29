@@ -112,6 +112,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 	private XRLabel lbdMonth;
 	private XRRichText xrRichText1;
 	private XRLabel lbdSeries;
+	private XRBarCode xrBarCode1;
 
 	/// <summary>
 	/// Required designer variable.
@@ -262,6 +263,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			DevExpress.DataAccess.Sql.Join join7 = new DevExpress.DataAccess.Sql.Join();
 			DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo7 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceReport));
+			DevExpress.XtraPrinting.BarCode.Code128Generator code128Generator1 = new DevExpress.XtraPrinting.BarCode.Code128Generator();
 			this.Detail = new DevExpress.XtraReports.UI.DetailBand();
 			this.tbItemDetail = new DevExpress.XtraReports.UI.XRTable();
 			this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -298,6 +300,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.lbNo = new DevExpress.XtraReports.UI.XRLabel();
 			this.lbdDay = new DevExpress.XtraReports.UI.XRLabel();
 			this.lbdNo = new DevExpress.XtraReports.UI.XRLabel();
+			this.lbdSeries = new DevExpress.XtraReports.UI.XRLabel();
 			this.lbdPattern = new DevExpress.XtraReports.UI.XRLabel();
 			this.tbItemHeader = new DevExpress.XtraReports.UI.XRTable();
 			this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -364,7 +367,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
 			this.xrCrossBandLine4 = new DevExpress.XtraReports.UI.XRCrossBandLine();
 			this.xrCrossBandLine3 = new DevExpress.XtraReports.UI.XRCrossBandLine();
-			this.lbdSeries = new DevExpress.XtraReports.UI.XRLabel();
+			this.xrBarCode1 = new DevExpress.XtraReports.UI.XRBarCode();
 			((System.ComponentModel.ISupportInitialize)(this.tbItemDetail)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbSymbol)).BeginInit();
@@ -799,6 +802,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			// groupHeaderBand1
 			// 
 			this.groupHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrBarCode1,
             this.xrRichText1,
             this.tbSymbol,
             this.lbdYear,
@@ -1045,7 +1049,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			// xrPictureBox1
 			// 
 			this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-			this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(36.06164F, 0F);
+			this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(13.62445F, 0F);
 			this.xrPictureBox1.Name = "xrPictureBox1";
 			this.xrPictureBox1.SizeF = new System.Drawing.SizeF(141.8042F, 105.78F);
 			this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
@@ -1084,7 +1088,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			// 
 			this.lbPattern.Font = new System.Drawing.Font("Times New Roman", 11F);
 			this.lbPattern.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-			this.lbPattern.LocationFloat = new DevExpress.Utils.PointFloat(602.173F, 19.84507F);
+			this.lbPattern.LocationFloat = new DevExpress.Utils.PointFloat(594.258F, 8.303388F);
 			this.lbPattern.Multiline = true;
 			this.lbPattern.Name = "lbPattern";
 			this.lbPattern.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1099,7 +1103,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			// 
 			this.lbSeries.Font = new System.Drawing.Font("Times New Roman", 11F);
 			this.lbSeries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-			this.lbSeries.LocationFloat = new DevExpress.Utils.PointFloat(602.173F, 42.84506F);
+			this.lbSeries.LocationFloat = new DevExpress.Utils.PointFloat(594.258F, 31.30337F);
 			this.lbSeries.Multiline = true;
 			this.lbSeries.Name = "lbSeries";
 			this.lbSeries.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1114,7 +1118,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			// 
 			this.lbNo.Font = new System.Drawing.Font("Times New Roman", 11F);
 			this.lbNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-			this.lbNo.LocationFloat = new DevExpress.Utils.PointFloat(602.173F, 65.84508F);
+			this.lbNo.LocationFloat = new DevExpress.Utils.PointFloat(594.258F, 54.30339F);
 			this.lbNo.Multiline = true;
 			this.lbNo.Name = "lbNo";
 			this.lbNo.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1152,7 +1156,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[No]")});
 			this.lbdNo.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold);
 			this.lbdNo.ForeColor = System.Drawing.Color.Red;
-			this.lbdNo.LocationFloat = new DevExpress.Utils.PointFloat(669.7978F, 65.84508F);
+			this.lbdNo.LocationFloat = new DevExpress.Utils.PointFloat(661.8828F, 54.30339F);
 			this.lbdNo.Multiline = true;
 			this.lbdNo.Name = "lbdNo";
 			this.lbdNo.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1165,6 +1169,25 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.lbdNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
 			this.lbdNo.TextFormatString = "{0:0000000}";
 			// 
+			// lbdSeries
+			// 
+			this.lbdSeries.BackColor = System.Drawing.Color.Empty;
+			this.lbdSeries.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Serial_Name]")});
+			this.lbdSeries.Font = new System.Drawing.Font("Times New Roman", 11F);
+			this.lbdSeries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+			this.lbdSeries.LocationFloat = new DevExpress.Utils.PointFloat(661.8828F, 31.30337F);
+			this.lbdSeries.Multiline = true;
+			this.lbdSeries.Name = "lbdSeries";
+			this.lbdSeries.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+			this.lbdSeries.SizeF = new System.Drawing.SizeF(119.1171F, 23F);
+			this.lbdSeries.StylePriority.UseBackColor = false;
+			this.lbdSeries.StylePriority.UseFont = false;
+			this.lbdSeries.StylePriority.UseForeColor = false;
+			this.lbdSeries.StylePriority.UseTextAlignment = false;
+			this.lbdSeries.Text = "lbdSeries";
+			this.lbdSeries.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+			// 
 			// lbdPattern
 			// 
 			this.lbdPattern.BackColor = System.Drawing.Color.Empty;
@@ -1172,7 +1195,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Patterns_Name]")});
 			this.lbdPattern.Font = new System.Drawing.Font("Times New Roman", 11F);
 			this.lbdPattern.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
-			this.lbdPattern.LocationFloat = new DevExpress.Utils.PointFloat(669.7978F, 19.84507F);
+			this.lbdPattern.LocationFloat = new DevExpress.Utils.PointFloat(661.8828F, 8.303388F);
 			this.lbdPattern.Multiline = true;
 			this.lbdPattern.Name = "lbdPattern";
 			this.lbdPattern.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -2048,12 +2071,12 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			// 
 			this.xrCrossBandLine1.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
 			this.xrCrossBandLine1.EndBand = this.groupHeaderBand1;
-			this.xrCrossBandLine1.EndPointFloat = new DevExpress.Utils.PointFloat(2.083238F, 117.8633F);
-			this.xrCrossBandLine1.LocationFloat = new DevExpress.Utils.PointFloat(2.083238F, 115.78F);
+			this.xrCrossBandLine1.EndPointFloat = new DevExpress.Utils.PointFloat(2.083238F, 125.5534F);
+			this.xrCrossBandLine1.LocationFloat = new DevExpress.Utils.PointFloat(2.083238F, 123.4701F);
 			this.xrCrossBandLine1.Name = "xrCrossBandLine1";
 			this.xrCrossBandLine1.StartBand = this.groupHeaderBand1;
-			this.xrCrossBandLine1.StartPointFloat = new DevExpress.Utils.PointFloat(2.083238F, 115.78F);
-			this.xrCrossBandLine1.WidthF = 786.8333F;
+			this.xrCrossBandLine1.StartPointFloat = new DevExpress.Utils.PointFloat(2.083238F, 123.4701F);
+			this.xrCrossBandLine1.WidthF = 786.8334F;
 			// 
 			// xrCrossBandLine2
 			// 
@@ -2106,24 +2129,13 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrCrossBandLine3.StartPointFloat = new DevExpress.Utils.PointFloat(2.083365F, 123.5882F);
 			this.xrCrossBandLine3.WidthF = 786.8329F;
 			// 
-			// lbdSeries
+			// xrBarCode1
 			// 
-			this.lbdSeries.BackColor = System.Drawing.Color.Empty;
-			this.lbdSeries.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Serial_Name]")});
-			this.lbdSeries.Font = new System.Drawing.Font("Times New Roman", 11F);
-			this.lbdSeries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
-			this.lbdSeries.LocationFloat = new DevExpress.Utils.PointFloat(669.7978F, 42.84506F);
-			this.lbdSeries.Multiline = true;
-			this.lbdSeries.Name = "lbdSeries";
-			this.lbdSeries.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-			this.lbdSeries.SizeF = new System.Drawing.SizeF(119.1171F, 23F);
-			this.lbdSeries.StylePriority.UseBackColor = false;
-			this.lbdSeries.StylePriority.UseFont = false;
-			this.lbdSeries.StylePriority.UseForeColor = false;
-			this.lbdSeries.StylePriority.UseTextAlignment = false;
-			this.lbdSeries.Text = "lbdSeries";
-			this.lbdSeries.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+			this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(642.9365F, 82.78001F);
+			this.xrBarCode1.Name = "xrBarCode1";
+			this.xrBarCode1.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 96F);
+			this.xrBarCode1.SizeF = new System.Drawing.SizeF(100F, 23F);
+			this.xrBarCode1.Symbology = code128Generator1;
 			// 
 			// InvoiceReport
 			// 

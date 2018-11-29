@@ -1,10 +1,9 @@
 ﻿using EInvoice.Data.Data;
-using EInvoice.Service;
+using EInvoice.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using EInvoice.Data.Services;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {

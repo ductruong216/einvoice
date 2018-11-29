@@ -5,6 +5,7 @@ using EInvoice.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Xml.Schema;
 
 namespace EInvoice.Service
@@ -17,7 +18,7 @@ namespace EInvoice.Service
 		private readonly IRepository<PaymentMethod> _paymentMethodRepository;
 		private readonly IRepository<PurchaserCustomer> _purchaserRepository;
 		private readonly IRepository<Item> _itemRepository;
-	private readonly IRepository<Serial> _serialRepository;
+		private readonly IRepository<Serial> _serialRepository;
 
 		public InvoiceService(IRepository<Customer> customerRepository,
 			IRepository<Invoice> repository,
@@ -125,12 +126,7 @@ namespace EInvoice.Service
 		public void Release(int invoiceId)
 		{
 			var invoice = GetSingleById(invoiceId);
-			var noInvoice = _repository
-				               .GetMulti(x => x.PatternId == invoice.PatternId
-			                                         && x.SeriesId == invoice.SeriesId)
-				               .OrderByDescending(x => x.No)
-				               .First().No + 1;
-			invoice.No = noInvoice;
+			invoice.No = GetInvoiceNumber(invoice);
 			invoice.Status = "Released";
 			invoice.ReleaseDate = DateTime.Now;
 			//invoice.ReleaseDate = Utility.GetNistTime();
@@ -138,6 +134,13 @@ namespace EInvoice.Service
 			Update(invoice);
 		}
 
+		public int GetInvoiceNumber(Invoice invoice)
+		{
+			return _repository.GetMulti(x => x.PatternId == invoice.PatternId
+				                      && x.SeriesId == invoice.SeriesId)
+				       .OrderByDescending(x => x.No)
+				       .First().No + 1;
+		}
 		public IList<Serial> GetSeries()
 		{
 			return _serialRepository.GetAll();
@@ -147,10 +150,28 @@ namespace EInvoice.Service
 		{
 			return _serialRepository.GetSeriesByPattern(id);
 		}
-
-		public void GroupItem(int[] pattern, int[] series)
+		public void SaveAndRelease(Invoice invoice)
 		{
-			
+			invoice.Status = "Released";invoice.CompanyId = 3;
+			invoice.No = GetInvoiceNumber(invoice);
+			invoice.ReleaseDate = DateTime.Now;
+			Add(invoice);
+		}
+
+		public IList<Invoice> GetAllDraft()
+		{
+			return _repository.GetMulti(x => x.isDel == false 
+			                                 && x.Status == "Draft")
+				.OrderByDescending(x => x.ID)
+				.ToList();
+		}
+
+		public IList<Invoice> GetAllRelease()
+		{
+			return _repository.GetMulti(x => x.isDel == false
+			                                 && x.Status == "Released")
+				.OrderByDescending(x => x.ReleaseDate)
+				.ToList();
 		}
 	}
 }

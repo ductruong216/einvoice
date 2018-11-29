@@ -1,11 +1,7 @@
-﻿
-
-// Autocomplete Product
+﻿// Autocomplete Product
 function ProductAutocomplete(field, fieldValue, URL) {
 	$("#" + field).autocomplete({
-	
 		source: function (request, response) {
-			debugger;
 			$.ajax({
 				url: URL,
 				type: "POST",
@@ -37,6 +33,5 @@ function ProductAutocomplete(field, fieldValue, URL) {
 	});
 }
 
-ProductAutocomplete("name1", "Name", '/Product/GetProductsName');
-ProductAutocomplete("productCode1", "Code", '/Product/GetProductsCode');
-
+ProductAutocomplete("name1", "Name", '/Product/GetProductByName');
+ProductAutocomplete("productCode1", "Code", '/Product/GetProductByCode');

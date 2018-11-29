@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI;
 using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
@@ -86,14 +87,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return CustomerPartial();
 		}
 
-		[HttpPost]
-		public JsonResult GetCodeCustomerJsonResult(string searchKey)
-		{
-			var customers = _customerService.CustomerDbSet();
-		
-			var searchCustomer = customers.Where(x => x.Code.Contains(searchKey) && x.isDel == false).ToList();
-			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
-		}
 
 		[HttpPost]
 		public JsonResult CheckCode(string searchKey)
@@ -127,39 +120,29 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost]
-		public JsonResult GetNameCustomerJsonResult(string searchKey)
+		public JsonResult GetCustomerByCode(string searchKey)
 		{
-			var customers = _customerService.CustomerDbSet();
-			var searchCustomer = customers.Where(x => x.EnterpriseName.Contains(searchKey) && x.isDel == false).ToList();
+			var searchCustomer = Mapper.Map<List<CustomerViewModel>>
+				(_customerService.GetCustomerByCode(searchKey));
+			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
+		}
+		[HttpPost]
+		public JsonResult GetCustomerByName(string searchKey)
+		{
+			var searchCustomer = Mapper.Map<List<CustomerViewModel>>
+				(_customerService.GetCustomerByName(searchKey));
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]
-		public JsonResult GetTaxCodeCustomerJsonResult(string searchKey)
+		public JsonResult GetCustomerByTaxCode(string searchKey)
 		{
-			var customers = _customerService.CustomerDbSet();
-			var searchCustomer = customers.Where(x => x.TaxCode.ToString().Contains(searchKey) && x.isDel == false).Select(x => new Customer
-			{
-				ID = x.ID,
-				Code = x.Code,
-				TaxCode = x.TaxCode,
-				Name = x.Name,
-				EnterpriseName = x.EnterpriseName,
-				Address = x.Address,
-				Email = x.Email,
-				Phone = x.Phone,
-				Fax = x.Fax,
-				LegalRepresentative = x.LegalRepresentative,
-				AccountHolder = x.AccountHolder,
-				BankAccountID = x.BankAccountID,
-				BankName = x.BankName,
-				Agency = x.Agency,
-				Note = x.Note
-			}).ToList();
+			var searchCustomer = Mapper.Map<List<CustomerViewModel>>
+				(_customerService.GetCustomerByTaxCode(searchKey));
+
 			return Json(searchCustomer, JsonRequestBehavior.AllowGet);
 		}
 
-		
 		public JsonResult Success()
 		{
 			return Json(new { Success = true, Message = "" }, JsonRequestBehavior.AllowGet);
@@ -169,6 +152,5 @@ namespace EInvoice.Web.Controllers.CategoryController
 		{
 			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
 		}
-
 	}
 }

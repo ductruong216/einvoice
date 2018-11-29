@@ -12,9 +12,8 @@ namespace EInvoice.Web.Controllers.InvoiceController
 	{
 		public ActionResult Release()
 		{
-			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll()
-				.Where(x => x.isDel == false && x.Status == "Released").OrderByDescending(x => x.ReleaseDate));
-	
+			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAllRelease());
+
 			return View("_Release", model);
 		}
 

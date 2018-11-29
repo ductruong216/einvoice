@@ -20,10 +20,7 @@
 	//settings.Appearance.HeaderPanel.Options.UseBackColor = true;
 	//settings.Appearance.HeaderPanel.BackColor = System.Drawing.Color.White;
 	settings.ClientSideEvents.EndCallback = "function(s, e) { Release.Refresh(); }";
-
-
 	#region Numbering
-
 	settings.Init = (sender, e) =>
 	{
 		var c = new GridViewDataColumn() { FieldName = "Pos." };
@@ -77,7 +74,7 @@
 
 		});
 		c.Width = 160;});
-	
+
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "No";
@@ -121,6 +118,7 @@
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.Width = 120;
+		
 	});
 	settings.Columns.Add(c =>
 	{
@@ -131,18 +129,22 @@
 		});
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+	
 		c.SetDataItemTemplateContent(r =>
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
 
-			ViewContext.Writer.Write("<a  href=\"/Invoice/Edit/" + invoiceId+ "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
+			ViewContext.Writer.Write("<div class=\"row\">" +
+									" <a href=\"/Invoice/Edit/" + invoiceId+ "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
 									 "<a onclick=\"deleteInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>" +
-									 "<form action=\"ShowInvoice\" method=\"post\">" +
+									 "<form action=\"Show\" method=\"post\">" +
 									 "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
 									 "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>"+
 									 "</form>"
+									+"</div>"
 					);
 		});
+
 	});settings.Columns.Add(c =>
 	{
 		c.Caption = "Release";

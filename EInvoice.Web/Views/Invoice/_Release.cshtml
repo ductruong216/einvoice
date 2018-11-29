@@ -81,6 +81,7 @@
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.PropertiesEdit.DisplayFormatString = "{0:0000000}";
+		c.Width = 120;
 	});
 	settings.Columns.Add(c =>
 	{
@@ -118,10 +119,10 @@
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "GrandTotalAmount";
-		c.PropertiesEdit.DisplayFormatString = "c2";
+		//c.PropertiesEdit.DisplayFormatString = "c2";
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-		c.Width = 120;
+
 	});
 	settings.Columns.Add(c =>
 	{
@@ -137,7 +138,10 @@
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
 			ViewContext.Writer.Write("<a  href=\"/Invoice/Edit/" + invoiceId + "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
 									 "<a onclick=\"deleteInvoice(" + invoiceId + ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>"+
-									 "<a onclick=\"viewInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></a>"
+			                         "<form action=\"Show\" method=\"post\">" +
+			                         "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
+			                         "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>"+
+			                         "</form>"
 				);
 		});
 	});

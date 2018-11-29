@@ -22,11 +22,6 @@ namespace EInvoice.Service
 			return _customerRepository.CheckContains(x => x.Code == code);
 		}
 
-		//public bool IsTaxExist(long taxCode)
-		//{
-		//	return _customerRepository.CheckContains(x => x.TaxCode == taxCode);
-		//}
-
 		public void AddCustomer(Customer customer)
 		{
 			//if (_customerRepository.CheckContains(x => x.TaxCode == customer.TaxCode) &&
@@ -54,11 +49,6 @@ namespace EInvoice.Service
 			return _customerRepository.GetMulti(x => x.isDel == false).OrderByDescending(c => c.ID).ToList();
 		}
 
-		public IDbSet<Customer> CustomerDbSet()
-		{
-			return _customerRepository.DbSet;
-		}
-
 		public void DeleteCustomer(int id)
 		{
 			var customer = GetSingleById(id);
@@ -77,6 +67,21 @@ namespace EInvoice.Service
 			_customerRepository.Add(customer);
 
 			return _customerRepository.GetAll().Last().ID;
+		}
+
+		public IList<Customer> GetCustomerByTaxCode(string taxCode)
+		{
+			return _customerRepository.GetMulti(x => x.TaxCode.Contains(taxCode) && x.isDel == false).ToList();
+		}
+
+		public IList<Customer> GetCustomerByCode(string code)
+		{
+			return _customerRepository.GetMulti(x => x.Code.Contains(code) && x.isDel == false).ToList();
+		}
+
+		public IList<Customer> GetCustomerByName(string enterpriseName)
+		{
+			return _customerRepository.GetMulti(x => x.EnterpriseName.Contains(enterpriseName) && x.isDel == false).ToList();
 		}
 	}
 }

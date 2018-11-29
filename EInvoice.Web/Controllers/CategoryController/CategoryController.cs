@@ -7,18 +7,13 @@ namespace EInvoice.Web.Controllers.CategoryController
 	public partial class CategoryController : Controller
 	{
 		private readonly IUnitService _unitService;
-		private readonly IProductService _productService;
-		private readonly ICustomerService _customerService;
 
 		public CategoryController(IUnitService unitService, IProductService productService, ICustomerService customerService)
 		{
 			_unitService = unitService;
-			_productService = productService;
-			_customerService = customerService;
 		}
 
 		// GET: Category
-
 		public void SafeExecute(Action method)
 		{
 			try

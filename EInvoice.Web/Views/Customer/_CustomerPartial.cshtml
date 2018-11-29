@@ -28,24 +28,44 @@
 		toolbarCustomer.Position = GridToolbarPosition.Top;
 		toolbarCustomer.ItemAlign = GridToolbarItemAlign.Right;
 
+		//toolbarCustomer.Items.Add(c =>
+		//{
+		//	c.SetTemplateContent(r =>
+		//	{
+		//		ViewContext.Writer.Write( "<img title=\"New\" class=\"dxGridView_CTNewRow_Material dxm-image dx-vam\" " +
+		//									"src=\"/DXR.axd?r=1_110-O6jsh\" alt=\"\" id=\"Customers_DXCTMenu0_DXI0_Img\">" +
+		//									"<button type=\"button\" class=\"btn btn-default\"" +
+		//									"data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
+		//	});
+		//});
 		toolbarCustomer.Items.Add(c =>
 		{
 			c.SetTemplateContent(r =>
 			{
-				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"" +
-										 "data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
-
+				ViewContext.Writer.Write(
+					"<button type=\"button\" class=\"btn btn-default\"" +
+					"data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
 			});
 		});
-		toolbarCustomer.Items.Add(c =>
-		{
 
-			c.SetTemplateContent(r =>
-			{
-
-				ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"data-toggle=\"modal\" data-target=\"#editCustomer\"  onclick=\"location.href='/Customer/Edit/'+ document.getElementById('customerId').value \">Edit</button>" );
-		});
-		});
+		//toolbarCustomer.Items.Add(c =>
+		//{
+		//	c.SetTemplateContent(r =>
+		//	{
+		//		ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"data-toggle=\"modal\" data-target=\"#editCustomer\"  onclick=\"location.href='/Customer/Edit/'+ document.getElementById('customerId').value \">Edit</button>" );
+		//	});
+		//});
+		//toolbarCustomer.Items.Add(c =>
+		//{
+		//	c.SetTemplateContent(r =>
+		//	{
+		//		ViewContext.Writer.Write("<div class=\"dxm-content dxm-hasText\" id=\"Customers_DXCTMenu0_DXI1_T\">" +
+		//								 "<img title=\"New\" class=\"dxGridView_CTNewRow_Material dxm-image dx-vam\" " +
+		//								 "src=\"/DXR.axd?r=1_110-O6jsh\" alt=\"\" id=\"Customers_DXCTMenu0_DXI1_Img\">" +
+		//								 "<span data-toggle=\"modal\" data-target=\"#newCustomer\" title=\"New\" class=\"dx-vam\">New</span>" +
+		//								 "</div>");
+		//	});
+		//});
 		toolbarCustomer.Items.Add(GridViewToolbarCommand.Edit);
 		toolbarCustomer.Items.Add(GridViewToolbarCommand.Delete);
 		toolbarCustomer.Items.Add(GridViewToolbarCommand.Refresh, true);
@@ -82,11 +102,8 @@
 		c.FieldName = "Code";
 		c.Caption = "Customer Code";
 		c.Width = 150;
-
-
 		//c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 		//c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-
 	});
 
 	settings.Columns.Add(c =>

@@ -2,6 +2,7 @@
 function CustomerAutoComplete(field, fieldValue, URL) {
 	$("#" + field).autocomplete({
 		source: function (request, response) {
+			debugger;
 			$.ajax({
 				url: URL,
 				type: "POST",
@@ -26,13 +27,9 @@ function CustomerAutoComplete(field, fieldValue, URL) {
 								phone: item.Phone
 							};
 						}));
-				},
-				error: function (status) {
-					alert(status);
 				}
 			});
 		},
-
 		select: function (even, ui) {
 			$("#customerId").val(ui.item.id);
 			$("#companyName").val(ui.item.name);
@@ -48,6 +45,6 @@ function CustomerAutoComplete(field, fieldValue, URL) {
 		}
 	});
 };
-CustomerAutoComplete("CusCode", "Code", '/Customer/GetCodeCustomerJsonResult');
-CustomerAutoComplete("companyName", "EnterpriseName", '/Customer/GetNameCustomerJsonResult');
-//CustomerAutoComplete("taxCode", "TaxCode", '/Customer/GetTaxCodeCustomerJsonResult');
+CustomerAutoComplete("CusCode", "Code", '/Customer/GetCustomerByCode');
+CustomerAutoComplete("companyName", "EnterpriseName", '/Customer/GetCustomerByName');
+CustomerAutoComplete("taxCode", "TaxCode", '/Customer/GetCustomerByTaxCode');

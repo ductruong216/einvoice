@@ -61,9 +61,7 @@ namespace EInvoice.Web
 
 			var container = builder.Build();
 			ObjectFactory.Container = container;
-			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
-
-			
+			DependencyResolver.SetResolver(new AutofacDependencyResolver(container)); GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
 		}
 	}
 }

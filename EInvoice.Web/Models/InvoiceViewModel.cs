@@ -10,7 +10,7 @@ namespace EInvoice.Web.Models
 		public int CompanyId { get; set; }
 		public int PatternId { get; set; }
 		public string Series { get; set; }
-		public int? SeriesId { get; set; }
+		public int SeriesId { get; set; }
 		public int No { get; set; }
 		public string SecureCode { get; set; }
 		public long CustomerId { get; set; }
@@ -22,9 +22,9 @@ namespace EInvoice.Web.Models
 		[DataType(DataType.Currency)]
 		public decimal? TaxAmount { get; set; }
 		[DataType(DataType.Currency)]
-		public decimal SubTotalAmount { get; set; }
+		public decimal? SubTotalAmount { get; set; }
 		[DataType(DataType.Currency)]
-		public decimal GrandTotalAmount { get; set; }
+		public decimal? GrandTotalAmount { get; set; }
 		public string InWord { get; set; }
 		public long? TypeID { get; set; }
 		public int? CreatorID { get; set; }

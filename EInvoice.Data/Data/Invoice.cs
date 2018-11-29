@@ -24,7 +24,7 @@ namespace EInvoice.Data.Data
         public int CompanyId { get; set; }
         public int PatternId { get; set; }
         public string Series { get; set; }
-        public Nullable<int> SeriesId { get; set; }
+        public int SeriesId { get; set; }
         public int No { get; set; }
         public string SecureCode { get; set; }
         public long PurchaserCustomerID { get; set; }
@@ -33,8 +33,8 @@ namespace EInvoice.Data.Data
         public string Note { get; set; }
         public Nullable<int> Tax { get; set; }
         public Nullable<decimal> TaxAmount { get; set; }
-        public decimal SubTotalAmount { get; set; }
-        public decimal GrandTotalAmount { get; set; }
+        public Nullable<decimal> SubTotalAmount { get; set; }
+        public Nullable<decimal> GrandTotalAmount { get; set; }
         public string InWord { get; set; }
         public Nullable<int> CreatorID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

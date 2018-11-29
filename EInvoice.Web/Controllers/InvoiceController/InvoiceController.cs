@@ -1,12 +1,9 @@
 ﻿using EInvoice.Data.Data;
 using EInvoice.Data.Services;
-using EInvoice.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DevExpress.Office.Utils;
-using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
@@ -14,32 +11,16 @@ namespace EInvoice.Web.Controllers.InvoiceController
 	{
 		private readonly IInvoiceService _invoiceService;
 		private readonly IPaymentMethodService _paymentMethodService;
-		private readonly ICompanyService _companyService;
-		private readonly ICustomerService _customerService;
-		private readonly IProductService _productService;
-		private readonly IUnitService _unitService;
 		private readonly IPatternService _patternService;
-		private readonly IItemService _itemService;
 
 		public InvoiceController(IInvoiceService invoiceService,
 								 IPaymentMethodService paymentMethodService,
-								 ICompanyService companyService,
-								 ICustomerService customerService,
-								 IProductService productService,
-								 IUnitService unitService,
-								 IPatternService patternService,
-								 IItemService itemService
+								 IPatternService patternService
 								)
 		{
 			_invoiceService = invoiceService;
-
 			_paymentMethodService = paymentMethodService;
-			_companyService = companyService;
-			_customerService = customerService;
-			_productService = productService;
-			_unitService = unitService;
 			_patternService = patternService;
-			_itemService = itemService;
 		}
 
 		public ActionResult Index()
@@ -52,30 +33,30 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return View();
 		}
 
-	
 		public ActionResult List()
 		{
 			return View();
 		}
+
 		[HttpPost]
-		
-		public JsonResult Create(Invoice invoice)
+		public JsonResult Create(Invoice invoice, bool isRelease)
 		{
 			try
 			{
+				if (isRelease)
+				{
+					_invoiceService.SaveAndRelease(invoice);
+					return Success("Successfully");
+				}
 				_invoiceService.AddDraft(invoice);
 				return Success("Successfully");
 			}
 			catch (Exception e)
 			{
 				return Error(e.Message);
-			}
-		}
+			}}
 
-		public IList<PaymentMethod> GetPayments()
-		{
-			return _paymentMethodService.GetAll();
-		}
+		#region JSON STATUS
 
 		public JsonResult Success(string message)
 		{
@@ -85,6 +66,15 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		public JsonResult Error(string message)
 		{
 			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
+		#endregion JSON STATUS
+
+		#region Get component
+
+		public IList<PaymentMethod> GetPayments()
+		{
+			return _paymentMethodService.GetAll();
 		}
 
 		public JsonResult GetAllPattern()
@@ -102,10 +92,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			}
 			return Json(listPattern, JsonRequestBehavior.AllowGet);
 		}
-		public JsonResult GetSerial(int patternId)
-		{
-			return Json(GetSeries(patternId), JsonRequestBehavior.AllowGet);
-		}
+
 		public List<SelectListItem> GetSeries(int patternId)
 		{
 			var serials = _invoiceService.GetSeriesByPattern(patternId).ToList();
@@ -123,14 +110,19 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			return listSerial;
 		}
 
-		public IEnumerable<Pattern> GetPattern()
+		public JsonResult GetSerial(int patternId)
 		{
-			return _patternService.GetAll();
+			return Json(GetSeries(patternId), JsonRequestBehavior.AllowGet);
 		}
 
 		public IEnumerable<Serial> GetAllSerial()
 		{
 			return _invoiceService.GetSeries();
+		}
+
+		public IEnumerable<Pattern> GetPattern()
+		{
+			return _patternService.GetAll();
 		}
 
 		public List<SelectListItem> GetPaymentType()
@@ -148,6 +140,22 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			}
 
 			return listPayment;
+		}
+
+		#endregion Get component
+
+		public ActionResult Show(int? invoiceId)
+		{
+			var report = new InvoiceReport();
+			report.Parameters["IDParameter"].Value = invoiceId;
+			report.Parameters["IDParameter"].Visible = false;
+			return View(report);
+		}
+
+		public ActionResult ExportDocumentViewer()
+		{
+			return DevExpress.Web.Mvc.DocumentViewerExtension.ExportTo(
+				new InvoiceReport());
 		}
 	}
 }

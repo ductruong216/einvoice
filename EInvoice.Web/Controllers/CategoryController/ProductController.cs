@@ -13,7 +13,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 	{
 		private readonly IProductService _productService;
 		private readonly IUnitService _unitService;
-
 		public ProductController(IProductService productService, IUnitService unitService)
 		{
 			_productService = productService;
@@ -21,7 +20,6 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		// GET: Product
-
 		public ActionResult Index()
 		{
 			return View();
@@ -115,23 +113,24 @@ namespace EInvoice.Web.Controllers.CategoryController
 		}
 
 		[HttpPost]
-		public JsonResult GetProductsCode(string searchKey)
+		public JsonResult GetProductByCode(string searchKey)
 		{
-			var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
-			var searchProducts = products.Where(x => x.Code.Contains(searchKey) && x.isDel == false).ToList();
-			searchProducts.ForEach(_ => _.Unit.Products = null);
-
-			return Json(searchProducts, JsonRequestBehavior.AllowGet);
+			////var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
+			//var searchProducts1 = products.Where(x => x.Code.Contains(searchKey) && x.isDel == false).ToList();
+			//searchProducts1.ForEach(_ => _.Unit.Products = null);
+			var productsByCode = Mapper.Map<List<ProductViewModel>>
+				(_productService.GetProductByCode(searchKey));
+			productsByCode.ForEach(_ => _.Unit.Products = null);
+			return Json(productsByCode, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]
-		public JsonResult GetProductsName(string searchKey)
+		public JsonResult GetProductByName(string searchKey)
 		{
-			var products = Mapper.Map<List<ProductViewModel>>(_productService.GetProductsSource());
-			var searchProducts = products.Where(x => x.Name.Contains(searchKey) && x.isDel == false).ToList();
-			searchProducts.ForEach(_ => _.Unit.Products = null);
-
-			return Json(searchProducts, JsonRequestBehavior.AllowGet);
+			var productsByName = Mapper.Map<List<ProductViewModel>>
+				(_productService.GetProductByName(searchKey));
+			productsByName.ForEach(_ => _.Unit.Products = null);
+			return Json(productsByName, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]

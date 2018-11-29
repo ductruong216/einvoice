@@ -1,9 +1,17 @@
 ﻿// Create Invoice
-$(document).ready(function () {
-	$("#submitInvoice").click(function () {
+function IsRelease(button) {
+	if (button === "submitInvoice") {
+		return false;
+	}
+	else if (button === "save_and_release") {
+		return true;
+	}
+}
+function CreateInvoice(button) {
+	var isRelease = IsRelease(button);
+	$("#" + button).click(function () {
 		var items = [];
 		var count = $('#goodsTable tr').length;
-
 		for (var i = 1; i < count; ++i) {
 			if ($('#productCode' + i).val().trim() !== "" && $('#productId' + i).val().trim() !== "") {
 				var item = {
@@ -24,6 +32,7 @@ $(document).ready(function () {
 			dataType: "json",
 			url: '/Invoice/Create',
 			data: {
+				isRelease: isRelease,
 				Tax: $('#tax').val(),
 				TaxAmount: $('#tax_amount').val(),
 				SubTotalAmount: $('#sub_total').val(),
@@ -31,7 +40,7 @@ $(document).ready(function () {
 				PatternId: parseInt($('#pattern').val(), 10),
 				SeriesId: $('#series').val(),
 				No: $('#no').val(),
-				CreatedDate: $('#date').val(),
+				CreatedDate: $('.date').val(),
 				PurchaserCustomer: {
 					Code: $('#CusCode').val(),
 					Purchaser: $('#purchaser').val(),
@@ -73,7 +82,85 @@ $(document).ready(function () {
 			}
 		});
 	});
-});
+}
+
+CreateInvoice("submitInvoice");
+CreateInvoice("save_and_release");
+//$(document).ready(function () {
+//	$("#submitInvoice").click(function () {
+//		var items = [];
+//		var count = $('#goodsTable tr').length;
+//		for (var i = 1; i < count; ++i) {
+//			if ($('#productCode' + i).val().trim() !== "" && $('#productId' + i).val().trim() !== "") {
+//				var item = {
+//					ProductId: $('#productId' + i).val(),
+//					ItemName: $('#name' + i).val(),
+//					ItemPrice: $('#price' + i).val(),
+//					UnitName: $('#unit' + i).val(),
+//					Quantity: $('#qty' + i).val(),
+//					TotalAmount: $('#total' + i).val()
+//				};
+
+//				items.push(item);
+//			}
+//		}
+
+//		$.ajax({
+//			type: "POST",
+//			dataType: "json",
+//			url: '/Invoice/Create',
+//			data: {
+//				isRelease: false,
+//				Tax: $('#tax').val(),
+//				TaxAmount: $('#tax_amount').val(),
+//				SubTotalAmount: $('#sub_total').val(),
+//				GrandTotalAmount: $('#total_amount').val(),
+//				PatternId: parseInt($('#pattern').val(), 10),
+//				SeriesId: $('#series').val(),
+//				No: $('#no').val(),
+//				CreatedDate: $('.date').val(),
+//				PurchaserCustomer: {
+//					Code: $('#CusCode').val(),
+//					Purchaser: $('#purchaser').val(),
+//					EnterpriseName: $('#companyName').val(),
+//					TaxCode: $('#taxCode').val(),
+//					Address: $('#address').val(),
+//					Email: $('#email').val(),
+//					Phone: $('#phone').val()
+//				},
+//				CustomerId: $('#customerId').val(),
+
+//				Items: items,
+
+//				PaymentTypeID:
+//					$('#paymentType').val()
+//				,
+//				Note: $('#note').val()
+//			},
+//			success: function (response) {
+//				if (response.Success) {
+//					swal({
+//						title: "Add Invoice",
+//						text: response.Message,
+//						icon: "success",
+//						buttons: false,
+//						timer: 1500
+//					}).then(function () {
+//						window.location.href = "/Invoice/List";
+//					});
+//				} else {
+//					swal({
+//						title: "Add Invoice",
+//						text: response.Message,
+//						icon: "error",
+//						buttons: false,
+//						timer: 2000
+//					});
+//				}
+//			}
+//		});
+//	});
+//});
 
 //Edit Invoice
 $(document).ready(function () {
@@ -98,6 +185,7 @@ $(document).ready(function () {
 			dataType: "json",
 			url: '/Invoice/Edit',
 			data: {
+				isRelease: false,
 				Tax: $('#tax').val(),
 				PurchaserCustomerID: $('#PurchaserCustomerID').val(),
 				CompanyID: $('#CompanyId').val(),
@@ -110,7 +198,7 @@ $(document).ready(function () {
 				PatternId: parseInt($('#pattern').val(), 10),
 				SeriesId: $('#series').val(),
 				No: $('#no').val(),
-				CreatedDate: $('#date').val(),
+				CreatedDate: $('.date').val(),
 				PurchaserCustomer: {
 					Code: $('#CusCode').val(),
 					Purchaser: $('#purchaser').val(),
@@ -208,7 +296,7 @@ function Release(id) {
 		dangerMode: true
 	}).then((isConfirm) => {
 		if (isConfirm) {
-		
+
 			$.ajax({
 				type: "POST",
 				url: "/Invoice/ReleaseInvoice/" + id,
@@ -222,7 +310,7 @@ function Release(id) {
 							buttons: false,
 							timer: 1500
 
-						}).then(function() {
+						}).then(function () {
 							ReleaseGrid.Refresh();
 							DraftInvoice.Refresh();
 							ListInvoice.SetActiveTabIndex(1);
@@ -251,7 +339,7 @@ function viewInvoice(id) {
 		buttons: true,
 		dangerMode: true
 	}).then((isConfirm) => {
-		if (isConfirm) {	
+		if (isConfirm) {
 			$.ajax({
 				type: "POST",
 				url: "/Invoice/ReleaseInvoice/" + id,
@@ -264,7 +352,7 @@ function viewInvoice(id) {
 							buttons: false,
 							timer: 1500
 
-						}).then(function() {
+						}).then(function () {
 							ReleaseGrid.Refresh();
 							DraftInvoice.Refresh();
 							ListInvoice.SetActiveTabIndex(1);
@@ -285,7 +373,6 @@ function viewInvoice(id) {
 		}
 	});
 }
-
 
 // Start Select Pattern and Serial
 function PopulateDropDown(url, data, type) {

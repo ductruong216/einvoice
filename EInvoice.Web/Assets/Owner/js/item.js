@@ -65,7 +65,7 @@ $(document).ready(function () {
 		newRow.find("#name" + index).autocomplete({
 			source: function (request, response) {
 				$.ajax({
-					url: '/Product/GetProductsName',
+					url: '/Product/GetProductByName',
 					type: "POST",
 					dataType: "json",
 					data: { searchKey: request.term },
@@ -96,7 +96,7 @@ $(document).ready(function () {
 		newRow.find("#productCode" + index).autocomplete({
 			source: function (request, response) {
 				$.ajax({
-					url: '/Product/GetProductsCode',
+					url: '/Product/GetProductByCode',
 					type: "POST",
 					dataType: "json",
 					data: { searchKey: request.term },

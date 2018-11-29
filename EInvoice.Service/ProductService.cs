@@ -6,7 +6,6 @@ using EInvoice.Repository;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net.Sockets;
 
 namespace EInvoice.Service
 {
@@ -21,7 +20,7 @@ namespace EInvoice.Service
 
 		public IList<Product> GetAllDesProduct()
 		{
-			var products = _productRepository.GetMulti(x=>x.isDel ==false).OrderByDescending(x=>x.ID).ToList();
+			var products = _productRepository.GetMulti(x => x.isDel == false).OrderByDescending(x => x.ID).ToList();
 			return products;
 		}
 
@@ -60,6 +59,16 @@ namespace EInvoice.Service
 		public long GetId(Product modelProduct)
 		{
 			throw new System.NotImplementedException();
+		}
+
+		public IList<Product> GetProductByCode(string code)
+		{
+			return _productRepository.GetMulti(x => x.Code.Contains(code) && x.isDel == false).ToList();
+		}
+
+		public IList<Product> GetProductByName(string name)
+		{
+			return _productRepository.GetMulti(x => x.Name.Contains(name) && x.isDel == false).ToList();
 		}
 	}
 }

@@ -12,5 +12,8 @@ namespace EInvoice.Data.Services
 		void Release(int invoiceId);
 		IList<Serial> GetSeries();
 		IEnumerable<Serial> GetSeriesByPattern(int id);
+		void SaveAndRelease(Invoice invoice);
+		IList<Invoice> GetAllDraft();
+		IList<Invoice> GetAllRelease();
 	}
 }

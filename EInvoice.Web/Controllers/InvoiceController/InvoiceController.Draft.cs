@@ -1,13 +1,10 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
+using EInvoice.Data.Data;
 using EInvoice.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DevExpress.XtraCharts;
-using EInvoice.Data.Data;
-using EInvoice.Data.Infrastructure.Implementation;
-using EInvoice.Data.Services;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
@@ -15,8 +12,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
 	{
 		public ActionResult Draft()
 		{
-			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAll()
-				.Where(x => x.isDel == false && x.Status == "Draft").OrderByDescending(x => x.ID));
+			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAllDraft());
 			return View("_Draft", model);
 		}
 
@@ -69,33 +65,6 @@ namespace EInvoice.Web.Controllers.InvoiceController
 			{
 				return Error(e.Message);
 			}
-		}
-		[HttpPost]
-		public ActionResult ShowDraft(int id)
-		{
-			try
-			{
-				_invoiceService.Release(id);
-
-				return Success("Release successfully");
-			}
-			catch (Exception e)
-			{
-				return Error(e.Message);
-			}
-		}
-
-		public ActionResult ShowInvoice(int? invoiceId){
-			var report = new InvoiceReport();
-			report.Parameters["IDParameter"].Value = invoiceId;
-			report.Parameters["IDParameter"].Visible = false;
-			return View(report);
-		}
-
-		public ActionResult ExportDocumentViewer()
-		{
-			return DevExpress.Web.Mvc.DocumentViewerExtension.ExportTo(
-				new InvoiceReport());
 		}
 	}
 }
