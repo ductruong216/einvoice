@@ -67,6 +67,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -191,6 +192,9 @@
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\IUnitService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Utilities\Constant.cs" />
+    <Compile Include="Utilities\Enumeration\Enumerations.cs" />
+    <Compile Include="Utilities\PermissionLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
