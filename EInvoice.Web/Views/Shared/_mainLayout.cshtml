@@ -16,6 +16,9 @@
 	<link href="~/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
 	<link href="~/Assets/Owner/css/sweetAlert.css" rel="stylesheet" />
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="icon" href="~/Assets/Owner/Images/favicon.png" type="image/ico">
+	
+	<title>@ViewBag.Title</title>
 	@Html.DevExpress().GetStyleSheets(
 		new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
 		new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
@@ -188,5 +191,6 @@
 	<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="/build/js/custom.min.js"></script>
+	<script src="~/Assets/vendor/validator/validator.js"></script>
 </body>
 </html>

@@ -2,7 +2,6 @@
 function CustomerAutoComplete(field, fieldValue, URL) {
 	$("#" + field).autocomplete({
 		source: function (request, response) {
-			debugger;
 			$.ajax({
 				url: URL,
 				type: "POST",

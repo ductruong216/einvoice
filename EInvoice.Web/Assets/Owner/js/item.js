@@ -145,29 +145,29 @@ $(document).ready(function () {
 	});
 });
 
-$(document).ready(function () {
-	$('#find_company').on('click',
-		function () {
-			$.ajax({
-				url: '/Customer/GetCustomerAPI',
-				type: "GET",
-				dataType: "json",
-				data: { mst: $('#taxCode').val() },
-				success: function (data) {
-					debugger;
-					response($.map(data,
-						function (item) {
-							return {
-								name: item.TitleEn,
-								address: item.DiaChiCongTy
-							};
-						}));
-				},
+//$(document).ready(function () {
+//	$('#find_company').on('click',
+//		function () {
+//			$.ajax({
+//				url: '/Customer/GetCustomerAPI',
+//				type: "GET",
+//				dataType: "json",
+//				data: { mst: $('#taxCode').val() },
+//				success: function (data) {
+//					debugger;
+//					response($.map(data,
+//						function (item) {
+//							return {
+//								name: item.TitleEn,
+//								address: item.DiaChiCongTy
+//							};
+//						}));
+//				},
 
-				select: function (even, ui) {
-					$("#companyName").val(ui.item.name);
-					$("#address").val(ui.item.address);
-				}
-			});
-		});
-});
+//				select: function (even, ui) {
+//					$("#companyName").val(ui.item.name);
+//					$("#address").val(ui.item.address);
+//				}
+//			});
+//		});
+//});

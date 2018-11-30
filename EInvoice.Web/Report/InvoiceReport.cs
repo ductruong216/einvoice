@@ -113,6 +113,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 	private XRRichText xrRichText1;
 	private XRLabel lbdSeries;
 	private XRBarCode xrBarCode1;
+	private XRLabel xrLabel1;
 
 	/// <summary>
 	/// Required designer variable.
@@ -174,9 +175,9 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression9 = new DevExpress.DataAccess.Sql.ColumnExpression();
 			DevExpress.DataAccess.Sql.Column column10 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression10 = new DevExpress.DataAccess.Sql.ColumnExpression();
+			DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column11 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression11 = new DevExpress.DataAccess.Sql.ColumnExpression();
-			DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column12 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression12 = new DevExpress.DataAccess.Sql.ColumnExpression();
 			DevExpress.DataAccess.Sql.Column column13 = new DevExpress.DataAccess.Sql.Column();
@@ -189,12 +190,12 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression16 = new DevExpress.DataAccess.Sql.ColumnExpression();
 			DevExpress.DataAccess.Sql.Column column17 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression17 = new DevExpress.DataAccess.Sql.ColumnExpression();
+			DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column18 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression18 = new DevExpress.DataAccess.Sql.ColumnExpression();
-			DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
+			DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column19 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression19 = new DevExpress.DataAccess.Sql.ColumnExpression();
-			DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column20 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression20 = new DevExpress.DataAccess.Sql.ColumnExpression();
 			DevExpress.DataAccess.Sql.Column column21 = new DevExpress.DataAccess.Sql.Column();
@@ -211,9 +212,9 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression26 = new DevExpress.DataAccess.Sql.ColumnExpression();
 			DevExpress.DataAccess.Sql.Column column27 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression27 = new DevExpress.DataAccess.Sql.ColumnExpression();
+			DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column28 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression28 = new DevExpress.DataAccess.Sql.ColumnExpression();
-			DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column29 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression29 = new DevExpress.DataAccess.Sql.ColumnExpression();
 			DevExpress.DataAccess.Sql.Column column30 = new DevExpress.DataAccess.Sql.Column();
@@ -244,9 +245,9 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression42 = new DevExpress.DataAccess.Sql.ColumnExpression();
 			DevExpress.DataAccess.Sql.Column column43 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression43 = new DevExpress.DataAccess.Sql.ColumnExpression();
+			DevExpress.DataAccess.Sql.Table table7 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.Column column44 = new DevExpress.DataAccess.Sql.Column();
 			DevExpress.DataAccess.Sql.ColumnExpression columnExpression44 = new DevExpress.DataAccess.Sql.ColumnExpression();
-			DevExpress.DataAccess.Sql.Table table7 = new DevExpress.DataAccess.Sql.Table();
 			DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
 			DevExpress.DataAccess.Sql.Join join1 = new DevExpress.DataAccess.Sql.Join();
 			DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo1 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
@@ -279,6 +280,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.excelDataSource1 = new DevExpress.DataAccess.Excel.ExcelDataSource();
 			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+			this.xrBarCode1 = new DevExpress.XtraReports.UI.XRBarCode();
 			this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
 			this.tbSymbol = new DevExpress.XtraReports.UI.XRTable();
 			this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -367,7 +369,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
 			this.xrCrossBandLine4 = new DevExpress.XtraReports.UI.XRCrossBandLine();
 			this.xrCrossBandLine3 = new DevExpress.XtraReports.UI.XRCrossBandLine();
-			this.xrBarCode1 = new DevExpress.XtraReports.UI.XRBarCode();
+			this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
 			((System.ComponentModel.ISupportInitialize)(this.tbItemDetail)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbSymbol)).BeginInit();
@@ -532,163 +534,163 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			table1.MetaSerializable = "<Meta X=\"650\" Y=\"30\" Width=\"125\" Height=\"248\" />";
 			table1.Name = "PurchaserCustomers";
 			allColumns1.Table = table1;
-			columnExpression1.ColumnName = "Series";
-			table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"495\" />";
+			columnExpression1.ColumnName = "No";
+			table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"476\" />";
 			table2.Name = "Invoices";
 			columnExpression1.Table = table2;
 			column1.Expression = columnExpression1;
-			columnExpression2.ColumnName = "No";
+			columnExpression2.ColumnName = "PurchaserCustomerID";
 			columnExpression2.Table = table2;
 			column2.Expression = columnExpression2;
-			columnExpression3.ColumnName = "PurchaserCustomerID";
+			columnExpression3.ColumnName = "Tax";
 			columnExpression3.Table = table2;
 			column3.Expression = columnExpression3;
-			columnExpression4.ColumnName = "Tax";
+			columnExpression4.ColumnName = "TaxAmount";
 			columnExpression4.Table = table2;
 			column4.Expression = columnExpression4;
-			columnExpression5.ColumnName = "TaxAmount";
+			columnExpression5.ColumnName = "SubTotalAmount";
 			columnExpression5.Table = table2;
 			column5.Expression = columnExpression5;
-			columnExpression6.ColumnName = "SubTotalAmount";
+			columnExpression6.ColumnName = "GrandTotalAmount";
 			columnExpression6.Table = table2;
 			column6.Expression = columnExpression6;
-			columnExpression7.ColumnName = "GrandTotalAmount";
+			columnExpression7.ColumnName = "CreatedDate";
 			columnExpression7.Table = table2;
 			column7.Expression = columnExpression7;
-			columnExpression8.ColumnName = "CreatedDate";
+			columnExpression8.ColumnName = "ReleaseDate";
 			columnExpression8.Table = table2;
 			column8.Expression = columnExpression8;
-			columnExpression9.ColumnName = "ReleaseDate";
+			columnExpression9.ColumnName = "Status";
 			columnExpression9.Table = table2;
 			column9.Expression = columnExpression9;
-			columnExpression10.ColumnName = "Status";
-			columnExpression10.Table = table2;
-			column10.Expression = columnExpression10;
-			columnExpression11.ColumnName = "Quantity";
+			columnExpression10.ColumnName = "Quantity";
 			table3.MetaSerializable = "<Meta X=\"185\" Y=\"30\" Width=\"125\" Height=\"248\" />";
 			table3.Name = "Items";
+			columnExpression10.Table = table3;
+			column10.Expression = columnExpression10;
+			columnExpression11.ColumnName = "Discount";
 			columnExpression11.Table = table3;
 			column11.Expression = columnExpression11;
-			columnExpression12.ColumnName = "Discount";
+			columnExpression12.ColumnName = "DiscountAmount";
 			columnExpression12.Table = table3;
 			column12.Expression = columnExpression12;
-			columnExpression13.ColumnName = "DiscountAmount";
+			columnExpression13.ColumnName = "TotalAmount";
 			columnExpression13.Table = table3;
 			column13.Expression = columnExpression13;
-			columnExpression14.ColumnName = "TotalAmount";
+			columnExpression14.ColumnName = "ItemName";
 			columnExpression14.Table = table3;
 			column14.Expression = columnExpression14;
-			columnExpression15.ColumnName = "ItemName";
+			columnExpression15.ColumnName = "ItemPrice";
 			columnExpression15.Table = table3;
 			column15.Expression = columnExpression15;
-			columnExpression16.ColumnName = "ItemPrice";
+			columnExpression16.ColumnName = "UnitName";
 			columnExpression16.Table = table3;
 			column16.Expression = columnExpression16;
-			columnExpression17.ColumnName = "UnitName";
-			columnExpression17.Table = table3;
-			column17.Expression = columnExpression17;
-			column18.Alias = "Patterns_Name";
-			columnExpression18.ColumnName = "Name";
+			column17.Alias = "Patterns_Name";
+			columnExpression17.ColumnName = "Name";
 			table4.MetaSerializable = "<Meta X=\"340\" Y=\"30\" Width=\"125\" Height=\"115\" />";
 			table4.Name = "Patterns";
-			columnExpression18.Table = table4;
-			column18.Expression = columnExpression18;
-			column19.Alias = "PaymentMethods_Name";
-			columnExpression19.ColumnName = "Name";
+			columnExpression17.Table = table4;
+			column17.Expression = columnExpression17;
+			column18.Alias = "PaymentMethods_Name";
+			columnExpression18.ColumnName = "Name";
 			table5.MetaSerializable = "<Meta X=\"495\" Y=\"30\" Width=\"125\" Height=\"96\" />";
 			table5.Name = "PaymentMethods";
-			columnExpression19.Table = table5;
+			columnExpression18.Table = table5;
+			column18.Expression = columnExpression18;
+			columnExpression19.ColumnName = "Code";
+			columnExpression19.Table = table1;
 			column19.Expression = columnExpression19;
-			columnExpression20.ColumnName = "Code";
+			columnExpression20.ColumnName = "TaxCode";
 			columnExpression20.Table = table1;
 			column20.Expression = columnExpression20;
-			columnExpression21.ColumnName = "TaxCode";
+			columnExpression21.ColumnName = "EnterpriseName";
 			columnExpression21.Table = table1;
 			column21.Expression = columnExpression21;
-			columnExpression22.ColumnName = "EnterpriseName";
+			columnExpression22.ColumnName = "Email";
 			columnExpression22.Table = table1;
 			column22.Expression = columnExpression22;
-			columnExpression23.ColumnName = "Email";
+			columnExpression23.ColumnName = "Address";
 			columnExpression23.Table = table1;
 			column23.Expression = columnExpression23;
-			columnExpression24.ColumnName = "Address";
+			columnExpression24.ColumnName = "Phone";
 			columnExpression24.Table = table1;
 			column24.Expression = columnExpression24;
-			columnExpression25.ColumnName = "Phone";
+			columnExpression25.ColumnName = "Fax";
 			columnExpression25.Table = table1;
 			column25.Expression = columnExpression25;
-			columnExpression26.ColumnName = "Fax";
+			columnExpression26.ColumnName = "LegalPresenter";
 			columnExpression26.Table = table1;
 			column26.Expression = columnExpression26;
-			columnExpression27.ColumnName = "LegalPresenter";
-			columnExpression27.Table = table1;
-			column27.Expression = columnExpression27;
-			column28.Alias = "Companies_TaxCode";
-			columnExpression28.ColumnName = "TaxCode";
+			column27.Alias = "Companies_TaxCode";
+			columnExpression27.ColumnName = "TaxCode";
 			table6.MetaSerializable = "<Meta X=\"805\" Y=\"30\" Width=\"125\" Height=\"362\" />";
 			table6.Name = "Companies";
+			columnExpression27.Table = table6;
+			column27.Expression = columnExpression27;
+			column28.Alias = "Companies_Name";
+			columnExpression28.ColumnName = "Name";
 			columnExpression28.Table = table6;
 			column28.Expression = columnExpression28;
-			column29.Alias = "Companies_Name";
-			columnExpression29.ColumnName = "Name";
+			column29.Alias = "Companies_Address";
+			columnExpression29.ColumnName = "Address";
 			columnExpression29.Table = table6;
 			column29.Expression = columnExpression29;
-			column30.Alias = "Companies_Address";
-			columnExpression30.ColumnName = "Address";
+			column30.Alias = "Companies_Phone";
+			columnExpression30.ColumnName = "Phone";
 			columnExpression30.Table = table6;
 			column30.Expression = columnExpression30;
-			column31.Alias = "Companies_Phone";
-			columnExpression31.ColumnName = "Phone";
+			column31.Alias = "Companies_Fax";
+			columnExpression31.ColumnName = "Fax";
 			columnExpression31.Table = table6;
 			column31.Expression = columnExpression31;
-			column32.Alias = "Companies_Fax";
-			columnExpression32.ColumnName = "Fax";
+			columnExpression32.ColumnName = "Website";
 			columnExpression32.Table = table6;
 			column32.Expression = columnExpression32;
-			columnExpression33.ColumnName = "Website";
+			column33.Alias = "Companies_LegalPresenter";
+			columnExpression33.ColumnName = "LegalPresenter";
 			columnExpression33.Table = table6;
 			column33.Expression = columnExpression33;
-			column34.Alias = "Companies_LegalPresenter";
-			columnExpression34.ColumnName = "LegalPresenter";
+			column34.Alias = "Companies_Email";
+			columnExpression34.ColumnName = "Email";
 			columnExpression34.Table = table6;
 			column34.Expression = columnExpression34;
-			column35.Alias = "Companies_Email";
-			columnExpression35.ColumnName = "Email";
+			column35.Alias = "Companies_BankAccountId";
+			columnExpression35.ColumnName = "BankAccountID";
 			columnExpression35.Table = table6;
 			column35.Expression = columnExpression35;
-			column36.Alias = "Companies_BankAccountId";
-			columnExpression36.ColumnName = "BankAccountID";
+			column36.Alias = "Companies_AccountHolder";
+			columnExpression36.ColumnName = "AccountHolder";
 			columnExpression36.Table = table6;
 			column36.Expression = columnExpression36;
-			column37.Alias = "Companies_AccountHolder";
-			columnExpression37.ColumnName = "AccountHolder";
+			column37.Alias = "Companies_BankName";
+			columnExpression37.ColumnName = "BankName";
 			columnExpression37.Table = table6;
 			column37.Expression = columnExpression37;
-			column38.Alias = "Companies_BankName";
-			columnExpression38.ColumnName = "BankName";
+			columnExpression38.ColumnName = "Agency";
 			columnExpression38.Table = table6;
 			column38.Expression = columnExpression38;
-			columnExpression39.ColumnName = "Agency";
+			columnExpression39.ColumnName = "AccountID";
 			columnExpression39.Table = table6;
 			column39.Expression = columnExpression39;
-			columnExpression40.ColumnName = "AccountID";
+			columnExpression40.ColumnName = "Note";
 			columnExpression40.Table = table6;
 			column40.Expression = columnExpression40;
-			columnExpression41.ColumnName = "Note";
-			columnExpression41.Table = table6;
+			column41.Alias = "PurchaserCustomers_Purchaser";
+			columnExpression41.ColumnName = "Purchaser";
+			columnExpression41.Table = table1;
 			column41.Expression = columnExpression41;
-			column42.Alias = "PurchaserCustomers_Purchaser";
-			columnExpression42.ColumnName = "Purchaser";
-			columnExpression42.Table = table1;
+			columnExpression42.ColumnName = "ID";
+			columnExpression42.Table = table2;
 			column42.Expression = columnExpression42;
-			columnExpression43.ColumnName = "ID";
-			columnExpression43.Table = table2;
-			column43.Expression = columnExpression43;
-			column44.Alias = "Serial_Name";
-			columnExpression44.ColumnName = "Name";
+			column43.Alias = "Serial_Name";
+			columnExpression43.ColumnName = "Name";
 			table7.MetaSerializable = "<Meta X=\"960\" Y=\"30\" Width=\"125\" Height=\"115\" />";
 			table7.Name = "Serial";
-			columnExpression44.Table = table7;
+			columnExpression43.Table = table7;
+			column43.Expression = columnExpression43;
+			columnExpression44.ColumnName = "InWord";
+			columnExpression44.Table = table2;
 			column44.Expression = columnExpression44;
 			selectQuery1.Columns.Add(allColumns1);
 			selectQuery1.Columns.Add(column1);
@@ -853,6 +855,14 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.groupHeaderBand1.HeightF = 493.1786F;
 			this.groupHeaderBand1.Name = "groupHeaderBand1";
 			this.groupHeaderBand1.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBand;
+			// 
+			// xrBarCode1
+			// 
+			this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(642.9365F, 82.78001F);
+			this.xrBarCode1.Name = "xrBarCode1";
+			this.xrBarCode1.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100F);
+			this.xrBarCode1.SizeF = new System.Drawing.SizeF(100F, 23F);
+			this.xrBarCode1.Symbology = code128Generator1;
 			// 
 			// xrRichText1
 			// 
@@ -1836,6 +1846,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			// groupFooterBand1
 			// 
 			this.groupFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel1,
             this.lbCSignature,
             this.lbPSignature,
             this.lbInWord,
@@ -2129,13 +2140,18 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrCrossBandLine3.StartPointFloat = new DevExpress.Utils.PointFloat(2.083365F, 123.5882F);
 			this.xrCrossBandLine3.WidthF = 786.8329F;
 			// 
-			// xrBarCode1
+			// xrLabel1
 			// 
-			this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(642.9365F, 82.78001F);
-			this.xrBarCode1.Name = "xrBarCode1";
-			this.xrBarCode1.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 96F);
-			this.xrBarCode1.SizeF = new System.Drawing.SizeF(100F, 23F);
-			this.xrBarCode1.Symbology = code128Generator1;
+			this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InWord]")});
+			this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(148.958F, 127.7549F);
+			this.xrLabel1.Multiline = true;
+			this.xrLabel1.Name = "xrLabel1";
+			this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+			this.xrLabel1.SizeF = new System.Drawing.SizeF(632.0419F, 28.91661F);
+			this.xrLabel1.StylePriority.UseTextAlignment = false;
+			this.xrLabel1.Text = "xrLabel1";
+			this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
 			// 
 			// InvoiceReport
 			// 

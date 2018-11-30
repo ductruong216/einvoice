@@ -1,10 +1,13 @@
-﻿using EInvoice.Common;
+﻿using System;
+using EInvoice.Common;
 using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
 using EInvoice.Data.Services;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Net;
 
 namespace EInvoice.Service
 {

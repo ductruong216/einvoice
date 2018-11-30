@@ -46,15 +46,14 @@ namespace EInvoice.Web.Controllers.InvoiceController
 				if (isRelease)
 				{
 					_invoiceService.SaveAndRelease(invoice);
-					return Success("Successfully");
+					return Success("Release Successfully!");
 				}
 				_invoiceService.AddDraft(invoice);
-				return Success("Successfully");
+				return Success("Successfully!");
 			}
 			catch (Exception e)
 			{
-				return Error(e.Message);
-			}}
+				return Error(e.Message);}}
 
 		#region JSON STATUS
 

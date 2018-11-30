@@ -1828,6 +1828,8 @@
     <Content Include="Assets\Owner\css\customer.css" />
     <Content Include="Assets\Owner\css\style.css" />
     <Content Include="Assets\Owner\css\sweetAlert.css" />
+    <Content Include="Assets\Owner\Images\favicon.png" />
+    <Content Include="Assets\Owner\Images\Invoice-Icon.png" />
     <Content Include="Assets\Owner\js\ajax-begin-form.js" />
     <Content Include="Assets\Owner\js\bootstrap-modal.js" />
     <Content Include="Assets\Owner\js\check-available.js" />
@@ -2410,6 +2412,12 @@
     <Content Include="Assets\vendor\nprogress\nprogress.js" />
     <Content Include="Assets\vendor\nprogress\support\extras.css" />
     <Content Include="Assets\vendor\nprogress\support\style.css" />
+    <Content Include="Assets\vendor\validator\.gitattributes" />
+    <Content Include="Assets\vendor\validator\.gitignore" />
+    <Content Include="Assets\vendor\validator\fv.css" />
+    <Content Include="Assets\vendor\validator\index.html" />
+    <Content Include="Assets\vendor\validator\multifield.js" />
+    <Content Include="Assets\vendor\validator\validator.js" />
     <Content Include="build\css\custom.css" />
     <Content Include="build\css\custom.min.css" />
     <Content Include="build\images\back_disabled.png" />
@@ -2914,6 +2922,9 @@
     <Content Include="Assets\vendor\nprogress\License.md" />
     <Content Include="Assets\vendor\nprogress\Notes.md" />
     <Content Include="Assets\vendor\nprogress\Readme.md" />
+    <Content Include="Assets\vendor\validator\.bower.json" />
+    <Content Include="Assets\vendor\validator\README.md" />
+    <Content Include="Assets\vendor\validator\validator.jquery.json" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />

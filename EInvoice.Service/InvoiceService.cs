@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Xml.Schema;
+using EInvoice.Common;
 
 namespace EInvoice.Service
 {
@@ -44,7 +45,7 @@ namespace EInvoice.Service
 		{
 			invoice.Status = "Draft";
 			invoice.CompanyId = 3;
-
+			invoice.InWord = Utility.Num2Word((double)invoice.GrandTotalAmount);
 			Add(invoice);
 		}
 
@@ -155,7 +156,7 @@ namespace EInvoice.Service
 			invoice.Status = "Released";invoice.CompanyId = 3;
 			invoice.No = GetInvoiceNumber(invoice);
 			invoice.ReleaseDate = DateTime.Now;
-			Add(invoice);
+			invoice.InWord = Utility.Num2Word((double)invoice.GrandTotalAmount);Add(invoice);
 		}
 
 		public IList<Invoice> GetAllDraft()

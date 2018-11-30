@@ -9,7 +9,6 @@ namespace EInvoice.Web.Models
 		public long ID { get; set; }
 		public int CompanyId { get; set; }
 		public int PatternId { get; set; }
-		public string Series { get; set; }
 		public int SeriesId { get; set; }
 		public int No { get; set; }
 		public string SecureCode { get; set; }

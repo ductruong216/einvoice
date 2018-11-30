@@ -6,63 +6,62 @@ function IsRelease(button) {
 	else if (button === "save_and_release") {
 		return true;
 	}
-}
-function CreateInvoice(button) {
-	var isRelease = IsRelease(button);
-	$("#" + button).click(function () {
-		var items = [];
-		var count = $('#goodsTable tr').length;
-		for (var i = 1; i < count; ++i) {
-			if ($('#productCode' + i).val().trim() !== "" && $('#productId' + i).val().trim() !== "") {
-				var item = {
-					ProductId: $('#productId' + i).val(),
-					ItemName: $('#name' + i).val(),
-					ItemPrice: $('#price' + i).val(),
-					UnitName: $('#unit' + i).val(),
-					Quantity: $('#qty' + i).val(),
-					TotalAmount: $('#total' + i).val()
-				};
+};
 
-				items.push(item);
-			}
+function NewInvoiceCore(isRelease) {
+	var items = [];
+	var count = $('#goodsTable tr').length;
+	for (var i = 1; i < count; ++i) {
+		if ($('#productCode' + i).val().trim() !== "" && $('#productId' + i).val().trim() !== "") {
+			var item = {
+				ProductId: $('#productId' + i).val(),
+				ItemName: $('#name' + i).val(),
+				ItemPrice: $('#price' + i).val(),
+				UnitName: $('#unit' + i).val(),
+				Quantity: $('#qty' + i).val(),
+				TotalAmount: $('#total' + i).val()
+			};
+
+			items.push(item);
 		}
-
-		$.ajax({
-			type: "POST",
-			dataType: "json",
-			url: '/Invoice/Create',
-			data: {
-				isRelease: isRelease,
-				Tax: $('#tax').val(),
-				TaxAmount: $('#tax_amount').val(),
-				SubTotalAmount: $('#sub_total').val(),
-				GrandTotalAmount: $('#total_amount').val(),
-				PatternId: parseInt($('#pattern').val(), 10),
-				SeriesId: $('#series').val(),
-				No: $('#no').val(),
-				CreatedDate: $('.date').val(),
-				PurchaserCustomer: {
-					Code: $('#CusCode').val(),
-					Purchaser: $('#purchaser').val(),
-					EnterpriseName: $('#companyName').val(),
-					TaxCode: $('#taxCode').val(),
-					Address: $('#address').val(),
-					Email: $('#email').val(),
-					Phone: $('#phone').val()
-				},
-				CustomerId: $('#customerId').val(),
-
-				Items: items,
-
-				PaymentTypeID:
-					$('#paymentType').val()
-				,
-				Note: $('#note').val()
+	}
+	$.ajax({
+		type: "POST",
+		dataType: "json",
+		url: '/Invoice/Create',
+		data: {
+			isRelease: isRelease,
+			Tax: $('#tax').val(),
+			TaxAmount: $('#tax_amount').val(),
+			SubTotalAmount: $('#sub_total').val(),
+			GrandTotalAmount: $('#total_amount').val(),
+			PatternId: parseInt($('#pattern').val(), 10),
+			SeriesId: $('#series').val(),
+			No: $('#no').val(),
+			CreatedDate: $('.date').val(),
+			PurchaserCustomer: {
+				Code: $('#CusCode').val(),
+				Purchaser: $('#purchaser').val(),
+				EnterpriseName: $('#companyName').val(),
+				TaxCode: $('#taxCode').val(),
+				Address: $('#address').val(),
+				Email: $('#email').val(),
+				Phone: $('#phone').val()
 			},
-			success: function (response) {
-				if (response.Success) {
+			CustomerId: $('#customerId').val(),
+
+			Items: items,
+
+			PaymentTypeID:
+				$('#paymentType').val()
+			,
+			Note: $('#note').val()
+		},
+		success: function (response) {
+			if (response.Success) {
+				if (isRelease === false) {
 					swal({
-						title: "Add Invoice",
+						title: "New Invoice",
 						text: response.Message,
 						icon: "success",
 						buttons: false,
@@ -70,97 +69,50 @@ function CreateInvoice(button) {
 					}).then(function () {
 						window.location.href = "/Invoice/List";
 					});
-				} else {
-					swal({
-						title: "Add Invoice",
-						text: response.Message,
-						icon: "error",
-						buttons: false,
-						timer: 2000
-					});
 				}
+				swal({
+					title: "Release Invoice",
+					text: response.Message,
+					icon: "success",
+					buttons: false,
+					timer: 1500
+				}).then(function () {
+					window.location.href = "/Invoice/List";
+				});
+			} else {
+				swal({
+					title: "New Invoice",
+					text: response.Message,
+					icon: "error",
+					buttons: false,
+					timer: 2000
+				});
+			}
+		}
+	});
+}
+function CreateInvoice(button) {
+	var isRelease = IsRelease(button);
+	$("#" + button).click(function () {
+		debugger;
+		if (isRelease === false) {
+			NewInvoiceCore(isRelease);
+		}
+		swal({
+			title: "Do you want to save then release this invoice?",
+			icon: "info",
+			buttons: true,
+			dangerMode: true
+		}).then((isConfirm) => {
+			if (isConfirm) {
+				NewInvoiceCore(isRelease);
 			}
 		});
 	});
 }
-
 CreateInvoice("submitInvoice");
 CreateInvoice("save_and_release");
-//$(document).ready(function () {
-//	$("#submitInvoice").click(function () {
-//		var items = [];
-//		var count = $('#goodsTable tr').length;
-//		for (var i = 1; i < count; ++i) {
-//			if ($('#productCode' + i).val().trim() !== "" && $('#productId' + i).val().trim() !== "") {
-//				var item = {
-//					ProductId: $('#productId' + i).val(),
-//					ItemName: $('#name' + i).val(),
-//					ItemPrice: $('#price' + i).val(),
-//					UnitName: $('#unit' + i).val(),
-//					Quantity: $('#qty' + i).val(),
-//					TotalAmount: $('#total' + i).val()
-//				};
 
-//				items.push(item);
-//			}
-//		}
-
-//		$.ajax({
-//			type: "POST",
-//			dataType: "json",
-//			url: '/Invoice/Create',
-//			data: {
-//				isRelease: false,
-//				Tax: $('#tax').val(),
-//				TaxAmount: $('#tax_amount').val(),
-//				SubTotalAmount: $('#sub_total').val(),
-//				GrandTotalAmount: $('#total_amount').val(),
-//				PatternId: parseInt($('#pattern').val(), 10),
-//				SeriesId: $('#series').val(),
-//				No: $('#no').val(),
-//				CreatedDate: $('.date').val(),
-//				PurchaserCustomer: {
-//					Code: $('#CusCode').val(),
-//					Purchaser: $('#purchaser').val(),
-//					EnterpriseName: $('#companyName').val(),
-//					TaxCode: $('#taxCode').val(),
-//					Address: $('#address').val(),
-//					Email: $('#email').val(),
-//					Phone: $('#phone').val()
-//				},
-//				CustomerId: $('#customerId').val(),
-
-//				Items: items,
-
-//				PaymentTypeID:
-//					$('#paymentType').val()
-//				,
-//				Note: $('#note').val()
-//			},
-//			success: function (response) {
-//				if (response.Success) {
-//					swal({
-//						title: "Add Invoice",
-//						text: response.Message,
-//						icon: "success",
-//						buttons: false,
-//						timer: 1500
-//					}).then(function () {
-//						window.location.href = "/Invoice/List";
-//					});
-//				} else {
-//					swal({
-//						title: "Add Invoice",
-//						text: response.Message,
-//						icon: "error",
-//						buttons: false,
-//						timer: 2000
-//					});
-//				}
-//			}
-//		});
-//	});
-//});
 
 //Edit Invoice
 $(document).ready(function () {
@@ -192,7 +144,6 @@ $(document).ready(function () {
 				TaxAmount: $('#tax_amount').val(),
 				ProductId: $('#tax_amount').val(),
 				ID: $('#ID').val(),
-
 				SubTotalAmount: $('#sub_total').val(),
 				GrandTotalAmount: $('#total_amount').val(),
 				PatternId: parseInt($('#pattern').val(), 10),
@@ -296,12 +247,10 @@ function Release(id) {
 		dangerMode: true
 	}).then((isConfirm) => {
 		if (isConfirm) {
-
 			$.ajax({
 				type: "POST",
 				url: "/Invoice/ReleaseInvoice/" + id,
 				success: function (data) {
-
 					if (data.Success === true) {
 						swal({
 							title: "Release Invoice",
@@ -400,7 +349,6 @@ PopulateDropDown('/Invoice/GetAllPattern', null).done(function (response) {
 
 $(document).ready(function () {
 	$('#pattern').on("change", function () {
-		debugger;
 		var pattern = $('#pattern').val();
 		var obj = { patternId: pattern };
 
@@ -413,7 +361,6 @@ $(document).ready(function () {
 					options += '<option value="' + response[i].Value + '">' + response[i].Text + '</option>';
 				}
 				$('#series').append(options);
-
 			}
 
 		}).fail(function (error) {
@@ -423,3 +370,19 @@ $(document).ready(function () {
 });
 
 // End Select Pattern and Serial
+
+$(document).ready(function () {
+	$("#find_company").click(function () {
+		$.ajax({
+			url: "/Customer/GetCompanyOnline",
+			type: "GET",
+			dataType: "json",
+			data: { taxCode: $('#taxCode').val()},
+			success: function (data) {
+				var obj = JSON.parse(data);
+				$("#companyName").val(obj.Title);
+				$("#address").val(obj.DiaChiCongTy);
+			}
+		});
+	});
+});

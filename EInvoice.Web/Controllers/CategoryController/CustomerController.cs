@@ -4,7 +4,9 @@ using EInvoice.Data.Services;
 using EInvoice.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using System.Web.UI;
 using Customer = EInvoice.Data.Data.Customer;
@@ -32,7 +34,7 @@ namespace EInvoice.Web.Controllers.CategoryController
 			return PartialView("_CustomerPartial", model);
 		}
 
-	
+
 		[HttpPost, ValidateInput(true)]
 		public void Create(CustomerViewModel customer)
 		{
@@ -151,6 +153,31 @@ namespace EInvoice.Web.Controllers.CategoryController
 		public JsonResult Error(string message)
 		{
 			return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
+
+		public JsonResult GetCompanyOnline(string taxCode)
+		{
+			try
+			{
+				ServicePointManager.ServerCertificateValidationCallback += delegate { return true; };
+
+				var webRequest = (HttpWebRequest)WebRequest.Create("https://thongtindoanhnghiep.co/api/company/" + taxCode);
+
+				webRequest.Method = "GET";
+				webRequest.ContentType = "application/json";
+				var webResponse = (HttpWebResponse)webRequest.GetResponse();
+
+				var response = webResponse.GetResponseStream();
+				var responseStreamReader = new StreamReader(response);
+				return Json(responseStreamReader.ReadToEnd(), JsonRequestBehavior.AllowGet);
+
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
 		}
 	}
 }

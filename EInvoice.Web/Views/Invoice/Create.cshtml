@@ -17,6 +17,9 @@
 		border-style: solid;
 		border-color: #ff0000;
 	}
+	label span {
+		color: #ff0000;
+	}
 </style>
 <div class="">
 	<div class="page-title">
@@ -41,7 +44,7 @@
 									<div class="row">
 										<form class="form-horizontal form-label-left input_mask">
 											<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">Customer Code: </label>
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Customer Code: <span class="required">*</span> </label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input class="form-control" name="Code" id="CusCode" type="text">
 													<input type="hidden" class="form-control" name="ID" id="customerId">
@@ -76,7 +79,7 @@
 											</div>
 
 											<div class=" col-md-12 form-group">
-												<label class="control-label col-md-2 col-sm-2 col-xs-3">Address Name:</label>
+												<label class="control-label col-md-2 col-sm-2 col-xs-3">Address Name: <span class="required">*</span></label>
 												<div class="col-md-10 col-sm-10 col-xs-9">
 													<input class="form-control" name="Address" id="address" type="text">
 												</div>
@@ -97,7 +100,7 @@
 											</div>
 
 											<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method: </label>
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method: <span class="required">*</span></label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													@Html.DropDownListFor(model => model.PaymentTypeID,
 														controller.GetPaymentType(),
@@ -140,7 +143,7 @@
 									<div class="row">
 										<form class="form-horizontal form-label-left input_mask">
 											<div class="form-group">
-												<label class="control-label col-md-2 col-sm-2 col-xs-12">Pattern: </label>
+												<label class="control-label col-md-2 col-sm-2 col-xs-12">Pattern: <span class="required">*</span></label>
 												<div class="col-md-10 col-sm-12 col-xs-12">
 													<select id="pattern" class="form-control  col-md-9" required>
 														<option selected>Select</option>
@@ -149,7 +152,7 @@
 											</div>
 
 											<div class="form-group">
-												<label class="control-label col-md-2 col-sm-2 col-xs-12">Series: </label>
+												<label class="control-label col-md-2 col-sm-2 col-xs-12">Serial: <span class="required">*</span></label>
 												<div class="col-md-10 col-sm-12 col-xs-12">												
 													<select name="Series" id="series" class="form-control  col-md-9" required>
 														<option selected>Select</option>
