@@ -11,17 +11,21 @@ function calc() {
 		}
 	});
 }
+//function FormatCurrency(amount) {
+//	debugger
+//	$("#" + amount).val().toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+//}
 
 function calc_total() {
 	var total = 0;
 	$('.total').each(function () {
 		total += parseInt($(this).val());
 	});
-	$('#sub_total').val(total.toFixed(2));
+	$('#sub_total').val(total);
 	tax_sum = total / 100 * $('#tax').val();
-	$('#tax_amount').val(tax_sum.toFixed(2));
+	$('#tax_amount').val(tax_sum);
 
-	$('#total_amount').val((tax_sum + total).toFixed(2));
+	$('#total_amount').val((tax_sum + total));
 }
 
 function checkValidation() {

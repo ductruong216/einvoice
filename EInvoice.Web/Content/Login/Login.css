@@ -27,13 +27,13 @@ body {
 }
 
 .backLeft {
-    position: absolute;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: #e74c3c url(https://download.unsplash.com/photo-1428279148693-1cf2163ed67d);
-    background-size: cover;
-    background-position: 50% 50%;
+	position: absolute;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	background: #e74c3c url(https://d1dh93s7n44ml6.cloudfront.net/blog/wp-content/uploads/2017/05/03090909/sending-an-electronic-invoice.jpg);
+	background-size: cover;
+	background-position: 50% 50%;
 }
 
 #back {

@@ -114,12 +114,13 @@
 	settings.Columns.Add(c =>
 	{
 		c.FieldName = "GrandTotalAmount";
-		c.PropertiesEdit.DisplayFormatString = "c2";
+		c.PropertiesEdit.DisplayFormatString = "#,# VND";
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.Width = 120;
-		
+
 	});
+
 	settings.Columns.Add(c =>
 	{
 		c.Caption = "Action";
@@ -129,23 +130,40 @@
 		});
 		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-	
 		c.SetDataItemTemplateContent(r =>
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
 
 			ViewContext.Writer.Write("<div class=\"row\">" +
 									" <a href=\"/Invoice/Edit/" + invoiceId+ "\"class=\"on-default edit-row\" style=\"margin-right:5px\"><i class=\"fa fa-edit\"></i></a>" +
-									 "<a onclick=\"deleteInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>" +
-									 "<form action=\"Show\" method=\"post\">" +
-									 "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
-									 "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>"+
-									 "</form>"
-									+"</div>"
+									 "<a onclick=\"deleteInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-trash\"></i></a>"
 					);
 		});
+	});
+	settings.Columns.Add(c =>
+	{
+		c.Caption = "View Invoice";
+		c.EditorProperties().TextBox(p =>
+		{
+			p.CssPostfix = "actions";
+		});
+		c.Width = 100;
+		c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+		c.SetDataItemTemplateContent(r =>
+		{
+			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
 
-	});settings.Columns.Add(c =>
+			//ViewContext.Writer.Write("<form action=\"Show\" method=\"post\">" +
+			//						 "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId + "\">" +
+			//						 "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>" +
+			//						 "</form>"
+			//						+ "</div>"
+			//		);
+			ViewContext.Writer.Write("<button type=\"submit\" data-toggle=\"modal\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>");
+		});
+	});
+	settings.Columns.Add(c =>
 	{
 		c.Caption = "Release";
 		c.EditorProperties().TextBox(p =>

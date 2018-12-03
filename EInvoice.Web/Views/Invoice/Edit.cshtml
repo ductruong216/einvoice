@@ -241,14 +241,27 @@
 											<div class="form-group">
 												<label class="control-label col-md-2 col-sm-2 col-xs-12">Series: </label>
 												<div class="col-md-10 col-sm-12 col-xs-12">
-													@Html.DropDownListFor(model => model.Series,
+											
+													@Html.DropDownListFor(model => model.SeriesId,
 														controller.GetSeries(Model.PatternId),
 														new
 														{
-															@class = "form-control",
+															@class = "form-control",														
+															id = "series",
 															type = "text",
-															id = "series"
-														})
+															name = "Pattern",
+															required = "required"
+														})	
+													@*@Html.DropDownListFor(model => model.,
+														controller.GetSeries(Model.PatternId),
+														new
+														{
+															@class = "form-control",														
+															id = "series",
+															type = "hidden",
+															name = "Pattern",
+															required = "required"
+														})*@
 												</div>
 											</div>
 

@@ -343,6 +343,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrCrossBandBox1 = new DevExpress.XtraReports.UI.XRCrossBandBox();
 			this.IDParameter = new DevExpress.XtraReports.Parameters.Parameter();
 			this.groupFooterBand1 = new DevExpress.XtraReports.UI.GroupFooterBand();
+			this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
 			this.lbCSignature = new DevExpress.XtraReports.UI.XRLabel();
 			this.lbPSignature = new DevExpress.XtraReports.UI.XRLabel();
 			this.lbInWord = new DevExpress.XtraReports.UI.XRLabel();
@@ -369,7 +370,6 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
 			this.xrCrossBandLine4 = new DevExpress.XtraReports.UI.XRCrossBandLine();
 			this.xrCrossBandLine3 = new DevExpress.XtraReports.UI.XRCrossBandLine();
-			this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
 			((System.ComponentModel.ISupportInitialize)(this.tbItemDetail)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbSymbol)).BeginInit();
@@ -462,7 +462,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrTableCell2.StylePriority.UseTextAlignment = false;
 			this.xrTableCell2.Text = "xrTableCell2";
 			this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-			this.xrTableCell2.TextFormatString = "{0:n}";
+			this.xrTableCell2.TextFormatString = "{0:#,#}";
 			this.xrTableCell2.Weight = 0.608181199403223D;
 			// 
 			// xrTableCell3
@@ -506,7 +506,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrTableCell5.StylePriority.UseTextAlignment = false;
 			this.xrTableCell5.Text = "xrTableCell5";
 			this.xrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-			this.xrTableCell5.TextFormatString = "{0:n}";
+			this.xrTableCell5.TextFormatString = "{0:#,#}";
 			this.xrTableCell5.Weight = 1.0398835133683495D;
 			// 
 			// TopMargin
@@ -1857,6 +1857,19 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.groupFooterBand1.HeightF = 236.9583F;
 			this.groupFooterBand1.Name = "groupFooterBand1";
 			// 
+			// xrLabel1
+			// 
+			this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InWord]")});
+			this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(148.958F, 127.7549F);
+			this.xrLabel1.Multiline = true;
+			this.xrLabel1.Name = "xrLabel1";
+			this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+			this.xrLabel1.SizeF = new System.Drawing.SizeF(632.0419F, 28.91661F);
+			this.xrLabel1.StylePriority.UseTextAlignment = false;
+			this.xrLabel1.Text = "xrLabel1";
+			this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+			// 
 			// lbCSignature
 			// 
 			this.lbCSignature.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold);
@@ -1938,7 +1951,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrTableCell26.StylePriority.UseTextAlignment = false;
 			this.xrTableCell26.Text = "xrTableCell21";
 			this.xrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-			this.xrTableCell26.TextFormatString = "{0:n}";
+			this.xrTableCell26.TextFormatString = "{0:#,#}";
 			this.xrTableCell26.Weight = 0.73041352038342444D;
 			// 
 			// xrTable6
@@ -1981,7 +1994,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrTableCell24.StylePriority.UseTextAlignment = false;
 			this.xrTableCell24.Text = "xrTableCell21";
 			this.xrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-			this.xrTableCell24.TextFormatString = "{0:n}";
+			this.xrTableCell24.TextFormatString = "{0:#,#}";
 			this.xrTableCell24.Weight = 0.73041326908742787D;
 			// 
 			// tbVAT
@@ -2067,7 +2080,7 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrTableCell21.StylePriority.UseTextAlignment = false;
 			this.xrTableCell21.Text = "xrTableCell21";
 			this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-			this.xrTableCell21.TextFormatString = "{0:n}";
+			this.xrTableCell21.TextFormatString = "{0:#,#}";
 			this.xrTableCell21.Weight = 0.73041392113506887D;
 			// 
 			// xrPageInfo
@@ -2139,19 +2152,6 @@ public class InvoiceReport : DevExpress.XtraReports.UI.XtraReport
 			this.xrCrossBandLine3.StartBand = this.groupFooterBand1;
 			this.xrCrossBandLine3.StartPointFloat = new DevExpress.Utils.PointFloat(2.083365F, 123.5882F);
 			this.xrCrossBandLine3.WidthF = 786.8329F;
-			// 
-			// xrLabel1
-			// 
-			this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InWord]")});
-			this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(148.958F, 127.7549F);
-			this.xrLabel1.Multiline = true;
-			this.xrLabel1.Name = "xrLabel1";
-			this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-			this.xrLabel1.SizeF = new System.Drawing.SizeF(632.0419F, 28.91661F);
-			this.xrLabel1.StylePriority.UseTextAlignment = false;
-			this.xrLabel1.Text = "xrLabel1";
-			this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
 			// 
 			// InvoiceReport
 			// 

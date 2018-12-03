@@ -98,16 +98,19 @@ function CreateInvoice(button) {
 		if (isRelease === false) {
 			NewInvoiceCore(isRelease);
 		}
-		swal({
-			title: "Do you want to save then release this invoice?",
-			icon: "info",
-			buttons: true,
-			dangerMode: true
-		}).then((isConfirm) => {
-			if (isConfirm) {
-				NewInvoiceCore(isRelease);
-			}
-		});
+		else {
+			swal({
+				title: "Do you want to save then release this invoice?",
+				icon: "info",
+				buttons: true,
+				dangerMode: true
+			}).then((isConfirm) => {
+				if (isConfirm) {
+					NewInvoiceCore(isRelease);
+				}
+			});
+		}
+		
 	});
 }
 CreateInvoice("submitInvoice");
