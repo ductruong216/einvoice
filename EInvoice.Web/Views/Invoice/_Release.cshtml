@@ -154,14 +154,12 @@
 		c.SetDataItemTemplateContent(r =>
 		{
 			var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-
-			ViewContext.Writer.Write("<form action=\"Show\" method=\"post\">" +
+			ViewContext.Writer.Write("<form action=\"ShowReleaseReport\" method=\"post\">" +
 			                         "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
 			                         "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>"+
 			                         "</form>"
 			                         +"</div>"
 				);
 		});
-
 	});
 }).Bind(Model).GetHtml())

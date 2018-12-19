@@ -14,6 +14,7 @@
 		Customers.Refresh();
 	});
 }
+
 // $.ajax({
 //	url: '@Url.Action("Create", "Customer")',
 //	method: "POST",

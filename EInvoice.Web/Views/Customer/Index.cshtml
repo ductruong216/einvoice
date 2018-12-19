@@ -1,280 +1,299 @@
 ﻿@model EInvoice.Web.Models.CustomerViewModel
 
 @{
-	ViewBag.Title = "Customer Management";
-	Layout = "~/Views/Shared/_mainLayout.cshtml";
+    ViewBag.Title = "Customer Management";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
 }
 <style>
-	.field-validation-error {
-		color: red;
-	}
-	#Customers_DXCTMenu0_DXI0_ {
-		border: 1px Solid #dfdfdf !important;
-	}
-	#btnNew {
-		border: none;
-		padding: 8px 8px 8px 32px;
-		font-family: Arial, Verdana;
-		background: #ffffff url([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEUxozEt-9GCB3eVUdVbrzR67M_Ap8k6oxCbu-f4WVSfmW3V]);
-		background-position: 8px 8px;
-		background-repeat: no-repeat;
-	}</style>
+    .field-validation-error {
+        color: red;
+    }
+
+    #Customers_DXCTMenu0_DXI0_ {
+        border: 1px Solid #dfdfdf !important;
+    }
+
+    #btnNew {
+        border: none;
+        padding: 8px 8px 8px 32px;
+        font-family: Arial, Verdana;
+        background: #ffffff url([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEUxozEt-9GCB3eVUdVbrzR67M_Ap8k6oxCbu-f4WVSfmW3V]);
+        background-position: 8px 8px;
+        background-repeat: no-repeat;
+    }
+</style>
 <link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
 
+@Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+    new StyleSheet { ExtensionType = ExtensionType.CallbackPanel }
+    )
+
+@Html.DevExpress().GetScripts(
+    new Script { ExtensionSuite = ExtensionSuite.GridView },
+    new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+    new Script { ExtensionSuite = ExtensionSuite.Editors },
+    new Script { ExtensionType = ExtensionType.CallbackPanel },
+    new Script { ExtensionType = ExtensionType.PopupControl }
+    )
 
 <script type="text/javascript">
-	function OnGridFocusedRowChanged(s, e) {
-		s.GetRowValues(s.GetFocusedRowIndex(), 'ID', OnGetRowValues);
-	}
-	function OnGetRowValues(values) {
-		document.getElementById("customerId").value = values;
+    function OnGridFocusedRowChanged(s, e) {
+        s.GetRowValues(s.GetFocusedRowIndex(), 'ID', OnGetRowValues);
+    }
+    function OnGetRowValues(values) {
+        document.getElementById("customerId").value = values;
 
-	}
+    }
 </script>
 
 
 <div class="">
-	<div class="clearfix" align="center">
-		<h3>CUSTOMER MANAGEMENT</h3>
-	</div>
-	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12">
-			<input class="form-control" id="customerId" type="hidden">
-			<div class="x_panel">
-				<div class="x_content">
-					@using (Html.BeginForm("Customer"))
-					{
-						@Html.Hidden("customExportCommand")
-						@Html.Action("CustomerPartial", "Customer")
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="clearfix" align="center">
+        <h3>CUSTOMER MANAGEMENT</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <input class="form-control" id="customerId" type="hidden">
+            <div class="x_panel">
+                <div class="x_content">
+                    @using (Html.BeginForm("Customer"))
+                    {
+                        @Html.Hidden("customExportCommand")
+                        @Html.Action("CustomerPartial", "Customer")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 @*Create customer*@
 <div class="modal fade" id="newCustomer" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="vertical-alignment-helper">
-		<div class="modal-dialog modal-lg vertical-align-center">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">×</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">New Customer</h4>
-				</div>
-				<div class="modal-body">
-					@using (Ajax.BeginForm("Create", "Customer",
-						null,
-						new AjaxOptions() { HttpMethod = "post", OnSuccess = "SubmitStatus()" },
-						new { @class = "form-horizontal form-label-left input_mask", @id = "customerForm" }))
-					{
-						@*@using (Html.BeginForm("Create", "Customer", FormMethod.Post,
-				new { @class = "form-horizontal", @id="customerForm" }))
-			{*@
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog modal-lg vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">New Customer</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Ajax.BeginForm("Create", "Customer",
+                            null,
+                            new AjaxOptions() { HttpMethod = "post", OnSuccess = "SubmitStatus()" },
+                            new { @class = "form-horizontal form-label-left input_mask", @id = "customerForm" }))
+                    {
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    <label class="control-label col-md-4 col-sm-4 col-xs-12">Customer Code: <span class="required">*</span></label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        @Html.TextBoxFor(model => model.Code,
+                                        new
+                                        {
+                                            @name = "Code",
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
+                                        @Html.ValidationMessageFor(model => model.Code)
+
+                                        <p id="code_status"></p>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    <label class="control-label col-md-4 col-sm-4 col-xs-12">Purchaser: </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        @Html.TextBoxFor(model => model.Name,
+                                        new
+                                        {
+                                            @name = "Purchaser",
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    <label class="control-label col-md-4 col-sm-4 col-xs-12">Tax Code: </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        @Html.TextBoxFor(model => model.TaxCode,
+                                        new
+                                        {
+                                            @name = "TaxCode",
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
+                                        @Html.ValidationMessageFor(model => model.TaxCode)
+                                        <p id="taxCode_status"></p>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    <div class="row">
+                                        <button type="button" id="find_company" class="btn btn-info ml-3" id="fix-button">Get Info</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-2 col-sm-4 col-xs-12" style="width: 16.3%">Enterprise Name: </label>
+                                <div class="col-md-10 col-sm-8 col-xs-12" style="width: 83.7% !important">
+                                    @Html.TextBoxFor(model => model.EnterpriseName,
+                                    new
+                                    {
+                                        @name = "Name",
+                                        @class = "form-control",
+                                        @type = "text"
+  })
+                                    @Html.ValidationMessageFor(model => model.EnterpriseName)
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label col-md-2 col-sm-4 col-xs-12" style="width: 16.3%" >Address: <span class="required">*</span></label>
+                                    <div class="col-md-10 col-sm-8 col-xs-12" style="width: 83.7% !important">
+                                        @Html.TextBoxFor(model => model.Address,
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                        @Html.ValidationMessageFor(model => model.Address)
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Email: </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            @Html.TextBoxFor(model => model.Email,
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </div>
+                                    </div>
 
 
-						<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Phone: </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            @Html.TextBoxFor(model => model.Phone,
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
+                                            @Html.ValidationMessageFor(model => model.Phone)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
 
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">Customer Code: <span class="required">*</span></label>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-									@Html.TextBoxFor(model => model.Code,
-										new
-										{
-											@name = "Code",
-											@class = "form-control",
-											@type = "text"
-										})
-									@Html.ValidationMessageFor(model => model.Code)
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Fax: </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            @Html.TextBoxFor(model => model.Fax,
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
+                                            @Html.ValidationMessageFor(model => model.Fax)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Representative: </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            @Html.TextBoxFor(model => model.LegalRepresentative,
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
+                                            @Html.ValidationMessageFor(model => model.LegalRepresentative)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-									<p id="code_status"></p>
-								</div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label col-md-2 col-sm-4 col-xs-12" style="width: 16.3%">Note:</label>
+                                    <div class="col-md-10 col-sm-8 col-xs-12" style="width: 83.7% !important">
+                                        @Html.TextAreaFor(model => model.Note,
+                                    new
+                                    {
+                                        @style = "padding-left:5%",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                    </div>
 
-							</div>
+                                </div>
+                            </div>
 
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">Purchaser: </label>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-									@Html.TextBoxFor(model => model.Name,
-										new
-										{
-											@name = "Purchaser",
-											@class = "form-control",
-											@type = "text"
-										})
-									@Html.ValidationMessageFor(model => model.Name)
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">Tax Code: </label>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-									@Html.TextBoxFor(model => model.TaxCode,
-										new
-										{
-											@name = "TaxCode",
-											@class = "form-control",
-											@type = "text"
-										})
-									@Html.ValidationMessageFor(model => model.TaxCode)
-									<p id="taxCode_status"></p>
-								</div>
-
-							</div>
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-								<div class="row">
-									<button type="button" id="find_company" class="btn btn-info ml-3" id="fix-button">Get Info</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-12 col-sm-12 col-xs-12 form-group">
-							<label class="control-label col-md-2 col-sm-4 col-xs-12">Enterprise Name: </label>
-							<div class="col-md-10 col-sm-8 col-xs-12">
-								@Html.TextBoxFor(model => model.EnterpriseName,
-									new
-									{
-										@name = "Name",
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.EnterpriseName)
-							</div>
-						</div>
-						
-
-						<div class="col-md-12 form-group">
-							<label class="control-label col-md-2 col-sm-4 col-xs-12">Address Name: <span class="required">*</span></label>
-							<div class="col-md-10 col-sm-8 col-xs-12">
-								@Html.TextBoxFor(model => model.Address,
-									new
-									{
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.Address)
-							</div>
-
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">Email: </label>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-									@Html.TextBoxFor(model => model.Email,
-										new
-										{
-											@class = "form-control",
-											@type = "text"
-										})
-									@Html.ValidationMessageFor(model => model.Email)
-								</div>
-							</div>
-
-
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">Phone: </label>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-									@Html.TextBoxFor(model => model.Phone,
-										new
-										{
-											@class = "form-control",
-											@type = "text"
-										})
-									@Html.ValidationMessageFor(model => model.Phone)
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">Fax: </label>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-									@Html.TextBoxFor(model => model.Fax,
-										new
-										{
-											@class = "form-control",
-											@type = "text"
-										})
-									@Html.ValidationMessageFor(model => model.Fax)
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">Representative: </label>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-									@Html.TextBoxFor(model => model.LegalRepresentative,
-										new
-										{
-											@class = "form-control",
-											@type = "text"
-										})
-									@Html.ValidationMessageFor(model => model.LegalRepresentative)
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-md-12 form-group">
-							<label class="control-label col-md-2 col-sm-4 col-xs-12">Note:</label>
-							<div class="col-md-10 col-sm-8 col-xs-12">
-								@Html.TextAreaFor(model => model.Note,
-									new
-									{
-										@style = "padding-left:5%",
-										@class = "form-control",
-										@type = "text"
-									})
-							</div>
-
-						</div>
-
-						<div class="form-group">
-
-						</div>
-						<div class="modal-footer">
-							<div class="col-md-8 col-sm-9 col-xs-12 col-md-offset-4">
-								<input type="submit" class="btn btn-round btn-primary" id="btnSave" value="Save">
-								<button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
-							</div>
-						</div>
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+                            <div class="form-group">
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-md-8 col-sm-9 col-xs-12 col-md-offset-4">
+                                    <input type="submit" class="btn btn-round btn-primary" value="Save">
+                                    <button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                                </div>
+                            </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 @* Edit customer *@
 <div class="modal fade" id="editCustomer" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="vertical-alignment-helper">
-		<div class="modal-dialog modal-lg vertical-align-center">
-			<div class="modal-content">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">Edit Customer</h4>
-					</div>
-					<div class="modal-body">
-						@using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
-						{
-							@Html.Partial("Edit");
-						}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog modal-lg vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Customer</h4>
+                    </div>
+                    <div class="modal-body">
+                        @using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.Partial("Edit");
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 <script src="~/Assets/Owner/js/check-available.js"></script>
 <script src="~/Assets/Owner/js/bootstrap-modal.js"></script>
 <script src="~/Assets/Owner/js/ajax-begin-form.js"></script>

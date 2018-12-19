@@ -36,10 +36,5 @@ namespace EInvoice.Web.Controllers
 
 			return RedirectToAction("Index");
 		}
-
-		public ActionResult CompanyInfo()
-		{
-			return View();
-		}
 	}
 }

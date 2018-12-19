@@ -82,11 +82,11 @@ settings.Columns.Add(c =>
 		settings.Columns.Add(c =>
 		{
 			c.FieldName = "Price";
-			c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
-			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+			c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
+			c.HeaderStyle.HorizontalAlign = HorizontalAlign.Right;
 			c.EditorProperties().SpinEdit(p =>
 			{
-				p.DisplayFormatString = "{0} VND";
+			    p.DisplayFormatString = "#,# VND";
 				p.DisplayFormatInEditMode = true;
 			});
 		});
@@ -113,6 +113,8 @@ settings.Init = (sender, e) =>
 			c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
 			c.VisibleIndex = 0;
 			c.Width = 50;
+		    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+		    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 
 ((MVCxGridView)sender).Columns.Add(c);
 		};

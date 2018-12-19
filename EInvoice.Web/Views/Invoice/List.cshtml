@@ -3,10 +3,17 @@
 	ViewBag.Title = "Invoice Management";
 	Layout = "~/Views/Shared/_mainLayout.cshtml";
 	var invoice = new InvoiceReport();
-	invoice.Parameters["IDParameter"].Value = 99;
+	invoice.Parameters["IDParameter"].Value = 88;
 	invoice.Parameters["IDParameter"].Visible = false;
 }
 
+@Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView},
+    new StyleSheet { ExtensionType = ExtensionType.WebDocumentViewer})
+
+@Html.DevExpress().GetScripts(
+    new Script { ExtensionSuite = ExtensionSuite.GridView},
+    new Script { ExtensionType = ExtensionType.WebDocumentViewer})
 <style>
 	.fa {
 		font-size: large;
@@ -17,7 +24,7 @@
 	}
 </style>
 
-<div class="">
+<div>
 	<div class="clearfix" align="center">
 		<h3>LIST INVOICE</h3>
 	</div>
@@ -40,7 +47,7 @@
 	</div>
 </div>
 	
-<div class="modal fade" id="showInvoice" tabindex="-1" role="dialog" aria-hidden="true">
+@*<div class="modal fade" id="showInvoice" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="vertical-alignment-helper">
 		<div class="modal-dialog modal-lg vertical-align-center">
 			<div class="modal-content">
@@ -56,4 +63,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>*@

@@ -7,248 +7,249 @@
 
 @(Html.DevExpress().GridView<CustomerViewModel>(settings =>
 {
-	settings.Name = "Customers";
-	settings.CallbackRouteValues = new { Controller = "Customer", Action = "CustomerPartial" };
-	settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialAddNew" };
-	settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Customer", Action = "Edit" };
-	settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialDelete" };
-	settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#2A3F54");
-	settings.Styles.Header.ForeColor = Color.White;
-	settings.Styles.FocusedRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#989898");
+    settings.Name = "Customers";
+    settings.CallbackRouteValues = new { Controller = "Customer", Action = "CustomerPartial" };
+    settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialAddNew" };
+    settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Customer", Action = "Edit" };
+    settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Customer", Action = "CustomerPartialDelete" };
+    settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#2A3F54");
+    settings.Styles.Header.ForeColor = Color.White;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#989898");
 
-	settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
-	settings.SettingsText.CommandBatchEditUpdate = "Add";
-	settings.SettingsText.CommandBatchEditCancel = "Cancel";
+    settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+    settings.SettingsText.CommandBatchEditUpdate = "Add";
+    settings.SettingsText.CommandBatchEditCancel = "Cancel";
 
-	#region Toolbar Settings
-	settings.Toolbars.Add(toolbarCustomer =>
-	{
+    #region Toolbar Settings
+    settings.Toolbars.Add(toolbarCustomer =>
+    {
 
-		toolbarCustomer.Enabled = true;
-		toolbarCustomer.Position = GridToolbarPosition.Top;
-		toolbarCustomer.ItemAlign = GridToolbarItemAlign.Right;
+        toolbarCustomer.Enabled = true;
+        toolbarCustomer.Position = GridToolbarPosition.Top;
+        toolbarCustomer.ItemAlign = GridToolbarItemAlign.Right;
 
-		//toolbarCustomer.Items.Add(c =>
-		//{
-		//	c.SetTemplateContent(r =>
-		//	{
-		//		ViewContext.Writer.Write( "<img title=\"New\" class=\"dxGridView_CTNewRow_Material dxm-image dx-vam\" " +
-		//									"src=\"/DXR.axd?r=1_110-O6jsh\" alt=\"\" id=\"Customers_DXCTMenu0_DXI0_Img\">" +
-		//									"<button type=\"button\" class=\"btn btn-default\"" +
-		//									"data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
-		//	});
-		//});
-		toolbarCustomer.Items.Add(c =>
-		{
-			c.SetTemplateContent(r =>
-			{
-				ViewContext.Writer.Write(
-					"<button type=\"button\" class=\"btn btn-default\"" +
-					"data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
-			});
-		});
+        //toolbarCustomer.Items.Add(c =>
+        //{
+        //	c.SetTemplateContent(r =>
+        //	{
+        //		ViewContext.Writer.Write( "<img title=\"New\" class=\"dxGridView_CTNewRow_Material dxm-image dx-vam\" " +
+        //									"src=\"/DXR.axd?r=1_110-O6jsh\" alt=\"\" id=\"Customers_DXCTMenu0_DXI0_Img\">" +
+        //									"<button type=\"button\" class=\"btn btn-default\"" +
+        //									"data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
+        //	});
+        //});
+        toolbarCustomer.Items.Add(c =>
+        {
+            c.SetTemplateContent(r =>
+            {
+                ViewContext.Writer.Write(
+                    "<button type=\"button\" class=\"btn btn-default\"" +
+                    "data-toggle=\"modal\" id=\"btnNew\" data-target=\"#newCustomer\">New</button>");
+            });
+        });
 
-		//toolbarCustomer.Items.Add(c =>
-		//{
-		//	c.SetTemplateContent(r =>
-		//	{
-		//		ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"data-toggle=\"modal\" data-target=\"#editCustomer\"  onclick=\"location.href='/Customer/Edit/'+ document.getElementById('customerId').value \">Edit</button>" );
-		//	});
-		//});
-		//toolbarCustomer.Items.Add(c =>
-		//{
-		//	c.SetTemplateContent(r =>
-		//	{
-		//		ViewContext.Writer.Write("<div class=\"dxm-content dxm-hasText\" id=\"Customers_DXCTMenu0_DXI1_T\">" +
-		//								 "<img title=\"New\" class=\"dxGridView_CTNewRow_Material dxm-image dx-vam\" " +
-		//								 "src=\"/DXR.axd?r=1_110-O6jsh\" alt=\"\" id=\"Customers_DXCTMenu0_DXI1_Img\">" +
-		//								 "<span data-toggle=\"modal\" data-target=\"#newCustomer\" title=\"New\" class=\"dx-vam\">New</span>" +
-		//								 "</div>");
-		//	});
-		//});
-		toolbarCustomer.Items.Add(GridViewToolbarCommand.Edit);
-		toolbarCustomer.Items.Add(GridViewToolbarCommand.Delete);
-		toolbarCustomer.Items.Add(GridViewToolbarCommand.Refresh, true);
-		toolbarCustomer.Items.Add(i=>
-		{
-			i.Text = "Export to";
-			i.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDownload16x16office2013;
-			i.BeginGroup = true;
-			i.Items.Add(GridViewToolbarCommand.ExportToPdf);
-			i.Items.Add(GridViewToolbarCommand.ExportToXls);
-			i.Items.Add(GridViewToolbarCommand.ExportToXlsx);
-		});
-		toolbarCustomer.Items.Add(i =>
-		{
-			i.BeginGroup = true;
-			i.SetTemplateContent(c =>
-			{
-				Html.DevExpress().ButtonEdit(s =>
-				{
-					s.Name = "Search";
-					s.Properties.NullText = "Search...";
-					s.Properties.Buttons
-					.Add()
-					.Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
-				}).Render();
-			});
-		});
-	});
-	#endregion Toolbar Settings
+        //toolbarCustomer.Items.Add(c =>
+        //{
+        //	c.SetTemplateContent(r =>
+        //	{
+        //		ViewContext.Writer.Write("<button type=\"button\" class=\"btn btn-default\"data-toggle=\"modal\" data-target=\"#editCustomer\"  onclick=\"location.href='/Customer/Edit/'+ document.getElementById('customerId').value \">Edit</button>" );
+        //	});
+        //});
+        //toolbarCustomer.Items.Add(c =>
+        //{
+        //	c.SetTemplateContent(r =>
+        //	{
+        //		ViewContext.Writer.Write("<div class=\"dxm-content dxm-hasText\" id=\"Customers_DXCTMenu0_DXI1_T\">" +
+        //								 "<img title=\"New\" class=\"dxGridView_CTNewRow_Material dxm-image dx-vam\" " +
+        //								 "src=\"/DXR.axd?r=1_110-O6jsh\" alt=\"\" id=\"Customers_DXCTMenu0_DXI1_Img\">" +
+        //								 "<span data-toggle=\"modal\" data-target=\"#newCustomer\" title=\"New\" class=\"dx-vam\">New</span>" +
+        //								 "</div>");
+        //	});
+        //});
+        toolbarCustomer.Items.Add(GridViewToolbarCommand.Edit);
+        toolbarCustomer.Items.Add(GridViewToolbarCommand.Delete);
+        toolbarCustomer.Items.Add(GridViewToolbarCommand.Refresh, true);
+        toolbarCustomer.Items.Add(i=>
+        {
+            i.Text = "Export to";
+            i.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDownload16x16office2013;
+            i.BeginGroup = true;
+            i.Items.Add(GridViewToolbarCommand.ExportToPdf);
+            i.Items.Add(GridViewToolbarCommand.ExportToXls);
+            i.Items.Add(GridViewToolbarCommand.ExportToXlsx);
+        });
+        toolbarCustomer.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "Search";
+                    s.Properties.NullText = "Search...";
+                    s.Properties.Buttons
+                    .Add()
+                    .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+    });
+    #endregion Toolbar Settings
 
-	#region Add Comlumns
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Code";
-		c.Caption = "Customer Code";
-		c.Width = 150;
-		//c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
-		//c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-	});
+    #region Add Comlumns
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Code";
+        c.Caption = "Customer Code";
+        c.Width = 150;
+        //c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        //c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    });
 
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "EnterpriseName";
-	});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Name";
-		c.Caption = "Purchaser";
-		c.Width = 200;
-		//var pop = (TextEditProperties)c.PropertiesEdit;
-		////pop.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
-		//pop.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
-	});
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "EnterpriseName";
+        c.Width = 370;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Name";
+        c.Caption = "Purchaser";
+        c.Width = 200;
+        //var pop = (TextEditProperties)c.PropertiesEdit;
+        ////pop.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+        //pop.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+    });
 
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Address";
-		c.Width = 500;
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Address";
+        c.Width = 500;
 
-	});
+    });
 
-	settings.Columns.Add(c =>
-	{
-		var pop = (TextEditProperties)c.PropertiesEdit;
-		pop.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Right;
-		pop.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
-		c.FieldName = "Email";
+    settings.Columns.Add(c =>
+    {
+        var pop = (TextEditProperties)c.PropertiesEdit;
+        pop.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Right;
+        pop.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        c.FieldName = "Email";
 
-	});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Phone";
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Phone";
 
-	});
+    });
 
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "TaxCode";
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "TaxCode";
 
-		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
-		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-	});
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+    });
 
 
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Fax";
-		c.Visible = false;
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Fax";
+        c.Visible = false;
 
-	});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "LegalRepresentative";
-		c.Visible = false;
-	});
-	//settings.Columns.Add(c =>
-	//{
-	//	c.FieldName = "BankAccountID";
-	//	c.Visible = false;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "LegalRepresentative";
+        c.Visible = false;
+    });
+    //settings.Columns.Add(c =>
+    //{
+    //	c.FieldName = "BankAccountID";
+    //	c.Visible = false;
 
-	//});
-	//settings.Columns.Add(c =>
-	//{
-	//	c.FieldName = "AccountHolder";
-	//	c.Visible = false;
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //	c.FieldName = "AccountHolder";
+    //	c.Visible = false;
 
-	//});
-	//settings.Columns.Add(c =>
-	//{
-	//	c.FieldName = "BankName";
-	//	c.Visible = false;
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //	c.FieldName = "BankName";
+    //	c.Visible = false;
 
-	//});
-	//settings.Columns.Add(c =>
-	//{
-	//	c.FieldName = "Agency";
-	//	c.Visible = false;
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //	c.FieldName = "Agency";
+    //	c.Visible = false;
 
-	//});
-	settings.Columns.Add(c =>
-	{
-		c.FieldName = "Note";
-		c.Visible = false;
-		c.EditorProperties().TextBox(p =>
-		{
+    //});
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Note";
+        c.Visible = false;
+        c.EditorProperties().TextBox(p =>
+        {
 
-		});
-	});
+        });
+    });
 
-	#endregion
+    #endregion
 
-	#region Numbering
-	settings.Init = (sender, e) =>
-	{
-		var c = new GridViewDataColumn() { FieldName = "Series" };
-		c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-		c.VisibleIndex = 0;
-		c.Width = 50;
-		c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
-		c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-		((MVCxGridView)sender).Columns.Add(c);
-	};
+    #region Numbering
+    settings.Init = (sender, e) =>
+    {
+        var c = new GridViewDataColumn() { FieldName = "Series" };
+        c.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+        c.VisibleIndex = 0;
+        c.Width = 30;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        ((MVCxGridView)sender).Columns.Add(c);
+    };
 
-	settings.CustomColumnDisplayText = (sender, e) =>
-	{
-		if (e.Column.FieldName == "Series")
-		{
-			e.DisplayText = (e.VisibleRowIndex + 1).ToString();
-		}
-	};
-	#endregion
+    settings.CustomColumnDisplayText = (sender, e) =>
+    {
+        if (e.Column.FieldName == "Series")
+        {
+            e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+        }
+    };
+    #endregion
 
-	settings.KeyFieldName = "ID";
+    settings.KeyFieldName = "ID";
 
-	settings.EditFormLayoutProperties.ColCount = 3;
-	settings.EditFormLayoutProperties.Items.Add(i => i.Code);
-	settings.EditFormLayoutProperties.Items.Add(i => i.Name);
-	settings.EditFormLayoutProperties.Items.Add(i => i.TaxCode);
-	settings.EditFormLayoutProperties.Items.Add(i => i.EnterpriseName);
-	settings.EditFormLayoutProperties.Items.Add(i => i.Address);
-	settings.EditFormLayoutProperties.Items.Add(i => i.Phone);
-	settings.EditFormLayoutProperties.Items.Add(i => i.Email);
-	settings.EditFormLayoutProperties.Items.Add(i => i.Fax);
-	settings.EditFormLayoutProperties.Items.Add(i => i.LegalRepresentative);
-	//	settings.EditFormLayoutProperties.Items.Add(i => i.BankAccountID);
-	//	settings.EditFormLayoutProperties.Items.Add(i => i.AccountHolder);
-	//	settings.EditFormLayoutProperties.Items.Add(i => i.BankName);
-	//	settings.EditFormLayoutProperties.Items.Add(i => i.Agency);
-	settings.EditFormLayoutProperties.Items.Add(i => i.Note);
-	settings.EditFormLayoutProperties.Items.AddCommandItem(i =>
-	{
-		i.ColSpan = 2;
-		i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
-	});
-	settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.EditFormLayoutProperties.ColCount = 3;
+    settings.EditFormLayoutProperties.Items.Add(i => i.Code);
+    settings.EditFormLayoutProperties.Items.Add(i => i.Name);
+    settings.EditFormLayoutProperties.Items.Add(i => i.TaxCode);
+    settings.EditFormLayoutProperties.Items.Add(i => i.EnterpriseName);
+    settings.EditFormLayoutProperties.Items.Add(i => i.Address);
+    settings.EditFormLayoutProperties.Items.Add(i => i.Phone);
+    settings.EditFormLayoutProperties.Items.Add(i => i.Email);
+    settings.EditFormLayoutProperties.Items.Add(i => i.Fax);
+    settings.EditFormLayoutProperties.Items.Add(i => i.LegalRepresentative);
+    //	settings.EditFormLayoutProperties.Items.Add(i => i.BankAccountID);
+    //	settings.EditFormLayoutProperties.Items.Add(i => i.AccountHolder);
+    //	settings.EditFormLayoutProperties.Items.Add(i => i.BankName);
+    //	settings.EditFormLayoutProperties.Items.Add(i => i.Agency);
+    settings.EditFormLayoutProperties.Items.Add(i => i.Note);
+    settings.EditFormLayoutProperties.Items.AddCommandItem(i =>
+    {
+        i.ColSpan = 2;
+        i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+    });
+    settings.SettingsBehavior.AllowFocusedRow = true;
 
-	settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+    settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
 
-	settings.SettingsSearchPanel.CustomEditorName = "Search";
-	settings.SettingsBehavior.AllowFocusedRow = true;
-	settings.SettingsExport.EnableClientSideExportAPI = true;
-	settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
-	settings.Width = Unit.Percentage(100);
-	settings.SettingsPager.PageSize = 13;
+    settings.SettingsSearchPanel.CustomEditorName = "Search";
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsPager.PageSize = 13;
 
 }).Bind(Model).SetEditErrorText(ViewBag.EditError).GetHtml())

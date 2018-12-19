@@ -147,5 +147,23 @@ namespace EInvoice.Web.Controllers.CategoryController
 				return Json(true, JsonRequestBehavior.AllowGet);
 			}
 		}
-	}
+
+	    public List<SelectListItem> GetUnitName()
+	    {
+	        var untiName = _unitService.GetAll();
+	        var listUnitName = new List<SelectListItem>();
+	        foreach (var item in untiName)
+	        {
+	            var payment = new SelectListItem
+	            {
+	                Text = item.Name,
+	                Value = item.ID.ToString()
+	            };
+	            listUnitName.Add(payment);
+	        }
+
+	        return listUnitName;
+	    }
+
+    }
 }

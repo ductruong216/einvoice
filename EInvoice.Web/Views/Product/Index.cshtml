@@ -1,194 +1,147 @@
 ﻿@model EInvoice.Web.Models.ProductViewModel
+@using EInvoice.Web.Controllers.CategoryController
 
 @{
-	ViewBag.Title = "Product Management";
-	Layout = "~/Views/Shared/_mainLayout.cshtml";
+    ViewBag.Title = "Product Management";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
 }
+
+@{
+    var controller = ViewContext.Controller as ProductController;
+}
+
 
 <link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
 
+@Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView })
+@Html.DevExpress().GetScripts(
+    new Script { ExtensionSuite = ExtensionSuite.GridView })
+
 <div class="">
-	<div class="clearfix" align="center">
-		<h3>PRODUCT MANAGEMENT</h3>
-	</div>
-	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12">
-			<div class="x_panel">
-			
-				<div class="x_content">
-					@using (Html.BeginForm("Product"))
-					{
-						@Html.Hidden("customExportCommand")
-						@Html.Action("ProductPartial", "Product")
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="clearfix" align="center">
+        <h3>PRODUCT MANAGEMENT</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+
+                <div class="x_content">
+                    @using (Html.BeginForm("Product"))
+                    {
+                        @Html.Hidden("customExportCommand")
+                        @Html.Action("ProductPartial", "Product")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-@*Create product*@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+</button>
+
 <div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="vertical-alignment-helper">
-		<div class="modal-dialog modal-lg vertical-align-center">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">×</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">New Customer</h4>
-				</div>
-				<div class="modal-body">
-					@using (Ajax.BeginForm("Create", "Product",
-						null,
-						new AjaxOptions() { HttpMethod = "post", OnSuccess = "SubmitStatus()" },
-						new { @class = "form-horizontal", @id = "productForm" }))
-					{
-						@*@using (Html.BeginForm("Create", "Customer", FormMethod.Post,
-				new { @class = "form-horizontal", @id="customerForm" }))
-			{*@
-						<div class="form-group">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label class=" control-label col-md-4">Product Code: <span class="required">*</span></label>
-									<div class="col-md-8">
-										<div class="input-group input-group-icon">
-											<span class="input-group-addon">
-												<span class="icon"><i class="fa fa-barcode"></i></span>
-											</span>
-											@Html.TextBoxFor(model => model.Code,
-												new
-												{
-													@name = "Code",
-													@class = "form-control",
-													@type = "text"
-												})
-											@Html.ValidationMessageFor(model => model.Code)
-										</div>
-										<p id="code_status"></p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label class=" control-label col-md-4">Product Name:</label>
-									<div class="col-md-8">
-										<div class="input-group input-group-icon">
-											<span class="input-group-addon">
-												<span class="icon"><i class="fa fa-user"></i></span>
-											</span>
-											@Html.TextBoxFor(model => model.Name,
-												new
-												{
-													@name = "Purchaser",
-													@class = "form-control",
-													@type = "text"
-												})
-											@Html.ValidationMessageFor(model => model.Name)
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-md-12">
-								<div class="form-group">
-									<label class=" control-label col-md-2">Description:</label>
-									<div class="col-md-10">
-										<div class="input-group input-group-icon">
-											<span class="input-group-addon">
-												<span class="icon"><i class="fa fa-sticky-note"></i></span>
-											</span>
-											@Html.TextAreaFor(model => model.Description,
-												new
-												{
-													@style = "padding-left:5%",
-													@class = "form-control",
-													@type = "text"
-												})
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog modal-md vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">New Product</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        @using (Ajax.BeginForm("Create", "Product",
+            null,
+            new AjaxOptions() { HttpMethod = "post" },
+            new { @class = "form-horizontal", @id = "productForm" }))
+                        {
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Product Code: <span class="required">*</span></label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextBoxFor(model => model.Code,
+                                    new
+                                    {
+                                        @name = "Code",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Code)
+                                </div>
+                                <p id="code_status"></p>
+                            </div>
 
-						<div class="form-group">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label class=" control-label col-md-4">Tax:</label>
-									<div class="col-md-8">
-										<div class="input-group input-group-icon">
-											<span class="input-group-addon">
-												<span class="icon"><i class="fa fa-qrcode"></i></span>
-											</span>
-											@Html.TextBoxFor(model => model.Tax,
-												new
-												{
-													@name = "TaxCode",
-													@class = "form-control",
-													@type = "text"
-												})
-											@Html.ValidationMessageFor(model => model.Tax)
-										</div>
-										<p id="taxCode_status"></p>
-									</div>
-								</div>
-							</div>
-						
-						</div>
-						<div class="form-group">
-							<div class="col-md-12">
-								<div class="form-group">
-									<label class=" control-label col-md-2">Price: </label>
-									<div class="col-md-10">
-										<div class="input-group input-group-icon">
-											<span class="input-group-addon">
-												<span class="icon"><i class="fa fa-briefcase"></i></span>
-											</span>
-											@Html.TextBoxFor(model => model.Price,
-												new
-												{
-													@name = "Name",
-													@class = "form-control",
-													@type = "text"
-												})
-											@Html.ValidationMessageFor(model => model.Price)
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-md-12">
-								<div class="form-group">
-									<label class=" control-label col-md-2">Address: <span class="required">*</span></label>
-									<div class="col-md-10">
-										<div class="input-group input-group-icon">
-											<span class="input-group-addon">
-												<span class="icon"><i class="fa fa-address-card"></i></span>
-											</span>
-											@Html.TextBoxFor(model => model.UnitID,
-												new
-												{
-													@class = "form-control",
-													@type = "text"
-												})
-											@Html.ValidationMessageFor(model => model.UnitID)
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Name: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextBoxFor(model => model.Name,
+                                    new
+                                    {
+                                        @name = "Purchaser",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Desription: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextAreaFor(model => model.Description,
+                                    new
+                                    {
+                                        @style = "padding-left:5%",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Price: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextBoxFor(model => model.Price,
+                                    new
+                                    {
+                                        @name = "Name",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Price)
+                                </div>
 
-						<div class="modal-footer">
-							<div class="col-md-8 col-sm-9 col-xs-12 col-md-offset-4">
-								<input type="submit" class="btn btn-round btn-primary" id="btnSave" value="Save">
-								<button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
-							</div>
-						</div>
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Unit: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.DropDownListFor(model => model.UnitID,
+                                    controller.GetUnitName(),
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        id = "paymentType",
+                                        type = "text",
+                                        name = "PaymentType",
+
+                                        required = "required"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.UnitID)
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-4" style="padding-right: 7%">
+                                    <input type="submit" class="btn btn-round btn-primary" id="btnSave" value="Save">
+                                    <button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

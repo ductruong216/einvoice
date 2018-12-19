@@ -1,229 +1,171 @@
 ﻿@model EInvoice.Web.Models.CompanyViewModel
-
 @{
-	ViewBag.Title = "Info";
-	Layout = "~/Views/Shared/_mainLayout.cshtml";
+    ViewBag.Title = "Company Information";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
 }
-@{
-	Html.EnableClientValidation();
-	Html.EnableUnobtrusiveJavaScript();
-}
-@Html.DevExpress().GetScripts(new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout })
-
-@Html.DevExpress().GetStyleSheets(new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout })
-<link href="~/Assets/Owner/css/sweetAlert.css" rel="stylesheet" />
-<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-<style type="text/css">
-	.buttonAlign {
-		text-align: right !important;
-	}
-
-	@@media(max-width:600px) {
-		.buttonAlign {
-			text-align: center !important;
-		}
-	}
-
-	.validation-summary-errors {
-		margin-bottom: -2%;
-		color: red;
-		margin-left: 15%;
-	}
-
-		.validation-summary-errors li {
-			list-style-type: none;
-		}
-</style>
-
-<script>
-	$(document).ready(function() {
-		$("#applyButton").click(function() {
-
-			swal({
-				title: "Done",
-				text: "Saved successfully",
-				icon: "success",
-				buttons: false,
-				timer: 1500
-			});
-		});
-		//window.setTimeout(function(){
-		//	window.location.href='/Index/Company';
-		//}, 4000);
-	});
-</script>
-
-<div class="">
-	<div class="clearfix" align="center">
-		<h3>COMPANY INFORMATION</h3>
-	</div>
-	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12">
-			<div class="x_panel">
-				<div class="x_content">
-					@using (Html.BeginForm("Update", "CompanyInfo", FormMethod.Post, new { id = "companyForm" }))
-					{
-						@Html.ValidationSummary()
-						<div style="margin: 1% 15% 1% 15%;">
-							@Html.Partial("CompanyInfo", Model)
-						</div>
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2 style="font-size: 27px">Company Information</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center">
+                            <img src="~/Assets/Owner/Images/LOGO(chuan)WEB.png" class="img-circle img-thumbnail" alt="avatar" />
+                            <input type="file" class="text-center center-block well well-sm">
+                        </div>
+                    </div>
+                    <!-- edit form column -->
+                    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                        <form class="form" action="##" method="post" id="registrationForm">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label><h4>Company Name</h4></label>
+                                    @Html.TextBoxFor(model => model.Name,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly",
+                                            id="companyName"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Tax Code</h4></label>
+                                    @Html.TextBoxFor(model => model.TaxCode,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly",
+                                            id="taxCode"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.TaxCode)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Email</h4></label>
+                                    @Html.TextBoxFor(model => model.Email,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label><h4>Address</h4></label>
+                                    @Html.TextBoxFor(model => model.Address,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.Address)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Phone</h4></label>
+                                    @Html.TextBoxFor(model => model.Phone,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.Phone)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Fax</h4></label>
+                                    @Html.TextBoxFor(model => model.Fax,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.Fax)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Legal Representative</h4></label>
+                                    @Html.TextBoxFor(model => model.LegalPresenter,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.LegalPresenter)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Website</h4></label>
+                                    @Html.TextBoxFor(model => model.Website,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.Website)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Bank ID</h4></label>
+                                    @Html.TextBoxFor(model => model.BankAccountID,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.BankAccountID)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label><h4>Bank Name</h4></label>
+                                    @Html.TextBoxFor(model => model.BankName,
+                                        new
+                                        {
+                                            type = "text",
+                                            @class = "form-control",
+                                            @readonly = "readonly"
+                                        })
+                                    @Html.ValidationMessageFor(model => model.BankName)
+                                </div>
+                            </div>
+                            <div class="form-group" style="float:right">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button id="submitCompany" style="visibility: hidden" class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button id="editCompany" onclick="EditCompany()" type="button" class="btn btn-lg"><i class="glyphicon glyphicon-edit"></i>Edit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-@*<div class="card">
-		<div class="card-header">
-			<h2 style="text-align: center">Company Information</h2>
-		</div>
-		<div class="card-body">
-			@using (Html.BeginForm("UpdateCompany", "Company", FormMethod.Post))
-			{
-				@Html.ValidationSummary();
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Company Name: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Tax Code: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.TaxCode, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Address: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.Address, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Email: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0">Phone: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Fax: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.Fax, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Website: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.Website, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Legal Presenter: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.LegalPresenter, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Bank ID: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.BankAccountID, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Account Holder: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.AccountHolder, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label class="col-form-label col-md-2 pt-2 p-0 ">Bank Name: </label>
-							<div class="input-group col-md-10">
-								@Html.TextBoxFor(x => x.BankName, new { @class = "form-control", @type = "text" })
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row col-md-12">
-					<div class="col-md-3"></div>
-					<div class="col-md-6 col-xs-12">
-						<div class="form-group" style="text-align: center; margin-left: 15%">
-							<button type="submit" class="btn btn-success">Save</button>
-						</div>
-						<div class="col-md-3"></div>
-					</div>
-				</div>
-			}
-		</div>
-	</div>*@
+<script src="~/Assets/Owner/js/company-edit.js"></script>

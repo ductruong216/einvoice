@@ -2,521 +2,520 @@
 @model EInvoice.Web.Models.InvoiceViewModel
 
 @{
-	ViewBag.Title = "New Invoice";
-	Layout = "~/Views/Shared/_mainLayout.cshtml";
+    ViewBag.Title = "New Invoice";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
 }
 
 @{
-	var controller = ViewContext.Controller as InvoiceController;
+    var controller = ViewContext.Controller as InvoiceController;
 }
 
 @{
-	var tax = new List<SelectListItem>();
-	tax.Add(new SelectListItem { Text = "0", Value = "0" });
-	tax.Add(new SelectListItem { Text = "5", Value = "5" });
-	tax.Add(new SelectListItem { Text = "10", Value = "10" });
+    var tax = new List<SelectListItem>();
+    tax.Add(new SelectListItem { Text = "0", Value = "0" });
+    tax.Add(new SelectListItem { Text = "5", Value = "5" });
+    tax.Add(new SelectListItem { Text = "10", Value = "10" });
 }
 
 <style>
-	.has-error {
-		border-style: solid;
-		border-color: #ff0000;
-	}
+    .has-error {
+        border-style: solid;
+        border-color: #ff0000;
+    }
 </style>
 
 <div class="">
-	<div class="page-title">
-		<div class="title_right">
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<h3 style="text-align: center">VAT INVOICE</h3>
-	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12">
-			<div class="x_panel">
+    <div class="page-title">
+        <div class="title_right">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <h3 style="text-align: center">VAT INVOICE</h3>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                @Html.HiddenFor(model => model.ID)
+                @Html.HiddenFor(model => model.CompanyId)
+                @Html.HiddenFor(model => model.PurchaserCustomerID)
+                @Html.HiddenFor(model => model.CustomerId)
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Customer Information</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                            <label class="control-label col-md-5 col-sm-5 col-xs-12">Customer Code: <span class="required">*</span></label>
+                                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                                @Html.TextBoxFor(model => model.PurchaserCustomer.Code,
+                                                    new
+                                                    {
+                                                        name = "Purchaser",
+                                                        @class = "form-control",
+                                                        type = "text",
+                                                        id = "CusCode"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.PurchaserCustomer.Code)
+                                                @Html.HiddenFor(model => model.CustomerId, new
+                                                {
+                                                    id = "customerId"
+                                                })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchaser: </label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.TextBoxFor(model => model.PurchaserCustomer.Purchaser,
+                                                    new
+                                                    {
+                                                        name = "Purchaser",
+                                                        @class = "form-control",
+                                                        type = "text",
+                                                        id = "purchaser"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.PurchaserCustomer.Purchaser)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                            <label class="control-label col-md-5 col-sm-5 col-xs-12">Tax Code: </label>
+                                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                                @Html.TextBoxFor(model => model.PurchaserCustomer.TaxCode,
+                                                    new
+                                                    {
+                                                        name = "TaxCode",
+                                                        @class = "form-control",
+                                                        type = "text",
+                                                        id = "taxCode"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.PurchaserCustomer.TaxCode)
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <button type="button" id="find_company" class="btn btn-info ml-3" id="fix-button">Get Info</button>
+                                            </div>
+                                        </div>
+                                    </div>
 
-				@Html.HiddenFor(model => model.ID)
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <label class="control-label col-md-2 col-sm-4 col-xs-12" style="width: 20.3%">Enterprise Name:</label>
+                                            <div class="col-md-10 col-sm-8 col-xs-12" style="width: 79.7% !important">
+                                                @Html.TextBoxFor(model => model.PurchaserCustomer.EnterpriseName,
+                                                        new
+                                                        {
+                                                            name = "Name",
+                                                            @class = "form-control",
+                                                            type = "text",
+                                                            id = "companyName"
+                                                        })
+                                                @Html.ValidationMessageFor(model => model.PurchaserCustomer.EnterpriseName)
+                                            </div>
+                                        </div>
+                                    </div>
 
-				@Html.HiddenFor(model => model.CompanyId)
+                                    <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label class="control-label col-md-2 col-sm-4 col-xs-12" style="width: 20.3%">Address:</label>
+                                        <div class="col-md-10 col-sm-8 col-xs-12" style="width: 79.7% !important">
+                                                @Html.TextBoxFor(model => model.PurchaserCustomer.Address,
+                                                        new
+                                                        {
+                                                            @class = "form-control",
+                                                            type = "text",
+                                                            id = "address"
+                                                        })
+                                                @Html.ValidationMessageFor(model => model.PurchaserCustomer.Address)
+                                            </div>
+                                        </div>
+                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                            <label class="control-label col-md-5 col-sm-5 col-xs-12">Phone: </label>
+                                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                                @Html.TextBoxFor(model => model.PurchaserCustomer.Phone,
+                                                    new
+                                                    {
+                                                        @class = "form-control",
+                                                        type = "text",
+                                                        id = "phone"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.PurchaserCustomer.Phone)
+                                            </div>
+                                        </div>
 
-				@Html.HiddenFor(model => model.PurchaserCustomerID)
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email: </label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.TextBoxFor(model => model.PurchaserCustomer.Email,
+                                                    new
+                                                    {
+                                                        @class = "form-control",
+                                                        type = "text",
+                                                        id = "email"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.PurchaserCustomer.Email)
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                            <label class="control-label col-md-5 col-sm-5 col-xs-12">Payment Method: <span class="required">*</span></label>
+                                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                                @Html.DropDownListFor(model => model.PaymentTypeID,
+                                                    controller.GetPaymentType(),
+                                                        new
+                                                        {
+                                                            @class = "form-control",
+                                                            id = "paymentType",
+                                                            type = "text",
+                                                            name = "PaymentType",
+                                                            required = "required"
+                                                        })
+                                            </div>
+                                        </div>
 
-				@Html.HiddenFor(model => model.CustomerId)
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Note: </label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                @Html.TextAreaFor(model => model.Note,
+                                                    new
+                                                    {
+                                                        style = "padding-left:5%",
+                                                        @class = "form-control",
+                                                        type = "text",
+                                                        id = "note"
+                                                    })
+                                            </div>
+                                        </div>
+                                        </div>
 
-				<div class="x_content">
-					<div class="row">
-						<div class="col-md-9 col-sm-9 col-xs-9">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>Customer Information</h2>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<br />
-									<div class="row">
-										<form class="form-horizontal form-label-left input_mask" />
-										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Customer Code: </label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												@Html.TextBoxFor(model => model.PurchaserCustomer.Code,
-										 new
-										 {
-											 name = "Purchaser",
-											 @class = "form-control",
-											 type = "text",
-											 id = "CusCode"
-										 })
-												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Code)
+                                        <div class="form-group">
+                                        </div>
+                                        <div class="ln_solid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Invoice Option</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br />
+                                    <div class="row">
+                                        <form class="form-horizontal form-label-left input_mask">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-12 col-xs-12">Pattern: <span class="required">*</span></label>
+                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                    @Html.TextBoxFor(model => model.PatternId,
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                id = "pattern",
+                                                                type = "hidden",
+                                                                name = "Pattern",
+                                                                required = "required"
 
-												@Html.HiddenFor(model => model.CustomerId, new
-												{
-													id="customerId"
-												})
+                                                            })
+                                                    @Html.TextBoxFor(model => model.Pattern.Name,
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                @readonly = "readonly"
+                                                            })
+                                                </div>
+                                            </div>
 
-											</div>
-										</div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-2 col-xs-12">Series: </label>
+                                                <div class="col-md-8 col-sm-12 col-xs-12">
 
-										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Purchaser: </label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												@Html.TextBoxFor(model => model.PurchaserCustomer.Purchaser,
-												 new
-												 {
-													 name = "Purchaser",
-													 @class = "form-control",
-													 type = "text",
-													 id="purchaser"
-												 })
-												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Purchaser)
-											</div>
-										</div>
+                                                    @Html.DropDownListFor(model => model.SeriesId,
+                                                            controller.GetSeries(Model.PatternId),
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                id = "series",
+                                                                type = "text",
+                                                                name = "Pattern",
+                                                                required = "required"
+                                                            })
+                                                    @*@Html.DropDownListFor(model => model.,
+                                                        controller.GetSeries(Model.PatternId),
+                                                        new
+                                                        {
+                                                            @class = "form-control",
+                                                            id = "series",
+                                                            type = "hidden",
+                                                            name = "Pattern",
+                                                            required = "required"
+                                                        })*@
+                                                </div>
+                                            </div>
 
-										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Code: </label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												@Html.TextBoxFor(model => model.PurchaserCustomer.TaxCode,
-													 new
-													 {
-														 name = "TaxCode",
-														 @class = "form-control",
-														 type = "text",
-														 id= "taxCode"
-													 })
-												@Html.ValidationMessageFor(model => model.PurchaserCustomer.TaxCode)
-											</div>
-										</div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-2 col-xs-12">No: <span class="required">*</span></label>
+                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                    @Html.TextBoxFor(model => model.No,
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                type = "text",
+                                                                required = "required",
+                                                                value = "000000",
+                                                                @readonly = "readonly",
+                                                                id = "no"
+                                                            })
+                                                    @Html.ValidationMessageFor(model => model.No)
+                                                </div>
+                                            </div>
 
-										<div>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<button type="button" id="find_company" class="btn btn-info ml-3" id="fix-button">Get Info</button>
-											</div>
-										</div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-2 col-xs-12">Date: </label>
+                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        @Html.TextBoxFor(model => model.CreatedDate,
+                                                                new
+                                                                {
+                                                                    @class = "form-control",
+                                                                    type = "text",
+                                                                    id = "date"
+                                                                })
+                                                        @Html.ValidationMessageFor(model => model.No)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ln_solid"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-										<div class=" col-md-12 form-group">
-											<label class="control-label col-md-2 col-sm-2 col-xs-3">Enterprise Name:</label>
-											<div class="col-md-10 col-sm-10 col-xs-9">
-												@Html.TextBoxFor(model => model.PurchaserCustomer.EnterpriseName,
-													 new
-													 {
-														 name = "Name",
-														 @class = "form-control",
-														 type = "text",
-														 id= "companyName"
-													 })
-												@Html.ValidationMessageFor(model => model.PurchaserCustomer.EnterpriseName)
-											</div>
-										</div>
+                    <div class="ml-3 mr-3 panel-body">
+                        <h5><b>INVOICE DETAILS</b></h5>
+                        <hr>
+                        <div class="details">
+                            <div class="row clearfix">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-hover" id="tab_logic">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"> Series </th>
+                                                <th class="text-center"> Code </th>
+                                                <th class="text-center" style="width: 40%"> Products - Services </th>
+                                                <th class="text-center"> Unit Price </th>
+                                                <th class="text-center"> Unit </th>
+                                                <th class="text-center"> Quantity </th>
+                                                <th class="text-center"> Amount </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="goodsTable">
+                                            @{
+                                                var i = 0;
+                                                foreach (var item in Model.Items)
+                                                {
+                                                    <tr id="addr@(i)">
+                                                        <td>@(i + 1)</td>
+                                                        <td style="display: none">
+                                                            @Html.TextBoxFor(model => item.ProductId,
+                                                                new
+                                                                {
+                                                                    name = "productId" + i,
+                                                                    @class = "form-control id",
+                                                                    type = "text",
+                                                                    id = "productId" + (i + 1)
+                                                                })
+                                                            @Html.ValidationMessageFor(model => item.ProductId)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => item.ProductCode,
+                                                                new
+                                                                {
+                                                                    name = "productCode" + i,
+                                                                    @class = "form-control",
+                                                                    type = "text",
+                                                                    id = "productCode" + (i + 1)
+                                                                })
+                                                            @Html.ValidationMessageFor(model => item.ProductCode)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => item.ProductName,
+                                                                new
+                                                                {
+                                                                    name = "name" + i,
+                                                                    @class = "form-control",
+                                                                    type = "text",
+                                                                    id = "name" + (i + 1)
+                                                                })
+                                                            @Html.ValidationMessageFor(model => item.ProductName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => item.ProductPrice,
+                                                            new
+                                                            {
+                                                                name = "price" + i,
+                                                                @class = "form-control itemPrice",
+                                                                type = "text",
+                                                                id = "price" + (i + 1)
+                                                            })
+                                                            @Html.ValidationMessageFor(model => item.ProductPrice)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => item.UnitName,
+                                                            new
+                                                            {
+                                                                name = "unit" + i,
+                                                                @class = "form-control unit",
+                                                                type = "text",
+                                                                id = "unit" + (i + 1)
+                                                            })
+                                                            @Html.ValidationMessageFor(model => item.UnitName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => item.Quantity,
+                                                                new
+                                                                {
+                                                                    name = "qty" + i,
+                                                                    @class = "form-control qty",
+                                                                    type = "text",
+                                                                    id = "qty" + (i + 1)
+                                                                })
+                                                            @Html.ValidationMessageFor(model => item.Quantity)
+                                                        </td>
 
-										<div class=" col-md-12 form-group">
-											<label class="control-label col-md-2 col-sm-2 col-xs-3">Address Name:</label>
-											<div class="col-md-10 col-sm-10 col-xs-9">
-												@Html.TextBoxFor(model => model.PurchaserCustomer.Address,
-													 new
-													 {
-														 @class = "form-control",
-														 type = "text",
-														 id="address"
-													 })
-												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Address)
-											</div>
-										</div>
+                                                        <td>
+                                                            @Html.TextBoxFor(model => item.TotalAmount,
+                                                                new
+                                                                {
+                                                                    name = "total" + i,
+                                                                    @class = "form-control total",
+                                                                    type = "text",
+                                                                    id = "total" + (i + 1)
+                                                                })
+                                                            @Html.ValidationMessageFor(model => item.TotalAmount)
+                                                        </td>
+                                                    </tr>
 
-										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Email: </label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												@Html.TextBoxFor(model => model.PurchaserCustomer.Email,
-													 new
-													 {
-														 @class = "form-control",
-														 type = "text",
-														 id="email"
-													 })
-												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Email)
-												</div>
-										</div>
+                                                    i++;
+                                                }
+                                                <tr id="addr@(i)"></tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12" id="pull-down">
+                                    <button id="add_row" class="btn btn-light pull-left border-button">Add Row</button>
+                                    <button id='delete_row' class="pull-right btn btn-light border-button">Delete Row</button>
+                                </div>
+                            </div>
+                            <div class="row clearfix" style="margin-top: 20px;">
+                                <div class="pull-left col-md-8">
+                                    <div class="row" style="margin-top: 16.4%">
+                                        <div class="text-nowrap col-md-3 pt-1">
+                                            <label>Amount in words: </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input class="form-control" tyle="text" style="border: none; background-color: whitesmoke" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
 
-										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Phone: </label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												@Html.TextBoxFor(model => model.PurchaserCustomer.Phone,
-												 new
-												 {
-													 @class = "form-control",
-													 type = "text",
-													 id="phone"
-												 })
-												@Html.ValidationMessageFor(model => model.PurchaserCustomer.Phone)
-												</div>
-										</div>
+                                <div class="pull-right col-md-4">
+                                    <table class="table table-bordered table-hover" id="tab_logic_total">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-center">Sub Total</th>
 
-										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method: </label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												@Html.DropDownListFor(model => model.PaymentTypeID,
-													controller.GetPaymentType(),
-												 new
-												 {
-													 @class = "form-control",
-													 id = "paymentType",
-													 type = "text",
-													 name = "PaymentType",
-													 required = "required"
-												 })
-											</div>
-										</div>
+                                                <td class="text-center">
+                                                    @Html.TextBoxFor(model => model.SubTotalAmount,
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                type = "number",
+                                                                id = "sub_total",
+                                                                @readonly = "readonly"
+                                                            })
+                                                    @Html.ValidationMessageFor(model => model.SubTotalAmount)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Tax</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        @Html.DropDownListFor(model => model.Tax,
+                                                            tax,
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                type = "number",
+                                                                id = "tax"
+                                                            })
+                                                        <div class="input-group-addon">%</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Tax Amount</th>
+                                                <td class="text-center">
+                                                    @Html.TextBoxFor(model => model.TaxAmount,
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                type = "number",
+                                                                id = "tax_amount",
+                                                                @readonly = "readonly"
+                                                            })
+                                                    @Html.ValidationMessageFor(model => model.TaxAmount)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Grand Total</th>
+                                                <td class="text-center">
+                                                    @Html.TextBoxFor(model => model.GrandTotalAmount,
+                                                            new
+                                                            {
+                                                                @class = "form-control",
+                                                                type = "number",
+                                                                id = "total_amount",
+                                                                @readonly = "readonly"
+                                                            })
+                                                    @Html.ValidationMessageFor(model => model.GrandTotalAmount)
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Note: </label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												@Html.TextAreaFor(model => model.Note,
-													 new
-													 {
-														 style = "padding-left:5%",
-														 @class = "form-control",
-														 type = "text",
-														 id="note"
-													 })
-											</div>
-										</div>
-
-										<div class="form-group">
-										</div>
-										<div class="ln_solid"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>Invoice Option</h2>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<br />
-									<div class="row">
-										<form class="form-horizontal form-label-left input_mask">
-											<div class="form-group">
-												<label class="control-label col-md-2 col-sm-2 col-xs-12">Pattern: </label>
-												<div class="col-md-10 col-sm-12 col-xs-12">
-													@Html.TextBoxFor(model => model.PatternId,
-														 new
-														 {
-															 @class = "form-control",
-															 id = "pattern",
-															 type = "hidden",
-															 name = "Pattern",
-															 required = "required"
-														 	 
-														 })
-													@Html.TextBoxFor(model => model.Pattern.Name,
-														 new
-														 {
-															 @class = "form-control",
-														  	@readonly="readonly"
-														 })
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="control-label col-md-2 col-sm-2 col-xs-12">Series: </label>
-												<div class="col-md-10 col-sm-12 col-xs-12">
-											
-													@Html.DropDownListFor(model => model.SeriesId,
-														controller.GetSeries(Model.PatternId),
-														new
-														{
-															@class = "form-control",														
-															id = "series",
-															type = "text",
-															name = "Pattern",
-															required = "required"
-														})	
-													@*@Html.DropDownListFor(model => model.,
-														controller.GetSeries(Model.PatternId),
-														new
-														{
-															@class = "form-control",														
-															id = "series",
-															type = "hidden",
-															name = "Pattern",
-															required = "required"
-														})*@
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="control-label col-md-2 col-sm-2 col-xs-12">No: </label>
-												<div class="col-md-10 col-sm-12 col-xs-12">
-													@Html.TextBoxFor(model => model.No,
-													 new
-													 {
-														 @class = "form-control",
-														 type = "text",
-														 required = "required",
-														 value = "000000",
-														 @readonly = "readonly",
-														 id = "no"
-													 })
-													@Html.ValidationMessageFor(model => model.No)
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="control-label col-md-2 col-sm-2 col-xs-12">Date: </label>
-												<div class="col-md-10 col-sm-12 col-xs-12">
-													<div class="input-group">
-														<span class="input-group-addon">
-															<i class="fa fa-calendar"></i>
-														</span>
-														@Html.TextBoxFor(model => model.CreatedDate,
-															 new
-															 {
-																 @class = "form-control",
-																 type = "text",
-																 id="date"
-															 })
-														@Html.ValidationMessageFor(model => model.No)
-													</div>
-												</div>
-											</div>
-											<div class="ln_solid"></div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="ml-3 mr-3 panel-body">
-						<h5><b>INVOICE DETAILS</b></h5>
-						<hr>
-						<div class="details">
-							<div class="row clearfix">
-								<div class="col-md-12">
-									<table class="table table-bordered table-hover" id="tab_logic">
-										<thead>
-											<tr>
-												<th class="text-center"> Series </th>
-												<th class="text-center"> Code </th>
-												<th class="text-center" style="width: 40%"> Products - Services </th>
-												<th class="text-center"> Unit Price </th>
-												<th class="text-center"> Unit </th>
-												<th class="text-center"> Quantity </th>
-												<th class="text-center"> Amount </th>
-											</tr>
-										</thead>
-										<tbody id="goodsTable">
-											@{
-												var i = 0;
-												foreach (var item in Model.Items)
-												{
-													<tr id="addr@(i)">
-														<td>@(i + 1)</td>
-														<td style="display: none">
-															@Html.TextBoxFor(model => item.ProductId,
-																 new
-																 {
-																	 name = "productId" + i,
-																	 @class = "form-control id",
-																	 type = "text",
-																	 id = "productId" + (i + 1)
-																 })
-															@Html.ValidationMessageFor(model => item.ProductId)
-														</td>
-														<td>
-															@Html.TextBoxFor(model => item.ProductCode,
-																 new
-																 {
-																	 name = "productCode" + i,
-																	 @class = "form-control",
-																	 type = "text",
-																	 id = "productCode" + (i + 1)
-																 })
-															@Html.ValidationMessageFor(model => item.ProductCode)
-														</td>
-														<td>
-															@Html.TextBoxFor(model => item.ProductName,
-																 new
-																 {
-																	 name = "name" + i,
-																	 @class = "form-control",
-																	 type = "text",
-																	 id = "name" + (i + 1)
-																 })
-															@Html.ValidationMessageFor(model => item.ProductName)
-														</td>
-														<td>
-															@Html.TextBoxFor(model => item.ProductPrice,
-																 new
-																 {
-																	 name = "price" + i,
-																	 @class = "form-control itemPrice",
-																	 type = "text",
-																	 id = "price" + (i + 1)
-																 })
-															@Html.ValidationMessageFor(model => item.ProductPrice)
-														</td>
-														<td>
-															@Html.TextBoxFor(model => item.UnitName,
-																 new
-																 {
-																	 name = "unit" + i,
-																	 @class = "form-control unit",
-																	 type = "text",
-																	 id = "unit" + (i + 1)
-																 })
-															@Html.ValidationMessageFor(model => item.UnitName)
-														</td>
-														<td>
-															@Html.TextBoxFor(model => item.Quantity,
-																 new
-																 {
-																	 name = "qty" + i,
-																	 @class = "form-control qty",
-																	 type = "text",
-																	 id = "qty" + (i + 1)
-																 })
-															@Html.ValidationMessageFor(model => item.Quantity)
-														</td>
-
-														<td>
-															@Html.TextBoxFor(model => item.TotalAmount,
-																 new
-																 {
-																	 name = "total" + i,
-																	 @class = "form-control total",
-																	 type = "text",
-																	 id = "total" + (i + 1)
-																 })
-															@Html.ValidationMessageFor(model => item.TotalAmount)
-														</td>
-													</tr>
-
-													i++;
-												}
-												<tr id="addr@(i)"></tr>
-											}
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="row clearfix">
-								<div class="col-md-12" id="pull-down">
-									<button id="add_row" class="btn btn-light pull-left border-button">Add Row</button>
-									<button id='delete_row' class="pull-right btn btn-light border-button">Delete Row</button>
-								</div>
-							</div>
-							<div class="row clearfix" style="margin-top: 20px;">
-								<div class="pull-left col-md-8">
-									<div class="row" style="margin-top: 16.4%">
-										<div class="text-nowrap col-md-3 pt-1">
-											<label>Amount in words: </label>
-										</div>
-										<div class="col-md-9">
-											<input class="form-control" tyle="text" style="border: none; background-color: whitesmoke" readonly="readonly">
-										</div>
-									</div>
-								</div>
-
-								<div class="pull-right col-md-4">
-									<table class="table table-bordered table-hover" id="tab_logic_total">
-										<tbody>
-											<tr>
-												<th class="text-center">Sub Total</th>
-
-												<td class="text-center">
-													@Html.TextBoxFor(model => model.SubTotalAmount,
-															 new
-															 {
-																 @class = "form-control",
-																 type = "number",
-																 id = "sub_total",
-																 @readonly = "readonly"
-															 })
-													@Html.ValidationMessageFor(model => model.SubTotalAmount)
-												</td>
-											</tr>
-											<tr>
-												<th class="text-center">Tax</th>
-												<td class="text-center">
-													<div class="input-group mb-2 mb-sm-0">
-														@Html.DropDownListFor(model => model.Tax,
-															 tax,
-															 new
-															 {
-																 @class = "form-control",
-																 type = "number",
-																 id = "tax"
-															 })
-														<div class="input-group-addon">%</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<th class="text-center">Tax Amount</th>
-												<td class="text-center">
-													@Html.TextBoxFor(model => model.TaxAmount,
-														 new
-														 {
-															 @class = "form-control",
-															 type = "number",
-															 id = "tax_amount",
-															 @readonly = "readonly"
-														 })
-													@Html.ValidationMessageFor(model => model.TaxAmount)
-												</td>
-											</tr>
-											<tr>
-												<th class="text-center">Grand Total</th>
-												<td class="text-center">
-													@Html.TextBoxFor(model => model.GrandTotalAmount,
-															 new
-															 {
-																 @class = "form-control",
-																 type = "number",
-																 id = "total_amount",
-																 @readonly = "readonly"
-															 })
-													@Html.ValidationMessageFor(model => model.GrandTotalAmount)
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<div class="col-md-12" align="right">
-							<button id="submitEditInvoice" type="submit" class="btn btn-primary">Save</button>
-							<button type="button" class="btn btn-primary">Save & Release</button>
-							<button type="button" class="btn btn-outline-secondary">Back</button>
-						</div>`
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div>
+                        <div class="col-md-12" align="right">
+                            <button id="submitEditInvoice" type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-primary">Save & Release</button>
+                            <button type="button" class="btn btn-outline-secondary">Back</button>
+                        </div>`
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
