@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Data.Utilities;
 using EInvoice.Data.Data;
 using EInvoice.Data.Services;
 using EInvoice.Web.Models;
@@ -13,6 +14,7 @@ using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
+    [PermissionLogin]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;

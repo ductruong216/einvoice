@@ -3,18 +3,19 @@
 <html lang="en">
 <head>
     <link href="~/Content/Login/Login.css" rel="stylesheet" />
+    <title>Login</title>
+    <link rel="icon" href="~/Assets/Owner/Images/favicon.png" type="image/ico">
 </head>
+
 <body>
     <div id="back">
         <div class="backRight"></div>
         <div class="backLeft"></div>
     </div>
-
     <div id="slideBox">
         <div class="topLayer">
             <div class="left">
                 <div class="content">
-                    <h2>Sign Up</h2>
                     <form method="post" onsubmit="return false;">
                         <div class="form-group">
                             <input type="text" placeholder="Username" />
@@ -45,8 +46,7 @@
                             <label class="form-label">Password</label>
                             <input type="password" id="password" />
                         </div>
-                        <button id="goRight" class="off">Sign Up</button>
-                        <button id="btnLogin" type="button">Login</button>
+                        <button id="btnLogin" type="submit" style="float:right; cursor: pointer">Login</button>
                     </form>
                 </div>
             </div>
@@ -56,4 +56,4 @@
 </html>
 
 <script src="/vendors/jquery/dist/jquery.min.js"></script>
-<script src="~/Scripts/login/Login.js"></script>
+<script src="~/Scripts/Login/login.js"></script>

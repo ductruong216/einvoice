@@ -14,16 +14,8 @@ namespace EInvoice.Data.Data
     
     public partial class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            this.UserClaims = new HashSet<UserClaim>();
-            this.UserLogins = new HashSet<UserLogin>();
-            this.Roles = new HashSet<Role>();
-        }
-    
         public long ID { get; set; }
-        public Nullable<int> EmployeeId { get; set; }
+        public Nullable<long> RoleId { get; set; }
         public string UserName { get; set; }
         public string FullName { get; set; }
         public string Address { get; set; }
@@ -31,12 +23,6 @@ namespace EInvoice.Data.Data
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
     
-        public virtual Employee Employee { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserClaim> UserClaims { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserLogin> UserLogins { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

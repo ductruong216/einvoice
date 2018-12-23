@@ -169,12 +169,6 @@
     <Compile Include="Data\User.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\UserClaim.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\UserLogin.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\Implementation\Disposable.cs" />
     <Compile Include="Infrastructure\Implementation\DbFactory.cs" />
     <Compile Include="Infrastructure\Implementation\ObjectFactory.cs" />

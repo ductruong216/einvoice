@@ -1,10 +1,12 @@
-﻿using EInvoice.Data.Services;
+﻿using Data.Utilities;
+using EInvoice.Data.Services;
 using System;
 using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public partial class CategoryController : Controller
+    [PermissionLogin]
+    public partial class CategoryController : Controller
 	{
 		private readonly IUnitService _unitService;
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Data.Utilities;
 using EInvoice.Data.Data;
 using EInvoice.Data.Services;
 using EInvoice.Web.Models;
@@ -9,7 +10,8 @@ using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public class ProductController : Controller
+    [PermissionLogin]
+    public class ProductController : Controller
 	{
 		private readonly IProductService _productService;
 		private readonly IUnitService _unitService;

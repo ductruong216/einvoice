@@ -14,22 +14,10 @@ namespace EInvoice.Data.Data
     
     public partial class Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
-        {
-            this.Users = new HashSet<User>();
-            this.Invoices = new HashSet<Invoice>();
-        }
-    
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
         public string Phone { get; set; }
         public string EmailID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

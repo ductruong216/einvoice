@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Data.Utilities;
 using EInvoice.Data.Data;
 using EInvoice.Data.Services;
 using EInvoice.Web.Models;
@@ -8,7 +9,8 @@ using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers
 {
-	public class CompanyInfoController : Controller
+    [PermissionLogin]
+    public class CompanyInfoController : Controller
 	{
 		private readonly ICompanyService _companyService;
 

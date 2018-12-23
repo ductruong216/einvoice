@@ -1,13 +1,14 @@
-﻿using EInvoice.Data.Data;
+﻿using Data.Utilities;
+using EInvoice.Data.Data;
 using EInvoice.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DevExpress.XtraReports.UI;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
+    [PermissionLogin]
     public partial class InvoiceController : Controller
     {
         private readonly IInvoiceService _invoiceService;
@@ -145,7 +146,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
         }
 
         #endregion Get component
-        [ActionName("Show")]
+
         public ActionResult ShowDraftReport(int? invoiceId)
         {
             var report = new InvoiceReport();
@@ -153,7 +154,8 @@ namespace EInvoice.Web.Controllers.InvoiceController
             report.Parameters["IDParameter"].Visible = false;
             return View(report);
         }
-        public ActionResult  ShowReleaseReport(int? invoiceId)
+
+        public ActionResult ShowReleaseReport(int? invoiceId)
         {
             var report = new ReleaseReport();
             report.Parameters["IDParameter"].Value = invoiceId;

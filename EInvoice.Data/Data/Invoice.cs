@@ -35,7 +35,7 @@ namespace EInvoice.Data.Data
         public Nullable<decimal> SubTotalAmount { get; set; }
         public Nullable<decimal> GrandTotalAmount { get; set; }
         public string InWord { get; set; }
-        public Nullable<int> CreatorID { get; set; }
+        public Nullable<long> CreatorID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ReleaseDate { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
@@ -45,7 +45,6 @@ namespace EInvoice.Data.Data
     
         public virtual Company Company { get; set; }
         public virtual Customer Customer { get; set; }
-        public virtual Employee Employee { get; set; }
         public virtual Pattern Pattern { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
         public virtual PurchaserCustomer PurchaserCustomer { get; set; }

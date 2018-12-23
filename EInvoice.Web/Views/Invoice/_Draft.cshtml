@@ -165,7 +165,7 @@
     });
     settings.Columns.Add(c =>
     {
-        c.Caption = "Release";
+        c.Caption = "Issue";
         c.EditorProperties().TextBox(p =>
         {
             p.CssPostfix = "actions";
@@ -175,7 +175,7 @@
         c.SetDataItemTemplateContent(r =>
         {
             var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-            ViewContext.Writer.Write("<button onclick=\"Release("+invoiceId+")\" type=\"button\" class=\"btn btn-round btn-primary\">Release</button>");
+            ViewContext.Writer.Write("<button onclick=\"Release("+invoiceId+")\" type=\"button\" class=\"btn btn-round btn-primary\">Issue</button>");
         });
     });
 }).Bind(Model).GetHtml())

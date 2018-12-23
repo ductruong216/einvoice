@@ -9,7 +9,7 @@ namespace Data.Utilities
         public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
             base.OnActionExecuting(actionContext);
-            var userSession = (Customer)HttpContext.Current.Session[Constant.UserSession];
+            var userSession = (User)HttpContext.Current.Session[Constant.UserSession];
             if (userSession == null)
             {
                 actionContext.HttpContext.Response.Redirect("~/Login/Login");

@@ -26,7 +26,6 @@ namespace EInvoice.Data.Data
         public string Description { get; set; }
         public decimal Price { get; set; }
         public decimal Tax { get; set; }
-        public Nullable<int> DisplayOrder { get; set; }
         public Nullable<int> UnitID { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public Nullable<int> Warranty { get; set; }

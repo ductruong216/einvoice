@@ -1,4 +1,5 @@
-﻿using EInvoice.Data.Data;
+﻿using Data.Utilities;
+using EInvoice.Data.Data;
 using EInvoice.Data.Services;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,8 @@ using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.CategoryController
 {
-	public class UnitController : Controller
+    [PermissionLogin]
+    public class UnitController : Controller
 	{
 		private readonly IUnitService _unitService;
 

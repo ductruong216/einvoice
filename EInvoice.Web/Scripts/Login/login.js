@@ -30,7 +30,7 @@
     function doLogin() {
         var userName = $("#username").val();
         var password = $("#password").val();
-
+        debugger
         if (userName.length === 0) {
             $("#errorMessage").html("Please enter your username");
             timeoutMessage();
@@ -40,10 +40,9 @@
         } else {
             $.ajax({
                 type: 'Post',
-                url: "Login/Login?userName=" + userName + "&password=" + password,
+                url: "?userName=" + userName + "&password=" + password,
                 dataType: 'json',
                 success: function(data) {
-
                     if (data.status === "WrongUserName") {
                         $("#errorMessage").html("Username is in correct");
                         timeoutMessage();
@@ -51,8 +50,7 @@
                         $("#errorMessage").html("Password is in correct");
                         timeoutMessage();
                     } else if (data.status === "Succsess") {
-                        $("#errorMessage").html("Login successfully");
-                        timeoutMessage();
+                        window.location.href = "/"
                     }
                 }
             });
@@ -62,5 +60,5 @@
 function timeoutMessage() {
     setTimeout(function() {
        $("#errorMessage").empty();
-     },1300);
+     },1500);
 }
