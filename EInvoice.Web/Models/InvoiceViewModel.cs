@@ -27,10 +27,10 @@ namespace EInvoice.Web.Models
 		public string InWord { get; set; }
 		public long? TypeID { get; set; }
 		public int? CreatorID { get; set; }
-
-		//[DataType(DataType.Date)]
-		//[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-		public DateTime? CreatedDate { get; set; }
+       
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? CreatedDate { get; set; }
 
 		
 		public DateTime? ReleaseDate { get; set; }
@@ -38,7 +38,8 @@ namespace EInvoice.Web.Models
 		public DateTime? ModifyDate { get; set; }
 		public string ModifyBy { get; set; }
 		public string Status { get; set; }
-		public bool isDel { get; set; }
+	    public int? ReplaceFor { get; set; }
+        public bool isDel { get; set; }
 		public virtual CompanyViewModel Company { get; set; }
 		public virtual EmployeeViewModel Employee { get; set; }
 		public virtual PatternViewModel Pattern { get; set; }
@@ -98,5 +99,4 @@ namespace EInvoice.Web.Models
 
 		public string CustomerNote => Customer.Note;
 	}
-	
 }

@@ -437,46 +437,45 @@
                                         </div>
                                     </div>
                                 </div>*@
-                                <div class="pull-right col-md-4">
-                                    <table class="table table-bordered table-hover" id="tab_logic_total">
-                                        <tbody>
-                                            <tr>
-                                                <th class="text-center">Sub Total</th>
-                                                <td class="text-center"><input type="number" id="sub_total" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Tax</th>
-                                                <td class="text-center">
-                                                    <div class="input-group mb-2 mb-sm-0">
-                                                        <select id="tax" type="number" class="form-control" placeholder="0">
-                                                            <option>0</option>
-                                                            <option>5</option>
-                                                            <option selected>10</option>
-                                                        </select>
-                                                        <div class="input-group-addon">%</div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Tax Amount</th>
-                                                <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly /></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Grand Total</th>
-                                                <td class="text-center"><input type="number" name='total_amount' id="total_amount" placeholder='0.00' class="form-control" readonly /></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="pull-right col-md-4">
+                                <table class="table table-bordered table-hover" id="tab_logic_total">
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-center">Sub Total</th>
+                                            <td class="text-center"><input type="number" id="sub_total" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Tax</th>
+                                            <td class="text-center">
+                                                <div class="input-group mb-2 mb-sm-0">
+                                                    <select id="tax" type="number" class="form-control" placeholder="0">
+                                                        <option>0</option>
+                                                        <option>5</option>
+                                                        <option selected>10</option>
+                                                    </select>
+                                                    <div class="input-group-addon">%</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Tax Amount</th>
+                                            <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Grand Total</th>
+                                            <td class="text-center"><input type="number" name='total_amount' id="total_amount" placeholder='0.00' class="form-control" readonly /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="col-md-12" align="right">
-                            <button id="submitInvoice" type="submit" class="btn btn-primary">Save</button>
-                            <button id="save_and_release" type="submit" class="btn btn-primary">Save & Issue</button>
-                            <button type="submit" class="btn btn-outline-secondary">Back</button>
-                        </div>
+                </div>
+                <div>
+                    <div class="col-md-12" align="right">
+                        <button id="submitInvoice" type="submit" class="btn btn-primary">Save</button>
+                        <button id="save_and_release" type="submit" class="btn btn-primary">Save & Issue</button>
+                        <button type="submit" class="btn btn-outline-secondary">Back</button>
                     </div>
                 </div>
             </div>

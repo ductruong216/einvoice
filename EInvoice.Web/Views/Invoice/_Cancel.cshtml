@@ -10,19 +10,15 @@
 
 @(Html.DevExpress().GridView<InvoiceViewModel>(settings =>
 {
-    settings.Name = "DraftInvoice";
+    settings.Name = "CancelGrid";
     settings.KeyFieldName = "ID";
-    settings.CallbackRouteValues = new { Controller = "Invoice", Action = "Draft" };
+    settings.CallbackRouteValues = new { Controller = "Invoice", Action = "Cancel" };
     settings.Width = Unit.Percentage(100);
-    settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#2A3F54");
+    settings.Styles.Header.BackColor = ColorTranslator.FromHtml("#2A3F54");
     settings.Styles.Header.ForeColor = Color.White;
     settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
-    //settings.Appearance.HeaderPanel.Options.UseBackColor = true;
-    //settings.Appearance.HeaderPanel.BackColor = System.Drawing.Color.White;
-    settings.ClientSideEvents.EndCallback = "function(s, e) { Release.Refresh(); }";
     settings.SettingsSearchPanel.Visible = true;
     settings.SettingsText.SearchPanelEditorNullText = "Enter to search invoice";
-
     #region Numbering
 
     settings.Init = (sender, e) =>
@@ -54,14 +50,14 @@
         c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
         c.EditorProperties().ComboBox(p =>
         {
-
             p.TextField = "Name";
             p.ValueField = "ID";
             p.ValueType = typeof(int);
             p.BindList(controller.GetPattern());
-
         });
-        c.Width = 160;});
+        c.Width = 160;
+    });
+
     settings.Columns.Add(c =>
     {
         c.FieldName = "SeriesId";
@@ -83,27 +79,26 @@
     {
         c.FieldName = "No";
         c.Caption = "No";
-        c.CellStyle.HorizontalAlign = HorizontalAlign.Left;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
         c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-
-        c.SetDataItemTemplateContent(r =>
-        {
-            ViewContext.Writer.Write("Waiting");
-        });
+        c.PropertiesEdit.DisplayFormatString = "{0:0000000}";
+        c.Width = 120;
     });
     settings.Columns.Add(c =>
     {
         c.FieldName = "CustomerCode";
         c.Width = 100;
     });
+
     settings.Columns.Add(c =>
     {
-        c.FieldName = "CreatedDate";
+        c.FieldName = "ReleaseDate";
         c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
         c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.Width = 130;
         c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+
     });
+
     settings.Columns.Add(c =>
     {
         c.FieldName = "Tax";
@@ -121,28 +116,7 @@
         c.PropertiesEdit.DisplayFormatString = "#,# VND";
         c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
         c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.Width = 120;
 
-    });
-
-    settings.Columns.Add(c =>
-    {
-        c.Caption = "Action";
-        c.EditorProperties().TextBox(p =>
-        {
-            p.CssPostfix = "actions";
-        });
-        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.SetDataItemTemplateContent(r =>
-        {
-            var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-
-            ViewContext.Writer.Write("<div class=\"row\">" +
-                                    " <a href=\"/Invoice/Edit/" + invoiceId+ "\"class=\"on-default edit-row\"style=\"margin-right:5px; color:blue;\">Edit</a>" +
-                                     "<a onclick=\"deleteInvoice(" + invoiceId+ ")\" style=\"cursor: pointer;color: red;\"class=\"on-default remove-row\">Delete</a>"
-                    );
-        });
     });
     settings.Columns.Add(c =>
     {
@@ -157,29 +131,12 @@
         c.SetDataItemTemplateContent(r =>
         {
             var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-
-            ViewContext.Writer.Write("<form action=\"ShowDraftReport\" method=\"post\">" +
-                                     "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId + "\">" +
+            ViewContext.Writer.Write("<form action=\"ShowReleaseReport\" method=\"post\">" +
+                                     "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
                                      "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"btn btn-info\">View</button>" +
                                      "</form>"
-                                    + "</div>"
-                    );
-            // ViewContext.Writer.Write("<button type=\"submit\" data-toggle=\"modal\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>");
-        });
-    });
-    settings.Columns.Add(c =>
-    {
-        c.Caption = "Issue";
-        c.EditorProperties().TextBox(p =>
-        {
-            p.CssPostfix = "actions";
-        });
-        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.SetDataItemTemplateContent(r =>
-        {
-            var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-            ViewContext.Writer.Write("<button onclick=\"Release("+invoiceId+")\" type=\"button\" class=\"btn btn-round btn-primary\">Issue</button>");
+                                     +"</div>"
+                );
         });
     });
 }).Bind(Model).GetHtml())

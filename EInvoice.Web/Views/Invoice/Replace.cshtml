@@ -2,7 +2,7 @@
 @model EInvoice.Web.Models.InvoiceViewModel
 
 @{
-    ViewBag.Title = "New Invoice";
+    ViewBag.Title = "Replace Invoice";
     Layout = "~/Views/Shared/_mainLayout.cshtml";
 }
 
@@ -89,7 +89,9 @@
 
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                            <label class="control-label col-md-5 col-sm-5 col-xs-12">Tax Code: </label>
+                                            <label class="control-label col-md-5 col-sm-5 col-xs-12">
+                                                Code:
+                                            </label>
                                             <div class="col-md-7 col-sm-7 col-xs-12">
                                                 @Html.TextBoxFor(model => model.PurchaserCustomer.TaxCode,
                                                     new
@@ -253,7 +255,8 @@
                                                                 id = "series",
                                                                 type = "text",
                                                                 name = "Pattern",
-                                                                required = "required"
+                                                                required = "required",
+                                                                @readonly = "readonly"
                                                             })
                                                     @*@Html.DropDownListFor(model => model.,
                                                         controller.GetSeries(Model.PatternId),
@@ -269,40 +272,43 @@
                                             </div>
 
                                             <div class="form-group">
+                                                @*No. tiep theo cua invoice voi ma so nhu vay.*@
                                                 <label class="control-label col-md-4 col-sm-2 col-xs-12">No: <span class="required">*</span></label>
                                                 <div class="col-md-8 col-sm-12 col-xs-12">
+
                                                     @Html.TextBoxFor(model => model.No,
-                                                            new
-                                                            {
-                                                                @class = "form-control",
-                                                                type = "text",
-                                                                required = "required",
-                                                                value = "000000",
-                                                                @readonly = "readonly",
-                                                                id = "no"
-                                                            })
+                                                        new
+                                                        {
+                                                            @class = "form-control",
+                                                            type = "text",
+                                                            required = "required",
+                                                            value = "waiting",
+                                                            @readonly = "readonly",
+                                                            id = "no"
+                                                        })
+
                                                     @Html.ValidationMessageFor(model => model.No)
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-2 col-xs-12">Date: </label>
-                                                <div class="col-md-8 col-sm-12 col-xs-12">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </span>
-                                                        @Html.TextBoxFor(model => model.CreatedDate,
-                                                                new
-                                                                {
-                                                                    @class = "form-control",
-                                                                    type = "text",
-                                                                    id = "date"
-                                                                })
-                                                        @Html.ValidationMessageFor(model => model.No)
+                                            @*<div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-2 col-xs-12">Date: </label>
+                                                    <div class="col-md-8 col-sm-12 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </span>
+                                                            @Html.TextBoxFor(model => model.CreatedDate,
+                                                                    new
+                                                                    {
+                                                                        @class = "form-control",
+                                                                        type = "text",
+                                                                        id = "date"
+                                                                    })
+                                                            @Html.ValidationMessageFor(model => model.No)
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </div>*@
                                             <div class="ln_solid"></div>
                                         </form>
                                     </div>
@@ -435,6 +441,7 @@
                                     <tbody>
                                         <tr>
                                             <th class="text-center">Sub Total</th>
+
                                             <td class="text-center">
                                                 @Html.TextBoxFor(model => model.SubTotalAmount,
                                                             new
@@ -500,12 +507,11 @@
 
                 <div>
                     <div class="col-md-12" align="right">
-                        <button id="submitEditInvoice" type="submit" class="btn btn-primary">Save</button>
-                        <button id="save_and_release" type="button" class="btn btn-primary">Save & Issue</button>
-                        <button type="button" class="btn btn-outline-secondary">Back</button>
-                    </div>`
+                        <button onclick="ReplaceInvoice()" id="issue_and_replace" type="button" class="btn btn-primary">Issue</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="~/Assets/Owner/js/repalce-issued-invoice.js"></script>

@@ -27,7 +27,7 @@ function NewInvoiceCore(isRelease) {
     }
     $.ajax({
         type: "POST",
-        dataType: "json",
+        dataType: "JSON",
         url: '/Invoice/Create',
         data: {
             isRelease: isRelease,
@@ -91,6 +91,9 @@ function NewInvoiceCore(isRelease) {
                     timer: 2000
                 });
             }
+        },
+        error: function(error) {
+          console.log(error)
         }
     });
 }
@@ -130,6 +133,32 @@ function CreateInvoice(button) {
 }
 CreateInvoice("submitInvoice");
 CreateInvoice("save_and_release");
+
+//function replaceAndIssue() {
+//    swal({
+//        title: "Do you wanna save then issue this invoice",
+//        icon: "info",
+//        buttons: true,
+//    }).then((isConfirm) => {
+//        if (isConfirm) {
+//            swal({
+//                title: "Sign an invoice",
+//                icon: "info",
+//                content: {
+//                    element: "input",
+//                    attributes: {
+//                        placeholder: "Type your PIN",
+//                        type: "password",
+//                    },
+//                }
+//            }).then((isConfirm) => {
+//                if (isConfirm) {
+//                    NewInvoiceCore(null, true);
+//                }
+//            })
+//        }
+//    });
+//}
 
 
 //Edit Invoice
@@ -255,9 +284,10 @@ function deleteInvoice(id) {
     });
 }
 
+
 function Release(id) {
     swal({
-        title: "Do you want to release this invoice?",
+        title: "Do you want to issue this invoice?",
         icon: "info",
         buttons: true,
         dangerMode: true

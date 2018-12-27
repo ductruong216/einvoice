@@ -13,7 +13,8 @@ namespace EInvoice.Web.Models
 		[Required(ErrorMessage = "Company Name is required")]
 		public string Name { get; set; }
 
-		public string Address { get; set; }
+	    [Required(ErrorMessage = "Company Name is required")]
+        public string Address { get; set; }
 
 		public string Phone { get; set; }
 		public string Fax { get; set; }

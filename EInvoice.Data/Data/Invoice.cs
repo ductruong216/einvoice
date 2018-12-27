@@ -41,6 +41,7 @@ namespace EInvoice.Data.Data
         public Nullable<System.DateTime> ModifyDate { get; set; }
         public string ModifyBy { get; set; }
         public string Status { get; set; }
+        public Nullable<int> ReplaceFor { get; set; }
         public bool isDel { get; set; }
     
         public virtual Company Company { get; set; }

@@ -133,7 +133,8 @@
                                         {
                                             @name = "TaxCode",
                                             @class = "form-control",
-                                            @type = "text"
+                                            @type = "text",
+                                            @id= "taxCode"
                                         })
                                         @Html.ValidationMessageFor(model => model.TaxCode)
                                         <p id="taxCode_status"></p>
@@ -157,8 +158,9 @@
                                     {
                                         @name = "Name",
                                         @class = "form-control",
-                                        @type = "text"
-  })
+                                        @type = "text",
+                                        @id= "companyName"
+                                    })
                                     @Html.ValidationMessageFor(model => model.EnterpriseName)
                                 </div>
                             </div>
@@ -173,7 +175,8 @@
                                     new
                                     {
                                         @class = "form-control",
-                                        @type = "text"
+                                        @type = "text",
+                                        @id= "address"
                                     })
                                         @Html.ValidationMessageFor(model => model.Address)
                                     </div>
@@ -294,6 +297,7 @@
         </div>
     </div>
 </div>
+
 <script src="~/Assets/Owner/js/check-available.js"></script>
 <script src="~/Assets/Owner/js/bootstrap-modal.js"></script>
 <script src="~/Assets/Owner/js/ajax-begin-form.js"></script>

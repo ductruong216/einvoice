@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace EInvoice.Common
 {
-	public static class Utility
+	public static class Enumration
 	{
 		public static DateTime GetNistTime()
 		{
@@ -203,7 +203,5 @@ namespace EInvoice.Common
 
 			return lso_chu.ToString().Trim();
 		}
-
-	
 	}
 }

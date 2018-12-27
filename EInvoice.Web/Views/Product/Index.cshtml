@@ -12,7 +12,24 @@
 
 
 <link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
+<style>
+        .field-validation-error {
+            color: red;
+        }
 
+        #Products_DXCTMenu0_DXI0_ {
+            border: 1px Solid #dfdfdf !important;
+        }
+
+        #btnNew {
+            border: none;
+            padding: 8px 8px 8px 32px;
+            font-family: Arial, Verdana;
+            background: #ffffff url([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEUxozEt-9GCB3eVUdVbrzR67M_Ap8k6oxCbu-f4WVSfmW3V]);
+            background-position: 8px 8px;
+            background-repeat: no-repeat;
+        }
+    </style>
 @Html.DevExpress().GetStyleSheets(
     new StyleSheet { ExtensionSuite = ExtensionSuite.GridView })
 @Html.DevExpress().GetScripts(

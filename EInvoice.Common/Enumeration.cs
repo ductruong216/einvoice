@@ -1,10 +1,11 @@
 ﻿namespace EInvoice.Common
 {
-	public enum InvoiceStatus
-	{
-		Draft,
-		Released,
-		Modified,
-		Destroy
-	}
+    public enum InvoiceStatus
+    {
+        Draft,
+        Issued,
+        Modified,
+        Cancel,
+        Replace
+    }
 }

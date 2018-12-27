@@ -57,9 +57,9 @@ namespace EInvoice.Web.Controllers.InvoiceController
 		{
 			try
 			{
-				_invoiceService.Release(id);
+				_invoiceService.Issue(id);
 
-				return Success("Release successfully");
+				return Success("Issue successfully");
 			}
 			catch (Exception e)
 			{

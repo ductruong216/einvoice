@@ -1,8 +1,10 @@
-﻿using Data.Utilities.Enumeration;
+﻿using Data.Utilities;
+using Data.Utilities.Enumeration;
 using EInvoice.Data.Data;
 using EInvoice.Data.Infrastructure.Interface;
 using EInvoice.Data.Services;
 using EInvoice.Repository;
+using System.Web;
 
 namespace EInvoice.Service
 {
@@ -40,5 +42,17 @@ namespace EInvoice.Service
 		{
 			return _userRepository.GetCustomerByName(userName);
 		}
+
+	    public bool CheckPassword(string password)
+	    {
+	        var userSession = (User)HttpContext.Current.Session[Constant.UserSession];
+	        var currentUserName= GetCustomerByName(userSession.UserName);
+	        if (userSession.PasswordHash == password)
+	        {
+	            return true;
+	        }
+
+	        return false;
+	    }
 	}
 }

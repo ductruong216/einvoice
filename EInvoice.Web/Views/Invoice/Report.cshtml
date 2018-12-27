@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div id="print" class="panel-body">
+                <?xml version="1.0" encoding="utf-16" ?>
+                <div class="header-l" style="font-size:14px">
+                    <div class="national" style="clear:left;width:100%;position:relative; ">
+                        <div style="font-size:17px;font-weight:bold;width:366px;text-align:center;clear:left;margin:0 auto;">
+                            CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br />
+                            Độc lập - Tự do - Hạnh phúc<br />
+                            -------------------------
+                        </div><div style="color:#006633;width:300px;text-align:right;position:absolute;top:30px;right:0">
+                            Mẫu số: BC26/AC: <br />
+                            (Ban hành kèm theo Thông tư số
+                            39/2014/TT-BTC ngày 31/3/2014 của Bộ Tài chính)
+                        </div>
+                    </div><div style="clear:left;width:400px;margin:0 auto">
+                        <center style="font-size:17px;font-weight:bold">
+                            BÁO CÁO TÌNH HÌNH SỬ DỤNG HÓA ĐƠN<br /><i style="font-size:14px;font-weight:normal">
+                                Kỳ tính thuế:Tháng 12 năm 2018
+                            </i>
+                        </center>
+                    </div><br /><br /><br />
+                
+                    <table>
+                        <tr>
+                            <td colspan="3">
+                                Ngày đầu kỳ báo cáo: 01/12/2018,
+                            </td>
+                            <td colspan="3">
+                                Ngày cuối kỳ báo cáo: 31/12/2018
+                            </td>
+                        </tr>
+                    </table><table width="100%"><tr><th colspan="22"><p style=" text-align right;font-weight:normal">Đơn vị tính: số</p></th></tr></table><table width="100%" border="1" cellspacing="0" cellpadding="0" style=" border:1px solid #000">
+                        <thead>
+                        <tr><th rowspan="4" width="10px">STT</th><th rowspan="4" width="70px" style="text-align:center">Tên loại hóa đơn</th><th rowspan="4" width="30px">Ký hiệu mẫu hóa đơn</th><th rowspan="4" width="30px">Ký hiệu Hóa đơn</th><th colspan="5" width="150px" style="text-align:center">Số tồn đầu kỳ, mua / phát hành trong kỳ</th><th colspan="10" style="text-align:center">Số sử dụng, xóa bỏ, mất, hủy trong kỳ</th><th colspan="3" rowspan="3" width="100px" style="text-align:center">Tồn cuối kỳ</th></tr>
+                        <tr><th rowspan="3" width="50px">Tổng số</th><th rowspan="2" colspan="2" width="50px" style="text-align:center">Số tồn đầu kỳ</th><th rowspan="2" colspan="2" width="100px" style="text-align:center">Số mua/ phát hành trong kỳ</th><th rowspan="2" colspan="3">Tổng số sử dụng, xóa bỏ, mất, hủy</th><th colspan="7">Trong đó</th></tr>
+                        <tr>
+                            <th rowspan="2">
+                                Số lượng đã<br /> sử dụng
+                            </th>
+                            <th colspan="2" style="text-align:center">Xóa bỏ</th>
+                            <th colspan="2" style="text-align:center">Mất</th>
+                            <th colspan="2" style="text-align:center">Hủy</th>
+                        </tr>
+                        <tr><th>Từ số</th><th>Đến số</th><th>Từ số</th><th>Đến số</th><th>Từ số</th><th>Đến số</th><th>Cộng</th><th>Số lượng</th><th class="textnowrap" style="text-align:center">Số</th><th>Số lượng</th><th style="text-align:center">Số</th><th>Số lượng</th><th style="text-align:center">Số</th><th>Từ số</th><th>Đến số</th><th>Số lượng</th></tr>
+                        <tr><td style="text-align:center">1</td><td style="width:150px;text-align:center">2</td><td style="text-align:center">3</td><td style="width:60px;text-align:center">4</td><td style="width:60px; text-align:center">5</td><td style="width:60px;text-align:center">6</td><td style="width:60px;text-align:center">7</td><td style="width:60px;text-align:center">8</td><td style="width:60px;text-align:center">9</td><td style="width:60px;text-align:center">10</td><td style="width:60px;text-align:center">11</td><td style="width:60px;text-align:center">12</td><td style="width:60px;text-align:center">13</td><td style="width:60px;text-align:center">14</td><td style="width:60px;text-align:center">15</td><td style="width:60px;text-align:center">16</td><td style="width:60px;text-align:center">17</td><td style="width:60px;text-align:center">18</td><td style="width:60px;text-align:center">19</td><td style="width:60px;text-align:center">20</td><td style="width:60px;text-align:center">21</td><td style="width:60px;text-align:center">22</td></tr>
+                        </thead>
+                        <tbody>
+                        <tr border="1" class="text">
+                            <td style="text-align:center">1</td>
+                            <td style="vertical-align: text-top" class="text">Hóa đơn giá trị gia tăng</td>
+                            <td style="text-align:center;vertical-align: text-top">01GTKT0/001</td>
+                            <td style="text-align:center;vertical-align: text-top">BB/18E</td>
+                            <td style="text-align:center;vertical-align: text-top">10</td>
+                            <td id="TonTuSo" style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align: text-top">0000001</td>
+                            <td style="text-align:center;vertical-align: text-top">0000010</td>
+                            <td style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align:text-top">0</td>
+                            <td class="textnowrap" style="text-align:left;;vertical-align:text-top; word-break: keep-all; width:140px"></td>
+                            <td style="text-align:right;vertical-align: text-top"></td>
+                            <td style="text-align:center"></td>
+                            <td style="width:20px;text-align:center;vertical-align: text-top" class="text">0</td>
+                            <td style="width:20px;text-align:right;vertical-align: text-top" class="text"></td>
+                            <td style="width:20px;text-align:center;vertical-align: text-top" class="text">0000001</td>
+                            <td style="width:60px;text-align:center;vertical-align: text-top" class="text">0000010</td>
+                            <td style="width:20px;text-align:center;vertical-align: text-top" class="text">
+                                10
+                            </td>
+                        </tr>
+                        <tr border="1" class="text">
+                            <td style="text-align:center">2</td>
+                            <td style="vertical-align: text-top" class="text">Hóa đơn giá trị gia tăng</td>
+                            <td style="text-align:center;vertical-align: text-top">01GTKT0/001</td>
+                            <td style="text-align:center;vertical-align: text-top">CC/18E</td>
+                            <td style="text-align:center;vertical-align: text-top">297</td>
+                            <td id="TonTuSo" style="text-align:center;vertical-align: text-top">0000004</td>
+                            <td style="text-align:center;vertical-align: text-top">0000300</td>
+                            <td style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align: text-top"></td>
+                            <td style="text-align:center;vertical-align: text-top">0000004</td>
+                            <td style="text-align:center;vertical-align: text-top">0000131</td>
+                            <td style="text-align:center;vertical-align: text-top">128</td>
+                            <td style="text-align:center;vertical-align: text-top">104</td>
+                            <td style="text-align:center;vertical-align:text-top">24</td>
+                            <td class="textnowrap" style="text-align:left;;vertical-align:text-top; word-break: keep-all; width:140px">0000121</td>
+                            <td style="text-align:right;vertical-align: text-top"></td>
+                            <td style="text-align:center"></td>
+                            <td style="width:20px;text-align:center;vertical-align: text-top" class="text">0</td>
+                            <td style="width:20px;text-align:right;vertical-align: text-top" class="text"></td>
+                            <td style="width:20px;text-align:center;vertical-align: text-top" class="text">0000132</td>
+                            <td style="width:60px;text-align:center;vertical-align: text-top" class="text">0000300</td>
+                            <td style="width:20px;text-align:center;vertical-align: text-top" class="text">
+                                169
+                            </td>
+                        </tr>
+               
+                        </tbody>
+                    </table><p style=" margin:10px 0 0 15px; text-align left;">Cam kết báo cáo tình hình sử dụng hóa đơn trên đây là đúng sự thật, nếu có gì sai trái, đơn vị chịu hoàn toàn trách nhiệm trước pháp luật</p><div>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="report-used-bottom">
+                            <tr><td /><td /><td /></tr>
+                            <tr>
+                                <td />
+                                <td><center><strong>Người lập biểu</strong><br /><i>(Ký, ghi rõ họ, tên)</i></center></td>
+                                <td />
+                                <td />
+                                <td colspan="10">
+                                    <center>
+                                        <span>
+                                            <i>
+                                                Ngày  tháng  năm
+                                            </i>
+                                        </span><br /><strong>NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</strong><br /><i>(Ký, ghi rõ họ, tên và đóng dấu)</i>
+                                    </center>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-primary" type="button" onclick="JavaScript: printex('print');"><i class="fa fa-print"></i>In báo cáo</button>
+                <button class="btn btn-primary" type="button" onclick="OnClickDownloadExcel();">
+                    <i class="fa fa-download"></i>Xuất file XLS
+                </button>
+                <button class="btn btn-sm btn-primary" type="button" onclick="downloadXML();"><i class="fa fa-download"></i>Xuất file XML</button>
+                <button class="btn" type="button" onclick="document.location = '/UsedInvoice/Reports'">
+                    <i class="fa fa-backward"></i>Quay lại
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

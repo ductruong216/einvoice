@@ -29,7 +29,7 @@ namespace EInvoice.Web.Controllers
 		{
 			try
 			{
-				_companyService.Update(company);
+				_companyService.UpdateCompany(company);
 			}
 			catch (Exception e)
 			{

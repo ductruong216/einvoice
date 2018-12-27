@@ -1835,9 +1835,11 @@
     <Content Include="Assets\Owner\Images\LOGO%28chuan%29WEB.png" />
     <Content Include="Assets\Owner\js\ajax-begin-form.js" />
     <Content Include="Assets\Owner\js\bootstrap-modal.js" />
+    <Content Include="Assets\Owner\js\repalce-issued-invoice.js" />
     <Content Include="Assets\Owner\js\check-available.js" />
     <Content Include="Assets\Owner\js\company-edit.js" />
     <Content Include="Assets\Owner\js\customer.js" />
+    <Content Include="Assets\Owner\js\cancel-issued-invoice.js" />
     <Content Include="Assets\Owner\js\Hepler.js" />
     <Content Include="Assets\Owner\js\invoice.js" />
     <Content Include="Assets\Owner\js\item.js" />
@@ -3001,11 +3003,15 @@
     <Content Include="Views\Invoice\Edit.cshtml" />
     <Content Include="Views\Invoice\_List.cshtml" />
     <Content Include="Views\Invoice\List.cshtml" />
-    <Content Include="Views\Invoice\_Release.cshtml" />
+    <Content Include="Views\Invoice\_Issue.cshtml" />
     <Content Include="Views\Invoice\_ViewDraftReport.cshtml" />
     <Content Include="Views\Invoice\ShowDraftReport.cshtml" />
     <Content Include="Views\Invoice\ShowReleaseReport.cshtml" />
     <Content Include="Views\Invoice\_ViewReleaseReport.cshtml" />
+    <Content Include="Views\Invoice\Report.cshtml" />
+    <Content Include="Views\Invoice\_Cancel.cshtml" />
+    <Content Include="Views\Invoice\Replace.cshtml" />
+    <Content Include="Views\Invoice\_Replace.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3028,12 +3034,16 @@
     <Compile Include="Controllers\CategoryController\UnitController.cs" />
     <Compile Include="Controllers\CompanyInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InvoiceController\InvoiceController.Release.cs" />
+    <Compile Include="Controllers\InvoiceController\InvoiceController.Replace.cs" />
+    <Compile Include="Controllers\InvoiceController\InvoiceController.Cancel.cs" />
+    <Compile Include="Controllers\InvoiceController\InvoiceController.Report.cs" />
+    <Compile Include="Controllers\InvoiceController\InvoiceController.Issue.cs" />
     <Compile Include="Controllers\InvoiceController\InvoiceController.Draft.cs" />
     <Compile Include="Controllers\InvoiceController\InvoiceController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentMethodController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3086,6 +3096,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Payment\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="vendors\moment\moment.d.ts" />

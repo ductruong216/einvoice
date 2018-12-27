@@ -9,11 +9,17 @@ namespace EInvoice.Data.Services
 
 		void UpdateInvoice(Invoice invoice);
 		void DeleteInvoice(int id);
-		void Release(int invoiceId);
+		void Issue(int invoiceId);
 		IList<Serial> GetSeries();
 		IEnumerable<Serial> GetSeriesByPattern(int id);
-		void SaveAndRelease(Invoice invoice);
+	    int GetInvoiceNumber(Invoice invoice);
+        void SaveAndRelease(Invoice invoice);
 		IList<Invoice> GetAllDraft();
 		IList<Invoice> GetAllRelease();
-	}
+	    IList<Invoice> GetAllCancel();
+	    IList<Invoice> GetAllReplace();
+        void CancelIssuedInvoice(int invoiceId);
+        void ReplaceIssuedInvoice(int invoiceId);
+        void NewReplace(Invoice invoice);
+    }
 }

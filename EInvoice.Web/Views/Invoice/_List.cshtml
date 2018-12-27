@@ -1,30 +1,53 @@
 ﻿@Html.DevExpress().PageControl(
-	settings => {
-		settings.Name = "ListInvoice";
+    settings => {
+        settings.Name = "ListInvoice";
+        settings.Width = Unit.Percentage(100);
+        settings.ControlStyle.CssClass = "dxtcFixed";
 
-		settings.Width = Unit.Percentage(100);
-		settings.ControlStyle.CssClass = "dxtcFixed";
-
-		settings.TabPages.Add(tabpage =>
-		{
-			tabpage.Name = "Draft";
-			tabpage.Text = "draft";
-			tabpage.SetContent(() =>
-			{
-				ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
-				Html.RenderAction("Draft");
-				ViewContext.Writer.Write("</div>");
-			});
-		});
-		settings.TabPages.Add(tabpage =>
-		{
-			tabpage.Name = "Released";
-			tabpage.Text = "issued";
-			tabpage.SetContent(() =>
-			{
-				ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
-				Html.RenderAction("Release");
-				ViewContext.Writer.Write("</div>");
-			});
-		});
-}).GetHtml()
+        settings.TabPages.Add(tabpage =>
+        {
+            tabpage.Name = "Draft";
+            tabpage.Text = "draft";
+            tabpage.SetContent(() =>
+            {
+                ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
+                Html.RenderAction("Draft");
+                ViewContext.Writer.Write("</div>");
+            });
+        });
+        settings.TabPages.Add(tabpage =>
+        {
+            tabpage.Name = "Issued";
+            tabpage.Text = "issued";
+            tabpage.SetContent(() =>
+            {
+                ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
+                Html.RenderAction("Issue");
+                ViewContext.Writer.Write("</div>");
+            });
+        });
+        settings.TabPages.Add(tabpage =>
+        {
+            tabpage.Name = "Cancelled";
+            tabpage.Text = "canceled";
+            tabpage.SetContent(() =>
+            {
+                ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
+                Html.RenderAction("Cancel");
+                ViewContext.Writer.Write("</div>");
+            });
+        });
+        settings.TabPages.Add(tabpage =>
+        {
+            tabpage.Name = "Replace";
+            tabpage.Text = "replace";
+            tabpage.SetContent(() =>
+            {
+                ViewContext.Writer.Write("<div id='{0}' >", tabpage.Name);
+                Html.RenderAction("GetReplace");
+                ViewContext.Writer.Write("</div>");
+            });
+        });
+    }).GetHtml()
+<script src="~/Assets/Owner/js/cancel-issued-invoice.js"></script>
+<script src="~/Assets/Owner/js/repalce-issued-invoice.js"></script>

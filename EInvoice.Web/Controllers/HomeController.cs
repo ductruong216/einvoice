@@ -1,9 +1,11 @@
 using EInvoice.Data.Services;
 using System.Web.Mvc;
+using Data.Utilities;
 
 namespace EInvoice.Web.Controllers
 {
-	public class HomeController : Controller
+    [PermissionLogin]
+    public class HomeController : Controller
 	{
 		private readonly ICustomerService _customerService;
 

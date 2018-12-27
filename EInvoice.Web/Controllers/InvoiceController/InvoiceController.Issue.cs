@@ -10,11 +10,11 @@ namespace EInvoice.Web.Controllers.InvoiceController
 {
 	public partial class InvoiceController : Controller
 	{
-		public ActionResult Release()
+		public ActionResult Issue()
 		{
 			var model = Mapper.Map<List<InvoiceViewModel>>(_invoiceService.GetAllRelease());
 
-			return View("_Release", model);
+			return View("_Issue", model);
 		}
 
 		[HttpPost]
@@ -44,5 +44,5 @@ namespace EInvoice.Web.Controllers.InvoiceController
 				return Error("Delete Failed");
 			}
 		}
-	}
+    }
 }
