@@ -7,14 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using EInvoice.Data.Infrastructure.Interface;
+
 namespace EInvoice.Data.Data
 {
-    using Infrastructure.Implementation;
-    using Infrastructure.Interface;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class InvoiceEntities : DbContext, IDbFactory
     {
         public InvoiceEntities()
@@ -28,13 +28,13 @@ namespace EInvoice.Data.Data
         }
     
         public virtual DbSet<About> Abouts { get; set; }
-        public virtual DbSet<BankAccount> BankAccounts { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DigitalSignature> DigitalSignatures { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceType> InvoiceTypes { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Pattern> Patterns { get; set; }
@@ -46,6 +46,7 @@ namespace EInvoice.Data.Data
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<BankAccount> BankAccounts { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
     }
 }

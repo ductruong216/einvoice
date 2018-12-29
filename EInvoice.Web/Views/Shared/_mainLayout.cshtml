@@ -17,131 +17,183 @@
     <link href="~/Assets/Owner/css/sweetAlert.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="icon" href="~/Assets/Owner/Images/favicon.png" type="image/ico">
+    <link href="~/Assets/Owner/css/customer.css" rel="stylesheet" />
+
     <title>@ViewBag.Title</title>
 
 </head>
 <body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"> <span>E-INVOICE SYSTEM</span></a>
-                </div>
-
-                <div class="clearfix"></div>
-
-                <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="~/Assets/Owner/Images/Avatars/IMG_6692.jpg" class="img-circle profile_img"/>
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="#" class="site_title"> <span>E-INVOICE SYSTEM</span></a>
                     </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>Duc Truong</h2>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="~/Assets/Owner/Images/Avatars/IMG_6692.jpg" class="img-circle profile_img" />
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>Duc Truong</h2>
+                        </div>
                     </div>
-                </div>
-                <!-- /menu profile quick info -->
-                <br />
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <ul class="nav side-menu">
-                            <li>
-                                <a><i class="fa fa-book"></i>Invoices<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li>
-                                        <a href="@Url.Action("Create","Invoice")">New Invoice</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("List", "Invoice")">Invoice Management</a>
-                                    </li>
-                                    @*<li>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-book"></i>Invoices<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="@Url.Action("Create","Invoice")">New Invoice</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("List", "Invoice")">Invoice Management</a>
+                                        </li>
+                                        @*<li>
                                                 <a href="#">Modify Invoice</a>
                                             </li>*@
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a><i class="fa fa-tasks"></i> Categories <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="@Url.Action("Index", "Product")">Products</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "Customer")">Customers</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Others", "Category")">Others</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" @*href="@Url.Action("Report", "Invoice")"*@ data-toggle="modal" data-target="#selectReportPriod">
+                                        <i class="fa fa-bar-chart"></i>
+                                        Report
+                                    </a>
+                                </li>
+
+                                @*<li>
+                                        <a href="#">
+                                            <i class="fa fa-users"></i>
+                                            <span class="bot-line"></span>User
+                                        </a>
+                                    </li>*@
+                                <li>
+                                    <a href="@Url.Action("Index", "CompanyInfo")">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>Company Info</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right" style="width: 260px">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    @*<img src="/Image/" alt="">*@
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="/Login/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                                 </ul>
-                            </li>
-
-                            <li>
-                                <a><i class="fa fa-tasks"></i> Categories <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li>
-                                        <a href="@Url.Action("Index", "Product")">Products</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Index", "Customer")">Customers</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Others", "Category")">Others</a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="@Url.Action("Report", "Invoice")">
-                                    <i class="fa fa-bar-chart"></i>
-                                    Report
-                                </a>
-                            </li>
-
-                            @*<li>
-                                <a href="#">
-                                    <i class="fa fa-users"></i>
-                                    <span class="bot-line"></span>User
-                                </a>
-                            </li>*@
-                            <li>
-                                <a href="@Url.Action("Index", "CompanyInfo")">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <span>Company Info</span>
-                                </a>
                             </li>
                         </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    @* Lua chon ky hoa don *@
+
+    <div class="modal fade" id="selectReportPriod" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-md vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Select Priod</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleSelect1">Select Priod</label>
+                                <select class="form-control" id="exampleSelect1">
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option>April</option>
+                                    <option>May</option> 
+                                    <option>June</option>
+                                    <option>July</option> 
+                                    <option>August</option> 
+                                    <option>September</option>
+                                    <option>October</option> 
+                                    <option>November</option>   
+                                    <option>December</option> 
+                                    <option>1st Quater</option>   
+                                    <option>2nd Quater</option>
+                                    <option>3rd Quater</option>   
+                                    <option>4th Quater</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelect1">Select Year</label>
+                                <select class="form-control" id="exampleSelect1">
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button style="float:right;" type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <!-- /sidebar menu -->
             </div>
         </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-
-                    <ul class="nav navbar-nav navbar-right" style="width: 260px">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                @*<img src="/Image/" alt="">*@
-                                <span class="fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/Login/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- /top navigation -->
-        <!-- page content -->
-        <div class="right_col" role="main">
-            @RenderBody()
-        </div>
-        <!-- /page content -->
-        <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
     </div>
-</div>
-
     <!-- Jquery JS-->
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/jquery-1.12.4.js"></script>
@@ -163,3 +215,4 @@
     <script src="/build/js/custom.min.js"></script>
 </body>
 </html>
+

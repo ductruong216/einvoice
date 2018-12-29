@@ -17,8 +17,8 @@ namespace EInvoice.Data.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pattern()
         {
-            this.Serials = new HashSet<Serial>();
             this.Invoices = new HashSet<Invoice>();
+            this.Serials = new HashSet<Serial>();
         }
     
         public int ID { get; set; }
@@ -26,8 +26,8 @@ namespace EInvoice.Data.Data
         public string Content { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Serial> Serials { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Serial> Serials { get; set; }
     }
 }

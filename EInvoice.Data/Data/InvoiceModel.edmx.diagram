@@ -4,32 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d078f737b2d442f29cefdaf3580b342e" Name="Diagram1" ZoomLevel="67">
+      <Diagram DiagramId="d078f737b2d442f29cefdaf3580b342e" Name="Diagram1" ZoomLevel="59">
         <EntityTypeShape EntityType="InvoiceModel.About" Width="1.5" PointX="9.75" PointY="4.75" />
-        <EntityTypeShape EntityType="InvoiceModel.BankAccount" Width="1.5" PointX="9.75" PointY="8.75" />
-        <EntityTypeShape EntityType="InvoiceModel.Company" Width="1.5" PointX="3" PointY="15.125" />
-        <EntityTypeShape EntityType="InvoiceModel.Contact" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="InvoiceModel.Customer" Width="1.5" PointX="3" PointY="4.125" />
-        <EntityTypeShape EntityType="InvoiceModel.DigitalSignature" Width="1.5" PointX="0.75" PointY="16.25" />
-        <EntityTypeShape EntityType="InvoiceModel.Employee" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="InvoiceModel.FeedBack" Width="1.5" PointX="11.75" PointY="3.75" />
-        <EntityTypeShape EntityType="InvoiceModel.InvoiceType" Width="1.5" PointX="11.75" PointY="7.75" />
-        <EntityTypeShape EntityType="InvoiceModel.Item" Width="1.5" PointX="7.5" PointY="8" />
-        <EntityTypeShape EntityType="InvoiceModel.Pattern" Width="1.5" PointX="0.75" PointY="5" />
-        <EntityTypeShape EntityType="InvoiceModel.PaymentMethod" Width="1.5" PointX="3" PointY="1.75" />
-        <EntityTypeShape EntityType="InvoiceModel.Product" Width="1.5" PointX="5.25" PointY="24.875" />
-        <EntityTypeShape EntityType="InvoiceModel.PurchaserCustomer" Width="1.5" PointX="3" PointY="20.375" />
+        <EntityTypeShape EntityType="InvoiceModel.Company" Width="1.5" PointX="3" PointY="15.875" />
+        <EntityTypeShape EntityType="InvoiceModel.Contact" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvoiceModel.Customer" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="InvoiceModel.DigitalSignature" Width="1.5" PointX="0.75" PointY="16.875" />
+        <EntityTypeShape EntityType="InvoiceModel.Employee" Width="1.5" PointX="11.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InvoiceModel.FeedBack" Width="1.5" PointX="11.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InvoiceModel.Invoice" Width="1.5" PointX="5.25" PointY="6.375" />
+        <EntityTypeShape EntityType="InvoiceModel.InvoiceType" Width="1.5" PointX="9.75" PointY="11.75" />
+        <EntityTypeShape EntityType="InvoiceModel.Item" Width="1.5" PointX="7.5" PointY="8.125" />
+        <EntityTypeShape EntityType="InvoiceModel.Pattern" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="InvoiceModel.PaymentMethod" Width="1.5" PointX="3" PointY="21.125" />
+        <EntityTypeShape EntityType="InvoiceModel.Product" Width="1.5" PointX="5.25" PointY="24.125" />
+        <EntityTypeShape EntityType="InvoiceModel.PurchaserCustomer" Width="1.5" PointX="3" PointY="2" />
         <EntityTypeShape EntityType="InvoiceModel.Role" Width="1.5" PointX="5.75" PointY="1.5" />
-        <EntityTypeShape EntityType="InvoiceModel.Serial" Width="1.5" PointX="3" PointY="12.25" />
-        <EntityTypeShape EntityType="InvoiceModel.sysdiagram" Width="1.5" PointX="9.75" PointY="11.75" />
-        <EntityTypeShape EntityType="InvoiceModel.Unit" Width="1.5" PointX="3" PointY="25.75" />
+        <EntityTypeShape EntityType="InvoiceModel.Serial" Width="1.5" PointX="3" PointY="12.625" />
+        <EntityTypeShape EntityType="InvoiceModel.sysdiagram" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvoiceModel.Unit" Width="1.5" PointX="3" PointY="24.875" />
         <EntityTypeShape EntityType="InvoiceModel.User" Width="1.5" PointX="8" PointY="1" />
         <AssociationConnector Association="InvoiceModel.FK_Companies_DigitalSignature" />
-        <AssociationConnector Association="InvoiceModel.FK_Items_Products1" />
-        <AssociationConnector Association="InvoiceModel.FK_Serial_Patterns" />
-        <AssociationConnector Association="InvoiceModel.FK_Products_Units2" />
-        <AssociationConnector Association="InvoiceModel.FK_Users_Role" />
-        <EntityTypeShape EntityType="InvoiceModel.Invoice" Width="1.5" PointX="5.25" PointY="9.25" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Companies" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Customers" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Forms" />
@@ -37,6 +32,12 @@
         <AssociationConnector Association="InvoiceModel.FK_Invoices_PurchaserCustomers" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Serial" />
         <AssociationConnector Association="InvoiceModel.FK_Items_Invoices" />
+        <AssociationConnector Association="InvoiceModel.FK_Items_Products1" />
+        <AssociationConnector Association="InvoiceModel.FK_Serial_Patterns" />
+        <AssociationConnector Association="InvoiceModel.FK_Products_Units2" />
+        <AssociationConnector Association="InvoiceModel.FK_Users_Role" />
+        <EntityTypeShape EntityType="InvoiceModel.BankAccount" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InvoiceModel.Report" Width="1.5" PointX="10.75" PointY="13.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1833,6 +1833,7 @@
     <Content Include="Assets\Owner\Images\favicon.png" />
     <Content Include="Assets\Owner\Images\Invoice-Icon.png" />
     <Content Include="Assets\Owner\Images\LOGO%28chuan%29WEB.png" />
+    <Content Include="Assets\Owner\js\report.js" />
     <Content Include="Assets\Owner\js\ajax-begin-form.js" />
     <Content Include="Assets\Owner\js\bootstrap-modal.js" />
     <Content Include="Assets\Owner\js\repalce-issued-invoice.js" />
@@ -3052,6 +3053,7 @@
     <Compile Include="Models\AddInvoiceViewModel.cs" />
     <Compile Include="Models\BankAccountViewModel.cs" />
     <Compile Include="Models\CompanyViewModel.cs" />
+    <Compile Include="Models\ReportViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\DigitalSignatureViewModel.cs" />
     <Compile Include="Models\EmailViewModel.cs" />
@@ -3081,6 +3083,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EInvoice.Common\EInvoice.Common.csproj">
+      <Project>{59473E48-F4D5-4740-9395-C8D1F0530223}</Project>
+      <Name>EInvoice.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EInvoice.Data\EInvoice.Domain.csproj">
       <Project>{fe38d05d-c4db-43a7-a91e-fd6562e7d985}</Project>
       <Name>EInvoice.Domain</Name>

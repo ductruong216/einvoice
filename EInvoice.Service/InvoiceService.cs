@@ -201,8 +201,7 @@ namespace EInvoice.Service
                 .OrderByDescending(x => x.ReleaseDate)
                 .ToList();
         }
-
-      
+    
         public Invoice CancelInvoice(int invoiceId)
         {
             var invoice = GetSingleById(invoiceId);
@@ -216,7 +215,6 @@ namespace EInvoice.Service
             var invoice = CancelInvoice(invoiceId);
         }
 
-
         public void NewReplace(Invoice invoice)
         {
             invoice.Status = InvoiceStatus.Replace.ToString();
@@ -228,8 +226,6 @@ namespace EInvoice.Service
             invoice.ReplaceFor = invoiceCancel.No;
             Add(invoice);
         }
-
         // Bao cao tinh hinh su dung hoa don
-
     }
 }
