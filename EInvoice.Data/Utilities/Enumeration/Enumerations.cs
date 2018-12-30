@@ -8,5 +8,10 @@
             WrongPassword,
             Succsess
         }
+        public enum Role
+        {
+            Accountant,
+            Clerk
+        }
     }
 }

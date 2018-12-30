@@ -23,6 +23,9 @@ namespace EInvoice.Data.Data
         public int ID { get; set; }
         public string Name { get; set; }
         public int PatternId { get; set; }
+        public Nullable<int> FromNo_ { get; set; }
+        public Nullable<int> ToNo_ { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }

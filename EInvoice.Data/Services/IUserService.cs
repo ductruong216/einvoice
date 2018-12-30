@@ -8,5 +8,7 @@ namespace EInvoice.Data.Services
 		Enumerations.LoginStatus CheckLogin(string userName, string password);
 		User GetCustomerByName(string userName);
 	    bool CheckPassword(string pasword);
-	}
+        User GetUserById();
+
+    }
 }

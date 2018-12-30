@@ -1,0 +1,110 @@
+﻿@model EInvoice.Web.Models.UserViewModel
+@{
+    ViewBag.Title = "ChangePassword";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+
+<div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog modal-md vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">New Product</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        @using (Ajax.BeginForm("ChangePassword", "User",
+                            null,
+                            new AjaxOptions() { HttpMethod = "post" },
+                            new { @class = "form-horizontal", @id = "changePassword" }))
+                        {
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Product Code: <span class="required">*</span></label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextBoxFor(model => model.PasswordHash,
+                                    new
+                                    {
+                                        @name = "Code",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.PasswordHash)
+                                </div>
+                                <p id="code_status"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Name: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextBoxFor(model => model.Name,
+                                    new
+                                    {
+                                        @name = "Purchaser",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Desription: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextAreaFor(model => model.Description,
+                                    new
+                                    {
+                                        @style = "padding-left:5%",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Price: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.TextBoxFor(model => model.Price,
+                                    new
+                                    {
+                                        @name = "Name",
+                                        @class = "form-control",
+                                        @type = "text"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Price)
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Unit: </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    @Html.DropDownListFor(model => model.UnitID,
+                                    controller.GetUnitName(),
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        id = "paymentType",
+                                        type = "text",
+                                        name = "PaymentType",
+
+                                        required = "required"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.UnitID)
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-4" style="padding-right: 7%">
+                                    <input type="submit" class="btn btn-round btn-primary" id="btnSave" value="Save">
+                                    <button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

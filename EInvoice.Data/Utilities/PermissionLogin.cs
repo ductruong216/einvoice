@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 
-namespace Data.Utilities
+namespace EInvoice.Data.Utilities
 {
     public class PermissionLogin : ActionFilterAttribute
     {

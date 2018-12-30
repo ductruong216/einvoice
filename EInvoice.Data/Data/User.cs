@@ -22,6 +22,7 @@ namespace EInvoice.Data.Data
         public Nullable<System.DateTime> BirthDay { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
+        public string Position { get; set; }
     
         public virtual Role Role { get; set; }
     }

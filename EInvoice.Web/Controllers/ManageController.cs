@@ -1,32 +1,39 @@
-using System;
+using EInvoice.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using EInvoice.Web.Models;
 
 namespace EInvoice.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
-        ApplicationSignInManager _signInManager;
-        public ApplicationSignInManager SignInManager {
-            get {
-                if(_signInManager == null) {
+        private ApplicationSignInManager _signInManager;
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                if (_signInManager == null)
+                {
                     _signInManager = HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
                 }
                 return _signInManager;
             }
         }
 
-        ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager {
-            get {
-                if(_userManager == null) {
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                if (_userManager == null)
+                {
                     _userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 }
                 return _userManager;
@@ -258,7 +265,8 @@ namespace EInvoice.Web.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-#region Helpers
+        #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -308,6 +316,7 @@ namespace EInvoice.Web.Controllers
             RemovePhoneSuccess,
             Error
         }
-#endregion
+
+        #endregion Helpers
     }
 }

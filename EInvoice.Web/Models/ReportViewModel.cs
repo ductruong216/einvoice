@@ -1,9 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace EInvoice.Web.Models
+﻿namespace EInvoice.Web.Models
 {
-	public class ReportViewModel
-	{
-		
-	}
+    public class ReportViewModel
+    {
+    }
 }

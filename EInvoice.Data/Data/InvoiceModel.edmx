@@ -250,6 +250,9 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="PatternId" Type="int" Nullable="false" />
+          <Property Name="FromNo." Type="int" />
+          <Property Name="ToNo." Type="int" />
+          <Property Name="StartDate" Type="date" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -281,6 +284,7 @@
           <Property Name="BirthDay" Type="datetime" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
           <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Companies_DigitalSignature">
           <End Role="DigitalSignature" Type="Self.DigitalSignature" Multiplicity="0..1" />
@@ -517,10 +521,8 @@
           <EntitySet Name="Products" EntityType="InvoiceModel.Product" />
           <EntitySet Name="PurchaserCustomers" EntityType="InvoiceModel.PurchaserCustomer" />
           <EntitySet Name="Roles" EntityType="InvoiceModel.Role" />
-          <EntitySet Name="Serials" EntityType="InvoiceModel.Serial" />
           <EntitySet Name="sysdiagrams" EntityType="InvoiceModel.sysdiagram" />
           <EntitySet Name="Units" EntityType="InvoiceModel.Unit" />
-          <EntitySet Name="Users" EntityType="InvoiceModel.User" />
           <AssociationSet Name="FK_Companies_DigitalSignature" Association="InvoiceModel.FK_Companies_DigitalSignature">
             <End Role="DigitalSignature" EntitySet="DigitalSignatures" />
             <End Role="Company" EntitySet="Companies" />
@@ -545,10 +547,6 @@
             <End Role="PurchaserCustomer" EntitySet="PurchaserCustomers" />
             <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
-          <AssociationSet Name="FK_Invoices_Serial" Association="InvoiceModel.FK_Invoices_Serial">
-            <End Role="Serial" EntitySet="Serials" />
-            <End Role="Invoice" EntitySet="Invoices" />
-          </AssociationSet>
           <AssociationSet Name="FK_Items_Invoices" Association="InvoiceModel.FK_Items_Invoices">
             <End Role="Invoice" EntitySet="Invoices" />
             <End Role="Item" EntitySet="Items" />
@@ -557,21 +555,27 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_Serial_Patterns" Association="InvoiceModel.FK_Serial_Patterns">
-            <End Role="Pattern" EntitySet="Patterns" />
-            <End Role="Serial" EntitySet="Serials" />
-          </AssociationSet>
           <AssociationSet Name="FK_Products_Units2" Association="InvoiceModel.FK_Products_Units2">
             <End Role="Unit" EntitySet="Units" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="BankAccounts" EntityType="InvoiceModel.BankAccount" />
+          <EntitySet Name="Reports" EntityType="InvoiceModel.Report" />
+          <EntitySet Name="Users" EntityType="InvoiceModel.User" />
           <AssociationSet Name="FK_Users_Role" Association="InvoiceModel.FK_Users_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="BankAccounts" EntityType="InvoiceModel.BankAccount" />
-          <EntitySet Name="Reports" EntityType="InvoiceModel.Report" />
-        </EntityContainer>
+          <EntitySet Name="Serials" EntityType="InvoiceModel.Serial" />
+          <AssociationSet Name="FK_Invoices_Serial" Association="InvoiceModel.FK_Invoices_Serial">
+            <End Role="Serial" EntitySet="Serials" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Serial_Patterns" Association="InvoiceModel.FK_Serial_Patterns">
+            <End Role="Pattern" EntitySet="Patterns" />
+            <End Role="Serial" EntitySet="Serials" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="ID" />
@@ -705,8 +709,8 @@
           <NavigationProperty Name="Pattern" Relationship="InvoiceModel.FK_Invoices_Forms" FromRole="Invoice" ToRole="Pattern" />
           <NavigationProperty Name="PaymentMethod" Relationship="InvoiceModel.FK_Invoices_Payments" FromRole="Invoice" ToRole="PaymentMethod" />
           <NavigationProperty Name="PurchaserCustomer" Relationship="InvoiceModel.FK_Invoices_PurchaserCustomers" FromRole="Invoice" ToRole="PurchaserCustomer" />
-          <NavigationProperty Name="Serial" Relationship="InvoiceModel.FK_Invoices_Serial" FromRole="Invoice" ToRole="Serial" />
           <NavigationProperty Name="Items" Relationship="InvoiceModel.FK_Items_Invoices" FromRole="Invoice" ToRole="Item" />
+          <NavigationProperty Name="Serial" Relationship="InvoiceModel.FK_Invoices_Serial" FromRole="Invoice" ToRole="Serial" />
         </EntityType>
         <EntityType Name="InvoiceType">
           <Key>
@@ -792,16 +796,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="InvoiceModel.FK_Users_Role" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="Serial">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PatternId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Invoices" Relationship="InvoiceModel.FK_Invoices_Serial" FromRole="Serial" ToRole="Invoice" />
-          <NavigationProperty Name="Pattern" Relationship="InvoiceModel.FK_Serial_Patterns" FromRole="Serial" ToRole="Pattern" />
-        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -820,20 +814,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="isDel" Type="Boolean" />
           <NavigationProperty Name="Products" Relationship="InvoiceModel.FK_Products_Units2" FromRole="Unit" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
-          <Property Name="RoleId" Type="Int64" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDay" Type="DateTime" Precision="3" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Role" Relationship="InvoiceModel.FK_Users_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Companies_DigitalSignature">
           <End Type="InvoiceModel.DigitalSignature" Role="DigitalSignature" Multiplicity="0..1" />
@@ -907,18 +887,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Invoices_Serial">
-          <End Type="InvoiceModel.Serial" Role="Serial" Multiplicity="1" />
-          <End Type="InvoiceModel.Invoice" Role="Invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Serial">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Invoice">
-              <PropertyRef Name="SeriesId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Items_Invoices">
           <End Type="InvoiceModel.Invoice" Role="Invoice" Multiplicity="0..1" />
           <End Type="InvoiceModel.Item" Role="Item" Multiplicity="*" />
@@ -943,18 +911,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Serial_Patterns">
-          <End Type="InvoiceModel.Pattern" Role="Pattern" Multiplicity="1" />
-          <End Type="InvoiceModel.Serial" Role="Serial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pattern">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Serial">
-              <PropertyRef Name="PatternId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Products_Units2">
           <End Type="InvoiceModel.Unit" Role="Unit" Multiplicity="0..1" />
           <End Type="InvoiceModel.Product" Role="Product" Multiplicity="*" />
@@ -964,18 +920,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="UnitID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Role">
-          <End Type="InvoiceModel.Role" Role="Role" Multiplicity="0..1" />
-          <End Type="InvoiceModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1017,6 +961,70 @@
           <Property Name="FromEndingStockNo" Type="Int32" />
           <Property Name="ToEndingStockNo" Type="Int32" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="RoleId" Type="Int64" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="InvoiceModel.FK_Users_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Users_Role">
+          <End Type="InvoiceModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="InvoiceModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Serial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PatternId" Type="Int32" Nullable="false" />
+          <Property Name="FromNo_" Type="Int32" />
+          <Property Name="ToNo_" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Invoices" Relationship="InvoiceModel.FK_Invoices_Serial" FromRole="Serial" ToRole="Invoice" />
+          <NavigationProperty Name="Pattern" Relationship="InvoiceModel.FK_Serial_Patterns" FromRole="Serial" ToRole="Pattern" />
+        </EntityType>
+        <Association Name="FK_Invoices_Serial">
+          <End Type="InvoiceModel.Serial" Role="Serial" Multiplicity="1" />
+          <End Type="InvoiceModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Serial">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Serial_Patterns">
+          <End Type="InvoiceModel.Pattern" Role="Pattern" Multiplicity="1" />
+          <End Type="InvoiceModel.Serial" Role="Serial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pattern">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Serial">
+              <PropertyRef Name="PatternId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1238,15 +1246,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Serials">
-            <EntityTypeMapping TypeName="InvoiceModel.Serial">
-              <MappingFragment StoreEntitySet="Serial">
-                <ScalarProperty Name="PatternId" ColumnName="PatternId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="InvoiceModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1263,20 +1262,6 @@
               <MappingFragment StoreEntitySet="Units">
                 <ScalarProperty Name="isDel" ColumnName="isDel" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="InvoiceModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1317,6 +1302,33 @@
                 <ScalarProperty Name="Pattern" ColumnName="Pattern" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Priod" ColumnName="Priod" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="InvoiceModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Serials">
+            <EntityTypeMapping TypeName="InvoiceModel.Serial">
+              <MappingFragment StoreEntitySet="Serial">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ToNo_" ColumnName="ToNo." />
+                <ScalarProperty Name="FromNo_" ColumnName="FromNo." />
+                <ScalarProperty Name="PatternId" ColumnName="PatternId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

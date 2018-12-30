@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Data.Utilities;
 using EInvoice.Data.Data;
 using EInvoice.Data.Services;
+using EInvoice.Data.Utilities;
 using EInvoice.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.UI;
 using Customer = EInvoice.Data.Data.Customer;
 
 namespace EInvoice.Web.Controllers.CategoryController
@@ -35,7 +34,6 @@ namespace EInvoice.Web.Controllers.CategoryController
             var model = Mapper.Map<List<CustomerViewModel>>(_customerService.GetCustomers());
             return PartialView("_CustomerPartial", model);
         }
-
 
         [HttpPost, ValidateInput(true)]
         public void Create(CustomerViewModel customer)
@@ -91,7 +89,6 @@ namespace EInvoice.Web.Controllers.CategoryController
             return CustomerPartial();
         }
 
-
         [HttpPost]
         public JsonResult CheckCode(string searchKey)
         {
@@ -130,6 +127,7 @@ namespace EInvoice.Web.Controllers.CategoryController
                 (_customerService.GetCustomerByCode(searchKey));
             return Json(searchCustomer, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public JsonResult GetCustomerByName(string searchKey)
         {
@@ -157,7 +155,6 @@ namespace EInvoice.Web.Controllers.CategoryController
             return Json(new { Success = false, Message = message }, JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult GetCompanyOnline(string taxCode)
         {
             try
@@ -173,7 +170,6 @@ namespace EInvoice.Web.Controllers.CategoryController
                 var response = webResponse.GetResponseStream();
                 var responseStreamReader = new StreamReader(response);
                 return Json(responseStreamReader.ReadToEnd(), JsonRequestBehavior.AllowGet);
-
             }
             catch (Exception e)
             {

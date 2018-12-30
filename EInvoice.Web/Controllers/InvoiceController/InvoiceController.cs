@@ -1,6 +1,6 @@
-﻿using Data.Utilities;
-using EInvoice.Data.Data;
+﻿using EInvoice.Data.Data;
 using EInvoice.Data.Services;
+using EInvoice.Data.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

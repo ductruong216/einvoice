@@ -13,11 +13,14 @@ namespace EInvoice.Web.Models
 		[Required(ErrorMessage = "Company Name is required")]
 		public string Name { get; set; }
 
-	    [Required(ErrorMessage = "Company Name is required")]
+	    [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
 
-		public string Phone { get; set; }
-		public string Fax { get; set; }
+        [Range(0, long.MaxValue, ErrorMessage = "Phone is invalid"),]
+        public string Phone { get; set; }
+
+        [Range(0, long.MaxValue, ErrorMessage = "Fax is invalid"),]
+        public string Fax { get; set; }
 
 		[Required(ErrorMessage = "Email is required")]
 		[RegularExpression("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*", ErrorMessage = "Email is invalid")]

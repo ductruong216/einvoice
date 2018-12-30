@@ -201,7 +201,7 @@ namespace EInvoice.Service
                 .OrderByDescending(x => x.ReleaseDate)
                 .ToList();
         }
-    
+
         public Invoice CancelInvoice(int invoiceId)
         {
             var invoice = GetSingleById(invoiceId);
@@ -226,6 +226,11 @@ namespace EInvoice.Service
             invoice.ReplaceFor = invoiceCancel.No;
             Add(invoice);
         }
+
         // Bao cao tinh hinh su dung hoa don
+        public void ReportOnUseInvoices(int priod, DateTime year)
+        {
+            
+        }
     }
 }

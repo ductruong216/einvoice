@@ -115,6 +115,7 @@
         c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
         c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
     });
+
     settings.Columns.Add(c =>
     {
         c.FieldName = "GrandTotalAmount";
@@ -124,7 +125,7 @@
         c.Width = 120;
 
     });
-
+    
     settings.Columns.Add(c =>
     {
         c.Caption = "Action";
@@ -144,6 +145,7 @@
                     );
         });
     });
+
     settings.Columns.Add(c =>
     {
         c.Caption = "View Invoice";
@@ -167,6 +169,7 @@
             // ViewContext.Writer.Write("<button type=\"submit\" data-toggle=\"modal\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"on-default remove-row\"><i class=\"fa fa-eye\"></i></button>");
         });
     });
+
     settings.Columns.Add(c =>
     {
         c.Caption = "Issue";

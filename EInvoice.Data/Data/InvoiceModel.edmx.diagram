@@ -20,25 +20,25 @@
         <EntityTypeShape EntityType="InvoiceModel.Product" Width="1.5" PointX="5.25" PointY="24.125" />
         <EntityTypeShape EntityType="InvoiceModel.PurchaserCustomer" Width="1.5" PointX="3" PointY="2" />
         <EntityTypeShape EntityType="InvoiceModel.Role" Width="1.5" PointX="5.75" PointY="1.5" />
-        <EntityTypeShape EntityType="InvoiceModel.Serial" Width="1.5" PointX="3" PointY="12.625" />
         <EntityTypeShape EntityType="InvoiceModel.sysdiagram" Width="1.5" PointX="11.75" PointY="10.75" />
         <EntityTypeShape EntityType="InvoiceModel.Unit" Width="1.5" PointX="3" PointY="24.875" />
-        <EntityTypeShape EntityType="InvoiceModel.User" Width="1.5" PointX="8" PointY="1" />
         <AssociationConnector Association="InvoiceModel.FK_Companies_DigitalSignature" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Companies" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Customers" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Forms" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_Payments" />
         <AssociationConnector Association="InvoiceModel.FK_Invoices_PurchaserCustomers" />
-        <AssociationConnector Association="InvoiceModel.FK_Invoices_Serial" />
         <AssociationConnector Association="InvoiceModel.FK_Items_Invoices" />
         <AssociationConnector Association="InvoiceModel.FK_Items_Products1" />
-        <AssociationConnector Association="InvoiceModel.FK_Serial_Patterns" />
         <AssociationConnector Association="InvoiceModel.FK_Products_Units2" />
-        <AssociationConnector Association="InvoiceModel.FK_Users_Role" />
         <EntityTypeShape EntityType="InvoiceModel.BankAccount" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="InvoiceModel.Report" Width="1.5" PointX="10.75" PointY="13.875" />
-      </Diagram>
+        <EntityTypeShape EntityType="InvoiceModel.User" Width="1.5" PointX="8" PointY="0.875" />
+        <AssociationConnector Association="InvoiceModel.FK_Users_Role" />
+        <EntityTypeShape EntityType="InvoiceModel.Serial" Width="1.5" PointX="3" PointY="11.875" />
+        <AssociationConnector Association="InvoiceModel.FK_Invoices_Serial" />
+        <AssociationConnector Association="InvoiceModel.FK_Serial_Patterns" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

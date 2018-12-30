@@ -4,3 +4,13 @@
     $('#companyName').prop('readonly', true);
     $('#taxCode').prop('readonly', true);
 }
+
+function SubmitCompanyStatus() {
+    swal({
+        title: "Edit Company Info",
+        text: "Edit Successfully",
+        icon: "success",
+        buttons: false,
+        timer: 1300
+    })
+}

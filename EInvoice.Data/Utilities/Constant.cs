@@ -1,5 +1,4 @@
-﻿
-namespace Data.Utilities
+﻿namespace EInvoice.Data.Utilities
 {
     public static class Constant
     {

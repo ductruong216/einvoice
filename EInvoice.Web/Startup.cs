@@ -41,6 +41,7 @@ namespace EInvoice.Web
 			builder.RegisterType<BaseRepository<Customer>>().As<IRepository<Customer>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Product>>().As<IRepository<Product>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<User>>().As<IRepository<User>>().InstancePerRequest();
+			builder.RegisterType<BaseRepository<Role>>().As<IRepository<Role>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Unit>>().As<IRepository<Unit>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Company>>().As<IRepository<Company>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<PaymentMethod>>().As<IRepository<PaymentMethod>>().InstancePerRequest();
@@ -48,7 +49,6 @@ namespace EInvoice.Web
 			builder.RegisterType<BaseRepository<Item>>().As<IRepository<Item>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<PurchaserCustomer>>().As<IRepository<PurchaserCustomer>>().InstancePerRequest();
 			builder.RegisterType<BaseRepository<Serial>>().As<IRepository<Serial>>().InstancePerRequest();
-			builder.RegisterType<BaseRepository<User>>().As<IRepository<User>>().InstancePerRequest();
 
 			builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerRequest();
 			builder.RegisterType<ProductService>().As<IProductService>().InstancePerRequest();

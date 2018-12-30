@@ -44,10 +44,10 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.status === "WrongUserName") {
-                        $("#errorMessage").html("Username is in correct");
+                        $("#errorMessage").html("Username is incorrect");
                         timeoutMessage();
                     } else if (data.status === "WrongPassword") {
-                        $("#errorMessage").html("Password is in correct");
+                        $("#errorMessage").html("Password is incorrect");
                         timeoutMessage();
                     } else if (data.status === "Succsess") {
                         window.location.href = "/"
