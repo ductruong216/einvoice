@@ -47,8 +47,8 @@ namespace EInvoice.Web.Controllers.InvoiceController
             {
                 if (isRelease)
                 {
-                    _invoiceService.SaveAndRelease(invoice);
-                    return Success("Release Successfully!");
+                    _invoiceService.SaveAndIssue(invoice);
+                    return Success("Issue Successfully!");
                 }
                 _invoiceService.AddDraft(invoice);
                 return Success("Successfully!");
@@ -147,7 +147,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
 
         #endregion Get component
 
-        public ActionResult ShowDraftReport(int? invoiceId)
+        public ActionResult ShowDraft(int? invoiceId)
         {
             var report = new InvoiceReport();
             report.Parameters["IDParameter"].Value = invoiceId;
@@ -155,9 +155,23 @@ namespace EInvoice.Web.Controllers.InvoiceController
             return View(report);
         }
 
-        public ActionResult ShowReleaseReport(int? invoiceId)
+        public ActionResult ShowIssued(int? invoiceId)
         {
             var report = new ReleaseReport();
+            report.Parameters["IDParameter"].Value = invoiceId;
+            report.Parameters["IDParameter"].Visible = false;
+            return View(report);
+        }
+        public ActionResult ShowCancelled(int? invoiceId)
+        {
+            var report = new CancelledReport();
+            report.Parameters["IDParameter"].Value = invoiceId;
+            report.Parameters["IDParameter"].Visible = false;
+            return View(report);
+        }
+        public ActionResult ShowReplace(int? invoiceId)
+        {
+            var report = new ReplaceReport();
             report.Parameters["IDParameter"].Value = invoiceId;
             report.Parameters["IDParameter"].Visible = false;
             return View(report);

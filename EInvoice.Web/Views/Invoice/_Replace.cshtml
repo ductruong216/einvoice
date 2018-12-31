@@ -138,27 +138,7 @@
         c.SetDataItemTemplateContent(r =>
         {
             var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-            ViewContext.Writer.Write("<form action=\"ShowReleaseReport\" method=\"post\">" +
-                                     "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
-                                     "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"btn btn-info\">View</button>" +
-                                     "</form>"
-                                     +"</div>"
-                );
-        });
-    });  settings.Columns.Add(c =>
-    {
-        c.Caption = "View Invoice";
-        c.EditorProperties().TextBox(p =>
-        {
-            p.CssPostfix = "actions";
-        });
-        c.Width = 100;
-        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        c.SetDataItemTemplateContent(r =>
-        {
-            var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-            ViewContext.Writer.Write("<form action=\"ShowReleaseReport\" method=\"post\">" +
+            ViewContext.Writer.Write("<form action=\"ShowIssued\" method=\"post\">" +
                                      "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
                                      "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"btn btn-info\">View</button>" +
                                      "</form>"

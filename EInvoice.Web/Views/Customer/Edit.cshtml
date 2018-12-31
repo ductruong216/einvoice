@@ -1,223 +1,223 @@
 ﻿@model EInvoice.Web.Models.CustomerViewModel
-			<div class="form-group">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label col-md-4">Customer Code: <span class="required">*</span></label>
-						<div class="col-md-8">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-barcode"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.Code,
-									new
-									{
-										@name = "Code",
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.Code)
-							</div>
-							<p id="code_status"></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label col-md-4">Purchaser: <span class="required">*</span></label>
-						<div class="col-md-8">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-user"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.Name,
-									new
-									{
-										@name = "Purchaser",
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.Name)
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label col-md-4">Tax Code:</label>
-						<div class="col-md-8">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-qrcode"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.TaxCode,
-									new
-									{
-										@name = "TaxCode",
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.TaxCode)
-							</div>
-							<p id="taxCode_status"></p>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div class="row">
-						<button type="button" id="find_company" class="btn btn-info ml-3" id="fix-button">Get Info</button>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label class=" control-label col-md-2">Organization Name: </label>
-						<div class="col-md-10">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-briefcase"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.EnterpriseName,
-									new
-									{
-										@name = "Name",
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.EnterpriseName)
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label class=" control-label col-md-2">Address: <span class="required">*</span></label>
-						<div class="col-md-10">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-address-card"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.Address,
-									new
-									{
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.Address)
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label col-md-4">Email:</label>
-						<div class="col-md-8">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-envelope"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.Email,
-									new
-									{
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.Email)
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label col-md-4">Phone number:</label>
-						<div class="col-md-8">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-phone"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.Phone,
-									new
-									{
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.Phone)
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label col-md-4">Fax:</label>
-						<div class="col-md-8">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-fax"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.Fax,
-									new
-									{
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.Fax)
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label col-md-4">Representative:</label>
-						<div class="col-md-8">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-user-circle"></i></span>
-								</span>
-								@Html.TextBoxFor(model => model.LegalRepresentative,
-									new
-									{
-										@class = "form-control",
-										@type = "text"
-									})
-								@Html.ValidationMessageFor(model => model.LegalRepresentative)
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label class=" control-label col-md-2">Note:</label>
-						<div class="col-md-10">
-							<div class="input-group input-group-icon">
-								<span class="input-group-addon">
-									<span class="icon"><i class="fa fa-sticky-note"></i></span>
-								</span>
-								@Html.TextAreaFor(model => model.Note,
-									new
-									{
-										@style = "padding-left:5%",
-										@class = "form-control",
-										@type = "text"
-									})
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<div class="col-md-8 col-sm-9 col-xs-12 col-md-offset-4">
-					<button type="submit" class="btn btn-round btn-primary" id="saveCustomer">Save</button>
-					<button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
-				</div>
-			</div>
+<div class="form-group">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class=" control-label col-md-4">Customer Code: <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-barcode"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.Code,
+                        new
+                        {
+                            @name = "Code",
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.Code)
+                </div>
+                <p id="code_status"></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class=" control-label col-md-4">Purchaser: <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-user"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.Name,
+                        new
+                        {
+                            @name = "Purchaser",
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class=" control-label col-md-4">Tax Code:</label>
+            <div class="col-md-8">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-qrcode"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.TaxCode,
+                        new
+                        {
+                            @name = "TaxCode",
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.TaxCode)
+                </div>
+                <p id="taxCode_status"></p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <button type="button" id="find_company" class="btn btn-info ml-3" id="fix-button">Get Info</button>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class=" control-label col-md-2">Organization Name: </label>
+            <div class="col-md-10">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-briefcase"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.EnterpriseName,
+                        new
+                        {
+                            @name = "Name",
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.EnterpriseName)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class=" control-label col-md-2">Address: <span class="required">*</span></label>
+            <div class="col-md-10">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-address-card"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.Address,
+                        new
+                        {
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class=" control-label col-md-4">Email:</label>
+            <div class="col-md-8">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-envelope"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.Email,
+                        new
+                        {
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class=" control-label col-md-4">Phone number:</label>
+            <div class="col-md-8">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-phone"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.Phone,
+                        new
+                        {
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class=" control-label col-md-4">Fax:</label>
+            <div class="col-md-8">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-fax"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.Fax,
+                        new
+                        {
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.Fax)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class=" control-label col-md-4">Representative:</label>
+            <div class="col-md-8">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-user-circle"></i></span>
+                    </span>
+                    @Html.TextBoxFor(model => model.LegalRepresentative,
+                        new
+                        {
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                    @Html.ValidationMessageFor(model => model.LegalRepresentative)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class=" control-label col-md-2">Note:</label>
+            <div class="col-md-10">
+                <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                        <span class="icon"><i class="fa fa-sticky-note"></i></span>
+                    </span>
+                    @Html.TextAreaFor(model => model.Note,
+                        new
+                        {
+                            @style = "padding-left:5%",
+                            @class = "form-control",
+                            @type = "text"
+                        })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-md-8 col-sm-9 col-xs-12 col-md-offset-4">
+        <button type="submit" class="btn btn-round btn-primary" id="saveCustomer">Save</button>
+        <button type="button" class="btn btn-round btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+    </div>
+</div>
 

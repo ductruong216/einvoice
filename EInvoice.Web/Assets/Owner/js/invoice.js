@@ -72,7 +72,7 @@ function NewInvoiceCore(isRelease) {
                     });
                 } else {
                     swal({
-                        title: "Release Invoice",
+                        title: "Issue Invoice",
                         text: response.Message,
                         icon: "success",
                         buttons: false,
@@ -105,7 +105,7 @@ function CreateInvoice(button) {
         }
         else {
             swal({
-                title: "Do you want to save then release this invoice?",
+                title: "Do you want to save then issue this invoice?",
                 icon: "info",
                 buttons: true,
             }).then((isConfirm) => {
@@ -311,7 +311,7 @@ function Release(id) {
                         success: function (data) {
                             if (data.Success === true) {
                                 swal({
-                                    title: "Release Invoice",
+                                    title: "Issue Invoice",
                                     text: data.Message,
                                     icon: "success",
                                     buttons: false,
@@ -325,7 +325,7 @@ function Release(id) {
                                 });
                             } else {
                                 swal({
-                                    title: "Release Invoice",
+                                    title: "Issue Invoice",
                                     text: data.Message,
                                     icon: "error",
                                     buttons: false,

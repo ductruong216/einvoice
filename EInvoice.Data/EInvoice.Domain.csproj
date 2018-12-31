@@ -172,6 +172,7 @@
     <Compile Include="Data\User.cs">
       <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\Report.cs" />
     <Compile Include="Infrastructure\Implementation\Disposable.cs" />
     <Compile Include="Infrastructure\Implementation\DbFactory.cs" />
     <Compile Include="Infrastructure\Implementation\ObjectFactory.cs" />

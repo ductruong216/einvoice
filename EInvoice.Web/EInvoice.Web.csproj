@@ -3006,15 +3006,19 @@
     <Content Include="Views\Invoice\_List.cshtml" />
     <Content Include="Views\Invoice\List.cshtml" />
     <Content Include="Views\Invoice\_Issue.cshtml" />
-    <Content Include="Views\Invoice\_ViewDraftReport.cshtml" />
-    <Content Include="Views\Invoice\ShowDraftReport.cshtml" />
-    <Content Include="Views\Invoice\ShowReleaseReport.cshtml" />
-    <Content Include="Views\Invoice\_ViewReleaseReport.cshtml" />
+    <Content Include="Views\Invoice\_ViewDraft.cshtml" />
+    <Content Include="Views\Invoice\ShowDraft.cshtml" />
+    <Content Include="Views\Invoice\ShowIssued.cshtml" />
+    <Content Include="Views\Invoice\_ViewIssued.cshtml" />
     <Content Include="Views\Invoice\Report.cshtml" />
     <Content Include="Views\Invoice\_Cancel.cshtml" />
     <Content Include="Views\Invoice\Replace.cshtml" />
     <Content Include="Views\Invoice\_Replace.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Invoice\ShowCancelled.cshtml" />
+    <Content Include="Views\Invoice\ShowReplace.cshtml" />
+    <Content Include="Views\Invoice\_ViewCancelled.cshtml" />
+    <Content Include="Views\Invoice\_ViewReplace.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3078,10 +3082,16 @@
     <Compile Include="Models\SerialViewModel.cs" />
     <Compile Include="Models\UnitViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\CancelledReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\InvoiceReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\ReleaseReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReplaceReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -3115,11 +3125,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Report\CancelledReport.resx">
+      <DependentUpon>CancelledReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\InvoiceReport.resx">
       <DependentUpon>InvoiceReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\ReleaseReport.resx">
       <DependentUpon>ReleaseReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReplaceReport.resx">
+      <DependentUpon>ReplaceReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

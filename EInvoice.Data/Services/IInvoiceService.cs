@@ -6,14 +6,13 @@ namespace EInvoice.Data.Services
 	public interface IInvoiceService : IBaseService<Invoice>
 	{
 		void AddDraft(Invoice invoice);
-
 		void UpdateInvoice(Invoice invoice);
 		void DeleteInvoice(int id);
 		void Issue(int invoiceId);
 		IList<Serial> GetSeries();
 		IEnumerable<Serial> GetSeriesByPattern(int id);
 	    int GetInvoiceNumber(Invoice invoice);
-        void SaveAndRelease(Invoice invoice);
+        void SaveAndIssue(Invoice invoice);
 		IList<Invoice> GetAllDraft();
 		IList<Invoice> GetAllRelease();
 	    IList<Invoice> GetAllCancel();
@@ -21,5 +20,6 @@ namespace EInvoice.Data.Services
         void CancelIssuedInvoice(int invoiceId);
         void ReplaceIssuedInvoice(int invoiceId);
         void NewReplace(Invoice invoice);
+        IList<DTO.Report> ReportOnUseInvoices(int priod, int year);
     }
 }

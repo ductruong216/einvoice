@@ -27,8 +27,8 @@ namespace EInvoice.Data.Data
         public Nullable<int> ToNo_ { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
     
+        public virtual Pattern Pattern { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
-        public virtual Pattern Pattern { get; set; }
     }
 }

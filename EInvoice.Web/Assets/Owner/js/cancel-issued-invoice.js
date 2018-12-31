@@ -1,4 +1,4 @@
-﻿function alertReplace() {
+﻿function alertCancel() {
     return swal({
         title: "If you want to cancel this invoice you must replace by another invoice",
         icon: "warning",
@@ -46,7 +46,7 @@ function AjaxDestroyInvoice() {
 }
 
 
-function CancelAndReplace(invoiceId) {
+function CancelAndReplace_Cancel(invoiceId) {
     return $.ajax({
         type: "POST",
         url: "/Invoice/CancelIssuedInvoice",
@@ -78,7 +78,7 @@ function CancelAndReplace(invoiceId) {
     });
 }
 
-function CheckPassword(invoiceId, password) {
+function CheckPasswordCancel(invoiceId, password) {
     return $.ajax({
         url: "/User/CheckPassword",
         type: "POST",
@@ -87,7 +87,7 @@ function CheckPassword(invoiceId, password) {
         success: function (response) {
             debugger
             if (response.Success === true) {
-                CancelAndReplace(invoiceId)
+                CancelAndReplace_Cancel(invoiceId)
             } else {
                 swal({
                     title: "Wrong password",
@@ -101,7 +101,7 @@ function CheckPassword(invoiceId, password) {
     });
 }
 
-function inputUserPassword(invoiceId) {
+function inputUserPassword_Cancel(invoiceId) {
     return swal({
         title: "Enter your password to continue",
         icon: "info",
@@ -113,17 +113,16 @@ function inputUserPassword(invoiceId) {
             },
         }
     }).then((value) => {
-
-        CheckPassword(invoiceId, value)
+        CheckPasswordCancel(invoiceId, value)
     })
 }
 
 function cancelInvoice(id) {
     aleartConfrimCancel().then((isConfirm) => {
         if (isConfirm) {
-            alertReplace().then((isConfirm) => {
+            alertCancel().then((isConfirm) => {
                 if (isConfirm) {
-                    inputUserPassword(id)
+                    inputUserPassword_Cancel(id)
                 }
             })
         }

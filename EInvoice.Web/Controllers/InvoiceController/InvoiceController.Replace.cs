@@ -23,7 +23,7 @@ namespace EInvoice.Web.Controllers.InvoiceController
             try
             {
                 _invoiceService.ReplaceIssuedInvoice(invoiceId);
-                return Success("Destroy Successfully");
+                return Success("Cancel Successfully");
             }
             catch (Exception e)
             {

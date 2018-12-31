@@ -12,23 +12,23 @@
 
 
 <style>
-        .field-validation-error {
-            color: red;
-        }
+    .field-validation-error {
+        color: red;
+    }
 
-        #Products_DXCTMenu0_DXI0_ {
-            border: 1px Solid #dfdfdf !important;
-        }
+    #Products_DXCTMenu0_DXI0_ {
+        border: 1px Solid #dfdfdf !important;
+    }
 
-        #btnNew {
-            border: none;
-            padding: 8px 8px 8px 32px;
-            font-family: Arial, Verdana;
-            background: #ffffff url([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEUxozEt-9GCB3eVUdVbrzR67M_Ap8k6oxCbu-f4WVSfmW3V]);
-            background-position: 8px 8px;
-            background-repeat: no-repeat;
-        }
-    </style>
+    #btnNew {
+        border: none;
+        padding: 8px 8px 8px 32px;
+        font-family: Arial, Verdana;
+        background: #ffffff url([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEUxozEt-9GCB3eVUdVbrzR67M_Ap8k6oxCbu-f4WVSfmW3V]);
+        background-position: 8px 8px;
+        background-repeat: no-repeat;
+    }
+</style>
 @Html.DevExpress().GetStyleSheets(
     new StyleSheet { ExtensionSuite = ExtensionSuite.GridView })
 @Html.DevExpress().GetScripts(
@@ -67,20 +67,20 @@
                 <div class="modal-body">
                     <div class="modal-body">
                         @using (Ajax.BeginForm("Create", "Product",
-            null,
-            new AjaxOptions() { HttpMethod = "post" },
-            new { @class = "form-horizontal", @id = "productForm" }))
+                            null,
+                            new AjaxOptions() { HttpMethod = "post", OnSuccess = "AddProductSuccess()" },
+                            new { @class = "form-horizontal", @id = "productForm" }))
                         {
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Product Code: <span class="required">*</span></label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     @Html.TextBoxFor(model => model.Code,
-                                    new
-                                    {
-                                        @name = "Code",
-                                        @class = "form-control",
-                                        @type = "text"
-                                    })
+                                        new
+                                        {
+                                            @name = "Code",
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
                                     @Html.ValidationMessageFor(model => model.Code)
                                 </div>
                                 <p id="code_status"></p>
@@ -90,12 +90,12 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Name: </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     @Html.TextBoxFor(model => model.Name,
-                                    new
-                                    {
-                                        @name = "Purchaser",
-                                        @class = "form-control",
-                                        @type = "text"
-                                    })
+                                        new
+                                        {
+                                            @name = "Purchaser",
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
                                     @Html.ValidationMessageFor(model => model.Name)
                                 </div>
                             </div>
@@ -103,24 +103,24 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Desription: </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     @Html.TextAreaFor(model => model.Description,
-                                    new
-                                    {
-                                        @style = "padding-left:5%",
-                                        @class = "form-control",
-                                        @type = "text"
-                                    })
+                                        new
+                                        {
+                                            @style = "padding-left:5%",
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Price: </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     @Html.TextBoxFor(model => model.Price,
-                                    new
-                                    {
-                                        @name = "Name",
-                                        @class = "form-control",
-                                        @type = "text"
-                                    })
+                                        new
+                                        {
+                                            @name = "Name",
+                                            @class = "form-control",
+                                            @type = "text"
+                                        })
                                     @Html.ValidationMessageFor(model => model.Price)
                                 </div>
 
@@ -131,16 +131,16 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Unit: </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     @Html.DropDownListFor(model => model.UnitID,
-                                    controller.GetUnitName(),
-                                    new
-                                    {
-                                        @class = "form-control",
-                                        id = "paymentType",
-                                        type = "text",
-                                        name = "PaymentType",
+                                        controller.GetUnitName(),
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            id = "paymentType",
+                                            type = "text",
+                                            name = "PaymentType",
 
-                                        required = "required"
-                                    })
+                                            required = "required"
+                                        })
                                     @Html.ValidationMessageFor(model => model.UnitID)
                                 </div>
                             </div>
@@ -157,3 +157,4 @@
         </div>
     </div>
 </div>
+<script src="~/Assets/Owner/js/ajax-begin-form.js"></script>

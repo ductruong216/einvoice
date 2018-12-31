@@ -160,7 +160,7 @@
         {
             var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
 
-            ViewContext.Writer.Write("<form action=\"ShowDraftReport\" method=\"post\">" +
+            ViewContext.Writer.Write("<form action=\"ShowDraft\" method=\"post\">" +
                                      "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId + "\">" +
                                      "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"btn btn-info\">View</button>" +
                                      "</form>"

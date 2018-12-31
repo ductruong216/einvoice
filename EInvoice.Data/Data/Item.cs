@@ -25,7 +25,7 @@ namespace EInvoice.Data.Data
         public Nullable<decimal> ItemPrice { get; set; }
         public string UnitName { get; set; }
     
-        public virtual Invoice Invoice { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }

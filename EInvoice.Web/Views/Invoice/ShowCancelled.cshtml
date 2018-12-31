@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "View Invoice";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+@Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionType = ExtensionType.WebDocumentViewer }
+    )
+
+@Html.DevExpress().GetScripts(
+    new Script { ExtensionType = ExtensionType.WebDocumentViewer }
+    )
+@Html.Partial("_ViewCancelled")

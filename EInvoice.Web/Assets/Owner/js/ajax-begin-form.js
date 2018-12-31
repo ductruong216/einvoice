@@ -15,6 +15,26 @@
 	});
 }
 
+function AddProductSuccess () {
+    $('#newProduct').modal('hide');
+    $('#productForm').trigger("reset");
+    $('#Code-error').contents().remove();
+    $('#Name-error').contents().remove();
+    $('#Price-error').contents().remove();
+	$('span.field-validation-valid').contents().remove();
+	swal({
+		title: "Add Product",
+		text: "Add Successfully",
+		icon: "success",
+		buttons: false,
+		timer: 1300
+	}).then(function () {
+        Products.Refresh();
+	});
+}
+
+
+
 // $.ajax({
 //	url: '@Url.Action("Create", "Customer")',
 //	method: "POST",

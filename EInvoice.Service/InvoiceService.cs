@@ -6,6 +6,7 @@ using EInvoice.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Report = EInvoice.Data.DTO.Report;
 
 namespace EInvoice.Service
 {
@@ -18,6 +19,7 @@ namespace EInvoice.Service
         private readonly IRepository<PurchaserCustomer> _purchaserRepository;
         private readonly IRepository<Item> _itemRepository;
         private readonly IRepository<Serial> _serialRepository;
+        private readonly IRepository<Pattern> _patternRepository;
 
         public InvoiceService(IRepository<Customer> customerRepository,
             IRepository<Invoice> repository,
@@ -27,6 +29,7 @@ namespace EInvoice.Service
             IRepository<PurchaserCustomer> purchaserRepository,
             IRepository<Item> itemRepository,
             IRepository<Serial> serialRepository,
+            IRepository<Pattern> patternRepository,
 
         IUnitOfWork unitOfWork) : base(repository, unitOfWork)
         {
@@ -37,6 +40,7 @@ namespace EInvoice.Service
             _purchaserRepository = purchaserRepository;
             _itemRepository = itemRepository;
             _serialRepository = serialRepository;
+            _patternRepository = patternRepository;
         }
 
         public void AddDraft(Invoice invoice)
@@ -44,6 +48,7 @@ namespace EInvoice.Service
             invoice.Status = "Draft";
             invoice.CompanyId = 3;
             invoice.InWord = Enumration.Num2Word((double)invoice.GrandTotalAmount);
+            invoice.CreatedDate = DateTime.Now;
             Add(invoice);
         }
 
@@ -104,7 +109,8 @@ namespace EInvoice.Service
                 }
                 _unitOfWork.SaveChanges();
                 invoice.Items = items;
-
+                invoice.CreatedDate = DateTime.Now;
+                invoice.InWord = Enumration.Num2Word((double)invoice.GrandTotalAmount);
                 Update(invoice);
                 _unitOfWork.Commit();
             }
@@ -151,12 +157,13 @@ namespace EInvoice.Service
             return _serialRepository.GetSeriesByPattern(id);
         }
 
-        public void SaveAndRelease(Invoice invoice)
+        public void SaveAndIssue(Invoice invoice)
         {
             invoice.Status = InvoiceStatus.Issued.ToString();
             invoice.CompanyId = 3;
             invoice.No = GetInvoiceNumber(invoice);
             invoice.ReleaseDate = DateTime.Now;
+            invoice.CreatedDate = DateTime.Now;
             invoice.InWord = Enumration.Num2Word((double)invoice.GrandTotalAmount);
             Add(invoice);
         }
@@ -206,6 +213,7 @@ namespace EInvoice.Service
         {
             var invoice = GetSingleById(invoiceId);
             invoice.Status = InvoiceStatus.Cancel.ToString();
+            invoice.CancelDate = DateTime.Now;
             Update(invoice);
             return invoice;
         }
@@ -220,6 +228,7 @@ namespace EInvoice.Service
             invoice.Status = InvoiceStatus.Replace.ToString();
             invoice.CompanyId = 3;
             invoice.ReleaseDate = DateTime.Now;
+            invoice.CreatedDate = DateTime.Now;
             invoice.InWord = Enumration.Num2Word((double)invoice.GrandTotalAmount);
             invoice.Customer.Code = _customerRepository.GetSingleById(invoice.CustomerId).Code;
             var invoiceCancel = GetSingleById(invoice.ID);
@@ -227,10 +236,248 @@ namespace EInvoice.Service
             Add(invoice);
         }
 
-        // Bao cao tinh hinh su dung hoa don
-        public void ReportOnUseInvoices(int priod, DateTime year)
+        // BAO CAO TINH HINH SU DUNG HOA DON
+
+        public IList<Report> ReportOnUseInvoices(int priod, int year)
         {
-            
+            // Tao list chua 8 object Report voi pattern va serial tuong ung
+            var listReport = new List<Report>();
+
+            var listPattern = _patternRepository.GetAll();
+
+            var totalPattern = listPattern.Count();
+
+            // Attributes
+            IList<Invoice> listIssued = new List<Invoice>();
+            IList<Invoice> listCanceled = new List<Invoice>();
+            var ListAllInvoice = new List<Invoice>();
+            string patternName;
+            string serialName;
+            int totalAllInvoice;
+            int totalBegining;
+            var listCanceledNo = new List<int>();
+            // Get pattern va serial de tao doi tuong Report
+            if (priod == 1 && year == 2018)
+            {
+                for (int i = 0; i < totalPattern; i++)
+                {
+                    for (int j = 0; j < listPattern.ElementAt(i).Serials.Count(); j++)
+                    {
+                        patternName = listPattern.ElementAt(i).Name;
+                        serialName = listPattern.ElementAt(i).Serials.ElementAt(j).Name;
+                        listIssued = ListIssueInvoice(priod, year, patternName, serialName);
+                        listCanceled = ListCancelInvoice(priod, year, patternName, serialName);
+                        ListAllInvoice = listCanceled.Concat(listIssued).OrderBy(x => x.No).ToList();
+                        totalBegining = 1000;
+                        for (int k = 0; k < listCanceled.Count(); k++)
+                        {
+                            var cancelNo = listCanceled.ElementAt(k).No;
+                            listCanceledNo.Add(cancelNo);
+                        }
+
+                        var report = new Report();
+                        report.InvoiceType = "VAT Invoice";
+                        report.Pattern = patternName;
+                        report.Serial = serialName;
+
+                        report.TotalBegining = totalBegining;
+                        report.FromBuyNo = 1;
+                        report.ToBuyNo = Math.Max(1, totalBegining);
+
+                        report.FromBeginingNo = null;
+                        report.ToBeginingNo = null;
+
+                        //TotalAllInvoice = listIssued.Count() + listCanceled.Count(),
+                        report.TotalAllInvoice = ListAllInvoice.Count();
+                        if (ListAllInvoice.FirstOrDefault() != null)
+                        {
+                            report.FromAllInvoice = ListAllInvoice.FirstOrDefault().No;
+                            report.ToAllInvoice = ListAllInvoice.LastOrDefault().No;
+                            report.FromClosingStock = ListAllInvoice.LastOrDefault().No + 1;
+                        }
+                        else
+                        {
+                            report.FromAllInvoice = null;
+                            report.ToAllInvoice = null;
+                            report.FromClosingStock = null;
+                        }
+
+
+                        report.TotalIssued = listIssued.Count();
+                        report.TotalCanceled = listCanceled.Count();
+
+                        report.ListCanceled = new List<int>(listCanceledNo);
+
+                        report.TotalClosingStock = totalBegining - ListAllInvoice.Count();
+
+                        report.ToClosingStock = totalBegining;
+
+                        listReport.Add(report);
+                       
+                    }
+                    listCanceledNo.Clear();}
+               
+                return listReport;
+            }
+
+            else
+            {
+                for (int i = 0; i < totalPattern; i++)
+                {
+                    for (int j = 0; j < listPattern.ElementAt(i).Serials.Count(); j++)
+                    {
+                        listCanceledNo.Clear();
+                        patternName = listPattern.ElementAt(i).Name;
+                        serialName = listPattern.ElementAt(i).Serials.ElementAt(j).Name;
+                        listIssued = ListIssueInvoice(priod, year, patternName, serialName);
+                        listCanceled = ListCancelInvoice(priod, year, patternName, serialName);
+                        ListAllInvoice = listCanceled.Concat(listIssued).OrderBy(x => x.No).ToList();
+                        totalBegining = CalTotalClosingStock(priod - 1, year, patternName, serialName);
+                        for (int k = 0; k < listCanceled.Count(); k++)
+                        {
+                            var cancelNo = listCanceled.ElementAt(k).No;
+                            listCanceledNo.Add(cancelNo);
+                        }
+
+                        var report = new Report();
+                        report.InvoiceType = "VAT Invoice";
+                        report.Pattern = patternName;
+                        report.Serial = serialName;
+
+                        report.TotalBegining = totalBegining;
+                       
+                        report.FromBuyNo = null;
+                        report.ToBuyNo = null;
+
+                        report.FromBeginingNo =
+                            Math.Min(1, CalTotalClosingStock(priod - 1, year, patternName, serialName));
+                        report.ToBeginingNo =
+                            Math.Max(1, CalTotalClosingStock(priod - 1, year, patternName, serialName));
+
+                        //TotalAllInvoice = listIssued.Count() + listCanceled.Count(),
+                        report.TotalAllInvoice = ListAllInvoice.Count();
+                        if (ListAllInvoice.FirstOrDefault() != null)
+                        {
+                            report.FromAllInvoice = ListAllInvoice.FirstOrDefault().No;
+                            report.ToAllInvoice = ListAllInvoice.LastOrDefault().No;
+                            report.FromClosingStock = ListAllInvoice.LastOrDefault().No + 1;
+                        }
+                        else
+                        {
+                            report.FromAllInvoice = null;
+                            report.ToAllInvoice = null;
+                            report.FromClosingStock = null;
+                        }
+
+                        report.TotalIssued = listIssued.Count();
+                        report.TotalCanceled = listCanceled.Count();
+
+                        report.ListCanceled = new List<int>(listCanceledNo);
+
+                        report.TotalClosingStock = totalBegining - ListAllInvoice.Count();
+
+                        report.ToClosingStock = totalBegining;
+
+                        listReport.Add(report);
+                    }
+                }
+
+                return listReport;
+            }
+        }
+
+        private int CalTotalClosingStock(int priod, int year, string patternName, string serialName)
+        {
+            // Tong so ton cuoi ky = so begining - tat ca hoa don da su dung
+            int totalBegining;
+            var listIssued = ListIssueInvoice(priod, year, patternName, serialName);
+            var listCanceled = ListCancelInvoice(priod, year, patternName, serialName);
+            var ListAllInvoice = listCanceled.Concat(listIssued).OrderBy(x => x.No).ToList();
+            if (priod == 1 && year == 2018)
+            {
+                totalBegining = 1000;
+                return totalBegining - ListAllInvoice.Count();
+            }
+
+            else if (priod == 2)
+            {
+                totalBegining = CalTotalClosingStock(1, 2018, patternName, serialName);
+                return totalBegining - ListAllInvoice.Count();
+            }
+            else if (priod == 3)
+            {
+                totalBegining = CalTotalClosingStock(2, year, patternName, serialName);
+                return totalBegining - ListAllInvoice.Count();
+            }
+            else
+            {
+                totalBegining = CalTotalClosingStock(3, year, patternName, serialName);
+                return totalBegining - ListAllInvoice.Count();
+            }
+
+        }
+
+        private IList<Invoice> ListCancelInvoice(int priod, int year, string pattern, string serial)
+        {
+            var months = GetMonth(priod);
+            var month1 = months.ElementAt(0);
+            var month2 = months.ElementAt(1);
+            var month3 = months.ElementAt(2);
+            return _repository.GetMulti(x => x.Status == InvoiceStatus.Cancel.ToString()
+                                             && x.Pattern.Name == pattern
+                                             && x.Serial.Name == serial
+                                             && x.ReleaseDate.Value.Year == year
+                                             && (x.ReleaseDate.Value.Month == month1
+                                                 || x.ReleaseDate.Value.Month == month2
+                                                 || x.ReleaseDate.Value.Month == month3)).ToList();
+        }
+
+        private IList<Invoice> ListIssueInvoice(int priod, int year, string pattern, string serial)
+        {
+            var months = GetMonth(priod);
+            var month1 = months.ElementAt(0);
+            var month2 = months.ElementAt(1);
+            var month3 = months.ElementAt(2);
+            return _repository.GetMulti(x => (x.Status == InvoiceStatus.Issued.ToString()
+                                             || x.Status == InvoiceStatus.Replace.ToString())&& x.Pattern.Name == pattern
+                                             && x.Serial.Name == serial
+                                             && x.ReleaseDate.Value.Year == year
+                                             && (x.ReleaseDate.Value.Month == month1
+                                               || x.ReleaseDate.Value.Month == month2
+                                               || x.ReleaseDate.Value.Month == month3)).ToList();
+        }
+
+        public IList<int> GetMonth(int quarter)
+        {
+            var months = new List<int>();
+            if (quarter == 1)
+            {
+                months.Add(1);
+                months.Add(2);
+                months.Add(3);
+                return months;
+            }
+            else if (quarter == 2)
+            {
+                months.Add(4);
+                months.Add(5);
+                months.Add(6);
+                return months;
+            }
+            else if (quarter == 3)
+            {
+                months.Add(7);
+                months.Add(8);
+                months.Add(9);
+                return months;
+            }
+            else
+            {
+                months.Add(10);
+                months.Add(11);
+                months.Add(12);
+                return months;
+            }
         }
     }
 }

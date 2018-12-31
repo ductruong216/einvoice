@@ -34,7 +34,6 @@ namespace EInvoice.Data.Data
         public virtual DbSet<DigitalSignature> DigitalSignatures { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceType> InvoiceTypes { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Pattern> Patterns { get; set; }
@@ -48,5 +47,6 @@ namespace EInvoice.Data.Data
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Serial> Serials { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
     }
 }

@@ -32,6 +32,5 @@ function ProductAutocomplete(field, fieldValue, URL) {
 		}
 	});
 }
-
 ProductAutocomplete("name1", "Name", '/Product/GetProductByName');
 ProductAutocomplete("productCode1", "Code", '/Product/GetProductByCode');

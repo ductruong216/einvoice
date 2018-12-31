@@ -38,6 +38,7 @@ namespace EInvoice.Data.Data
         public Nullable<long> CreatorID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ReleaseDate { get; set; }
+        public Nullable<System.DateTime> CancelDate { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
         public string ModifyBy { get; set; }
         public string Status { get; set; }
@@ -49,8 +50,8 @@ namespace EInvoice.Data.Data
         public virtual Pattern Pattern { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
         public virtual PurchaserCustomer PurchaserCustomer { get; set; }
+        public virtual Serial Serial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
-        public virtual Serial Serial { get; set; }
     }
 }

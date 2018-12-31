@@ -1,0 +1,12 @@
+﻿@using DevExpress.XtraReports.Web.ClientControls
+@using DevExpress.XtraReports.Web.WebDocumentViewer
+@model ReplaceReport
+@Html.DevExpress().WebDocumentViewer(settings =>{
+	// The following settings are required for a Document Viewer. 
+	settings.Name = "InvoiceDetail";
+    settings.MenuItems.Remove(new WebDocumentViewerMenuItem
+    {
+    Container = MenuItemContainer.Toolbar,
+    Visible = false
+    });
+}).Bind(Model).GetHtml()

@@ -98,6 +98,15 @@
         c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
 
     });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "CancelDate";
+        c.Caption = "CancelledDate";
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Right;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+
+    });
 
     settings.Columns.Add(c =>
     {
@@ -131,7 +140,7 @@
         c.SetDataItemTemplateContent(r =>
         {
             var invoiceId = (long)DataBinder.Eval(r.DataItem, "ID");
-            ViewContext.Writer.Write("<form action=\"ShowReleaseReport\" method=\"post\">" +
+            ViewContext.Writer.Write("<form action=\"ShowCancelled\" method=\"post\">" +
                                      "<input name=\"invoiceId\" type=\"hidden\" name=\"invoiceId\" id=\"invoiceId\" value=\"" + invoiceId+"\">"+
                                      "<button type=\"submit\" data-target=\"#showInvoice\" type=\"button\" style=\"cursor: pointer;\"class=\"btn btn-info\">View</button>" +
                                      "</form>"
