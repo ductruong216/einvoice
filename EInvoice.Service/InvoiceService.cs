@@ -238,7 +238,7 @@ namespace EInvoice.Service
 
         // BAO CAO TINH HINH SU DUNG HOA DON
 
-        public IList<Report> ReportOnUseInvoices(int priod, int year)
+        public IList<Report> ReportOnUseInvoices(int period, int year)
         {
             // Tao list chua 8 object Report voi pattern va serial tuong ung
             var listReport = new List<Report>();
@@ -257,7 +257,7 @@ namespace EInvoice.Service
             int totalBegining;
             var listCanceledNo = new List<int>();
             // Get pattern va serial de tao doi tuong Report
-            if (priod == 1 && year == 2018)
+            if (period == 1 && year == 2018)
             {
                 for (int i = 0; i < totalPattern; i++)
                 {
@@ -265,8 +265,8 @@ namespace EInvoice.Service
                     {
                         patternName = listPattern.ElementAt(i).Name;
                         serialName = listPattern.ElementAt(i).Serials.ElementAt(j).Name;
-                        listIssued = ListIssueInvoice(priod, year, patternName, serialName);
-                        listCanceled = ListCancelInvoice(priod, year, patternName, serialName);
+                        listIssued = ListIssueInvoice(period, year, patternName, serialName);
+                        listCanceled = ListCancelInvoice(period, year, patternName, serialName);
                         ListAllInvoice = listCanceled.Concat(listIssued).OrderBy(x => x.No).ToList();
                         totalBegining = 1000;
                         for (int k = 0; k < listCanceled.Count(); k++)
@@ -319,7 +319,7 @@ namespace EInvoice.Service
                
                 return listReport;
             }
-
+               
             else
             {
                 for (int i = 0; i < totalPattern; i++)
@@ -329,10 +329,10 @@ namespace EInvoice.Service
                         listCanceledNo.Clear();
                         patternName = listPattern.ElementAt(i).Name;
                         serialName = listPattern.ElementAt(i).Serials.ElementAt(j).Name;
-                        listIssued = ListIssueInvoice(priod, year, patternName, serialName);
-                        listCanceled = ListCancelInvoice(priod, year, patternName, serialName);
+                        listIssued = ListIssueInvoice(period, year, patternName, serialName);
+                        listCanceled = ListCancelInvoice(period, year, patternName, serialName);
                         ListAllInvoice = listCanceled.Concat(listIssued).OrderBy(x => x.No).ToList();
-                        totalBegining = CalTotalClosingStock(priod - 1, year, patternName, serialName);
+                        totalBegining = CalTotalClosingStock(period - 1, year, patternName, serialName);
                         for (int k = 0; k < listCanceled.Count(); k++)
                         {
                             var cancelNo = listCanceled.ElementAt(k).No;
@@ -350,9 +350,9 @@ namespace EInvoice.Service
                         report.ToBuyNo = null;
 
                         report.FromBeginingNo =
-                            Math.Min(1, CalTotalClosingStock(priod - 1, year, patternName, serialName));
+                            Math.Min(1, CalTotalClosingStock(period - 1, year, patternName, serialName));
                         report.ToBeginingNo =
-                            Math.Max(1, CalTotalClosingStock(priod - 1, year, patternName, serialName));
+                            Math.Max(1, CalTotalClosingStock(period - 1, year, patternName, serialName));
 
                         //TotalAllInvoice = listIssued.Count() + listCanceled.Count(),
                         report.TotalAllInvoice = ListAllInvoice.Count();
@@ -386,25 +386,25 @@ namespace EInvoice.Service
             }
         }
 
-        private int CalTotalClosingStock(int priod, int year, string patternName, string serialName)
+        private int CalTotalClosingStock(int period, int year, string patternName, string serialName)
         {
             // Tong so ton cuoi ky = so begining - tat ca hoa don da su dung
             int totalBegining;
-            var listIssued = ListIssueInvoice(priod, year, patternName, serialName);
-            var listCanceled = ListCancelInvoice(priod, year, patternName, serialName);
+            var listIssued = ListIssueInvoice(period, year, patternName, serialName);
+            var listCanceled = ListCancelInvoice(period, year, patternName, serialName);
             var ListAllInvoice = listCanceled.Concat(listIssued).OrderBy(x => x.No).ToList();
-            if (priod == 1 && year == 2018)
+            if (period == 1 && year == 2018)
             {
                 totalBegining = 1000;
                 return totalBegining - ListAllInvoice.Count();
             }
 
-            else if (priod == 2)
+            else if (period == 2)
             {
                 totalBegining = CalTotalClosingStock(1, 2018, patternName, serialName);
                 return totalBegining - ListAllInvoice.Count();
             }
-            else if (priod == 3)
+            else if (period == 3)
             {
                 totalBegining = CalTotalClosingStock(2, year, patternName, serialName);
                 return totalBegining - ListAllInvoice.Count();
@@ -417,9 +417,9 @@ namespace EInvoice.Service
 
         }
 
-        private IList<Invoice> ListCancelInvoice(int priod, int year, string pattern, string serial)
+        private IList<Invoice> ListCancelInvoice(int period, int year, string pattern, string serial)
         {
-            var months = GetMonth(priod);
+            var months = GetMonth(period);
             var month1 = months.ElementAt(0);
             var month2 = months.ElementAt(1);
             var month3 = months.ElementAt(2);
@@ -432,9 +432,9 @@ namespace EInvoice.Service
                                                  || x.ReleaseDate.Value.Month == month3)).ToList();
         }
 
-        private IList<Invoice> ListIssueInvoice(int priod, int year, string pattern, string serial)
+        private IList<Invoice> ListIssueInvoice(int period, int year, string pattern, string serial)
         {
-            var months = GetMonth(priod);
+            var months = GetMonth(period);
             var month1 = months.ElementAt(0);
             var month2 = months.ElementAt(1);
             var month3 = months.ElementAt(2);

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace EInvoice.Web.Controllers.InvoiceController
 {
@@ -13,8 +14,23 @@ namespace EInvoice.Web.Controllers.InvoiceController
         [HttpPost]
         public JsonResult ReportOnUse(int quarter, int year)
         {
-            var listReport = _invoiceService.ReportOnUseInvoices(quarter, year);
-            return Json(listReport, JsonRequestBehavior.AllowGet);
+            IList<Data.DTO.Report> listReport;
+
+            if (quarter == 5 && year == 2018)
+            {
+                listReport = _invoiceService.ReportOnUseInvoices(4, year);
+                return Json(listReport, JsonRequestBehavior.AllowGet);
+            }
+            else if (quarter == 5 && year == 2019)
+            {
+                listReport = _invoiceService.ReportOnUseInvoices(1, year);
+                return Json(listReport, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                listReport = _invoiceService.ReportOnUseInvoices(quarter, year);
+                return Json(listReport, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

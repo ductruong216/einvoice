@@ -1,9 +1,9 @@
 ﻿function SubmitReport() {
-    //$('#selectReportPriod').modal("hide");
-    //window.location.href = "/Invoice/Report"
-    //var quarter = $('#selectQuater').val();
-    //var year = $('#selectYear').val();
 
+}
+
+$('#selectQuater, #selectYear').change(function () {
+    $("#reportTable tbody").remove();
     $.ajax({
         url: "/Invoice/ReportOnUse",
         type: "POST",
@@ -58,12 +58,16 @@
                         '</td>';
 
                     event_data += '<td style="text-align:center;vertical-align: text-top">'
-                                for (i = key; i < value.ListCanceled.length; i++) {
-                                    value.ListCanceled[i]
-                                }
+                  
+                    //$.each(value.ListCanceled, function (i) {
+                    //    $.each(value.ListCanceled[i], function (key, val) {
+                    //        alert(val);
+                    //    });
+                    //})
+                   
                     ';</td>';
                     event_data += ' <td style="width:20px;text-align:center;vertical-align: text-top" class="text">' +
-                        (value.FromClosingStock == null ? "-" : value.FromClosingStock) +
+                        (value.FromClosingStock == null ? "1" : value.FromClosingStock) +
                         '</td>';
                     event_data += ' <td style="width:20px;text-align:center;vertical-align: text-top" class="text">' +
                         (value.ToClosingStock == null ? "-" : value.ToClosingStock) +
@@ -76,17 +80,4 @@
             $("#reportTable").append(event_data);
         }
     });
-}
-
-//$(document).ready(function () {
-//    $.ajax({
-//        type: 'GET',
-//        dataType: 'json',
-//        url: '/Invoice/ReportOnUse',
-//        data: { get_param: 'value' },
-//        success: function (data) {
-//            var names = data
-//            $('#cand').html(data);
-//        }
-//    });
-//});
+})

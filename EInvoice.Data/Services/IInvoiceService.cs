@@ -20,6 +20,6 @@ namespace EInvoice.Data.Services
         void CancelIssuedInvoice(int invoiceId);
         void ReplaceIssuedInvoice(int invoiceId);
         void NewReplace(Invoice invoice);
-        IList<DTO.Report> ReportOnUseInvoices(int priod, int year);
+        IList<DTO.Report> ReportOnUseInvoices(int period, int year);
     }
 }
